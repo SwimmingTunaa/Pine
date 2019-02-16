@@ -22,8 +22,11 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        #if UNITY_EDITOR
         _horiMove = Input.GetAxisRaw("Horizontal") * speed;
-        _anim.SetFloat("HoriMove", Mathf.Abs(_horiMove));
+        //_anim.SetFloat("HoriMove", Mathf.Abs(_horiMove));
+        #endif
+
         _anim.SetFloat("yVelocity", _rigidBody.velocity.y);
         if (Input.GetButtonDown("Jump"))
         {
@@ -35,10 +38,34 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _characterController.Move(_horiMove * Time.fixedDeltaTime, false, _jump);
+        
+        _characterController.Move(_horiMove * Time.fixedDeltaTime, false, _jump);//for keyboard movement
         _jump = false;
-    }
 
+        TouchControl();
+    }
+    void TouchControl()
+    {        
+        Touch touch = Input.GetTouch(0);
+        if(Input.touchCount > 0)
+        {
+            Debug.Log(Input.touchCount);
+            if(touch.position.x > Screen.width/2)
+            {
+                //move right if right side of screen
+                _characterController.Move(1.0f * speed * Time.fixedDeltaTime, false, _jump);
+                _anim.SetFloat("HoriMove", Mathf.Abs(1.0f * speed)); 
+            } 
+                if(touch.position.x < Screen.width/2)
+                    //move left if left side of screen
+                    _characterController.Move(-1.0f * speed * Time.fixedDeltaTime, false, _jump);
+                    _anim.SetFloat("HoriMove", Mathf.Abs(-1.0f * speed));
+            if(touch.phase == TouchPhase.Ended)
+            {
+                _anim.SetFloat("HoriMove", 0);
+            }
+        }
+    }
     public void OnLanding()
     {
         _anim.SetBool("Jump", false);
