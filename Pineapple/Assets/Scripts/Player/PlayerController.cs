@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {   
+    public float startSpeed;
     public float speed;
+    public bool jumpable = true;
 
     private Animator _anim;
     private float _horiMove;
@@ -19,20 +21,22 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController2D>();
         _anim = GetComponentInChildren<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
+        speed = startSpeed;
     }
     void Update()
     {
         #if UNITY_EDITOR
         _horiMove = Input.GetAxisRaw("Horizontal") * speed;
-        //_anim.SetFloat("HoriMove", Mathf.Abs(_horiMove));
+        _anim.SetFloat("HoriMove", Mathf.Abs(_horiMove));
         #endif
 
         _anim.SetFloat("yVelocity", _rigidBody.velocity.y);
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && jumpable)
         {
             _jump = true;
             _anim.SetBool("Jump", true);
         }
+        
         _anim.SetBool("Grounded", _characterController.m_Grounded);
     }
 
@@ -46,9 +50,9 @@ public class PlayerController : MonoBehaviour
     }
     void TouchControl()
     {        
-        Touch touch = Input.GetTouch(0);
         if(Input.touchCount > 0)
         {
+            Touch touch = Input.GetTouch(0);
             Debug.Log(Input.touchCount);
             if(touch.position.x > Screen.width/2)
             {
