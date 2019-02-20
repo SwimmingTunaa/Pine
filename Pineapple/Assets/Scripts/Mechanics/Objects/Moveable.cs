@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Moveable : Interactable
 {
-    public float playerMoveSpeedPenalty;
+    public Enums.Weight playerMoveSpeedPenalty;
     private bool _parentThisObj = true;
     public override void DoAction(GameObject player)
     {
@@ -16,7 +16,7 @@ public class Moveable : Interactable
         if(_parentThisObj)
         {
             hinge.enabled = true;
-            player.GetComponent<PlayerController>().speed += playerMoveSpeedPenalty;
+            player.GetComponent<PlayerController>().speed -= (float)playerMoveSpeedPenalty;
             if(thisRb.bodyType != RigidbodyType2D.Dynamic)
                 thisRb.bodyType = RigidbodyType2D.Dynamic;
             thisRb.constraints = RigidbodyConstraints2D.FreezePositionY;
