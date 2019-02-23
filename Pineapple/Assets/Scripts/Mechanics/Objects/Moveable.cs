@@ -6,27 +6,34 @@ public class Moveable : Interactable
 {
     public float playerMoveSpeedPenalty;
     private bool _parentThisObj = true;
+    private PlayerController _playerController;
+    private Rigidbody2D _thisRb;
+    void Start()
+    {
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _thisRb = this.gameObject.GetComponent<Rigidbody2D>();
+    }
     public override void DoAction(GameObject player)
     {
         base.DoAction(player);
         HingeJoint2D hinge =  player.GetComponent<HingeJoint2D>();
-        Rigidbody2D thisRb = this.gameObject.GetComponent<Rigidbody2D>();
-        player.GetComponent<PlayerController>().jumpable = !_parentThisObj;
+         
+        _playerController.jumpable = !_parentThisObj;
         player.GetComponent<CharacterController2D>().flippable = !_parentThisObj;
         if(_parentThisObj)
         {
             hinge.enabled = true;
-            player.GetComponent<PlayerController>().speed += playerMoveSpeedPenalty;
-            if(thisRb.bodyType != RigidbodyType2D.Dynamic)
-                thisRb.bodyType = RigidbodyType2D.Dynamic;
-            thisRb.constraints = RigidbodyConstraints2D.FreezePositionY;
-            hinge.connectedBody = thisRb;
+          _playerController.speed += playerMoveSpeedPenalty;
+            if(_thisRb.bodyType != RigidbodyType2D.Dynamic)
+                _thisRb.bodyType = RigidbodyType2D.Dynamic;
+            _thisRb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            hinge.connectedBody = _thisRb;
         }
         else
         {
             hinge.enabled = false;
-            thisRb.constraints = RigidbodyConstraints2D.FreezePositionX;
-            player.GetComponent<PlayerController>().speed =  player.GetComponent<PlayerController>().startSpeed;
+            _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX;
+           _playerController.speed =  _playerController.startSpeed;
             hinge.connectedBody = null;
         }
         _parentThisObj = !_parentThisObj;
