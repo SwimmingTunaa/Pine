@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{   
+{
+    private class Direction {
+        public const float left = -1.0f;
+        public const float right = 1.0f;
+        public const float none = 0.0f;
+    }
+
+
     public float startSpeed;
     public float speed;
     public bool jumpable = true;
+    public bool immobile = false;
 
     private Animator _anim;
     private float _horiMove;
     private bool _jump = false;
     private CharacterController2D _characterController;
     private Rigidbody2D _rigidBody;
-
-    // Update is called once per frame
 
     void Awake()
     {
@@ -23,55 +29,108 @@ public class PlayerController : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         speed = startSpeed;
     }
+
     void Update()
     {
-        #if UNITY_EDITOR
-        _horiMove = Input.GetAxisRaw("Horizontal") * speed;
-        _anim.SetFloat("HoriMove", Mathf.Abs(_horiMove));
-        #endif
-
-        _anim.SetFloat("yVelocity", _rigidBody.velocity.y);
-        if (Input.GetButtonDown("Jump") && jumpable)
-        {
-            _jump = true;
-            _anim.SetBool("Jump", true);
-        }
-        
-        _anim.SetBool("Grounded", _characterController.m_Grounded);
+        setMovement();
+        setAnimations();
     }
 
     void FixedUpdate()
     {
-        
-        _characterController.Move(_horiMove * Time.fixedDeltaTime, false, _jump);//for keyboard movement
-        _jump = false;
+        float moveDistance = _horiMove * speed * Time.fixedDeltaTime;
 
-        TouchControl();
+        _characterController.Move(moveDistance, false, _jump);
+        _jump = false;
     }
-    void TouchControl()
-    {        
-        if(Input.touchCount > 0)
+
+    public void OnLanding()  // TODO: Doesn't look like this is being used???
+    {
+        _anim.SetBool("Jump", false);
+    }
+
+    /*private void setHorizontalMovement()
+    {
+        _horiMove = Direction.none;
+
+        if (!immobile || !_characterController.m_Grounded)
         {
-            Touch touch = Input.GetTouch(0);
-            Debug.Log(Input.touchCount);
-            if(touch.position.x > Screen.width/2)
+            checkKeyboardMovement();   
+
+            if (Input.touchCount > 0)
             {
-                //move right if right side of screen
-                _characterController.Move(1.0f * speed * Time.fixedDeltaTime, false, _jump);
-                _anim.SetFloat("HoriMove", Mathf.Abs(1.0f * speed)); 
-            } 
-                if(touch.position.x < Screen.width/2)
-                    //move left if left side of screen
-                    _characterController.Move(-1.0f * speed * Time.fixedDeltaTime, false, _jump);
-                    _anim.SetFloat("HoriMove", Mathf.Abs(-1.0f * speed));
-            if(touch.phase == TouchPhase.Ended)
+                _touchTime += Time.deltaTime;
+
+                Touch touch = Input.GetTouch(0);
+
+                if (_touchTime > Constants.MAX_TAP_TIME)
+                {
+                    //move right if right side of screen, otherwise assume left
+                    _horiMove = (touch.position.x > Screen.width / 2) ? Direction.right : Direction.left;
+                }
+
+                // TODO: Quite sure this isn't needed. If touch ended last update, HoriMove will be 0 and this gets called after in update()
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    if (_touchTime <= Constants.MAX_TAP_TIME)
+                    {
+                        setJump();
+                    }
+                    _touchTime = 0;
+                    //_anim.SetFloat("HoriMove", 0);
+                }
+            }
+        }
+    }*/
+
+    private void setMovement()
+    {
+        _horiMove = Direction.none;
+
+        if (!immobile)
+        {
+            checkKeyboardMovement();
+
+            if (TouchUtility.touched)
             {
-                _anim.SetFloat("HoriMove", 0);
+                if (TouchUtility.pressedRight)
+                {
+                    _horiMove = Direction.right;
+                }
+                else if (TouchUtility.pressedLeft)
+                {
+                    _horiMove = Direction.left;
+                }
+                else if (TouchUtility.tapped)
+                {
+                    setJump();
+                }
             }
         }
     }
-    public void OnLanding()
+
+    private void checkKeyboardMovement()
     {
-        _anim.SetBool("Jump", false);
+        _horiMove = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButtonDown("Jump"))
+        {
+            setJump();
+        }
+    }
+
+    private void setJump()
+    {
+        if (jumpable)
+        {
+            _jump = true;
+            _anim.SetBool("Jump", true);
+        }
+    }
+
+    private void setAnimations()
+    {
+        _anim.SetFloat("HoriMove", Mathf.Abs(_horiMove));
+        _anim.SetFloat("yVelocity", _rigidBody.velocity.y);
+        _anim.SetBool("Grounded", _characterController.m_Grounded);
     }
 }
