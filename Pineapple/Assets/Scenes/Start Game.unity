@@ -212,8 +212,9 @@ GameObject:
   - component: {fileID: 58461911}
   - component: {fileID: 58461910}
   - component: {fileID: 58461909}
+  - component: {fileID: 58461912}
   m_Layer: 0
-  m_Name: Speechbubble
+  m_Name: SpeechBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +228,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58461908}
-  m_Text: asdsad
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -286,12 +287,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58461908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &58461912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58461908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1184f533fd824b34487588cccd923e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smBubble:
+    sprite: {fileID: 0}
+    offset: {x: 1, y: 3, z: 0}
+  mdBubble:
+    sprite: {fileID: 0}
+    offset: {x: 2, y: 4, z: 0}
+  lgBubble:
+    sprite: {fileID: 0}
+    offset: {x: 3, y: 5, z: 0}
 --- !u!4 &58892645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1396624871655051215, guid: 70aad114a469fcb4b9012435b76c8ab0,
@@ -2224,15 +2246,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b85343ceb5574d44bd0f56423df77b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speechBubble: {fileID: 58461912}
+  dialogueInterval: 4
   dialogues:
   - character: {fileID: 1626776986}
     text: Wow!!
     bubbleSize: 0
-  - character: {fileID: 0}
+  - character: {fileID: 1626776986}
     text: Life really is a game
     bubbleSize: 1
-  speechbubble: {fileID: 0}
-  dialogueInterval: 4
 --- !u!61 &1929410683
 BoxCollider2D:
   m_ObjectHideFlags: 0
