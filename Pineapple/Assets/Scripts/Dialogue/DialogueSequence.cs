@@ -28,7 +28,7 @@ public class DialogueSequence : MonoBehaviour
             _timer += Time.deltaTime;
 
             bool lastDialogueFlag = _currentDialogue == dialogues.Length-1;
-            bool touched = shouldShowNextDialogue();
+            bool touched = userTapped();
 
             // TODO: if (interactionButton.pressed) endDialogue()
 
@@ -62,8 +62,7 @@ public class DialogueSequence : MonoBehaviour
     {
         _playerController.immobile = false;
         // TODO: Switch off speechbubble
-
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void iterateDialogue()
@@ -80,14 +79,10 @@ public class DialogueSequence : MonoBehaviour
         //  speechbubble.GetComponent<SpriteRenderer>.sprite = d.bubbleSize;
     }
 
-    private bool shouldShowNextDialogue()
+    private bool userTapped()
     {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            return touch.phase == TouchPhase.Ended;
-        }
-
-        return Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.Space);
+        return TouchUtility.state == Enums.TouchState.tapped ||
+            Input.GetKeyUp(KeyCode.Return) ||
+            Input.GetKeyUp(KeyCode.Space);
     }
 }

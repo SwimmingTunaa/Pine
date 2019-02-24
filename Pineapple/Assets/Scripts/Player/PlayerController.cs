@@ -93,17 +93,17 @@ public class PlayerController : MonoBehaviour
 
             if (TouchUtility.touched)
             {
-                if (TouchUtility.pressedRight)
+                switch(TouchUtility.state)
                 {
-                    _horiMove = Direction.right;
-                }
-                else if (TouchUtility.pressedLeft)
-                {
-                    _horiMove = Direction.left;
-                }
-                else if (TouchUtility.tapped)
-                {
-                    setJump();
+                    case Enums.TouchState.pressedLeft:
+                        _horiMove = Direction.left;
+                        break;
+                    case Enums.TouchState.pressedRight:
+                        _horiMove = Direction.right;
+                        break;
+                    case Enums.TouchState.tapped:
+                        setJump();
+                        break;
                 }
             }
         }

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class TouchUtility : MonoBehaviour
 {
-    static public bool tapped = false;
-    static public bool pressedRight = false;
-    static public bool pressedLeft = false;
+    static public Enums.TouchState state = Enums.TouchState.none;
     static public bool touched = false;
 
     private float _touchTime = 0;
@@ -14,7 +12,7 @@ public class TouchUtility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tapped = false;
+        state = Enums.TouchState.none;
 
         if (Input.touchCount > 0)
         {
@@ -25,21 +23,19 @@ public class TouchUtility : MonoBehaviour
 
             if (touch.position.x > Screen.width / 2)
             {
-                pressedRight = true;
+                state = Enums.TouchState.pressedRight;
             } else
             {
-                pressedLeft = true;
+                state = Enums.TouchState.pressedLeft;
             }
 
             if (touch.phase == TouchPhase.Ended)
             {
                 if (_touchTime <= Constants.MAX_TAP_TIME)
                 {
-                    tapped = true;
+                    state = Enums.TouchState.tapped;
                 }
                 _touchTime = 0;
-                pressedRight = false;
-                pressedLeft = false;
             }
         }
     }
