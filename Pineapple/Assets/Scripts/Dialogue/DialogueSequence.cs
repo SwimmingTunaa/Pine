@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DialogueSequence : MonoBehaviour
 {
-    public DialogueConfig[] dialogues;
-    public GameObject speechbubble;
+    public SpeechBubble speechBubble;
     public int dialogueInterval = 4;
+    public DialogueConfig[] dialogues;
 
     private PlayerController _playerController;
     private float _timer = 0;
@@ -54,29 +54,21 @@ public class DialogueSequence : MonoBehaviour
     {
         _running = true;
         _playerController.immobile = true;
-        setSpeechbubble(dialogues[_currentDialogue]);
-        // TODO: Switch on speechbubble
+        speechBubble.set(dialogues[_currentDialogue]);
+        speechBubble.gameObject.SetActive(true);
     }
 
     private void endDialogue()
     {
         _playerController.immobile = false;
-        // TODO: Switch off speechbubble
+        speechBubble.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 
     private void iterateDialogue()
     {
         _currentDialogue++;
-        setSpeechbubble(dialogues[_currentDialogue]);
-    }
-
-    private void setSpeechbubble(DialogueConfig dialogue)
-    {
-        print(dialogue.text);
-        //  speechbubble.transform.position = d.character.transform.position + offset;
-        //  speechbubble.GetComponentInChildren<TextMesh>().text = d.text;
-        //  speechbubble.GetComponent<SpriteRenderer>.sprite = d.bubbleSize;
+        speechBubble.set(dialogues[_currentDialogue]);
     }
 
     private bool userTapped()
