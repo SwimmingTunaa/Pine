@@ -19,9 +19,15 @@ public class Interact : MonoBehaviour
         Debug.DrawRay(transform.position + (Vector3.up * 0.5f), Vector2.right * transform.localScale.x * InteractDistance, Color.red);
 
         if(hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+        {
             interactButton.InteractableObject = hit.collider.gameObject.GetComponent<Interactable>();
+            interactButton.GetComponentInChildren<Text>().text = hit.collider.gameObject.GetComponent<Interactable>().buttonText;
+        }
         else
+        {
             interactButton.InteractableObject = null;
+            interactButton.GetComponentInChildren<Text>().text = "Jump";
+        }
            
     }
 }

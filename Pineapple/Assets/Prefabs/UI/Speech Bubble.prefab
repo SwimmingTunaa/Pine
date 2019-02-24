@@ -173,6 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5551948012806813318}
   - component: {fileID: 430274819}
+  - component: {fileID: 6638959082198338859}
   m_Layer: 0
   m_Name: Speech Bubble
   m_TagString: Untagged
@@ -215,6 +216,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6638959082198338859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551948012806813316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be67cf4ac4696e449bbb8355bf0141ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sm: {fileID: 21300002, guid: c39114cca5ec3ed47ba73266cade04ec, type: 3}
+  md: {fileID: 21300000, guid: c39114cca5ec3ed47ba73266cade04ec, type: 3}
+  lg: {fileID: 21300004, guid: c39114cca5ec3ed47ba73266cade04ec, type: 3}
 --- !u!1 &6161137477485837950
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,8 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a87c7aa6f95c9c469a96031fdfb2595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingLayer: 11
-  sortingLayerID: 11
+  sortLayer: 0
 --- !u!1 &8273086989697561913
 GameObject:
   m_ObjectHideFlags: 0
