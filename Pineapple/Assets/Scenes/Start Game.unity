@@ -192,7 +192,17 @@ PrefabInstance:
     - target: {fileID: 3011023867199859837, guid: 98bc5016ebfa77546a425e667dd781c6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3011023867199859837, guid: 98bc5016ebfa77546a425e667dd781c6,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3011023867199859837, guid: 98bc5016ebfa77546a425e667dd781c6,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4450835939344193990, guid: 98bc5016ebfa77546a425e667dd781c6,
         type: 3}
@@ -268,16 +278,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smBubble:
     sprite: {fileID: 21300002, guid: c39114cca5ec3ed47ba73266cade04ec, type: 3}
-    offset: {x: 0, y: 3, z: 0}
-    textOffset: {x: 0, y: 0, z: 0}
+    bubbleOffset: {x: 0, y: 3, z: 0}
+    textOffset: {x: 0, y: 1.2, z: 0}
   mdBubble:
     sprite: {fileID: 21300000, guid: c39114cca5ec3ed47ba73266cade04ec, type: 3}
-    offset: {x: 0, y: 3, z: 0}
-    textOffset: {x: 0, y: 0, z: 0}
+    bubbleOffset: {x: 0, y: 3, z: 0}
+    textOffset: {x: 0, y: 2.3, z: 0}
   lgBubble:
     sprite: {fileID: 21300004, guid: c39114cca5ec3ed47ba73266cade04ec, type: 3}
-    offset: {x: 0, y: 3, z: 0}
-    textOffset: {x: 0, y: 0, z: 0}
+    bubbleOffset: {x: 0, y: 3, z: 0}
+    textOffset: {x: 0, y: 2.1, z: 0}
 --- !u!224 &135868410 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3392616428426353775, guid: 61127f08e6fbee044a3b7f4b4a42ca95,
@@ -3251,12 +3261,12 @@ PrefabInstance:
     - target: {fileID: 6312379808225004756, guid: 5822230c067c2a747ba4eab88707ce03,
         type: 3}
       propertyPath: dialogues.Array.data[0].bubbleSize
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6312379808225004756, guid: 5822230c067c2a747ba4eab88707ce03,
         type: 3}
       propertyPath: stopPlayerMoving
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6312379808225004756, guid: 5822230c067c2a747ba4eab88707ce03,
         type: 3}
