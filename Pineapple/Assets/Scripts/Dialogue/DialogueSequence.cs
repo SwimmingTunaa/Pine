@@ -6,24 +6,23 @@ public class DialogueSequence : MonoBehaviour
 {
     public bool stopPlayerMoving;
     public DialogueConfig[] dialogues;
-    public GameObject speechbubble;
+    public SpeechBubble speechBubble;
 
     private PlayerController _playerController;
-    private SpeechBubbleSize _speechBubbleSize;
     private float _timer = 0;
     private int _currentDialogue = 0;
-    private bool _running = false; //not the player running but the script
+    private bool _scriptRunning = false;
+
     private void Awake()
     {
         _playerController = GameObject
             .FindGameObjectWithTag("Player")
             .GetComponent<PlayerController>();
-        _speechBubbleSize = speechbubble.GetComponent<SpeechBubbleSize>();
     }
 
     private void Update()
     {
-        if (_running)
+        if (_scriptRunning)
         {
             _timer += Time.deltaTime;
 
@@ -31,7 +30,11 @@ public class DialogueSequence : MonoBehaviour
             bool touched = userTapped();
 
             // TODO: if (interactionButton.pressed) endDialogue()
+
             // TODO: If stopPlayingMoving == false, make dialogue end automatically after the last dialogue interval? 
+            //      - Let's check with Gaurav how he wants this to work. I thought we should force the player to 
+            //        end the dialogue incase when the dialgue ends they need to immediately jump out the way of something or whatever.
+
 
             // Are we showing the last dialogue
             if (lastDialogueFlag)
@@ -46,46 +49,44 @@ public class DialogueSequence : MonoBehaviour
             else if ((_timer >= dialogues[_currentDialogue].diallogueInterval || touched))
             {
                 _timer = 0;
-                iterateDialogue();
-    
+                _currentDialogue++;
+                setSpeechbubble(dialogues[_currentDialogue]);
             }
-        }
-        //dialogue follow player hack
-        if(speechbubble.activeInHierarchy)
-        {
-            speechbubble.transform.position = dialogues[_currentDialogue].character.transform.position + Vector3.up * 3f;
         }
     }
 
     public void startDialogue()
     {
-        _running = true;
+        _scriptRunning = true;
         if(stopPlayerMoving)
-             _playerController.immobile = true;
+        {
+            _playerController.immobile = true;
+        }
+
         setSpeechbubble(dialogues[_currentDialogue]);
     }
 
     private void endDialogue()
     {
-        if(_playerController.immobile)
-            _playerController.immobile = false;
-        speechbubble.SetActive(false);
-        gameObject.SetActive(false);
-    }
+        _scriptRunning = false;
 
-    private void iterateDialogue()
-    {
-        _currentDialogue++; 
-        setSpeechbubble(dialogues[_currentDialogue]);
+        // Check if it was this script that stopped the player moving.
+        if (stopPlayerMoving)
+        {
+            // If so let them move again.
+            _playerController.immobile = false;
+        }
+
+        speechBubble.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void setSpeechbubble(DialogueConfig dialogue)
     {
         //turn off and on object so animation replays
-        speechbubble.SetActive(false);
-        speechbubble.SetActive(true);
-        speechbubble.GetComponentInChildren<SpriteRenderer>().sprite = _speechBubbleSize.GetSpeechBubbleSize(dialogue);
-        speechbubble.GetComponentInChildren<TextMeshPro>().text = dialogue.text;
+        speechBubble.gameObject.SetActive(false);
+        speechBubble.gameObject.SetActive(true);
+        speechBubble.set(dialogue);
     }
 
     private bool userTapped()
