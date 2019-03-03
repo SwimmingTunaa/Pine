@@ -17,7 +17,8 @@ public class Item : Interactable
     }
 
     //At the moment the item gets pick up when the player walks over it
-    //Not sure if we want to do pick up with the interact button
+    //Not sure if we want to do pick up with the interact button. Maybe pick up with interact button will be like holding an item
+    //eg. holding a gun or something alike
     void OnTriggerEnter2D(Collider2D other)
     {
         if(otherCollider.transform == other.transform && triggerAmount > 0)
@@ -29,8 +30,11 @@ public class Item : Interactable
     {
         triggerAmount--;
         base.DoAction(player);
-        _inventory.inventoryItems.Add(itemObject);
+        
+        //add to inventory
+        _inventory.AddItem(itemObject);
 
+        //Only plays these if they are not null
         if(itemObject.pickUpSound)
             GetComponent<AudioSource>().PlayOneShot(itemObject.pickUpSound);
         if(itemObject.deathFX)
