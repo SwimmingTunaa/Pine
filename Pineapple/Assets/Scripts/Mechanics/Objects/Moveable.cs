@@ -47,13 +47,13 @@ public class Moveable : Interactable
         }
         else
         {
+            hinge.connectedBody = null;
             _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX;
             if(_thisRb.velocity.y >= 0f )
             {
                 _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
             }
             playerController.speed = playerController.startSpeed;
-            hinge.connectedBody = null;
         }
     }
 }
