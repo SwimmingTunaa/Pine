@@ -9,6 +9,7 @@ public class Moveable : Interactable
     private bool _parentThisObj = true;
     private Rigidbody2D _thisRb;
     private CharacterController2D _char2D;
+
     void Start()
     {
         _thisRb = GetComponent<Rigidbody2D>();

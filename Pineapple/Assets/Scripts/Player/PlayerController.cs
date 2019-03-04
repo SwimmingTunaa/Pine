@@ -49,40 +49,6 @@ public class PlayerController : MonoBehaviour
         _anim.SetBool("Jump", false);
     }
 
-    /*private void setHorizontalMovement()
-    {
-        _horiMove = Direction.none;
-
-        if (!immobile || !_characterController.m_Grounded)
-        {
-            checkKeyboardMovement();   
-
-            if (Input.touchCount > 0)
-            {
-                _touchTime += Time.deltaTime;
-
-                Touch touch = Input.GetTouch(0);
-
-                if (_touchTime > Constants.MAX_TAP_TIME)
-                {
-                    //move right if right side of screen, otherwise assume left
-                    _horiMove = (touch.position.x > Screen.width / 2) ? Direction.right : Direction.left;
-                }
-
-                // TODO: Quite sure this isn't needed. If touch ended last update, HoriMove will be 0 and this gets called after in update()
-                if (touch.phase == TouchPhase.Ended)
-                {
-                    if (_touchTime <= Constants.MAX_TAP_TIME)
-                    {
-                        setJump();
-                    }
-                    _touchTime = 0;
-                    //_anim.SetFloat("HoriMove", 0);
-                }
-            }
-        }
-    }*/
-
     private void setMovement()
     {
         _horiMove = Direction.none;

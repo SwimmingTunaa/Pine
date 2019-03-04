@@ -12,12 +12,15 @@ public class InteractButton : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");        
     }
+
     public void DoAction()
     {   
         if(InteractableObject == null)
         {
-            charController.Jump(true);
-        }else
+            charController.Jump(true); // Not convinced we want this, I think we should encourage user to learn the tap jump
+        } else
+        {
             InteractableObject.DoAction(_player);
+        }
     }
 }
