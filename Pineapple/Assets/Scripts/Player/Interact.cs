@@ -39,7 +39,7 @@ public class Interact : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3.up * 0.5f), Vector2.right * transform.localScale.x, InteractDistance);
         Debug.DrawRay(transform.position + (Vector3.up * 0.5f), Vector2.right * transform.localScale.x * InteractDistance, Color.red);
 
-        Image btnImg = interactButton.GetComponent<Image>();
+        Image btnImg = interactButton.GetComponentInChildren<Image>();
 
 
         if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") && _char2D.m_Grounded)
@@ -62,11 +62,11 @@ public class Interact : MonoBehaviour
             }
             _interactButtonBg.enabled = true;
 
-            btnImg.color = new Color(0.7f, 1f, 0.5f, 1f);
+            btnImg.color = Color.green;
         }
         else
         {
-            btnImg.color = new Color(255, 255, 255);
+            btnImg.color = Color.white;
             interactButton.InteractableObject = null;
             _interactButtonBg.enabled = false;
             _interactButtonText.text = "Jump";
