@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private class Direction {
+    private struct Direction {
         public const float left = -1.0f;
         public const float right = 1.0f;
         public const float none = 0.0f;

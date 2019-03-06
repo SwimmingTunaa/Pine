@@ -8,6 +8,7 @@ public class DialogueSequence : MonoBehaviour
     public DialogueConfig[] dialogues;
     public SpeechBubble speechBubble;
 
+    private InteractButton _interactBtn;
     private PlayerController _playerController;
     private float _timer = 0;
     private int _currentDialogue = 0;
@@ -18,6 +19,10 @@ public class DialogueSequence : MonoBehaviour
         _playerController = GameObject
             .FindGameObjectWithTag("Player")
             .GetComponent<PlayerController>();
+
+        _interactBtn = GameObject
+            .FindGameObjectWithTag("InteractBtn")
+            .GetComponent<InteractButton>();
     }
 
     private void Update()
@@ -29,24 +34,17 @@ public class DialogueSequence : MonoBehaviour
             bool lastDialogueFlag = _currentDialogue == dialogues.Length-1;
             bool touched = userTapped();
 
-            // TODO: if (interactionButton.pressed) endDialogue()
-
-            // TODO: If stopPlayingMoving == false, make dialogue end automatically after the last dialogue interval? 
-            //      - Let's check with Gaurav how he wants this to work. I thought we should force the player to 
-            //        end the dialogue incase when the dialgue ends they need to immediately jump out the way of something or whatever.
-
-
             // Are we showing the last dialogue
             if (lastDialogueFlag)
             {
                 // Has the user indicated they've finished reading
-                if (touched)
+                if (touched || (!stopPlayerMoving && timeCheck()))
                 {
                     Invoke("endDialogue", Constants.MAX_TAP_TIME);
                 }
             }
             // Should we show next dailogue
-            else if ((_timer >= dialogues[_currentDialogue].diallogueInterval || touched))
+            else if ((timeCheck() || touched)) // TODO: If stopPlayerMoveing is true, I think we should skip the touch here and let it play out over time.
             {
                 _timer = 0;
                 _currentDialogue++;
@@ -55,12 +53,19 @@ public class DialogueSequence : MonoBehaviour
         }
     }
 
+    private bool timeCheck()
+    {
+        return _timer >= dialogues[_currentDialogue].diallogueInterval;
+    }
+
     public void startDialogue()
     {
         _scriptRunning = true;
         if(stopPlayerMoving)
         {
             _playerController.immobile = true;
+            _interactBtn.set(gameObject, "Skip", null, Enums.InteractColor.deactivate, null);
+            _interactBtn.setDoAction(gameObject, endDialogue);
         }
 
         setSpeechbubble(dialogues[_currentDialogue]);
@@ -69,12 +74,13 @@ public class DialogueSequence : MonoBehaviour
     private void endDialogue()
     {
         _scriptRunning = false;
-
+        
         // Check if it was this script that stopped the player moving.
         if (stopPlayerMoving)
         {
             // If so let them move again.
             _playerController.immobile = false;
+            _interactBtn.resetBtn(gameObject);
         }
 
         speechBubble.gameObject.SetActive(false);

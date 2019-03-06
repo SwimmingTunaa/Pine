@@ -2,34 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Interact : MonoBehaviour
 {
     public float InteractDistance;
-    public InteractButton interactButton;
 
-    [SerializeField]
-    private Image _interactButtonBg;
-    [SerializeField]
-    private TextMeshProUGUI _interactButtonText;
-
+    private InteractButton _interactBtn;
     private CharacterController2D _char2D;
-    private HingeJoint2D _charHingeJoint;
+    private bool _colliding = false;
 
     void Start()
     {
         _char2D = GetComponent<CharacterController2D>();
-        _charHingeJoint = GetComponent<HingeJoint2D>();
+
+        _interactBtn = GameObject
+            .FindGameObjectWithTag("InteractBtn")
+            .GetComponent<InteractButton>();
     }
 
     void Update()
-    {
-        //make player let go of object if they are falling
-        if(!_char2D.m_Grounded && _charHingeJoint.enabled && _charHingeJoint.connectedAnchor != null)
-        {
-            interactButton.InteractableObject.DoAction(gameObject);
-        }
+    {        
         RayCast();  
     }
 
@@ -39,38 +31,41 @@ public class Interact : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position + (Vector3.up * 0.5f), Vector2.right * transform.localScale.x, InteractDistance);
         Debug.DrawRay(transform.position + (Vector3.up * 0.5f), Vector2.right * transform.localScale.x * InteractDistance, Color.red);
 
-        Image btnImg = interactButton.GetComponent<Image>();
-
-
-        if (hit.collider != null && hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") && _char2D.m_Grounded)
+        // Simple checks to save performance
+        if ((hit.collider != null && _colliding) || (hit.collider == null && !_colliding))
         {
+            return;
+        }
+
+        if (hit.collider != null && 
+            hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") && 
+            _char2D.m_Grounded) // TODO: Do we need to be grounded here? What if we are jumping to collect an item, or interact with a rope etc?
+        {
+            _colliding = true;
             // Set the GUI Interaction Button with the collided Interactable
             Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
-            interactButton.InteractableObject = i;
-            _interactButtonText.text = i.buttonText;
 
-            if (i.buttonBg)
+            // Do different stuff based on what type of interactable it is
+            if (i is Moveable)
             {
-                _interactButtonBg.sprite = i.buttonBg;
-                _interactButtonBg.color = new Color(255, 255, 255);
-            }
-            else
-            {
-                SpriteRenderer sRenderer = i.GetComponentInChildren<SpriteRenderer>();
-                _interactButtonBg.sprite = sRenderer.sprite;
-                _interactButtonBg.color = sRenderer.color;
-            }
-            _interactButtonBg.enabled = true;
+                Moveable m = (Moveable)i;
+                SpriteRenderer sRenderer = m.GetComponentInChildren<SpriteRenderer>();
 
-            btnImg.color = new Color(0.7f, 1f, 0.5f, 1f);
+                Sprite bg = m.buttonBg != null ? m.buttonBg : sRenderer.sprite;
+
+                _interactBtn.set(gameObject, m.activateButtonText, bg, Enums.InteractColor.activate, m);
+            }
         }
         else
         {
-            btnImg.color = new Color(255, 255, 255);
-            interactButton.InteractableObject = null;
-            _interactButtonBg.enabled = false;
-            _interactButtonText.text = "Jump";
+            _colliding = false;
+            _interactBtn.resetBtn(gameObject);
         }
+    }
+
+    public void resetColliding()
+    {
+        _colliding = false;
     }
 }
 

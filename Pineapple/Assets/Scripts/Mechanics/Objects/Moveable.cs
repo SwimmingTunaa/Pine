@@ -5,56 +5,157 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Moveable : Interactable
 {
+    public string activateButtonText = "Move";
+    public string deactiveButtonText = "Drop";
+
     public Enums.Weight playerMoveSpeedPenalty = Enums.Weight.lite;
-    private bool _parentThisObj = true;
+
+    private bool _active = false;
+    private Vector3 _playerOffset;
     private Rigidbody2D _thisRb;
-    private CharacterController2D _char2D;
+
+    private GameObject _player;
+    private CharacterController2D _playerCharController;
+    private PlayerController _playerController;
+    private HingeJoint2D _playerHingeJoint;
+
+    private InteractButton _interactBtn;
+
+    private List<Collider2D> _collisions = new List<Collider2D>();
 
     void Start()
     {
+        // TODO: set a default buttonBg?
+
         _thisRb = GetComponent<Rigidbody2D>();
-        _char2D = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController2D>();
-        initialize();
+
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _playerCharController = _player.GetComponent<CharacterController2D>();
+        _playerController = _player.GetComponent<PlayerController>();
+        _playerHingeJoint = _player.GetComponent<HingeJoint2D>();
+
+        _interactBtn = GameObject
+            .FindGameObjectWithTag("InteractBtn")
+            .GetComponent<InteractButton>();
+
+        reset();
     }
 
-    void initialize()
+    private void reset()
     {
         _thisRb.bodyType = RigidbodyType2D.Kinematic;
         _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
     }
 
+    private void Update()
+    {
+        /* TODO (OBJ FALL) Checking what colliders were found in Stay and Enter
+        if (_active)
+        {
+            Debug.Log(_collisions.Count);
+            foreach (Collider2D x in _collisions)
+            {
+                Debug.Log(x.tag);
+                Debug.Log(x.name);
+            }
+        }
+        */
+
+        //make player let go of object if either one is falling
+        if (_active && (!_playerCharController.m_Grounded)) // TODO (OBJ FALL): if this has no colliders with on the floor
+        {
+            MoveObject();
+        }
+        else if (!_active && _thisRb.velocity.y >= 0f)
+        {
+            _thisRb.velocity = Vector2.zero;
+            _thisRb.bodyType = RigidbodyType2D.Kinematic;
+            _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+
+    /* TODO (OBJ FALL) Work out if I'm no longer colliding with another below - maybe use a separate box collider at the bottom of the moveable obj to help?
+    private void FixedUpdate()
+    {
+        _collisions.Clear();
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Debug.Log(collision.collider.name)
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log(collision.collider.name)
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.collider.name)
+    }
+    */
+
     public override void DoAction(GameObject player)
     {
         base.DoAction(player);
-        PlayerController pController = player.GetComponent<PlayerController>();
-        HingeJoint2D hinge =  player.GetComponent<HingeJoint2D>();
-        
-        MoveObject(_parentThisObj, hinge, pController);
-        _parentThisObj = !_parentThisObj;
+        MoveObject();
     }
 
-    public void MoveObject(bool enabled, HingeJoint2D hinge, PlayerController playerController)
+    public void MoveObject()
     {
-        hinge.enabled = enabled;
-        playerController.jumpable = !enabled;
-        playerController.GetComponent<CharacterController2D>().flippable = !enabled;
-        if(enabled)
+        _active = !_active;
+
+        _playerHingeJoint.enabled = _active;
+        _playerController.jumpable = !_active;
+        _playerCharController.flippable = !_active;
+
+        if(_active)
         {
-            playerController.speed -= (float)playerMoveSpeedPenalty;
-            if(_thisRb.bodyType != RigidbodyType2D.Dynamic)
-                _thisRb.bodyType = RigidbodyType2D.Dynamic;
-            _thisRb.constraints = RigidbodyConstraints2D.FreezePositionY;
-            hinge.connectedBody = _thisRb;
+            grabMovable();
         }
         else
         {
-            hinge.connectedBody = null;
-            _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX;
-            if(_thisRb.velocity.y >= 0f )
-            {
-                _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-            }
-            playerController.speed = playerController.startSpeed;
+            StartCoroutine(releaseMovable());
         }
     }
+
+    private void grabMovable()
+    {
+        _playerController.speed -= (float)playerMoveSpeedPenalty; // TODO: Possibly want to change how speed is calculated?
+
+        if (_thisRb.bodyType != RigidbodyType2D.Dynamic)
+        {
+            _thisRb.bodyType = RigidbodyType2D.Dynamic;
+        }
+            
+        // Enable moving on any axis, but not rotate
+        _thisRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        // Connect this movable obj to the player
+        _playerHingeJoint.connectedBody = _thisRb;
+
+        // Update the interaction button to reflect our grabbing
+        _interactBtn.setColor(_player, Enums.InteractColor.deactivate);
+        _interactBtn.setText(_player, deactiveButtonText);
+    }
+
+    private IEnumerator releaseMovable()
+    {
+        // Disconnect the player and the moveable obj
+        _playerHingeJoint.connectedBody = null;
+
+        // Return player speed to it's default
+        _playerController.speed = _playerController.startSpeed;
+
+        // Ensure that the player collider resets for the interation button
+        _player
+            .GetComponent<Interact>()
+            .resetColliding();
+
+        yield return new WaitForSeconds(.1f);
+
+
+    }
+
 }

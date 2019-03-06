@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 9127164216870339194}
   m_Layer: 5
   m_Name: Interact Button
-  m_TagString: Untagged
+  m_TagString: InteractBtn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -351,8 +351,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801d396d360005249b79068acd6f4835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractableObject: {fileID: 0}
   charController: {fileID: 0}
+  _interactButtonBg: {fileID: 3470234583292040386}
+  _defaultBg: {fileID: 0}
+  _defaultText: Jump
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _activateColor: {r: 0.86530364, g: 1, b: 0.6179246, a: 1}
+  _deactivateColor: {r: 1, g: 0.5707547, b: 0.5707547, a: 1}
 --- !u!114 &9127164216870339194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +384,7 @@ GameObject:
   - component: {fileID: 3470234583292040386}
   m_Layer: 5
   m_Name: Background
-  m_TagString: button_background
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -431,7 +436,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300006, guid: c25cc3dd3dc905540922d22aebfb240d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6312379808225004752}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.12, y: 2.57, z: 0}
   m_LocalScale: {x: 3.4, y: 3.65, z: 1}
   m_Children: []
@@ -73,14 +73,13 @@ MonoBehaviour:
   stopPlayerMoving: 0
   dialogues:
   - character: {fileID: 0}
-    text: Wow
-    diallogueInterval: 1
-    bubbleSize: 0
+    text: GOOOOOD MORNING!
+    diallogueInterval: 3
+    bubbleSize: 1
   - character: {fileID: 0}
-    text: Much speech bubble
-    diallogueInterval: 2
-    bubbleSize: 0
-  speechbubble: {fileID: 0}
-  dialogueInterval: 4
+    text: WHAT A PINE DAY TO BE ALIVE!
+    diallogueInterval: 5
+    bubbleSize: 2
+  speechBubble: {fileID: 0}
   triggerCollider: {fileID: 0}
   triggerAmount: 1
