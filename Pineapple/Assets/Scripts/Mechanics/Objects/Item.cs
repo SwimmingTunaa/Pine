@@ -12,7 +12,7 @@ public class Item : Interactable
 
     void Awake()
     {
-        _inventory = GameObject.FindGameObjectWithTag("GameController") .GetComponent<Inventory>();
+        _inventory = GameObject.FindGameObjectWithTag("GameController").GetComponent<Inventory>();
         itemObject.Initialize(this.gameObject);
     }
 
@@ -30,7 +30,7 @@ public class Item : Interactable
     {
         triggerAmount--;
         base.DoAction(player);
-        
+
         //add to inventory
         _inventory.AddItem(itemObject);
 

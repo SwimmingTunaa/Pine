@@ -5,9 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Moveable : Interactable
 {
-    public string activateButtonText = "Move";
+    public bool holdable;   //TODO: make player able to hold items without it falling when off the edge?
     public string deactiveButtonText = "Drop";
-
     public Enums.Weight playerMoveSpeedPenalty = Enums.Weight.lite;
 
     private bool _active = false;
@@ -22,10 +21,12 @@ public class Moveable : Interactable
     private InteractButton _interactBtn;
 
     private List<Collider2D> _collisions = new List<Collider2D>();
+    private bool _grounded;
 
     void Start()
     {
         // TODO: set a default buttonBg?
+        _grounded = !holdable;
 
         _thisRb = GetComponent<Rigidbody2D>();
 
@@ -62,7 +63,7 @@ public class Moveable : Interactable
         */
 
         //make player let go of object if either one is falling
-        if (_active && (!_playerCharController.m_Grounded)) // TODO (OBJ FALL): if this has no colliders with on the floor
+        if (_active && !holdable && (!_playerCharController.m_Grounded || !_grounded)) // TODO (OBJ FALL): if this has no colliders with on the floor
         {
             MoveObject();
         }
@@ -71,29 +72,34 @@ public class Moveable : Interactable
             _thisRb.velocity = Vector2.zero;
             _thisRb.bodyType = RigidbodyType2D.Kinematic;
             _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            
         }
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.collider.tag != "Player")
+            _grounded = false;
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag != "Player")
+            _grounded = true;
+    }
     /* TODO (OBJ FALL) Work out if I'm no longer colliding with another below - maybe use a separate box collider at the bottom of the moveable obj to help?
     private void FixedUpdate()
     {
         _collisions.Clear();
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        Debug.Log(collision.collider.name)
-    }
+   
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         Debug.Log(collision.collider.name)
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.collider.name)
-    }
+    
     */
 
     public override void DoAction(GameObject player)
@@ -108,7 +114,7 @@ public class Moveable : Interactable
 
         _playerHingeJoint.enabled = _active;
         _playerController.jumpable = !_active;
-        _playerCharController.flippable = !_active;
+        _playerCharController.flippable = holdable ? true : !_active;
 
         if(_active)
         {
@@ -128,7 +134,11 @@ public class Moveable : Interactable
         {
             _thisRb.bodyType = RigidbodyType2D.Dynamic;
         }
-            
+        //parent the GO to the player so that it can flip with the player
+        if(holdable)
+        {
+            gameObject.transform.parent = _player.transform;
+        }    
         // Enable moving on any axis, but not rotate
         _thisRb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -152,7 +162,11 @@ public class Moveable : Interactable
         _player
             .GetComponent<Interact>()
             .resetColliding();
-
+        //unparent the GO
+        if(holdable)
+        {
+            gameObject.transform.parent = null;
+        }   
         yield return new WaitForSeconds(.1f);
 
 

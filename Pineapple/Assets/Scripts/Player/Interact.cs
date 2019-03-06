@@ -9,7 +9,7 @@ public class Interact : MonoBehaviour
 
     private InteractButton _interactBtn;
     private CharacterController2D _char2D;
-    private bool _colliding = false;
+    private bool _interacting = false;
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class Interact : MonoBehaviour
         Debug.DrawRay(transform.position + (Vector3.up * 0.5f), Vector2.right * transform.localScale.x * InteractDistance, Color.red);
 
         // Simple checks to save performance
-        if ((hit.collider != null && _colliding) || (hit.collider == null && !_colliding))
+        if ((hit.collider != null && _interacting) || (hit.collider == null && !_interacting))
         {
             return;
         }
@@ -41,31 +41,26 @@ public class Interact : MonoBehaviour
             hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") && 
             _char2D.m_Grounded) // TODO: Do we need to be grounded here? What if we are jumping to collect an item, or interact with a rope etc?
         {
-            _colliding = true;
+            _interacting = true;
             // Set the GUI Interaction Button with the collided Interactable
             Interactable i = hit.collider.gameObject.GetComponent<Interactable>();
 
-            // Do different stuff based on what type of interactable it is
-            if (i is Moveable)
-            {
-                Moveable m = (Moveable)i;
-                SpriteRenderer sRenderer = m.GetComponentInChildren<SpriteRenderer>();
+            // Do all the stuff related to interactable. So now this will work with any other mechanics that inherits from interactable
+            SpriteRenderer sRenderer = i.GetComponentInChildren<SpriteRenderer>();
+            Sprite bg = i.buttonBg != null ? i.buttonBg : sRenderer.sprite;
 
-                Sprite bg = m.buttonBg != null ? m.buttonBg : sRenderer.sprite;
-
-                _interactBtn.set(gameObject, m.activateButtonText, bg, Enums.InteractColor.activate, m);
-            }
+            _interactBtn.set(gameObject, i.activateButtonText, bg, Enums.InteractColor.activate, i);  
         }
         else
         {
-            _colliding = false;
+            _interacting = false;
             _interactBtn.resetBtn(gameObject);
         }
     }
 
     public void resetColliding()
     {
-        _colliding = false;
+        _interacting = false;
     }
 }
 
