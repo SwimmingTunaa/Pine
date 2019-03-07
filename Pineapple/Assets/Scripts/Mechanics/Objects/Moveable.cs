@@ -8,6 +8,7 @@ public class Moveable : Interactable
     public bool holdable;
     public string deactiveButtonText = "Drop";
     public Enums.Weight playerMoveSpeedPenalty = Enums.Weight.lite;
+    public LayerMask canCollideWith;
 
     private bool _active = false;
     private Vector3 _playerOffset;
@@ -21,27 +22,38 @@ public class Moveable : Interactable
     private InteractButton _interactBtn;
 
     [SerializeField]
-    private BoxCollider2D _baseCollider;
-
+    private Vector2 _groundCheckPos;
+    private Vector2 _groundedBoxSize;
     private bool _grounded;
+    private SpriteRenderer sRenderer;
 
     void Start()
     {
         // TODO: set a default buttonBg?
-        _grounded = !holdable;
+        //_grounded = !holdable;
 
         _thisRb = GetComponent<Rigidbody2D>();
 
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerCharController = _player.GetComponent<CharacterController2D>();
         _playerController = _player.GetComponent<PlayerController>();
-        _playerHingeJoint = _player.GetComponent<HingeJoint2D>();
+        _playerHingeJoint = _player.GetComponent<HingeJoint2D>();   
+        
+        sRenderer = GetComponentInChildren<SpriteRenderer>();
+        //Size of the ground check box, it will scale to any sprite size
+        _groundedBoxSize = new Vector2 (sRenderer.sprite.bounds.size.x * sRenderer.transform.localScale.x, sRenderer.sprite.bounds.max.y * sRenderer.transform.localScale.y * 0.03f);
 
         _interactBtn = GameObject
             .FindGameObjectWithTag("InteractBtn")
             .GetComponent<InteractButton>();
 
         reset();
+
+        /* 
+        TODO: make it fall faster based on weight?
+        Pseudo:
+        rb.gravityscale =* enum.weight 
+        */
     }
 
     private void reset()
@@ -52,28 +64,27 @@ public class Moveable : Interactable
 
     private void FixedUpdate()
     {
-        if (_active)
+        //create an overlap box at the lowest point of sprite
+        _groundCheckPos = getGroundCheckPos();
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(_groundCheckPos, _groundedBoxSize, 0, canCollideWith);
+        if(!_grounded)
         {
-            Collider2D[] colliders = new Collider2D[5];
-            ContactFilter2D contactFilter = new ContactFilter2D();
-            _baseCollider.OverlapCollider(contactFilter, colliders);
-
-            int collisionCount = 0;
-
-            foreach (Collider2D x in colliders)
+            for (int i = 0; i < colliders.Length; i++)
             {
-                if (x != null && x.name != _baseCollider.name)
+                if (colliders[i].gameObject != gameObject)
                 {
-                    collisionCount++;
-                }
-            }
-
-            if (collisionCount == 0)
-            {
-                _grounded = false;
-            }
+                    _grounded = true;
+                } 
+            } 
         }
         
+        //cause it includes its own collider
+        if(colliders.Length == 1 && colliders[0].gameObject == gameObject)
+             _grounded = false;
+
+        //if (!_grounded) _thisRb.velocity = _thisRb.velocity + Vector2.down;
+
+     
     }
 
     private void Update()
@@ -82,16 +93,24 @@ public class Moveable : Interactable
         if (_active && !holdable && (!_playerCharController.m_Grounded || !_grounded))
         {
             MoveObject();
-            if (!_grounded) _thisRb.velocity = _thisRb.velocity + Vector2.down;
         }
-        else if (!_active && _thisRb.velocity.y >= 0f)
+        else if (!_active && _grounded)
         {
-            _grounded = true;
             _thisRb.velocity = Vector2.zero;
             _thisRb.bodyType = RigidbodyType2D.Kinematic;
             _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-            
         }
+        //makes sure the object continues falling even if not active
+        else if(!_grounded)
+        {
+            _thisRb.bodyType = RigidbodyType2D.Dynamic;
+            _thisRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }    
+    }
+
+    private Vector2 getGroundCheckPos()
+    {
+        return new Vector2(sRenderer.gameObject.transform.position.x, sRenderer.gameObject.transform.position.y - sRenderer.bounds.size.y/2);
     }
 
     public override void DoAction(GameObject player)

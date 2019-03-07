@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4669742356771256393}
   - component: {fileID: 8872639394364330932}
   - component: {fileID: 3155581106585380108}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: BookShelf
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -93,8 +93,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57bd654251f533744be8fcf637a797a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: Push/Pull
+  buttonBg: {fileID: 0}
+  activateButtonText: Move
+  holdable: 0
+  deactiveButtonText: Drop
   playerMoveSpeedPenalty: 5
+  canCollideWith:
+    serializedVersion: 2
+    m_Bits: 0
+  _groundCheckPos: {x: 0, y: 0}
 --- !u!1 &5887839605171995612
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8967945628708019535}
   - component: {fileID: 258365997605260044}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -38,7 +38,7 @@ public class Interact : MonoBehaviour
         }
 
         if (hit.collider != null && 
-            hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") && 
+            hit.collider.gameObject.GetComponent<Interactable>() && 
             _char2D.m_Grounded) // TODO: Do we need to be grounded here? What if we are jumping to collect an item, or interact with a rope etc?
         {
             _interacting = true;
