@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Moveable : Interactable
 {
-    public bool holdable;   //TODO: make player able to hold items without it falling when off the edge?
+    public bool holdable;
     public string deactiveButtonText = "Drop";
     public Enums.Weight playerMoveSpeedPenalty = Enums.Weight.lite;
 
@@ -20,7 +20,9 @@ public class Moveable : Interactable
 
     private InteractButton _interactBtn;
 
-    private List<Collider2D> _collisions = new List<Collider2D>();
+    [SerializeField]
+    private BoxCollider2D _baseCollider;
+
     private bool _grounded;
 
     void Start()
@@ -48,59 +50,49 @@ public class Moveable : Interactable
         _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        /* TODO (OBJ FALL) Checking what colliders were found in Stay and Enter
         if (_active)
         {
-            Debug.Log(_collisions.Count);
-            foreach (Collider2D x in _collisions)
+            Collider2D[] colliders = new Collider2D[5];
+            ContactFilter2D contactFilter = new ContactFilter2D();
+            _baseCollider.OverlapCollider(contactFilter, colliders);
+
+            int collisionCount = 0;
+
+            foreach (Collider2D x in colliders)
             {
-                Debug.Log(x.tag);
-                Debug.Log(x.name);
+                if (x != null && x.name != _baseCollider.name)
+                {
+                    collisionCount++;
+                }
+            }
+
+            if (collisionCount == 0)
+            {
+                _grounded = false;
             }
         }
-        */
+        
+    }
 
+    private void Update()
+    {
         //make player let go of object if either one is falling
-        if (_active && !holdable && (!_playerCharController.m_Grounded || !_grounded)) // TODO (OBJ FALL): if this has no colliders with on the floor
+        if (_active && !holdable && (!_playerCharController.m_Grounded || !_grounded))
         {
             MoveObject();
+            if (!_grounded) _thisRb.velocity = _thisRb.velocity + Vector2.down;
         }
         else if (!_active && _thisRb.velocity.y >= 0f)
         {
+            _grounded = true;
             _thisRb.velocity = Vector2.zero;
             _thisRb.bodyType = RigidbodyType2D.Kinematic;
             _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if(collision.collider.tag != "Player")
-            _grounded = false;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.collider.tag != "Player")
-            _grounded = true;
-    }
-    /* TODO (OBJ FALL) Work out if I'm no longer colliding with another below - maybe use a separate box collider at the bottom of the moveable obj to help?
-    private void FixedUpdate()
-    {
-        _collisions.Clear();
-    }
-
-   
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log(collision.collider.name)
-    }
-
-    
-    */
 
     public override void DoAction(GameObject player)
     {
@@ -122,7 +114,7 @@ public class Moveable : Interactable
         }
         else
         {
-            StartCoroutine(releaseMovable());
+            releaseMovable();
         }
     }
 
@@ -150,7 +142,7 @@ public class Moveable : Interactable
         _interactBtn.setText(_player, deactiveButtonText);
     }
 
-    private IEnumerator releaseMovable()
+    private void releaseMovable()
     {
         // Disconnect the player and the moveable obj
         _playerHingeJoint.connectedBody = null;
@@ -167,9 +159,6 @@ public class Moveable : Interactable
         {
             gameObject.transform.parent = null;
         }   
-        yield return new WaitForSeconds(.1f);
-
-
     }
 
 }
