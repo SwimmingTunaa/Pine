@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Moveable : Interactable
 {
-    public string activateButtonText = "Move";
+    public bool holdable;
     public string deactiveButtonText = "Drop";
-
     public Enums.Weight playerMoveSpeedPenalty = Enums.Weight.lite;
+    public LayerMask canCollideWith;
 
     private bool _active = false;
     private Vector3 _playerOffset;
@@ -21,24 +21,39 @@ public class Moveable : Interactable
 
     private InteractButton _interactBtn;
 
-    private List<Collider2D> _collisions = new List<Collider2D>();
+    [SerializeField]
+    private Vector2 _groundCheckPos;
+    private Vector2 _groundedBoxSize;
+    private bool _grounded;
+    private SpriteRenderer sRenderer;
 
     void Start()
     {
         // TODO: set a default buttonBg?
+        //_grounded = !holdable;
 
         _thisRb = GetComponent<Rigidbody2D>();
 
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerCharController = _player.GetComponent<CharacterController2D>();
         _playerController = _player.GetComponent<PlayerController>();
-        _playerHingeJoint = _player.GetComponent<HingeJoint2D>();
+        _playerHingeJoint = _player.GetComponent<HingeJoint2D>();   
+        
+        sRenderer = GetComponentInChildren<SpriteRenderer>();
+        //Size of the ground check box, it will scale to any sprite size
+        _groundedBoxSize = new Vector2 (sRenderer.sprite.bounds.size.x * sRenderer.transform.localScale.x, sRenderer.sprite.bounds.max.y * sRenderer.transform.localScale.y * 0.03f);
 
         _interactBtn = GameObject
             .FindGameObjectWithTag("InteractBtn")
             .GetComponent<InteractButton>();
 
         reset();
+
+        /* 
+        TODO: make it fall faster based on weight?
+        Pseudo:
+        rb.gravityscale =* enum.weight 
+        */
     }
 
     private void reset()
@@ -47,54 +62,56 @@ public class Moveable : Interactable
         _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
     }
 
+    private void FixedUpdate()
+    {
+        //create an overlap box at the lowest point of sprite
+        _groundCheckPos = getGroundCheckPos();
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(_groundCheckPos, _groundedBoxSize, 0, canCollideWith);
+        if(!_grounded)
+        {
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].gameObject != gameObject)
+                {
+                    _grounded = true;
+                } 
+            } 
+        }
+        
+        //cause it includes its own collider
+        if(colliders.Length == 1 && colliders[0].gameObject == gameObject)
+             _grounded = false;
+
+        //if (!_grounded) _thisRb.velocity = _thisRb.velocity + Vector2.down;
+
+     
+    }
+
     private void Update()
     {
-        /* TODO (OBJ FALL) Checking what colliders were found in Stay and Enter
-        if (_active)
-        {
-            Debug.Log(_collisions.Count);
-            foreach (Collider2D x in _collisions)
-            {
-                Debug.Log(x.tag);
-                Debug.Log(x.name);
-            }
-        }
-        */
-
         //make player let go of object if either one is falling
-        if (_active && (!_playerCharController.m_Grounded)) // TODO (OBJ FALL): if this has no colliders with on the floor
+        if (_active && !holdable && (!_playerCharController.m_Grounded || !_grounded))
         {
             MoveObject();
         }
-        else if (!_active && _thisRb.velocity.y >= 0f)
+        else if (!_active && _grounded)
         {
             _thisRb.velocity = Vector2.zero;
             _thisRb.bodyType = RigidbodyType2D.Kinematic;
             _thisRb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         }
+        //makes sure the object continues falling even if not active
+        else if(!_grounded)
+        {
+            _thisRb.bodyType = RigidbodyType2D.Dynamic;
+            _thisRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }    
     }
 
-    /* TODO (OBJ FALL) Work out if I'm no longer colliding with another below - maybe use a separate box collider at the bottom of the moveable obj to help?
-    private void FixedUpdate()
+    private Vector2 getGroundCheckPos()
     {
-        _collisions.Clear();
+        return new Vector2(sRenderer.gameObject.transform.position.x, sRenderer.gameObject.transform.position.y - sRenderer.bounds.size.y/2);
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        Debug.Log(collision.collider.name)
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log(collision.collider.name)
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.collider.name)
-    }
-    */
 
     public override void DoAction(GameObject player)
     {
@@ -108,7 +125,7 @@ public class Moveable : Interactable
 
         _playerHingeJoint.enabled = _active;
         _playerController.jumpable = !_active;
-        _playerCharController.flippable = !_active;
+        _playerCharController.flippable = holdable ? true : !_active;
 
         if(_active)
         {
@@ -116,7 +133,7 @@ public class Moveable : Interactable
         }
         else
         {
-            StartCoroutine(releaseMovable());
+            releaseMovable();
         }
     }
 
@@ -128,7 +145,11 @@ public class Moveable : Interactable
         {
             _thisRb.bodyType = RigidbodyType2D.Dynamic;
         }
-            
+        //parent the GO to the player so that it can flip with the player
+        if(holdable)
+        {
+            gameObject.transform.parent = _player.transform;
+        }    
         // Enable moving on any axis, but not rotate
         _thisRb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -140,7 +161,7 @@ public class Moveable : Interactable
         _interactBtn.setText(_player, deactiveButtonText);
     }
 
-    private IEnumerator releaseMovable()
+    private void releaseMovable()
     {
         // Disconnect the player and the moveable obj
         _playerHingeJoint.connectedBody = null;
@@ -152,10 +173,11 @@ public class Moveable : Interactable
         _player
             .GetComponent<Interact>()
             .resetColliding();
-
-        yield return new WaitForSeconds(.1f);
-
-
+        //unparent the GO
+        if(holdable)
+        {
+            gameObject.transform.parent = null;
+        }   
     }
 
 }
