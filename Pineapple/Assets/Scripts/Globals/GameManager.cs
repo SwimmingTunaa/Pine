@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private GameObject _player;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void pauseGame()
@@ -25,4 +20,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+
+    public void DisablePlayerInput(bool enabled)
+    {
+        _player.GetComponent<PlayerController>().enabled = enabled; 
+    }
+
+    
 }

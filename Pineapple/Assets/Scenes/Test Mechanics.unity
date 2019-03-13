@@ -3195,11 +3195,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 5887839605171995612, guid: 73d5049f0b8c88c498103ecc4e5271c2,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3155581106585380108, guid: 73d5049f0b8c88c498103ecc4e5271c2,
         type: 3}
       propertyPath: holdable
@@ -3214,6 +3209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canCollideWith.m_Bits
       value: 12288
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887839605171995612, guid: 73d5049f0b8c88c498103ecc4e5271c2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8872639394364330932, guid: 73d5049f0b8c88c498103ecc4e5271c2,
         type: 3}
@@ -3348,7 +3348,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1999992209}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -3522,26 +3522,26 @@ PrefabInstance:
     - target: {fileID: 8967945628708019535, guid: 73d5049f0b8c88c498103ecc4e5271c2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.369
+      value: -0.266
       objectReference: {fileID: 0}
     - target: {fileID: 8967945628708019535, guid: 73d5049f0b8c88c498103ecc4e5271c2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 30
+      value: 0.31972754
       objectReference: {fileID: 0}
     - target: {fileID: 8967945628708019535, guid: 73d5049f0b8c88c498103ecc4e5271c2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 30
+      value: 0.31972754
       objectReference: {fileID: 0}
     - target: {fileID: 8967945628708019535, guid: 73d5049f0b8c88c498103ecc4e5271c2,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 30
+      value: 0.31972754
       objectReference: {fileID: 0}
-    - target: {fileID: 5887839605171995612, guid: 73d5049f0b8c88c498103ecc4e5271c2,
+    - target: {fileID: 8967945628708019535, guid: 73d5049f0b8c88c498103ecc4e5271c2,
         type: 3}
-      propertyPath: m_Layer
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3155581106585380108, guid: 73d5049f0b8c88c498103ecc4e5271c2,
@@ -3559,6 +3559,11 @@ PrefabInstance:
       propertyPath: canCollideWith.m_Bits
       value: 12288
       objectReference: {fileID: 0}
+    - target: {fileID: 5887839605171995612, guid: 73d5049f0b8c88c498103ecc4e5271c2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8872639394364330932, guid: 73d5049f0b8c88c498103ecc4e5271c2,
         type: 3}
       propertyPath: m_BodyType
@@ -3573,8 +3578,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f75f085c3d982724f8abc0ff8b8c87ff,
+      objectReference: {fileID: 21300008, guid: c25cc3dd3dc905540922d22aebfb240d,
         type: 3}
+    - target: {fileID: 258365997605260044, guid: 73d5049f0b8c88c498103ecc4e5271c2,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 258365997605260044, guid: 73d5049f0b8c88c498103ecc4e5271c2,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 258365997605260044, guid: 73d5049f0b8c88c498103ecc4e5271c2,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73d5049f0b8c88c498103ecc4e5271c2, type: 3}
 --- !u!1001 &1763477316
@@ -4215,14 +4235,6 @@ PrefabInstance:
       propertyPath: charController
       value: 
       objectReference: {fileID: 157228714}
-    - target: {fileID: 1648142871, guid: 61127f08e6fbee044a3b7f4b4a42ca95, type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1648142871, guid: 61127f08e6fbee044a3b7f4b4a42ca95, type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61127f08e6fbee044a3b7f4b4a42ca95, type: 3}
 --- !u!4 &2052079438 stripped

@@ -20,26 +20,25 @@ public class InteractButton : MonoBehaviour
     private Sprite _defaultBg;
     [SerializeField]
     private string _defaultText;
-
-    [SerializeField]
-    private Color _defaultColor;
     [SerializeField]
     private Color _activateColor;
     [SerializeField]
     private Color _deactivateColor;
-
+    private Color _defaultColor;
     private GameObject _player;
     private Image _interactButtonImg;
     private Interactable _interactableObject;
     private TextMeshProUGUI _interactButtonText;
     private GameObject _setter;
 
-    void Start()
+    void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _interactButtonText = GetComponentInChildren<TextMeshProUGUI>();
-        _interactButtonImg = GetComponent<Image>();
-
+        _interactButtonImg = GetComponentInChildren<Image>();
+        _defaultColor = _interactButtonImg.color;
+        _activateColor.a = _defaultColor.a;
+        _deactivateColor.a = _defaultColor.a;
         resetBtn(gameObject);
     }
 
@@ -90,7 +89,7 @@ public class InteractButton : MonoBehaviour
 
     public void setText(GameObject setter, string txt)
     {
-        if (CheckSetter(setter))
+        if (_interactButtonText.gameObject.activeInHierarchy && CheckSetter(setter))
         {
             _interactButtonText.text = txt;
         }
