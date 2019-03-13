@@ -6,6 +6,8 @@ TextureImporter:
     21300002: floor
     21300004: table
     21300006: fridge
+    21300008: Alarm clock
+    21300010: Kitchen_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -107,7 +109,7 @@ TextureImporter:
         width: 1972
         height: 958
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -127,7 +129,7 @@ TextureImporter:
         width: 1971
         height: 273
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,7 +149,7 @@ TextureImporter:
         width: 428
         height: 218
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -167,13 +169,53 @@ TextureImporter:
         width: 326
         height: 458
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 4c8298021981f8d499064269f0c663da
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alarm clock
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 100
+        width: 337
+        height: 434
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdc1d388120f3f14683b447d0ee7c952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kitchen_1
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 257
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a92d076eb5448a4684c861faeb2f5ca
       vertices: []
       indices: 
       edges: []
