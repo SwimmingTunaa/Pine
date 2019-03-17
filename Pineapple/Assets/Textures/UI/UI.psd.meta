@@ -2,9 +2,10 @@ fileFormatVersion: 2
 guid: 23cb263129019ec4e9b6006c3e9cb37a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Arrow Left
-    21300002: Arrow Right
-    21300004: Action Button
+    21300000: Arrow
+    21300002: Action Button
+    21300004: Arrow Pressed
+    21300006: Action Pressed
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -13,7 +14,7 @@ TextureImporter:
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
-    borderMipMap: 1
+    borderMipMap: 0
     mipMapsPreserveCoverage: 0
     alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
@@ -34,12 +35,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -50,7 +51,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -63,7 +64,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -74,7 +75,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -85,7 +86,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -98,41 +99,21 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arrow Left
+      name: Arrow
       rect:
         serializedVersion: 2
-        x: 99
-        y: 1637
-        width: 308
-        height: 328
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 97
+        y: 1719
+        width: 239
+        height: 282
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65c669e08b90b8648855e63abd6a0c89
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arrow Right
-      rect:
-        serializedVersion: 2
-        x: 471
-        y: 1637
-        width: 308
-        height: 328
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02263a3d3813c984a89813c2bb0ccfc0
+      spriteID: 31006b54055279e40a762cc7a9c32eb0
       vertices: []
       indices: 
       edges: []
@@ -141,18 +122,58 @@ TextureImporter:
       name: Action Button
       rect:
         serializedVersion: 2
-        x: 871
-        y: 1637
-        width: 306
-        height: 328
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 365
+        y: 1719
+        width: 238
+        height: 282
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 602267dba6ef77244b694ee4ff1aa4d1
+      spriteID: dbe467052f6df5d49aba8ea80d6b253c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow Pressed
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1431
+        width: 239
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 967171865bb8ea441a636dc3d99b47a3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Action Pressed
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 1431
+        width: 238
+        height: 282
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf668845ec8a06e499126c896936c745
       vertices: []
       indices: 
       edges: []
@@ -160,12 +181,12 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 11e5472a83118074fb439ba663cb0f24
+    spriteID: 249a3e7a103a29f49884963f62a96978
     vertices: []
     indices: 
     edges: []
     weights: []
-  spritePackingTag: UI
+  spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 

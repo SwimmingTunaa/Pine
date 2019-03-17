@@ -11,6 +11,7 @@ public  class ItemObject : ScriptableObject
     public Sprite itemSprite;
     public AudioClip pickUpSound;
     public GameObject deathFX;
+    
 
     public void Initialize(GameObject thisGameObject)
     {

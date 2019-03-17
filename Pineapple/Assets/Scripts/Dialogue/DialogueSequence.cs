@@ -98,7 +98,6 @@ public class DialogueSequence : MonoBehaviour
     private bool userTapped()
     {
         return TouchUtility.state == Enums.TouchState.tapped ||
-            Input.GetKeyUp(KeyCode.Return) ||
-            Input.GetKeyUp(KeyCode.Space);
+            Input.GetKeyUp(KeyCode.Return); //removed the space inut cause it was interfering with the dialog
     }
 }

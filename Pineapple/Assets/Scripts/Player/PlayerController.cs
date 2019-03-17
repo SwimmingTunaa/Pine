@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool immobile = false;
 
     private Animator _anim;
-    private float _horiMove;
+    public float _horiMove;
     private bool _jump = false;
     private CharacterController2D _characterController;
     private Rigidbody2D _rigidBody;
@@ -32,7 +32,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        setMovement();
+        if(!immobile)
+        {
+            //setMovement();
+            checkKeyboardMovement();
+        }
         setAnimations();
     }
 
@@ -52,25 +56,19 @@ public class PlayerController : MonoBehaviour
     private void setMovement()
     {
         _horiMove = Direction.none;
-
-        if (!immobile)
+        if (TouchUtility.touched)
         {
-            checkKeyboardMovement();
-
-            if (TouchUtility.touched)
+            switch(TouchUtility.state)
             {
-                switch(TouchUtility.state)
-                {
-                    case Enums.TouchState.pressedLeft:
-                        _horiMove = Direction.left;
-                        break;
-                    case Enums.TouchState.pressedRight:
-                        _horiMove = Direction.right;
-                        break;
-                    case Enums.TouchState.tapped:
-                        setJump();
-                        break;
-                }
+                case Enums.TouchState.pressedLeft:
+                    _horiMove = Direction.left;
+                    break;
+                case Enums.TouchState.pressedRight:
+                    _horiMove = Direction.right;
+                    break;
+                case Enums.TouchState.tapped:
+                    setJump();
+                    break;
             }
         }
     }

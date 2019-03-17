@@ -29,9 +29,6 @@ public class Moveable : Interactable
 
     void Start()
     {
-        // TODO: set a default buttonBg?
-        //_grounded = !holdable;
-
         _thisRb = GetComponent<Rigidbody2D>();
 
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -67,6 +64,13 @@ public class Moveable : Interactable
         //create an overlap box at the lowest point of sprite
         _groundCheckPos = getGroundCheckPos();
         Collider2D[] colliders = Physics2D.OverlapBoxAll(_groundCheckPos, _groundedBoxSize, 0, canCollideWith);
+         //cause it includes its own collider
+        if(colliders.Length == 1 && colliders[0].gameObject == gameObject)
+        {
+            _grounded = false; 
+            return;
+        }
+        
         if(!_grounded)
         {
             for (int i = 0; i < colliders.Length; i++)
@@ -77,14 +81,6 @@ public class Moveable : Interactable
                 } 
             } 
         }
-        
-        //cause it includes its own collider
-        if(colliders.Length == 1 && colliders[0].gameObject == gameObject)
-             _grounded = false;
-
-        //if (!_grounded) _thisRb.velocity = _thisRb.velocity + Vector2.down;
-
-     
     }
 
     private void Update()
@@ -139,7 +135,7 @@ public class Moveable : Interactable
 
     private void grabMovable()
     {
-        _playerController.speed -= (float)playerMoveSpeedPenalty; // TODO: Possibly want to change how speed is calculated?
+        _playerController.speed -= (float)playerMoveSpeedPenalty;
 
         if (_thisRb.bodyType != RigidbodyType2D.Dynamic)
         {
@@ -169,7 +165,7 @@ public class Moveable : Interactable
         // Return player speed to it's default
         _playerController.speed = _playerController.startSpeed;
 
-        // Ensure that the player collider resets for the interation button
+        // Ensure that the player collider resets for the interaction button
         _player
             .GetComponent<Interact>()
             .resetColliding();
