@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public float startSpeed;
+    [HideInInspector] public float startSpeed;
     public float speed;
     public bool jumpable = true;
     public bool immobile = false;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController2D>();
         _anim = GetComponentInChildren<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
-        speed = startSpeed;
+        startSpeed = speed;
     }
 
     void Update()
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private void setMovement()
     {
-        _horiMove = Direction.none;
+        _horiMove = Mathf.Abs(speed);
 
         if (!immobile)
         {
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private void checkKeyboardMovement()
     {
-        _horiMove = Input.GetAxisRaw("Horizontal");
+        //_horiMove = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump"))
         {
             setJump();
