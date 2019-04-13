@@ -16,11 +16,12 @@ public class PanelSpawner : MonoBehaviour
 
     void Awake()
     {
-        //get the begining pool which is the house pool
-        _pool = objectPoolManager.spawnedObjectPool[0];
+      
     }
     void Start()
     {
+          //get the begining pool which is the house pool
+        _pool = objectPoolManager.spawnedObjectPool[0];
         InitialSpawn();
     }
 

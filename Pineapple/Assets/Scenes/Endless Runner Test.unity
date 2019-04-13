@@ -574,9 +574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a1b4ef86f42394dbe87846f6587d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool: {fileID: 0}
   startingPanel: {fileID: 1315861377}
   spawnSpeed: 0.25
+  objectPoolManager: {fileID: 1250736433}
 --- !u!4 &434213507
 Transform:
   m_ObjectHideFlags: 0
@@ -917,6 +917,10 @@ PrefabInstance:
       propertyPath: panelSpawner
       value: 
       objectReference: {fileID: 434213506}
+    - target: {fileID: 603876468, guid: 543de37a8ce791d4aabc33d2f02ea1d5, type: 3}
+      propertyPath: objectPoolManager
+      value: 
+      objectReference: {fileID: 1250736433}
     - target: {fileID: 603876466, guid: 543de37a8ce791d4aabc33d2f02ea1d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.81
@@ -1030,7 +1034,7 @@ GameObject:
   - component: {fileID: 1250736432}
   - component: {fileID: 1250736433}
   m_Layer: 0
-  m_Name: ObjectPool
+  m_Name: ObjectPoolManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1064,6 +1068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPools:
   - {fileID: 8269262777991114593, guid: e354258320cbe394bb938133d3770880, type: 3}
+  spawnedObjectPool: []
 --- !u!1 &1315861377 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 743373531, guid: db78b9e4be5f4fa4ea5014fa6a9a23c1,
@@ -1826,7 +1831,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 743373531, guid: db78b9e4be5f4fa4ea5014fa6a9a23c1, type: 3}
       propertyPath: m_Name
-      value: Bedroom
+      value: Bedroom Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 743373531, guid: db78b9e4be5f4fa4ea5014fa6a9a23c1, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 58892645, guid: db78b9e4be5f4fa4ea5014fa6a9a23c1, type: 3}
       propertyPath: m_LocalPosition.x
