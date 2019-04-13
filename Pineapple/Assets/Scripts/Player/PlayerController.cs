@@ -11,13 +11,13 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public float startSpeed;
+    [HideInInspector] public float startSpeed;
     public float speed;
     public bool jumpable = true;
     public bool immobile = false;
 
     private Animator _anim;
-    public float _horiMove;
+    private float _horiMove;
     private bool _jump = false;
     private CharacterController2D _characterController;
     private Rigidbody2D _rigidBody;
@@ -27,16 +27,12 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController2D>();
         _anim = GetComponentInChildren<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
-        speed = startSpeed;
+        startSpeed = speed;
     }
 
     void Update()
     {
-        if(!immobile)
-        {
-            //setMovement();
-            checkKeyboardMovement();
-        }
+        setMovement();
         setAnimations();
     }
 
@@ -55,27 +51,33 @@ public class PlayerController : MonoBehaviour
 
     private void setMovement()
     {
-        _horiMove = Direction.none;
-        if (TouchUtility.touched)
+        _horiMove = Mathf.Abs(speed);
+
+        if (!immobile)
         {
-            switch(TouchUtility.state)
+            checkKeyboardMovement();
+
+            if (TouchUtility.touched)
             {
-                case Enums.TouchState.pressedLeft:
-                    _horiMove = Direction.left;
-                    break;
-                case Enums.TouchState.pressedRight:
-                    _horiMove = Direction.right;
-                    break;
-                case Enums.TouchState.tapped:
-                    setJump();
-                    break;
+                switch(TouchUtility.state)
+                {
+                    case Enums.TouchState.pressedLeft:
+                        _horiMove = Direction.left;
+                        break;
+                    case Enums.TouchState.pressedRight:
+                        _horiMove = Direction.right;
+                        break;
+                    case Enums.TouchState.tapped:
+                        setJump();
+                        break;
+                }
             }
         }
     }
 
     private void checkKeyboardMovement()
     {
-        _horiMove = Input.GetAxisRaw("Horizontal");
+        //_horiMove = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump"))
         {
             setJump();
