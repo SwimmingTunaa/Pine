@@ -1,62 +1,171 @@
 fileFormatVersion: 2
 guid: 7e789d6cd3615c846baa6a127974fd93
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: Hair_GO/Hair_GO
-    100002: Hair_GO/Hair_GO/Arm Left
-    100004: Hair_GO/Hair_GO/Arm Right
-    100006: Hair_GO/Hair_GO/Body
-    100008: Hair_GO/Hair_GO/Body/Arm Top Left
-    100010: Hair_GO/Hair_GO/Body/Arm Top Left/Arm Bottom Left
-    100012: Hair_GO/Hair_GO/Body/Arm Top Right
-    100014: Hair_GO/Hair_GO/Body/Arm Top Right/Arm Bottom Right
-    100036: Hair_GO/Hair_GO/Body/Hair
-    100038: Hair_GO/Hair_GO/Body/Leg Top Left
-    100040: Hair_GO/Hair_GO/Body/Leg Top Left/Leg Bottom Left
-    100042: Hair_GO/Hair_GO/Body/Leg Top Right
-    100044: Hair_GO/Hair_GO/Body/Leg Top Right/Leg Bottom Right
-    100046: Hair_GO/Hair_GO/Hair
-    100048: Hair_GO/Hair_GO/Leg Left
-    100050: Hair_GO/Hair_GO/Leg Right
-    100052: Hair_GO/Hair_GO/Torso
-    400000: Hair_GO/Hair_GO/Transform
-    400002: Hair_GO/Hair_GO/Arm Left/Transform
-    400004: Hair_GO/Hair_GO/Arm Right/Transform
-    400006: Hair_GO/Hair_GO/Body/Transform
-    400008: Hair_GO/Hair_GO/Body/Arm Top Left/Transform
-    400010: Hair_GO/Hair_GO/Body/Arm Top Left/Arm Bottom Left/Transform
-    400012: Hair_GO/Hair_GO/Body/Arm Top Right/Transform
-    400014: Hair_GO/Hair_GO/Body/Arm Top Right/Arm Bottom Right/Transform
-    400036: Hair_GO/Hair_GO/Body/Hair/Transform
-    400038: Hair_GO/Hair_GO/Body/Leg Top Left/Transform
-    400040: Hair_GO/Hair_GO/Body/Leg Top Left/Leg Bottom Left/Transform
-    400042: Hair_GO/Hair_GO/Body/Leg Top Right/Transform
-    400044: Hair_GO/Hair_GO/Body/Leg Top Right/Leg Bottom Right/Transform
-    400046: Hair_GO/Hair_GO/Hair/Transform
-    400048: Hair_GO/Hair_GO/Leg Left/Transform
-    400050: Hair_GO/Hair_GO/Leg Right/Transform
-    400052: Hair_GO/Hair_GO/Torso/Transform
-    2800000: Pine
-    11400000: Hair_GO/Hair_GO/Hair/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400002: Hair_GO/Hair_GO/Arm Left/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400006: Hair_GO/Hair_GO/Arm Right/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400008: Hair_GO/Hair_GO/Leg Left/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400010: Hair_GO/Hair_GO/Leg Right/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400012: Hair_GO/Hair_GO/Torso/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    21200000: Hair_GO/Hair_GO/Arm Left/SpriteRenderer
-    21200002: Hair_GO/Hair_GO/Arm Right/SpriteRenderer
-    21200006: Hair_GO/Hair_GO/Hair/SpriteRenderer
-    21200008: Hair_GO/Hair_GO/Leg Left/SpriteRenderer
-    21200010: Hair_GO/Hair_GO/Leg Right/SpriteRenderer
-    21200012: Hair_GO/Hair_GO/Torso/SpriteRenderer
-    21300000: Hair
-    21300002: Arm Right
-    21300004: Leg Right
-    21300008: Leg Left
-    21300010: Arm Left
-    21300012: Torso
-    100100000: Hair_GO
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Hair_GO/Hair_GO
+  - first:
+      1: 100002
+    second: Hair_GO/Hair_GO/Arm Left
+  - first:
+      1: 100004
+    second: Hair_GO/Hair_GO/Arm Right
+  - first:
+      1: 100006
+    second: Hair_GO/Hair_GO/Body
+  - first:
+      1: 100008
+    second: Hair_GO/Hair_GO/Body/Arm Top Left
+  - first:
+      1: 100010
+    second: Hair_GO/Hair_GO/Body/Arm Top Left/Arm Bottom Left
+  - first:
+      1: 100012
+    second: Hair_GO/Hair_GO/Body/Arm Top Right
+  - first:
+      1: 100014
+    second: Hair_GO/Hair_GO/Body/Arm Top Right/Arm Bottom Right
+  - first:
+      1: 100036
+    second: Hair_GO/Hair_GO/Body/Hair
+  - first:
+      1: 100038
+    second: Hair_GO/Hair_GO/Body/Leg Top Left
+  - first:
+      1: 100040
+    second: Hair_GO/Hair_GO/Body/Leg Top Left/Leg Bottom Left
+  - first:
+      1: 100042
+    second: Hair_GO/Hair_GO/Body/Leg Top Right
+  - first:
+      1: 100044
+    second: Hair_GO/Hair_GO/Body/Leg Top Right/Leg Bottom Right
+  - first:
+      1: 100046
+    second: Hair_GO/Hair_GO/Hair
+  - first:
+      1: 100048
+    second: Hair_GO/Hair_GO/Leg Left
+  - first:
+      1: 100050
+    second: Hair_GO/Hair_GO/Leg Right
+  - first:
+      1: 100052
+    second: Hair_GO/Hair_GO/Torso
+  - first:
+      4: 400000
+    second: Hair_GO/Hair_GO/Transform
+  - first:
+      4: 400002
+    second: Hair_GO/Hair_GO/Arm Left/Transform
+  - first:
+      4: 400004
+    second: Hair_GO/Hair_GO/Arm Right/Transform
+  - first:
+      4: 400006
+    second: Hair_GO/Hair_GO/Body/Transform
+  - first:
+      4: 400008
+    second: Hair_GO/Hair_GO/Body/Arm Top Left/Transform
+  - first:
+      4: 400010
+    second: Hair_GO/Hair_GO/Body/Arm Top Left/Arm Bottom Left/Transform
+  - first:
+      4: 400012
+    second: Hair_GO/Hair_GO/Body/Arm Top Right/Transform
+  - first:
+      4: 400014
+    second: Hair_GO/Hair_GO/Body/Arm Top Right/Arm Bottom Right/Transform
+  - first:
+      4: 400036
+    second: Hair_GO/Hair_GO/Body/Hair/Transform
+  - first:
+      4: 400038
+    second: Hair_GO/Hair_GO/Body/Leg Top Left/Transform
+  - first:
+      4: 400040
+    second: Hair_GO/Hair_GO/Body/Leg Top Left/Leg Bottom Left/Transform
+  - first:
+      4: 400042
+    second: Hair_GO/Hair_GO/Body/Leg Top Right/Transform
+  - first:
+      4: 400044
+    second: Hair_GO/Hair_GO/Body/Leg Top Right/Leg Bottom Right/Transform
+  - first:
+      4: 400046
+    second: Hair_GO/Hair_GO/Hair/Transform
+  - first:
+      4: 400048
+    second: Hair_GO/Hair_GO/Leg Left/Transform
+  - first:
+      4: 400050
+    second: Hair_GO/Hair_GO/Leg Right/Transform
+  - first:
+      4: 400052
+    second: Hair_GO/Hair_GO/Torso/Transform
+  - first:
+      28: 2800000
+    second: Pine
+  - first:
+      114: 11400000
+    second: Hair_GO/Hair_GO/Hair/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400002
+    second: Hair_GO/Hair_GO/Arm Left/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400006
+    second: Hair_GO/Hair_GO/Arm Right/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400008
+    second: Hair_GO/Hair_GO/Leg Left/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400010
+    second: Hair_GO/Hair_GO/Leg Right/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400012
+    second: Hair_GO/Hair_GO/Torso/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      212: 21200000
+    second: Hair_GO/Hair_GO/Arm Left/SpriteRenderer
+  - first:
+      212: 21200002
+    second: Hair_GO/Hair_GO/Arm Right/SpriteRenderer
+  - first:
+      212: 21200006
+    second: Hair_GO/Hair_GO/Hair/SpriteRenderer
+  - first:
+      212: 21200008
+    second: Hair_GO/Hair_GO/Leg Left/SpriteRenderer
+  - first:
+      212: 21200010
+    second: Hair_GO/Hair_GO/Leg Right/SpriteRenderer
+  - first:
+      212: 21200012
+    second: Hair_GO/Hair_GO/Torso/SpriteRenderer
+  - first:
+      213: 21300000
+    second: Hair
+  - first:
+      213: 21300002
+    second: Arm Right
+  - first:
+      213: 21300004
+    second: Leg Right
+  - first:
+      213: 21300008
+    second: Leg Left
+  - first:
+      213: 21300010
+    second: Arm Left
+  - first:
+      213: 21300012
+    second: Torso
+  - first:
+      1001: 100100000
+    second: Hair_GO
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -127,6 +236,7 @@ ScriptedImporter:
       width: 0
       height: 0
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -150,6 +260,7 @@ ScriptedImporter:
       width: 61
       height: 253
     spriteID: 18c25c9b7dd819c449e9ee0e59779f0c
+    internalID: 0
     spriteBone:
     - name: Arm Bottom Right
       position: {x: 131.74345, y: -0.000028197817, z: 0}
@@ -1000,6 +1111,7 @@ ScriptedImporter:
       width: 68
       height: 250
     spriteID: e72bd7b7f1dd11e47acbbff14549f095
+    internalID: 0
     spriteBone:
     - name: Leg Bottom Right
       position: {x: 124.23635, y: -0.000044382028, z: 0}
@@ -1945,6 +2057,7 @@ ScriptedImporter:
       width: 82
       height: 240
     spriteID: 7daf0fce0fcd0bb419caab9585cdfdeb
+    internalID: 0
     spriteBone:
     - name: Leg Bottom Left
       position: {x: 135.68167, y: 0.000057734083, z: 0}
@@ -2789,6 +2902,7 @@ ScriptedImporter:
       width: 61
       height: 253
     spriteID: 33991b1f5c168a5489942dc8dbf1631c
+    internalID: 0
     spriteBone:
     - name: Arm Bottom Left
       position: {x: 111.51876, y: -0.00013979158, z: 0}
@@ -3479,6 +3593,7 @@ ScriptedImporter:
       width: 781
       height: 953
     spriteID: 92d282768958b554ea16ecccd81381bd
+    internalID: 0
     spriteBone:
     - name: Body
       position: {x: 417.75574, y: 41.293823, z: 0}
@@ -3865,6 +3980,7 @@ ScriptedImporter:
       width: 1015
       height: 876
     spriteID: 22d49fdfc7ebbbb4087f953f0bed9b3f
+    internalID: 0
     spriteBone:
     - name: Hair
       position: {x: 422.5318, y: 24.82373, z: 0}
@@ -4489,24 +4605,26 @@ ScriptedImporter:
       bones: 0400000003000000
     dimension: {x: 0, y: 0}
   boneGOs:
-  - go: {fileID: 100006, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: -4589950977012813081, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 0
-  - go: {fileID: 100012, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: 7939330814819820826, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 1
-  - go: {fileID: 100014, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: 7243436058389833385, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 2
-  - go: {fileID: 100008, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: -5306044190900342260, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 3
-  - go: {fileID: 100010, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: 7743689914945353308, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 4
-  - go: {fileID: 100042, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: 4187141339748508160, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 5
-  - go: {fileID: 100044, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: -2143324131864399998, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 6
-  - go: {fileID: 100038, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: 1095244980030398293, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 7
-  - go: {fileID: 100040, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: -3502128206788624653, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 8
-  - go: {fileID: 100036, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
+  - go: {fileID: 5250047400455347436, guid: 7e789d6cd3615c846baa6a127974fd93, type: 3}
     index: 9
   generateGOHierarchy: 0
+  textureAssetName: Pine
+  prefabAssetName: Pine_GO

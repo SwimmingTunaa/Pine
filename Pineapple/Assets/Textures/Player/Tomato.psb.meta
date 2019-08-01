@@ -1,69 +1,192 @@
 fileFormatVersion: 2
 guid: 1ef57a41795fc5f49985326b8abe2d62
 ScriptedImporter:
-  fileIDToRecycleName:
-    100000: Arm Back_GO/Arm Back_GO
-    100002: Arm Back_GO/Arm Back_GO/Arm Back
-    100004: Arm Back_GO/Arm Back_GO/Arm front
-    100006: Arm Back_GO/Arm Back_GO/Body
-    100008: Arm Back_GO/Arm Back_GO/Hair
-    100010: Arm Back_GO/Arm Back_GO/Leg Back
-    100012: Arm Back_GO/Arm Back_GO/leg Front
-    100014: Arm Back_GO/Arm Back_GO/Mask
-    100016: Arm Back_GO/Arm Back_GO/Body Top
-    100018: Arm Back_GO/Arm Back_GO/Body Top/Arm Top
-    100020: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Arm Bottom
-    100022: Arm Back_GO/Arm Back_GO/Body Top/Arm Top
-    100024: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Arm Bottom
-    100026: Arm Back_GO/Arm Back_GO/Body Top/Hair Bottom
-    100028: Arm Back_GO/Arm Back_GO/Body Top/Hair Bottom/Hair Top
-    100030: Arm Back_GO/Arm Back_GO/Body Top/Leg Top
-    100032: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Leg Bottom
-    100034: Arm Back_GO/Arm Back_GO/Body Top/Leg Top
-    100036: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Leg Bottom
-    400000: Arm Back_GO/Arm Back_GO/Transform
-    400002: Arm Back_GO/Arm Back_GO/Arm Back/Transform
-    400004: Arm Back_GO/Arm Back_GO/Arm front/Transform
-    400006: Arm Back_GO/Arm Back_GO/Body/Transform
-    400008: Arm Back_GO/Arm Back_GO/Hair/Transform
-    400010: Arm Back_GO/Arm Back_GO/Leg Back/Transform
-    400012: Arm Back_GO/Arm Back_GO/leg Front/Transform
-    400014: Arm Back_GO/Arm Back_GO/Mask/Transform
-    400016: Arm Back_GO/Arm Back_GO/Body Top/Transform
-    400018: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Transform
-    400020: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Arm Bottom/Transform
-    400022: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Transform
-    400024: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Arm Bottom/Transform
-    400026: Arm Back_GO/Arm Back_GO/Body Top/Hair Bottom/Transform
-    400028: Arm Back_GO/Arm Back_GO/Body Top/Hair Bottom/Hair Top/Transform
-    400030: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Transform
-    400032: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Leg Bottom/Transform
-    400034: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Transform
-    400036: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Leg Bottom/Transform
-    2800000: Tomato
-    11400000: Arm Back_GO/Arm Back_GO/Arm Back/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400002: Arm Back_GO/Arm Back_GO/Arm front/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400004: Arm Back_GO/Arm Back_GO/Body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400006: Arm Back_GO/Arm Back_GO/Hair/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400008: Arm Back_GO/Arm Back_GO/Leg Back/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    11400010: Arm Back_GO/Arm Back_GO/leg Front/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
-    21200000: Arm Back_GO/Arm Back_GO/Arm Back/SpriteRenderer
-    21200002: Arm Back_GO/Arm Back_GO/Arm front/SpriteRenderer
-    21200004: Arm Back_GO/Arm Back_GO/Body/SpriteRenderer
-    21200006: Arm Back_GO/Arm Back_GO/Hair/SpriteRenderer
-    21200008: Arm Back_GO/Arm Back_GO/Leg Back/SpriteRenderer
-    21200010: Arm Back_GO/Arm Back_GO/leg Front/SpriteRenderer
-    21200012: Arm Back_GO/Arm Back_GO/Mask/SpriteRenderer
-    21300000: Arm front
-    21300002: leg Front
-    21300004: Mask
-    21300006: Hair
-    21300008: Body
-    21300010: Leg Back
-    21300012: Arm Back
-    100100000: Arm Back_GO
-    2186277476908879412: ImportLogs
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Arm Back_GO/Arm Back_GO
+  - first:
+      1: 100002
+    second: Arm Back_GO/Arm Back_GO/Arm Back
+  - first:
+      1: 100004
+    second: Arm Back_GO/Arm Back_GO/Arm front
+  - first:
+      1: 100006
+    second: Arm Back_GO/Arm Back_GO/Body
+  - first:
+      1: 100008
+    second: Arm Back_GO/Arm Back_GO/Hair
+  - first:
+      1: 100010
+    second: Arm Back_GO/Arm Back_GO/Leg Back
+  - first:
+      1: 100012
+    second: Arm Back_GO/Arm Back_GO/leg Front
+  - first:
+      1: 100014
+    second: Arm Back_GO/Arm Back_GO/Mask
+  - first:
+      1: 100016
+    second: Arm Back_GO/Arm Back_GO/Body Top
+  - first:
+      1: 100018
+    second: Arm Back_GO/Arm Back_GO/Body Top/Arm Top
+  - first:
+      1: 100020
+    second: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Arm Bottom
+  - first:
+      1: 100022
+    second: Arm Back_GO/Arm Back_GO/Body Top/Arm Top
+  - first:
+      1: 100024
+    second: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Arm Bottom
+  - first:
+      1: 100026
+    second: Arm Back_GO/Arm Back_GO/Body Top/Hair Bottom
+  - first:
+      1: 100028
+    second: Arm Back_GO/Arm Back_GO/Body Top/Hair Bottom/Hair Top
+  - first:
+      1: 100030
+    second: Arm Back_GO/Arm Back_GO/Body Top/Leg Top
+  - first:
+      1: 100032
+    second: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Leg Bottom
+  - first:
+      1: 100034
+    second: Arm Back_GO/Arm Back_GO/Body Top/Leg Top
+  - first:
+      1: 100036
+    second: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Leg Bottom
+  - first:
+      4: 400000
+    second: Arm Back_GO/Arm Back_GO/Transform
+  - first:
+      4: 400002
+    second: Arm Back_GO/Arm Back_GO/Arm Back/Transform
+  - first:
+      4: 400004
+    second: Arm Back_GO/Arm Back_GO/Arm front/Transform
+  - first:
+      4: 400006
+    second: Arm Back_GO/Arm Back_GO/Body/Transform
+  - first:
+      4: 400008
+    second: Arm Back_GO/Arm Back_GO/Hair/Transform
+  - first:
+      4: 400010
+    second: Arm Back_GO/Arm Back_GO/Leg Back/Transform
+  - first:
+      4: 400012
+    second: Arm Back_GO/Arm Back_GO/leg Front/Transform
+  - first:
+      4: 400014
+    second: Arm Back_GO/Arm Back_GO/Mask/Transform
+  - first:
+      4: 400016
+    second: Arm Back_GO/Arm Back_GO/Body Top/Transform
+  - first:
+      4: 400018
+    second: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Transform
+  - first:
+      4: 400020
+    second: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Arm Bottom/Transform
+  - first:
+      4: 400022
+    second: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Transform
+  - first:
+      4: 400024
+    second: Arm Back_GO/Arm Back_GO/Body Top/Arm Top/Arm Bottom/Transform
+  - first:
+      4: 400026
+    second: Arm Back_GO/Arm Back_GO/Body Top/Hair Bottom/Transform
+  - first:
+      4: 400028
+    second: Arm Back_GO/Arm Back_GO/Body Top/Hair Bottom/Hair Top/Transform
+  - first:
+      4: 400030
+    second: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Transform
+  - first:
+      4: 400032
+    second: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Leg Bottom/Transform
+  - first:
+      4: 400034
+    second: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Transform
+  - first:
+      4: 400036
+    second: Arm Back_GO/Arm Back_GO/Body Top/Leg Top/Leg Bottom/Transform
+  - first:
+      28: 2800000
+    second: Tomato
+  - first:
+      114: 11400000
+    second: Arm Back_GO/Arm Back_GO/Arm Back/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400002
+    second: Arm Back_GO/Arm Back_GO/Arm front/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400004
+    second: Arm Back_GO/Arm Back_GO/Body/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400006
+    second: Arm Back_GO/Arm Back_GO/Hair/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400008
+    second: Arm Back_GO/Arm Back_GO/Leg Back/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      114: 11400010
+    second: Arm Back_GO/Arm Back_GO/leg Front/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+  - first:
+      212: 21200000
+    second: Arm Back_GO/Arm Back_GO/Arm Back/SpriteRenderer
+  - first:
+      212: 21200002
+    second: Arm Back_GO/Arm Back_GO/Arm front/SpriteRenderer
+  - first:
+      212: 21200004
+    second: Arm Back_GO/Arm Back_GO/Body/SpriteRenderer
+  - first:
+      212: 21200006
+    second: Arm Back_GO/Arm Back_GO/Hair/SpriteRenderer
+  - first:
+      212: 21200008
+    second: Arm Back_GO/Arm Back_GO/Leg Back/SpriteRenderer
+  - first:
+      212: 21200010
+    second: Arm Back_GO/Arm Back_GO/leg Front/SpriteRenderer
+  - first:
+      212: 21200012
+    second: Arm Back_GO/Arm Back_GO/Mask/SpriteRenderer
+  - first:
+      213: 21300000
+    second: Arm front
+  - first:
+      213: 21300002
+    second: leg Front
+  - first:
+      213: 21300004
+    second: Mask
+  - first:
+      213: 21300006
+    second: Hair
+  - first:
+      213: 21300008
+    second: Body
+  - first:
+      213: 21300010
+    second: Leg Back
+  - first:
+      213: 21300012
+    second: Arm Back
+  - first:
+      1001: 100100000
+    second: Arm Back_GO
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects: {}
+  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -134,6 +257,7 @@ ScriptedImporter:
       width: 0
       height: 0
     spriteID: 
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -157,6 +281,7 @@ ScriptedImporter:
       width: 78
       height: 409
     spriteID: ab4673cc8e284654e84eb3bf6133c54c
+    internalID: 0
     spriteBone:
     - name: Arm Top
       position: {x: 68.405396, y: 400.30432, z: 0}
@@ -974,6 +1099,7 @@ ScriptedImporter:
       width: 54
       height: 149
     spriteID: 00db0a23bf483ff49bed3d61945e4e76
+    internalID: 0
     spriteBone:
     - name: Leg Bottom
       position: {x: 82.825516, y: -0.00000769802, z: 0}
@@ -1919,6 +2045,7 @@ ScriptedImporter:
       width: 407
       height: 518
     spriteID: bd742919289f2ba4a87a7543c906769b
+    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices:
@@ -2247,6 +2374,7 @@ ScriptedImporter:
       width: 452
       height: 302
     spriteID: 7e27e10ef4aadb640a2bffc2228ed0d1
+    internalID: 0
     spriteBone:
     - name: Hair Bottom
       position: {x: 246.84973, y: 83.437256, z: 0}
@@ -2888,6 +3016,7 @@ ScriptedImporter:
       width: 698
       height: 724
     spriteID: 1b16425dcd7dbba44bb4fa466c4d6e3f
+    internalID: 0
     spriteBone:
     - name: Body Top
       position: {x: 341.28452, y: 226.39706, z: 0}
@@ -3232,6 +3361,7 @@ ScriptedImporter:
       width: 79
       height: 182
     spriteID: 78ec283951229504aabc315bcfeb0353
+    internalID: 0
     spriteBone:
     - name: Leg Bottom
       position: {x: 46.112232, y: 0.00003143776, z: 0}
@@ -4238,6 +4368,7 @@ ScriptedImporter:
       width: 311
       height: 274
     spriteID: 897634014cf4241439e6f9affab93b78
+    internalID: 0
     spriteBone:
     - name: Arm Bottom
       position: {x: 200.32219, y: 0.000012110237, z: 0}
@@ -5224,26 +5355,28 @@ ScriptedImporter:
       bones: 0300000002000000
     dimension: {x: 0, y: 0}
   boneGOs:
-  - go: {instanceID: 0}
+  - go: {fileID: -9208273495392150600, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 0
-  - go: {instanceID: 0}
+  - go: {fileID: 3811760692001535633, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 1
-  - go: {instanceID: 0}
+  - go: {fileID: -1139192129164040562, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 2
-  - go: {instanceID: 0}
+  - go: {fileID: -8001634243077914959, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 3
-  - go: {instanceID: 0}
+  - go: {fileID: 353262136241423443, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 4
-  - go: {instanceID: 0}
+  - go: {fileID: -2238329115457615431, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 5
-  - go: {instanceID: 0}
+  - go: {fileID: -5403370939527611379, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 6
-  - go: {instanceID: 0}
+  - go: {fileID: 6618275460263054766, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 7
-  - go: {instanceID: 0}
+  - go: {fileID: -5494604249645235056, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 8
-  - go: {instanceID: 0}
+  - go: {fileID: -5820194742641982961, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 9
-  - go: {instanceID: 0}
+  - go: {fileID: 4325992409831805448, guid: 1ef57a41795fc5f49985326b8abe2d62, type: 3}
     index: 10
   generateGOHierarchy: 0
+  textureAssetName: Tomato
+  prefabAssetName: Tomato_GO
