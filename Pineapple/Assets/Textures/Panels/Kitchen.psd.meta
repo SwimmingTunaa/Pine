@@ -7,7 +7,53 @@ TextureImporter:
     21300004: table
     21300006: fridge
     21300008: Alarm clock
-    21300010: Kitchen_1
+    21300010: Bedroom Floor
+    21300012: Sky
+    21300014: Fan Base Top
+    21300016: Fan Rope
+    21300018: Fan Blades
+    21300020: Bedroom Wall
+    21300022: Fan Sprite 1
+    21300024: Fan Sprite 2
+    21300026: Fan Sprite 3
+    21300028: Fan Sprite 4
+    21300030: Bed
+    21300032: Clothes
+    21300034: Night stand
+    21300036: Kitchen_9
+    21300038: Book Shelf Tall
+    21300040: Bookself Small
+    21300042: book 1
+    21300044: book 4
+    21300046: book 8
+    21300048: Fire sprite 4
+    21300050: TV
+    21300052: book 3
+    21300054: book 6
+    21300056: book 7
+    21300058: Fire sprite 2
+    21300060: Wall Shelf
+    21300062: Fire sprite 1
+    21300064: Fire sprite 5
+    21300066: Fire sprite 6
+    21300068: Fire sprite 7
+    21300070: Fire sprite 3
+    21300072: Couch Seat
+    21300074: Lounge Room
+    21300076: Kitchen_40
+    21300078: Kitchen_41
+    21300080: Couch
+    21300082: Kitchen_43
+    21300084: Lounge Floor
+    21300086: book 2
+    21300088: book 5
+    21300090: Fire sprite 8
+    21300092: Frying Pan
+    21300094: Clothes Part 1
+    21300096: Clothes Part 5
+    21300098: Clothes Part 2
+    21300100: Clothes Part 4
+    21300102: Clothes Part 3
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -37,7 +83,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 2
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -189,7 +235,7 @@ TextureImporter:
         width: 337
         height: 434
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,13 +247,773 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kitchen_1
+      name: Sky
       rect:
         serializedVersion: 2
-        x: 420
-        y: 257
-        width: 15
-        height: 10
+        x: 993
+        y: 2393
+        width: 585
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab61889f37d400d4281021c17b564d8f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fan Base Top
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 2104
+        width: 34
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be3fb150490af734c9ef34d5565b26da
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fan Rope
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 2044
+        width: 10
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d27258a7197d60b4d9912519c9aef5df
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fan Blades
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 1962
+        width: 330
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9157208f61930e428fd0328e06102a0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fan Sprite 1
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 1964
+        width: 303
+        height: 75
+      alignment: 9
+      pivot: {x: 0.47537905, y: 0.36820313}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22f99960e2f2d6d4a9758a015b5a18d8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fan Sprite 2
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 1962
+        width: 194
+        height: 83
+      alignment: 9
+      pivot: {x: 0.5532283, y: 0.35467604}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9984bf11d2c81748bc1dd04eb7fd13d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fan Sprite 3
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 1967
+        width: 172
+        height: 88
+      alignment: 9
+      pivot: {x: 0.38741854, y: 0.27799848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33528e74d3fa134498f7a17017b6ff3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fan Sprite 4
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 1962
+        width: 216
+        height: 97
+      alignment: 9
+      pivot: {x: 0.46412432, y: 0.30497316}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87506dba6af0a31478f1b66944489529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Wall
+      rect:
+        serializedVersion: 2
+        x: 2094
+        y: 3034
+        width: 1967
+        height: 919
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87db0efa710e1084b8d52d7023d9964f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom Floor
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 2731
+        width: 1968
+        height: 274
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8e04dea7b74ba044aa5936c66626977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bed
+      rect:
+        serializedVersion: 2
+        x: 2128
+        y: 2241
+        width: 647
+        height: 370
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ade75ab4610a1048ae9dd5ab996f0f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clothes
+      rect:
+        serializedVersion: 2
+        x: 3132
+        y: 2199
+        width: 471
+        height: 388
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de78f3aad27641744ae76a81dd15dabc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Night stand
+      rect:
+        serializedVersion: 2
+        x: 2849
+        y: 2241
+        width: 197
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19f2b3498fb31eb4b8ae9286ce750688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Book Shelf Tall
+      rect:
+        serializedVersion: 2
+        x: 3628
+        y: 1904
+        width: 458
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 340b8a880951a4b44b8a6f2ad896e070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bookself Small
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 2099
+        width: 266
+        height: 266
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b465997ef23ef3c449932ce7fc26bf1a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book 1
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 2105
+        width: 20
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a520fc15477e4574dbdd70f76192ab73
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book 4
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 2104
+        width: 17
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd7c910589fe76241808123fe1633947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book 8
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 2106
+        width: 16
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f193e535ef489fc4690d1e9014f97996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire sprite 4
+      rect:
+        serializedVersion: 2
+        x: 1880
+        y: 1935
+        width: 120
+        height: 232
+      alignment: 9
+      pivot: {x: 0.54396564, y: 0.0249839}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 152552cf52da56e498ed4e68a842e8fa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TV
+      rect:
+        serializedVersion: 2
+        x: 2627
+        y: 1907
+        width: 262
+        height: 329
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827d3a354ed616e429a35f340315b31f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book 3
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 2105
+        width: 10
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ce1f83b599126408370b2182171d2b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book 6
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 2103
+        width: 23
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2190b6de8201ad4f84fcacc71da06b5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book 7
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 2103
+        width: 7
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8a75838070350f4d8aa699f90ada074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire sprite 2
+      rect:
+        serializedVersion: 2
+        x: 1641
+        y: 1937
+        width: 85
+        height: 217
+      alignment: 9
+      pivot: {x: 0.49310517, y: 0.013759068}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 081dfe38d5ae3ca4d854ae70ca3d48be
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall Shelf
+      rect:
+        serializedVersion: 2
+        x: 2929
+        y: 2068
+        width: 672
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 181c2061415725a4f9fe6659429e2c42
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire sprite 1
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 1936
+        width: 90
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5130276, y: 0.026230067}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90693923bf593f74d8ba95fa6ca92f82
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire sprite 5
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 1936
+        width: 91
+        height: 237
+      alignment: 9
+      pivot: {x: 0.5397949, y: 0.02043853}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9cf7b2fdf9ea8a46b3fb06c695be9a0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire sprite 6
+      rect:
+        serializedVersion: 2
+        x: 2157
+        y: 1938
+        width: 105
+        height: 238
+      alignment: 9
+      pivot: {x: 0.5129325, y: 0.018824985}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e09db5407e908a8429fd92c8599af883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire sprite 7
+      rect:
+        serializedVersion: 2
+        x: 2281
+        y: 1940
+        width: 110
+        height: 229
+      alignment: 9
+      pivot: {x: 0.5246915, y: 0.011773655}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcd62f372a00acb469a01d4918b4d7f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire sprite 3
+      rect:
+        serializedVersion: 2
+        x: 1754
+        y: 1935
+        width: 110
+        height: 210
+      alignment: 9
+      pivot: {x: 0.54796255, y: 0.014299666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 137ede0cf2acd7d4a88134e94e37406f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Couch Seat
+      rect:
+        serializedVersion: 2
+        x: 3265
+        y: 1910
+        width: 299
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43d5b4bfa221df4e84daf79a6478af4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lounge Room
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 975
+        width: 3100
+        height: 926
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40ed12f1229f7c347a420f4be8898e79
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Couch
+      rect:
+        serializedVersion: 2
+        x: 3212
+        y: 1559
+        width: 703
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a5e8b18cb611644196229c6179d1d68
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lounge Floor
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 688
+        width: 3098
+        height: 269
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80fe5c4ca141f354a9d94dd73f601d72
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book 2
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 2105
+        width: 22
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21512984f0714fe47a684ea216ebab9d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book 5
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 2106
+        width: 10
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8894606faa1c2e4eb96a5a649560c56
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire sprite 8
+      rect:
+        serializedVersion: 2
+        x: 2431
+        y: 1936
+        width: 124
+        height: 252
+      alignment: 9
+      pivot: {x: 0.4780982, y: 0.020409478}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391eb8b1570f01a48bf9a2a5919e0ffb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frying Pan
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 2409
+        width: 234
+        height: 269
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 531d9acc98f1165469367e069f50968a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clothes Part 1
+      rect:
+        serializedVersion: 2
+        x: 3209
+        y: 1345
+        width: 250
+        height: 184
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,7 +1021,87 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a92d076eb5448a4684c861faeb2f5ca
+      spriteID: e10b08739d34f1540a2f08ac43b42c5c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clothes Part 5
+      rect:
+        serializedVersion: 2
+        x: 3473
+        y: 1309
+        width: 263
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 167bf83c2d08fdb4fa135f4f486beab6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clothes Part 2
+      rect:
+        serializedVersion: 2
+        x: 3777
+        y: 1267
+        width: 289
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2950a7f0ed469b044837c85fc7272a5b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clothes Part 4
+      rect:
+        serializedVersion: 2
+        x: 3209
+        y: 1105
+        width: 223
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b7b3e0a69ce6b44abbddf65c4e2cb72
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clothes Part 3
+      rect:
+        serializedVersion: 2
+        x: 3441
+        y: 1039
+        width: 228
+        height: 259
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 843c4ae63a5bbbd4bb0846b6536ec4b4
       vertices: []
       indices: 
       edges: []

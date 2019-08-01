@@ -3,9 +3,11 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
+	public float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
+	[SerializeField] private float m_fallMulitplier = 2.5f;
+	[SerializeField] private float m_lowJumpMulitplier = 2.5f;
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
@@ -61,7 +63,11 @@ public class CharacterController2D : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
-		
+		//make the player fall faster and jump higher if button is held
+		if(m_Rigidbody2D.velocity.y < 0)
+			m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (m_fallMulitplier - 1) * Time.fixedDeltaTime;
+		else if(m_Rigidbody2D.velocity.y > 0 && !PlayerController.jumpPressed)
+			m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (m_lowJumpMulitplier - 1) * Time.fixedDeltaTime;
 	}
 
 	private void OnDrawGizmosSelected() 
@@ -132,17 +138,18 @@ public class CharacterController2D : MonoBehaviour
 				Flip();
 			}
 		}
-		Jump(jump);
+		//Jump(jump);
 	}
 
-	public void Jump(bool jump)
+	public void Jump(bool jump, float multiplier = 1)
 	{
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * multiplier), ForceMode2D.Impulse);
+			
 		}
 	}
 

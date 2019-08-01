@@ -71,7 +71,7 @@ public class DialogueSequence : MonoBehaviour
         setSpeechbubble(dialogues[_currentDialogue]);
     }
 
-    private void endDialogue()
+    public void endDialogue()
     {
         _scriptRunning = false;
         
@@ -84,7 +84,7 @@ public class DialogueSequence : MonoBehaviour
         }
 
         speechBubble.gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     private void setSpeechbubble(DialogueConfig dialogue)

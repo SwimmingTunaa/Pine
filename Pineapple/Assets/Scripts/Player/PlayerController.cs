@@ -9,15 +9,23 @@ public class PlayerController : MonoBehaviour
         public const float right = 1.0f;
         public const float none = 0.0f;
     }
-
+    public static bool jumpPressed;
 
     [HideInInspector] public float startSpeed;
     public float speed;
+    public float MaxSpeed;
     public bool jumpable = true;
     public bool immobile = false;
 
-    private Animator _anim;
-    private float _horiMove;
+    [Header("Hair")]
+    public GameObject slicedHair;
+    public GameObject hairMask;
+    public AudioClip hairSlicedAudio;
+    [HideInInspector] public bool _haircut;
+
+
+    [HideInInspector] public Animator _anim;
+    [HideInInspector] public float _horiMove;
     private bool _jump = false;
     private CharacterController2D _characterController;
     private Rigidbody2D _rigidBody;
@@ -38,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveDistance = _horiMove * speed * Time.fixedDeltaTime;
+        float moveDistance = speed * Time.fixedDeltaTime;
 
         _characterController.Move(moveDistance, false, _jump);
         _jump = false;
@@ -68,7 +76,7 @@ public class PlayerController : MonoBehaviour
                         _horiMove = Direction.right;
                         break;
                     case Enums.TouchState.tapped:
-                        setJump();
+                        setJump(1f);
                         break;
                 }
             }
@@ -80,15 +88,23 @@ public class PlayerController : MonoBehaviour
         //_horiMove = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump"))
         {
-            setJump();
+            setJump(1f);
         }
     }
 
-    private void setJump()
+    public void OnPointerPressed(bool triggered)
+    {
+        if(triggered && jumpable)
+            setJump(1f); // was character controller
+        jumpPressed = triggered;
+    }
+
+    public void setJump(float multiplier)
     {
         if (jumpable)
         {
-            _jump = true;
+            //_jump = true;
+            _characterController.Jump(true, multiplier);
             _anim.SetBool("Jump", true);
         }
     }
@@ -98,5 +114,6 @@ public class PlayerController : MonoBehaviour
         _anim.SetFloat("HoriMove", Mathf.Abs(_horiMove));
         _anim.SetFloat("yVelocity", _rigidBody.velocity.y);
         _anim.SetBool("Grounded", _characterController.m_Grounded);
+        _anim.SetFloat("Speed", speed);
     }
 }

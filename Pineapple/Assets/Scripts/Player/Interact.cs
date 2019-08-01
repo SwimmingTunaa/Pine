@@ -15,9 +15,9 @@ public class Interact : MonoBehaviour
     {
         _char2D = GetComponent<CharacterController2D>();
 
-        _interactBtn = GameObject
+        /* _interactBtn = GameObject
             .FindGameObjectWithTag("InteractBtn")
-            .GetComponent<InteractButton>();
+            .GetComponent<InteractButton>();*/
     }
 
     void Update()
@@ -54,7 +54,7 @@ public class Interact : MonoBehaviour
         else
         {
             _interacting = false;
-            _interactBtn.resetBtn(gameObject);
+           // _interactBtn.resetBtn(gameObject);
         }
     }
 

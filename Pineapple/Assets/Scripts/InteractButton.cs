@@ -6,7 +6,7 @@ using TMPro;
 
 public class InteractButton : MonoBehaviour
 {
-    public CharacterController2D charController;
+    public PlayerController playerController;
 
     // DoAction callback methods
     public delegate void DoActionFn();
@@ -28,13 +28,12 @@ public class InteractButton : MonoBehaviour
     private GameObject _player;
     private Image _interactButtonImg;
     private Interactable _interactableObject;
-    private TextMeshProUGUI _interactButtonText;
+    public TextMeshProUGUI _interactButtonText;
     private GameObject _setter;
 
     void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _interactButtonText = GetComponentInChildren<TextMeshProUGUI>();
         _interactButtonImg = GetComponentInChildren<Image>();
         _defaultColor = _interactButtonImg.color;
         _activateColor.a = _defaultColor.a;
@@ -63,7 +62,7 @@ public class InteractButton : MonoBehaviour
         }
         else if(_interactableObject == null)
         {
-            charController.Jump(true); // Not convinced we want this, I think we should encourage user to learn the tap jump
+            playerController.setJump(1f); // Not convinced we want this, I think we should encourage user to learn the tap jump
         }
         else
         {

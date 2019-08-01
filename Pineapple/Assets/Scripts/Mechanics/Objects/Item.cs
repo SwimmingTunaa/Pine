@@ -7,12 +7,13 @@ public class Item : Interactable
     public ItemObject itemObject;
     public Collider2D otherCollider;
     public int triggerAmount;
-
+    public bool addThisItemToInventory;
     private Inventory _inventory;
 
     void Awake()
     {
-        _inventory = GameObject.FindGameObjectWithTag("GameController").GetComponent<Inventory>();
+        if(addThisItemToInventory)
+            _inventory = GameObject.FindGameObjectWithTag("GameController").GetComponent<Inventory>();
         itemObject.Initialize(this.gameObject);
     }
 
@@ -21,7 +22,7 @@ public class Item : Interactable
     //eg. holding a gun or something alike
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(otherCollider.transform == other.transform && triggerAmount > 0)
+        if(other.CompareTag("Player") && triggerAmount > 0)
         {
             DoAction(other.gameObject);
         }
@@ -32,7 +33,8 @@ public class Item : Interactable
         base.DoAction(player);
 
         //add to inventory
-        _inventory.AddItem(itemObject);
+        if(addThisItemToInventory)
+            _inventory.AddItem(itemObject);
 
         //Only plays these if they are not null
         if(itemObject.pickUpSound)

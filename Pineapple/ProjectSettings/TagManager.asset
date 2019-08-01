@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - InteractBtn
+  - Obstacle
+  - Hair
+  - PickUps
   layers:
   - Default
   - TransparentFX
@@ -21,8 +24,8 @@ TagManager:
   - Ground
   - Moveable
   - PanelDestroyer
-  - 
-  - 
+  - Projectile
+  - Obstacle
   - 
   - 
   - 
@@ -42,6 +45,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3288177585
+    locked: 0
+  - name: Mid background
+    uniqueID: 3937345511
+    locked: 0
+  - name: Floor
+    uniqueID: 513240069
+    locked: 0
+  - name: Objects
+    uniqueID: 3660474349
+    locked: 0
   - name: Player
     uniqueID: 3370959307
+    locked: 0
+  - name: Hair
+    uniqueID: 3708803937
+    locked: 0
+  - name: SFX
+    uniqueID: 171790405
+    locked: 0
+  - name: Frame
+    uniqueID: 126182293
     locked: 0

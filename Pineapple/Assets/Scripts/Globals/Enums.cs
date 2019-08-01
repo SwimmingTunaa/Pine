@@ -9,4 +9,5 @@ public class Enums
     public enum BubbleSize { sm, md, lg };
     public enum TouchState { pressedRight, pressedLeft, tapped, none };
     public enum InteractColor { none, activate, deactivate };
+    public enum ObstacleSpawnPoint { top, mid, bot};
 }

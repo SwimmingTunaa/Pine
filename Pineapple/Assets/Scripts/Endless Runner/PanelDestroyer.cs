@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PanelDestroyer : MonoBehaviour
-{
-    public PanelSpawner panelSpawner;
+{   
+    public PanelSpawner pSpawner;
     public ObjectPoolManager objectPoolManager;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        foreach(ObjectPools o in objectPoolManager.spawnedObjectPool)
+        if(other.GetComponent<ObjectID>())
         {
-            if(other.GetComponent<ObjectID>().nameID == o.name)
+            ObjectID id = other.GetComponent<ObjectID>();
+            if(id.objectType == ObjType.Panel)
             {
-                panelSpawner.DestroyPanels(other.gameObject, o.spawnedObjectPool);
+                 pSpawner.SpawnSets();
             }
+            id.Disable();
         }
     }
 }

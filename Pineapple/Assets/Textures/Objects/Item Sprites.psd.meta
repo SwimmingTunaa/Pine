@@ -3,7 +3,9 @@ guid: 71554729de8148b43a988ab919db5998
 TextureImporter:
   fileIDToRecycleName:
     21300000: Remote
-    21300002: Item Sprites_0
+    21300002: Control
+    21300004: Knife
+    21300006: Sticker
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -97,7 +99,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Item Sprites_0
+      name: Control
       rect:
         serializedVersion: 2
         x: 0
@@ -105,13 +107,53 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06cf8e7a698ecc8458702cd729175d05
+      spriteID: 10f7617e79dc16f418abdf0c0e58fef6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knife
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a64a96c55a349e04ea8656ab75694836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sticker
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 1854
+        width: 197
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dac70072ecbc4374e83c77c0882a313f
       vertices: []
       indices: 
       edges: []

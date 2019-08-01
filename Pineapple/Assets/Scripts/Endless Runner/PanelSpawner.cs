@@ -2,22 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelSpawner : MonoBehaviour
+
+public class PanelSpawner : Spawner
 {
     public GameObject startingPanel;
-    public float spawnSpeed = 1;
     public ObjectPoolManager objectPoolManager;
 
     private ObjectPools _pool;
-    private float _timer;
     private bool _firstSpawn = true;
-    private  GameObject _previousSpawn;
     private List<GameObject> _panelsToSpawn = new List<GameObject>();
 
-    void Awake()
-    {
-      
-    }
     void Start()
     {
           //get the begining pool which is the house pool
@@ -25,7 +19,7 @@ public class PanelSpawner : MonoBehaviour
         InitialSpawn();
     }
 
-    void SpawnPanels()
+    public override void DoSpawn()
     {
         if(_panelsToSpawn == null || _panelsToSpawn.Count == 0)
             return;
@@ -56,40 +50,18 @@ public class PanelSpawner : MonoBehaviour
                 _panelsToSpawn.RemoveAt(0);
                 _firstSpawn = false;
             }
-            SpawnPanels();
+            DoSpawn();
             SetPanels(_pool.spawnedObjectPool);
-        }
-        
+        }  
     }
 
-    public void DestroyPanels(GameObject other, List<GameObject> poolType)
+    public void SpawnSets()
     {
-        other.SetActive(false);
-        poolType.Add(other);
         SetPanels(_pool.spawnedObjectPool);
-        SpawnPanels();
+        DoSpawn();
     }
-
-    Vector2 GetNextSpawnPos(SpriteRenderer previousSpawnSPos, SpriteRenderer nextSpawn)
-    {
-        Vector2 newSpawnPos = new Vector2((previousSpawnSPos.transform.position.x + (previousSpawnSPos.sprite.bounds.extents.x * previousSpawnSPos.gameObject.transform.localScale.x))
-                                             + (nextSpawn.sprite.bounds.extents.x * nextSpawn.transform.localScale.x),
-                                             previousSpawnSPos.transform.position.y);
-        return newSpawnPos;
-    }
-
-    bool SpawnTimer()
-    {
-        _timer += Time.deltaTime;
-        if(_timer > spawnSpeed)
-        {
-            _timer = 0f;
-            return true;
-        }
-        return false;
-    }
-
-    void SetPanels(List<GameObject> poolType)
+    
+    public void SetPanels(List<GameObject> poolType)
     {
         GameObject tempObj = poolType[Random.Range(0,poolType.Count)];
         if(!_panelsToSpawn.Contains(tempObj))
