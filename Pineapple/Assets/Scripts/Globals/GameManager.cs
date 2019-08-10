@@ -9,14 +9,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Game UI")]
     public TextMeshProUGUI distanceText;
-    public TextMeshProUGUI stickersText;
-
-    [Header("Level Progression")]
-    public float speedIncreaseAmount;
-    public float checkpointDistance;
-    public MasterSpawner masterSpawner;
-    private float _currentCheckpoint;
-    private int _difficultyLvl = 1;
+    public TextMeshProUGUI stickersText;  
 
     [Header("Chaser")]
     public GameObject chaser;
@@ -32,7 +25,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameoverStickerText;
 
     private float _distanceFromChaser;
-    [HideInInspector] public PlayerController _player;
+    public static PlayerController _player;
     private Rigidbody2D _playerRb;
     private Vector2 _playerCachedPos;
     public static float _distanceTraveled;
@@ -49,7 +42,6 @@ public class GameManager : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         _playerCachedPos = _player.transform.position;
         _playerRb = _player.GetComponent<Rigidbody2D>();
-        _currentCheckpoint = checkpointDistance;
         Time.timeScale = 1;
         //PlayerPrefs.DeleteAll();
     }
@@ -64,12 +56,6 @@ public class GameManager : MonoBehaviour
             SpawnChaser();
             StartCoroutine(Gameover());
         }
-    }
-
-    void Update()
-    {
-        if(_distanceTraveled > 50f)
-            DifficultyIncrease();
     }
 
     public void pauseGame(bool enable)
@@ -119,41 +105,6 @@ public class GameManager : MonoBehaviour
             if(_distanceTraveled > PlayerPrefs.GetInt("HighScore"))
                 PlayerPrefs.SetInt("HighScore", (int)_distanceTraveled);
         }
-    }
-
-    void DifficultyIncrease()
-    {
-        //increases players speed overtime
-        //TODO: make objects spawn more frequently as level progress, via minDis and maxDis
-        if(_distanceTraveled > _currentCheckpoint && _player.speed < _player.MaxSpeed)
-        {
-            _currentCheckpoint = _distanceTraveled + checkpointDistance;
-            _player.speed += speedIncreaseAmount;
-            //Debug.Log("Speed increased. <color=red>The new speed is: </color>"  + _player.speed +  " || <color=blue>The next checkpoint is: </color>"  + _currentCheckpoint+"m");
-        }
-        if(_distanceTraveled >= 300 && _difficultyLvl == 1)
-        {
-            _difficultyLvl +=1;
-            masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.leveltwo;
-            StartCoroutine(masterSpawner.projectileSpawner.RandomSpawnType());
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.35f,0.20f,0.45f);
-            masterSpawner.ChangeSpawnerTypeChance(0.2f, 0.45f, 0.35f);
-            Debug.Log(_difficultyLvl);
-        }
-        else
-        if(_distanceTraveled >= 800 && _difficultyLvl == 2)
-        {
-            _difficultyLvl +=1;
-            masterSpawner.minDistance = 25f;
-            masterSpawner.maxDistance = 35f;
-            //TODO: different spawn pool
-            masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.levelthree;
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.9f,0,0.1f);
-            masterSpawner.ChangeSpawnerTypeChance(0.1f, 0.7f, 0.2f);
-            Debug.Log(_difficultyLvl);
-           
-        }
-        //panel cahnge?
     }
 
     void SpawnChaser()

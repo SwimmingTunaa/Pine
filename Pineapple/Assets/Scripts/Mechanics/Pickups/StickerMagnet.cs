@@ -16,7 +16,6 @@ public class StickerMagnet : PickUpsBase
         }
         if(other.GetComponent<Sticker>() != null && active)
         {
-            other.GetComponent<Sticker>().moveToTarget  = other.gameObject;
             other.GetComponent<Sticker>().move = true;
         }
     }

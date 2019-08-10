@@ -32,7 +32,6 @@ public class ObstacleSpawner : Spawner
 
     void SpawnAllObstacles()
     {
-
         _obstacleSpawnPools = new List<ObstaclePool>();
         _obstacleSpawnPools.Add(currentLevelConfig.top);
         _obstacleSpawnPools.Add(currentLevelConfig.mid);
@@ -67,7 +66,7 @@ public class ObstacleSpawner : Spawner
         tempGO.transform.position = spawnPoint;   
     }
 
-    private Vector3 GetFloorSpawnPoint(ObstaclePoolConfig config, Collider2D objectCollider)
+    public Vector3 GetFloorSpawnPoint(ObstaclePoolConfig config, Collider2D objectCollider)
     {
         if(floorCollider != null && config.bot != null)
         {

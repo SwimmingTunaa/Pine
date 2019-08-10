@@ -40,8 +40,8 @@ public class MainMenu : MonoBehaviour
         gameUI.SetActive(!enable);
         gm.pauseGame(enable);
         Debug.Log("paused = " + Statics.paused);
-        gm._player._anim.SetBool("Sit", enable);
-        gm._player._anim.SetTrigger("Scared");
+        GameManager._player._anim.SetBool("Sit", enable);
+        GameManager._player._anim.SetTrigger("Scared");
         if(enable)
             dialogue.startDialogue();
         else
@@ -55,7 +55,7 @@ public class MainMenu : MonoBehaviour
         gameUI.SetActive(!enable);
         gm.pauseGame(enable);
         Debug.Log("paused = " + Statics.paused);
-        gm._player._anim.SetBool("Sit", enable);
+        GameManager._player._anim.SetBool("Sit", enable);
         
         if(enable)
             dialogue.startDialogue();
@@ -81,6 +81,7 @@ public class MainMenu : MonoBehaviour
    {
        PlayerPrefs.DeleteKey("HighScore");
        PlayerPrefs.DeleteKey("StickersCollected");
+       PlayerPrefs.DeleteKey("FirstTimeStart");
        highScore.text = "0m";
        mostStickersCollected.text = "0";
    }
