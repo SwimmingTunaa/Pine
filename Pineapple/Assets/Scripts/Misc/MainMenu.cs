@@ -42,6 +42,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("paused = " + Statics.paused);
         GameManager._player._anim.SetBool("Sit", enable);
         GameManager._player._anim.SetTrigger("Scared");
+        
         if(enable)
             dialogue.startDialogue();
         else

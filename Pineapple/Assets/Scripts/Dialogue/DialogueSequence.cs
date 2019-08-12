@@ -87,7 +87,7 @@ public class DialogueSequence : MonoBehaviour
         //gameObject.SetActive(false);
     }
 
-    private void setSpeechbubble(DialogueConfig dialogue)
+    public void setSpeechbubble(DialogueConfig dialogue)
     {
         //turn off and on object so animation replays
         speechBubble.gameObject.SetActive(false);

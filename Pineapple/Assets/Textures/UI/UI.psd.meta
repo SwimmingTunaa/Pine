@@ -1,14 +1,24 @@
 fileFormatVersion: 2
 guid: 23cb263129019ec4e9b6006c3e9cb37a
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Arrow
-    21300002: Action Button
-    21300004: Arrow Pressed
-    21300006: Action Pressed
-    21300008: Title
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Arrow
+  - first:
+      213: 21300002
+    second: Action Button
+  - first:
+      213: 21300004
+    second: Arrow Pressed
+  - first:
+      213: 21300006
+    second: Action Pressed
+  - first:
+      213: 21300008
+    second: Title
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -115,6 +125,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 31006b54055279e40a762cc7a9c32eb0
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -135,6 +146,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: dbe467052f6df5d49aba8ea80d6b253c
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -155,6 +167,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 967171865bb8ea441a636dc3d99b47a3
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -175,6 +188,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: bf668845ec8a06e499126c896936c745
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -195,6 +209,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 33d785c71c0c04e4d954b16d5f92b250
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -203,13 +218,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 249a3e7a103a29f49884963f62a96978
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
+  pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

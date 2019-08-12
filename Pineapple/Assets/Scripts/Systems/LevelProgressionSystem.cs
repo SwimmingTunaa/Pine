@@ -92,6 +92,17 @@ public class LevelProgressionSystem : MonoBehaviour
         else
             if(GameManager._distanceTraveled >= 80f && startCounter == 3)
             {
+                DialogueConfig dialogue = new DialogueConfig();
+                dialogue.character = GameManager._player.gameObject;
+                dialogue.bubbleSize = Enums.BubbleSize.md;
+                dialogue.diallogueInterval = 2f;
+                dialogue.text = "Press and hold to jump higher";
+
+                DialogueSequence dSeq = new DialogueSequence();
+                dSeq.dialogues = new DialogueConfig[1];
+                dSeq.dialogues[0] = dialogue;
+                dSeq.startDialogue();
+
                 SpawnSpecificObjectAtFloor(startCounter);
                 masterSpawner.enabled = true;
                 PlayerPrefs.SetInt("FirstTimeStart", 1);

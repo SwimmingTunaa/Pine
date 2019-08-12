@@ -1,14 +1,24 @@
 fileFormatVersion: 2
 guid: de6c97a2f04e50d44bbf48005842ec6d
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Happy
-    21300002: Sad
-    21300004: Surprise
-    21300006: Scared
-    21300008: Angry
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Happy
+  - first:
+      213: 21300002
+    second: Sad
+  - first:
+      213: 21300004
+    second: Surprise
+  - first:
+      213: 21300006
+    second: Scared
+  - first:
+      213: 21300008
+    second: Angry
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -115,6 +125,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6504f7dbed238fb41bc8521a26bc6a78
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -135,6 +146,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 0366e566b1aaebe4f84aec0dc26e4092
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -155,6 +167,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 11cbd38d960f63d44b9b0733b8bba31f
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -175,6 +188,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1a8d123e9d54dd64d9f90479100100d1
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -195,6 +209,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c0e03c84e672f824f9b3e9857380f89c
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -203,13 +218,15 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: b4288661218c3504c9324d1998b2ce87
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
+  pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
