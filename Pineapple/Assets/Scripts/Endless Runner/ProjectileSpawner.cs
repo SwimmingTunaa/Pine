@@ -56,7 +56,7 @@ public class ProjectileSpawner : Spawner
             break;
         }
         masterSpawner.enabled = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         masterSpawner.enabled = true;
     }
 
@@ -82,10 +82,10 @@ public class ProjectileSpawner : Spawner
     IEnumerator SpawnObject(float yPos)
     {
         GameObject o = projectilePool.spawnedObjectPool[Random.Range(0,projectilePool.spawnedObjectPool.Count)];
+        projectilePool.spawnedObjectPool.Remove(o);
         yield return StartCoroutine(Warning(o,yPos));
         o.SetActive(true);
         o.transform.position = new Vector3(Camera.main.transform.position.x + _halfWidth, yPos, transform.position.z);
-        projectilePool.spawnedObjectPool.Remove(o);
     }
 
     IEnumerator Warning(GameObject obj, float yPos)

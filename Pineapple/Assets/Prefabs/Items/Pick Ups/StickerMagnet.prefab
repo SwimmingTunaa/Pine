@@ -161,9 +161,9 @@ MonoBehaviour:
   triggerAmount: 1
   pickUpSound: {fileID: 0}
   deathFX: {fileID: 0}
-  effectDuration: 0
-  effectRadius: 8
-  transitionSpeed: 0.5
+  effectDuration: 4
+  effectRadius: 3
+  transitionSpeed: 1
 --- !u!1 &720319584918440013
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 18
   m_Sprite: {fileID: 21300000, guid: 1775e013c788a07419c2e21eaff85bb1, type: 3}
-  m_Color: {r: 0.6745283, g: 0.9371249, b: 1, a: 0.44705883}
+  m_Color: {r: 0.98055005, g: 1, b: 0, a: 0.44705883}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

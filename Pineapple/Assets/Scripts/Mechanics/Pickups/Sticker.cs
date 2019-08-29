@@ -32,7 +32,7 @@ public class Sticker : Item
     {
         if(move)
         {
-            moveStickerToTarget(GameManager._player.gameObject, 2f);
+            moveStickerToTarget(GameManager._player.gameObject, 7f);
         }
            
     }

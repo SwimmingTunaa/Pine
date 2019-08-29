@@ -10,8 +10,6 @@ public class SlowDebuff : PickUpsBase
 
    private GameObject visuals;
    private PlayerController _playerController;
-   private float _timer;
-   private bool _timerStart;
 
    void Start()
    {

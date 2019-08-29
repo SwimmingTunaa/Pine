@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cummulativeCalculator<T> where T : ObstaclePool
+public class cummulativeCalculator<T> where T : ObjectPools
 {
     private List<float> _cumulativeEntrySums;
     private float _cumulativeSum;

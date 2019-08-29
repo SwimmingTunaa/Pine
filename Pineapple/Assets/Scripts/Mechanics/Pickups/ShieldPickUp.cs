@@ -7,10 +7,13 @@ public class ShieldPickUp : PickUpsBase
     [Header("Shield")]
     public float shieldStrength;
 
+    private PlayerHealth health;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player") && triggerAmount > 0)
         {
+            health = other.gameObject.GetComponent<PlayerHealth>();
             DoAction(other.gameObject);
         }
     }
@@ -20,6 +23,15 @@ public class ShieldPickUp : PickUpsBase
         base.DoAction(player);
         transform.parent = player.transform;
         transform.position = player.transform.position;
-        player.GetComponent<PlayerHealth>().AddHealth(shieldStrength);
+        health.AddHealth(shieldStrength);
+    }
+
+    void Update()
+    {
+        if(health != null && health.health <= 1)
+        {
+            transform.parent = null;
+            GetComponent<ObjectID>().Disable();
+        }
     }
 }

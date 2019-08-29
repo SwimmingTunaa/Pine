@@ -13,23 +13,34 @@ public class MasterSpawner : Spawner
     public ObstacleSpawner obstacleSpawner;
     [Header("Sticker Spawner")]
     public float sSpawnChance;  
-    public StickerSpawner stickerSpawner;
+    public RewardSpawner RewardSpawner;
+    [Header("Progression")]
+    public int minSpawnAmount, maxSpawnAmount;
+    public int minRewardAmount, maxRewardAmount;
 
-    private Dictionary<Spawner, float>  _spawnerList = new Dictionary<Spawner, float>();
+    private int _spawnAmount;
+    private int _rewardAmount;
+    private Dictionary<Spawner, float>  _challengeSpawnerList = new Dictionary<Spawner, float>();
+    private Dictionary<Spawner, float>  _rewardSpawnerList = new Dictionary<Spawner, float>();
     private Rigidbody2D _playerRb;
+    private float _randomInterval;
 
     void Start()
     {
+        IniatilizeSpawners();
         _playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         AddToChanceList(projectileSpawner, pSpawnChance);
         AddToChanceList(obstacleSpawner, oSpawnChance);
-        AddToChanceList(stickerSpawner, sSpawnChance);
-        spawnInterval = Random.Range(minDistance, maxDistance);
+        _rewardSpawnerList.Add(RewardSpawner, sSpawnChance);
+        _spawnAmount = Random.Range(minSpawnAmount,maxSpawnAmount);
+        _randomInterval = Random.Range(minDistance, maxDistance);
+        spawnInterval = GameManager._distanceTraveled + _randomInterval;
+        Debug.Log("Spawn Amount: " + _spawnAmount);
     }
 
     void OnEnable()
     {
-        spawnInterval = GameManager._distanceTraveled + Random.Range(minDistance, maxDistance);
+        spawnInterval = GameManager._distanceTraveled + _randomInterval;
     }
 
     void Update()
@@ -39,33 +50,75 @@ public class MasterSpawner : Spawner
 
     public override void DoSpawn()
     {
+        Debug.Log(_randomInterval);
         if(GameManager._distanceTraveled >= spawnInterval)
         {
-            float val = Random.value;
+            spawnInterval = getSpawnInterval();
+            if(_spawnAmount <=0 && _rewardAmount <=0)
+            {
+                _spawnAmount = Random.Range(minSpawnAmount, maxSpawnAmount);  
+                return;
+            }
+
+            if(_spawnAmount > 0)
+            {
+                _spawnAmount--;
+//                Debug.Log("Spawn Amount: " + _spawnAmount);
+                if(_spawnAmount <=0)
+                {
+                    _rewardAmount = Random.Range(minRewardAmount, maxRewardAmount);
+                    //Debug.Log("Reward Amount: " + _rewardAmount);
+                }
+                    
+                SpawnType(_challengeSpawnerList);
+            }
+            else if(_spawnAmount <=0 && _rewardAmount > 0)
+            {
+                _rewardAmount--;
+                 //Debug.Log("Reward Amount: " + _rewardAmount);
+                SpawnType(_rewardSpawnerList);
+            }    
+        }
+    }
+
+    public void AddToChanceList(Spawner spawner, float chance)
+    {
+        _challengeSpawnerList.Add(spawner, chance);
+    }
+    
+    void SpawnType(Dictionary<Spawner, float> spawnerType)
+    {
+        float val = Random.value;
             spawnInterval += Random.Range(minDistance, maxDistance);
-            foreach(KeyValuePair<Spawner, float> s in _spawnerList)
+            foreach(KeyValuePair<Spawner, float> s in spawnerType)
             {
                 if(val <= s.Value)
                 {
-                    Debug.Log("SpawningStuff");
+                    Debug.Log("Spawning " + spawnerType + " Stuff");
                     s.Key.DoSpawn();
                     break;
                 }
                 else
                     val -= s.Value;
             }
-        }
     }
 
-    public void AddToChanceList(Spawner spawner, float chance)
+    public void ChangeSpawnerTypeChance(float newPchance, float newOchance)
     {
-        _spawnerList.Add(spawner, chance);
+        _challengeSpawnerList[projectileSpawner] = newPchance;
+        _challengeSpawnerList[obstacleSpawner] = newOchance;
     }
 
-    public void ChangeSpawnerTypeChance(float newPchance, float newOchance, float newSchance)
+    void IniatilizeSpawners()
     {
-        _spawnerList[projectileSpawner] = newPchance;
-        _spawnerList[obstacleSpawner] = newOchance;
-        _spawnerList[stickerSpawner] = newSchance;
+        projectileSpawner.enabled = true;
+        obstacleSpawner.enabled = true;
+        RewardSpawner.enabled = true;
+    }
+
+    float getSpawnInterval()
+    {
+        _randomInterval = Random.Range(minDistance, maxDistance);
+        return GameManager._distanceTraveled + _randomInterval;
     }
 }

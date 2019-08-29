@@ -32,19 +32,18 @@ public class DialogueSequence : MonoBehaviour
             _timer += Time.deltaTime;
 
             bool lastDialogueFlag = _currentDialogue == dialogues.Length-1;
-            bool touched = userTapped();
 
             // Are we showing the last dialogue
             if (lastDialogueFlag)
             {
                 // Has the user indicated they've finished reading
-                if (touched || (!stopPlayerMoving && timeCheck()))
+                if ((!stopPlayerMoving && timeCheck()))
                 {
-                    Invoke("endDialogue", Constants.MAX_TAP_TIME);
+                    endDialogue();
                 }
             }
             // Should we show next dailogue
-            else if ((timeCheck() || touched)) // TODO: If stopPlayerMoveing is true, I think we should skip the touch here and let it play out over time.
+            else if ((timeCheck())) // TODO: If stopPlayerMoveing is true, I think we should skip the touch here and let it play out over time.
             {
                 _timer = 0;
                 _currentDialogue++;

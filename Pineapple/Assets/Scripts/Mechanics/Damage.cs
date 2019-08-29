@@ -6,6 +6,11 @@ public class Damage : MonoBehaviour
 {
     public bool destroyHair;
     public float damageAmount;
+    public bool destroyAfterDamage;
+    public AudioClip hitSoundEffect;
+    public GameObject hitEffect;
+
+    private Collision2D collision;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,6 +19,8 @@ public class Damage : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        if(other.gameObject.CompareTag("Player"))
+            collision = other;
         DoDamage(other.gameObject);
     }
 
@@ -22,6 +29,15 @@ public class Damage : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             other.GetComponent<HealthGeneric>().TakeDamage(damageAmount);
+            if(hitSoundEffect != null)
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>().PlayOneShot(hitSoundEffect);
+            if(destroyAfterDamage)
+            {
+                Debug.Log(collision);
+                var newRot = Quaternion.Euler(0, 0, -Vector3.Angle(GetComponent<Rigidbody2D>().velocity, -collision.GetContact(0).normal));
+                Instantiate(hitEffect, collision.GetContact(0).point,newRot);
+                gameObject.GetComponent<ObjectID>().Disable();
+            }
         }
         if(other.CompareTag("Hair") && destroyHair)
         {

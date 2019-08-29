@@ -11,6 +11,8 @@ public class PickUpsBase : MonoBehaviour
     public float effectDuration;
     private float _initialDuration;
     private SpriteRenderer _visual;
+    private float _timer;
+    private bool _timerActive;
 
     void Awake()
     {
@@ -28,11 +30,32 @@ public class PickUpsBase : MonoBehaviour
     public virtual void DoAction(GameObject player)
     {
         triggerAmount--;
+        _timerActive = true;
         //Only plays these if they are not null
         if(pickUpSound)
             GetComponent<AudioSource>().PlayOneShot(pickUpSound);
         if(deathFX)
             Instantiate(deathFX,transform.position,transform.rotation);
         //_visual.enabled = false;
+    }
+
+    public bool Timer(float interval)
+    {
+        _timer += Time.deltaTime;
+        if(_timer > interval)
+        {
+            _timer = 0f;
+            return true;
+        }
+        return false;
+    }
+
+    void Update()
+    {
+        if(_timerActive && effectDuration > 0 && Timer(effectDuration))
+        {
+            GetComponent<ObjectID>().Disable();
+            Debug.Log("Item Disabled");
+        }
     }
 }

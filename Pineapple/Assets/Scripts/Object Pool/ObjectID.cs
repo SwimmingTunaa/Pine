@@ -5,7 +5,8 @@ using UnityEngine;
 public enum ObjType{
    Panel,
    Obstacle,
-   Sticker
+   Sticker,
+   Pickups
 }
 
 public class ObjectID : MonoBehaviour

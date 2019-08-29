@@ -6,10 +6,16 @@ public class PlayerHealth : HealthGeneric {
 
 	public GameObject deathEffect;
 	public GameObject deathEffectHairCut;
+	public bool invincible;
 
 	override public void TakeDamage(float damage)
 	{
-		base.TakeDamage(damage);
+		if(!invincible)
+		{
+			Invulnerable(1.5f);
+			base.TakeDamage(damage);
+		}
+			
 		if(health <= 0 && !dead)
 		{
 			//player is dead
@@ -22,5 +28,17 @@ public class PlayerHealth : HealthGeneric {
 	public void AddHealth(float amount)
 	{
 		health += amount;
+	}
+
+	public void Invulnerable(float duration)
+	{
+		invincible = true;
+		GetComponent<PlayerController>()._anim.SetBool("Invincible", true);
+		Invoke("resetInvulnerablilty", duration);
+	}
+	void resetInvulnerablilty()
+	{
+		invincible = false;
+		GetComponent<PlayerController>()._anim.SetBool("Invincible", false);
 	}
 }

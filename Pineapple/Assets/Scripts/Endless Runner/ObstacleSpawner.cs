@@ -54,6 +54,7 @@ public class ObstacleSpawner : Spawner
         };
         //spawn object from the pool
         Spawn(spawnpointConfig[poolToUse.spawnPoint]);
+        poolToUse.spawnedObjectPool.Remove(tempGO);
     }
     
     GameObject GetObjToSpawn(ObstaclePool pool)

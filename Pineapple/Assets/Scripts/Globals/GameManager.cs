@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Game UI")]
     public TextMeshProUGUI distanceText;
-    public TextMeshProUGUI stickersText;  
+    public TextMeshProUGUI stickersText; 
 
     [Header("Chaser")]
     public GameObject chaser;
@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        //reset statics
+        _distanceTraveled = 0;
+        Statics.currentDifficultyLevel = 0;
+        Statics.paused = true;
+        ////////////////////////////
         _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         _playerCachedPos = _player.transform.position;
         _playerRb = _player.GetComponent<Rigidbody2D>();
@@ -114,7 +119,6 @@ public class GameManager : MonoBehaviour
         {        
             if(_distanceTraveled > 20f && Timer(1f))
             {
-                Debug.Log("Player Stopped");
                 //reset player's speed
                 _player.speed  = _player.startSpeed;
                 tomatoWarningBubble.SetActive(true);

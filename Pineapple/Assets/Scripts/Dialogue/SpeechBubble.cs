@@ -57,6 +57,6 @@ public class SpeechBubble : MonoBehaviour
         this.transform.position = _attachedCharacter.transform.position + _currentConfig.bubbleOffset;
 
         // Set the text relative to bubble size.
-        _textRect.anchoredPosition = _currentConfig.textOffset;
+        _textRect.localPosition = _currentConfig.textOffset;
     }
 }
