@@ -14,8 +14,14 @@ public class LevelProgressionSystem : MonoBehaviour
     public float speedIncreaseAmount;
     public float speedCheckpointDistance;
     public MasterSpawner masterSpawner;
+    public int difficultyLvl = 0;
+    public float lvl1Checkpoint;
+    public float lvl2Checkpoint;
+    public float lvl3Checkpoint;
+    public float lvl4Checkpoint;
+
+    public int roundsCompleted;  
     private float _currentCheckpoint;
-    private int _difficultyLvl = 0;
     private int startCounter = 0;
 
     void Start()
@@ -42,7 +48,6 @@ public class LevelProgressionSystem : MonoBehaviour
     void DifficultyIncrease()
     {
         //increases players speed overtime
-        //TODO: make objects spawn more frequently as level progress, via minDis and maxDis
         if(GameManager._distanceTraveled > _currentCheckpoint && GameManager._player.speed < GameManager._player.MaxSpeed)
         {
             _currentCheckpoint = GameManager._distanceTraveled + speedCheckpointDistance;
@@ -50,40 +55,70 @@ public class LevelProgressionSystem : MonoBehaviour
             GameManager._player.speed += speedIncreaseAmount;
             //Debug.Log("Speed increased. <color=red>The new speed is: </color>"  + _player.speed +  " || <color=blue>The next checkpoint is: </color>"  + _currentCheckpoint+"m");
         }
-        if(GameManager._distanceTraveled >= 100f && _difficultyLvl == 0)
+        //Debug.Log("Lvl " + difficultyLvl);
+        if(difficultyLvl == 3) return;
+        
+        if(CheckDistanceAndLevel(lvl1Checkpoint, 0))
         {
-            _difficultyLvl = 1;
-            masterSpawner.minDistance = 20f;
-            masterSpawner.maxDistance = 28f;
+            SetDifficulty(1, 20f, 25f);
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.2f,0.2f,0.6f);
+            Debug.Log("Lvl " + difficultyLvl);
         }
         else
-        if(GameManager._distanceTraveled >= 300 && _difficultyLvl == 1)
+        if(CheckDistanceAndLevel(lvl2Checkpoint, 1))
         {
-            _difficultyLvl +=1;
+            SetDifficulty(2, 15f, 20f);
             masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.leveltwo;
             StartCoroutine(masterSpawner.projectileSpawner.RandomSpawnType());
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.35f,0.20f,0.45f);
             masterSpawner.ChangeSpawnerTypeChance(0.3f, 0.7f);
-            masterSpawner.minDistance = 18f;
-            masterSpawner.maxDistance = 22f;
-            Debug.Log("Lvl " + _difficultyLvl);
+            Debug.Log("Lvl " + difficultyLvl);
         }
         else
-        if(GameManager._distanceTraveled >= 700 && _difficultyLvl == 2)
+        if(CheckDistanceAndLevel(lvl3Checkpoint, 2))
         {
-            _difficultyLvl +=1;
-            masterSpawner.minDistance = 15f;
-            masterSpawner.maxDistance = 25f;
+            SetDifficulty(3, 12f, 18f);
             //TODO: different spawn pool
             masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.3f);
             masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.levelthree;
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.5f,0.1f,0.4f);
+            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0.1f,0.1f);
             masterSpawner.ChangeSpawnerTypeChance(0.2f, 0.8f);
-            Debug.Log( "Lvl " + _difficultyLvl);
-           
+            Debug.Log( "Lvl " + difficultyLvl);
+
+        }else
+        if(CheckDistanceAndLevel(lvl4Checkpoint, 2))
+        {
+            SetDifficulty(4, 10f, 14f);
+            //TODO: different spawn pool
+            masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.3f);
+            masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.levelthree;
+            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0f,0.2f);
+            masterSpawner.ChangeSpawnerTypeChance(0.1f, 0.8f);
+            masterSpawner.minSpawnAmount += 1;
+            masterSpawner.maxSpawnAmount += 2;
+            Debug.Log( "Lvl " + difficultyLvl);
+            roundsCompleted ++;
         }
         //panel cahnge?
+    }
+
+    public void SetDifficulty(int lvl, float minSpawnDistance, float maxSpawnDistance)
+    {
+        difficultyLvl = lvl;
+        masterSpawner.minDistance = minSpawnDistance;
+        masterSpawner.maxDistance = maxSpawnDistance;
+    }
+ 
+    public void SetNewCheckpoints(float lvl1, float lvl2, float lvl3)
+    {
+        lvl1Checkpoint = GameManager._distanceTraveled + lvl1;
+        lvl2Checkpoint = GameManager._distanceTraveled + lvl2;
+        lvl3Checkpoint = GameManager._distanceTraveled + lvl3;
+    }
+
+    bool CheckDistanceAndLevel(float distanceToCheck, int lvlToCheck)
+    {
+        return GameManager._distanceTraveled >= distanceToCheck && difficultyLvl == lvlToCheck;
     }
 
     void FirstStart()

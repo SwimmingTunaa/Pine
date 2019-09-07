@@ -17,6 +17,7 @@ public class MasterSpawner : Spawner
     [Header("Progression")]
     public int minSpawnAmount, maxSpawnAmount;
     public int minRewardAmount, maxRewardAmount;
+    public LevelProgressionSystem levelPro;
 
     private int _spawnAmount;
     private int _rewardAmount;
@@ -50,13 +51,18 @@ public class MasterSpawner : Spawner
 
     public override void DoSpawn()
     {
-        Debug.Log(_randomInterval);
+        //Debug.Log(_randomInterval);
         if(GameManager._distanceTraveled >= spawnInterval)
         {
             spawnInterval = getSpawnInterval();
             if(_spawnAmount <=0 && _rewardAmount <=0)
             {
                 _spawnAmount = Random.Range(minSpawnAmount, maxSpawnAmount);  
+                if(levelPro != null && levelPro.roundsCompleted >= 1)
+                {
+                    levelPro.difficultyLvl = Random.Range(0,1);
+                    levelPro.SetNewCheckpoints(Random.Range(75f,100f),Random.Range(75f,150f), Random.Range(100f,150f));
+                }
                 return;
             }
 
@@ -75,8 +81,16 @@ public class MasterSpawner : Spawner
             else if(_spawnAmount <=0 && _rewardAmount > 0)
             {
                 _rewardAmount--;
-                 //Debug.Log("Reward Amount: " + _rewardAmount);
+                //change the spawn distance for rewards then revert it back to the original
+                float tempMin = minDistance;
+                float tempMax = maxDistance;
+                minDistance = 15f;
+                maxDistance = 18f;
+
                 SpawnType(_rewardSpawnerList);
+
+                minDistance = tempMin;
+                maxDistance = tempMax;
             }    
         }
     }

@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.92
+      value: -11.57
       objectReference: {fileID: 0}
     - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
         type: 3}
@@ -69,75 +69,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c4fb1aab0b5909448cc2df5f33dda26, type: 3}
---- !u!1001 &7269903011558310622
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3734531615427615383}
-    m_Modifications:
-    - target: {fileID: 5018214384943207342, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_Name
-      value: Fan Long Variant (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2c4fb1aab0b5909448cc2df5f33dda26, type: 3}
 --- !u!1001 &8536572900294838590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -148,7 +79,7 @@ PrefabInstance:
     - target: {fileID: 5018214384943207342, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
         type: 3}
       propertyPath: m_Name
-      value: Fan Long Variant x3
+      value: Fan Long x3 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5018214384943207337, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
         type: 3}
@@ -204,6 +135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021588078942028592, guid: 2c4fb1aab0b5909448cc2df5f33dda26,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c4fb1aab0b5909448cc2df5f33dda26, type: 3}
