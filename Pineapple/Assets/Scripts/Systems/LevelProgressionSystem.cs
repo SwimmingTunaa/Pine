@@ -33,7 +33,7 @@ public class LevelProgressionSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager._distanceTraveled > 50f && PlayerPrefs.GetInt("FirstTimeStart") == 1)
+        if(Statics.DistanceTraveled > 50f && PlayerPrefs.GetInt("FirstTimeStart") == 1)
         {
             DifficultyIncrease();
             return;
@@ -48,9 +48,9 @@ public class LevelProgressionSystem : MonoBehaviour
     void DifficultyIncrease()
     {
         //increases players speed overtime
-        if(GameManager._distanceTraveled > _currentCheckpoint && GameManager._player.speed < GameManager._player.MaxSpeed)
+        if(Statics.DistanceTraveled  > _currentCheckpoint && GameManager._player.speed < GameManager._player.MaxSpeed)
         {
-            _currentCheckpoint = GameManager._distanceTraveled + speedCheckpointDistance;
+            _currentCheckpoint = Statics.DistanceTraveled + speedCheckpointDistance;
             Debug.Log("Checkpoint: " + _currentCheckpoint);
             GameManager._player.speed += speedIncreaseAmount;
             //Debug.Log("Speed increased. <color=red>The new speed is: </color>"  + _player.speed +  " || <color=blue>The next checkpoint is: </color>"  + _currentCheckpoint+"m");
@@ -83,6 +83,7 @@ public class LevelProgressionSystem : MonoBehaviour
             masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.levelthree;
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0.1f,0.1f);
             masterSpawner.ChangeSpawnerTypeChance(0.2f, 0.8f);
+            masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,4);
             Debug.Log( "Lvl " + difficultyLvl);
 
         }else
@@ -93,7 +94,8 @@ public class LevelProgressionSystem : MonoBehaviour
             masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.3f);
             masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.levelthree;
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0f,0.2f);
-            masterSpawner.ChangeSpawnerTypeChance(0.1f, 0.8f);
+            masterSpawner.ChangeSpawnerTypeChance(0.1f, 0.9f);
+            masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,5);
             masterSpawner.minSpawnAmount += 1;
             masterSpawner.maxSpawnAmount += 2;
             Debug.Log( "Lvl " + difficultyLvl);
@@ -109,31 +111,32 @@ public class LevelProgressionSystem : MonoBehaviour
         masterSpawner.maxDistance = maxSpawnDistance;
     }
  
-    public void SetNewCheckpoints(float lvl1, float lvl2, float lvl3)
+    public void SetNewCheckpoints(float lvl1, float lvl2, float lvl3, float lvl4)
     {
-        lvl1Checkpoint = GameManager._distanceTraveled + lvl1;
-        lvl2Checkpoint = GameManager._distanceTraveled + lvl2;
-        lvl3Checkpoint = GameManager._distanceTraveled + lvl3;
+        lvl1Checkpoint = Statics.DistanceTraveled  + lvl1;
+        lvl2Checkpoint = lvl1Checkpoint + lvl2;
+        lvl3Checkpoint = lvl2Checkpoint + lvl3;
+        lvl4Checkpoint = lvl3Checkpoint + lvl4;
     }
 
     bool CheckDistanceAndLevel(float distanceToCheck, int lvlToCheck)
     {
-        return GameManager._distanceTraveled >= distanceToCheck && difficultyLvl == lvlToCheck;
+        return Statics.DistanceTraveled  >= distanceToCheck && difficultyLvl == lvlToCheck;
     }
 
     void FirstStart()
     {
         //spawn small jumpable obstacle
-        if(GameManager._distanceTraveled >= _currentCheckpoint && startCounter < 3)
+        if(Statics.DistanceTraveled  >= _currentCheckpoint && startCounter < 3)
         {
             masterSpawner.enabled = false;
-            _currentCheckpoint = GameManager._distanceTraveled + 40f;
+            _currentCheckpoint = Statics.DistanceTraveled  + 30f;
             Debug.Log("Spawned");
             SpawnSpecificObjectAtFloor(startCounter);
             startCounter++;
         }
         else //spawn big obstacle
-            if(GameManager._distanceTraveled >= 120f && startCounter == 3)
+            if(Statics.DistanceTraveled  >= 90f && startCounter == 3)
             {
                 DialogueConfig dialogue = new DialogueConfig();
                 dialogue.character = GameManager._player.gameObject;

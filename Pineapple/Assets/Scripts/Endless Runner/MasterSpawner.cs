@@ -25,6 +25,7 @@ public class MasterSpawner : Spawner
     private Dictionary<Spawner, float>  _rewardSpawnerList = new Dictionary<Spawner, float>();
     private Rigidbody2D _playerRb;
     private float _randomInterval;
+    private int pickUpSpawned; //the amount of pickup already spawned;
 
     void Start()
     {
@@ -35,13 +36,13 @@ public class MasterSpawner : Spawner
         _rewardSpawnerList.Add(RewardSpawner, sSpawnChance);
         _spawnAmount = Random.Range(minSpawnAmount,maxSpawnAmount);
         _randomInterval = Random.Range(minDistance, maxDistance);
-        spawnInterval = GameManager._distanceTraveled + _randomInterval;
+        spawnInterval = Statics.DistanceTraveled + _randomInterval;
         Debug.Log("Spawn Amount: " + _spawnAmount);
     }
 
     void OnEnable()
     {
-        spawnInterval = GameManager._distanceTraveled + _randomInterval;
+        spawnInterval = Statics.DistanceTraveled + _randomInterval;
     }
 
     void Update()
@@ -51,8 +52,7 @@ public class MasterSpawner : Spawner
 
     public override void DoSpawn()
     {
-        //Debug.Log(_randomInterval);
-        if(GameManager._distanceTraveled >= spawnInterval)
+        if(Statics.DistanceTraveled >= spawnInterval)
         {
             spawnInterval = getSpawnInterval();
             if(_spawnAmount <=0 && _rewardAmount <=0)
@@ -61,7 +61,7 @@ public class MasterSpawner : Spawner
                 if(levelPro != null && levelPro.roundsCompleted >= 1)
                 {
                     levelPro.difficultyLvl = Random.Range(0,1);
-                    levelPro.SetNewCheckpoints(Random.Range(75f,100f),Random.Range(75f,150f), Random.Range(100f,150f));
+                    levelPro.SetNewCheckpoints(Random.Range(75f,100f),Random.Range(75f,150f), Random.Range(100f,150f),Random.Range(75f,100f));
                 }
                 return;
             }
@@ -69,11 +69,10 @@ public class MasterSpawner : Spawner
             if(_spawnAmount > 0)
             {
                 _spawnAmount--;
-//                Debug.Log("Spawn Amount: " + _spawnAmount);
                 if(_spawnAmount <=0)
                 {
                     _rewardAmount = Random.Range(minRewardAmount, maxRewardAmount);
-                    //Debug.Log("Reward Amount: " + _rewardAmount);
+                    pickUpSpawned = 0;
                 }
                     
                 SpawnType(_challengeSpawnerList);
@@ -108,7 +107,14 @@ public class MasterSpawner : Spawner
             {
                 if(val <= s.Value)
                 {
-                    Debug.Log("Spawning " + spawnerType + " Stuff");
+                    //make sure the reward only spawn pick ups items once
+                    if(s.Key == RewardSpawner && pickUpSpawned == 0)
+                        if(RewardSpawner.poolToSpawn[RewardSpawner.randomIndex].objectType == ObjType.Pickups)
+                        {
+                            pickUpSpawned += 1;
+                            s.Key.DoSpawn();
+                            break;
+                        }
                     s.Key.DoSpawn();
                     break;
                 }
@@ -133,6 +139,6 @@ public class MasterSpawner : Spawner
     float getSpawnInterval()
     {
         _randomInterval = Random.Range(minDistance, maxDistance);
-        return GameManager._distanceTraveled + _randomInterval;
+        return Statics.DistanceTraveled + _randomInterval;
     }
 }

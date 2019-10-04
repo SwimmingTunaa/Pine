@@ -6,7 +6,15 @@ public class StickerMagnet : PickUpsBase
 {   
     public float effectRadius;
     public float transitionSpeed;
+    public GameObject activeEffect;
+    public GameObject visual;
     private bool active;
+
+    void Start()
+    {
+        visual.SetActive(true);
+        activeEffect.SetActive(false);
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,6 +30,8 @@ public class StickerMagnet : PickUpsBase
 
     public override void DoAction(GameObject player)
     {
+        activeEffect.SetActive(true);
+        visual.SetActive(false);
         base.DoAction(player);
         transform.parent = player.transform;
         transform.position = player.transform.position;

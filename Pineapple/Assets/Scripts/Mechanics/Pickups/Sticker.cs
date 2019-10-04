@@ -6,13 +6,15 @@ using TMPro;
 public class Sticker : Item
 {
     public int value;
-    private GameManager gm;
+    public GameObject deathEffect;
+    private StatsManager sm;
     [HideInInspector] public GameObject moveToTarget;
     [HideInInspector] public bool move;
 
     void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, Random.Range(-45f,45f));
+        sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<StatsManager>();
         triggerAmount = 1;
     }
     void OnEnable()
@@ -32,16 +34,15 @@ public class Sticker : Item
     {
         if(move)
         {
-            moveStickerToTarget(GameManager._player.gameObject, 7f);
+            moveStickerToTarget(GameManager._player.gameObject, 9f);
         }
-           
     }
 
     public override void DoAction(GameObject player)
     {
-        if(gm != null && !gm.gameObject.GetComponent<AudioSource>().isPlaying)
-            gm.gameObject.GetComponent<AudioSource>().PlayOneShot(itemObject.pickUpSound);
-        gm.stickerCollected += value;
+        if(sm != null && !sm.gameObject.GetComponent<AudioSource>().isPlaying)
+            sm.gameObject.GetComponent<AudioSource>().PlayOneShot(itemObject.pickUpSound);
+        sm.stickerCollected += value;
         move = false;
         base.DoAction(player);
     }

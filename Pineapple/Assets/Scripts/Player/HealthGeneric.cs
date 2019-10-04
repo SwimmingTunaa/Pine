@@ -14,7 +14,7 @@ public class HealthGeneric : MonoBehaviour {
 	}
 	virtual public void TakeDamage(float damage)
     {	
-			if(health > 0)
-						health -= damage;
+		if(health > 0)
+			health -= damage;
     }
 }

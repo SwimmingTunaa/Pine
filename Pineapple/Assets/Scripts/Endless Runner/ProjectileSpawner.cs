@@ -56,7 +56,7 @@ public class ProjectileSpawner : Spawner
             break;
         }
         masterSpawner.enabled = false;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1f);
         masterSpawner.enabled = true;
     }
 
@@ -95,7 +95,7 @@ public class ProjectileSpawner : Spawner
         {
             w.SetActive(true);
             w.transform.position = new Vector3(Camera.main.transform.position.x + _halfWidth, yPos, transform.position.z);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2.25f);
             w.SetActive(false);
         }
     }

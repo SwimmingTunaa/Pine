@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public StatsManager stats;
     [Header("Game UI")]
     public TextMeshProUGUI distanceText;
     public TextMeshProUGUI stickersText; 
@@ -28,19 +29,13 @@ public class GameManager : MonoBehaviour
     public static PlayerController _player;
     private Rigidbody2D _playerRb;
     private Vector2 _playerCachedPos;
-    public static float _distanceTraveled;
     private float _timer;
     private bool _gameover;
-
-    [Header("Sticker")]
-    [HideInInspector] public int stickerCollected;
-  
-
 
     void Awake()
     {
         //reset statics
-        _distanceTraveled = 0;
+        Statics.DistanceTraveled = 0;
         Statics.currentDifficultyLevel = 0;
         Statics.paused = true;
         ////////////////////////////
@@ -53,9 +48,9 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        _distanceTraveled = Mathf.RoundToInt(Vector2.Distance(_playerCachedPos, _player.transform.position));
-        distanceText.text = _distanceTraveled.ToString()+"m";
-        stickersText.text = stickerCollected.ToString();
+        Statics.DistanceTraveled = Mathf.RoundToInt(Vector2.Distance(_playerCachedPos, _player.transform.position));
+        distanceText.text = Statics.DistanceTraveled .ToString()+"m";
+        stickersText.text = stats.stickerCollected.ToString();
         if(!Statics.paused)
         {
             SpawnChaser();
@@ -99,16 +94,13 @@ public class GameManager : MonoBehaviour
             finalScore.text = distanceText.text;
             distanceText.gameObject.SetActive(false);
             //set Stickers collected in this round
-            gameoverStickerText.text = stickerCollected.ToString();
+            gameoverStickerText.text = stats.stickerCollected.ToString();
             //the total amount of stickers the player has
-            int allStickers = PlayerPrefs.GetInt("TotalStickers") + stickerCollected;
-            PlayerPrefs.SetInt("TotalStickers", allStickers);
+            stats.AddStickersToTotalOwnedAmount();
             totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
             //update stats part
-            if(stickerCollected > PlayerPrefs.GetInt("StickersCollected"))
-                PlayerPrefs.SetInt("StickersCollected", stickerCollected);
-            if(_distanceTraveled > PlayerPrefs.GetInt("HighScore"))
-                PlayerPrefs.SetInt("HighScore", (int)_distanceTraveled);
+            stats.AddStickersToTotalEverCollected();
+            stats.UpdateFurthestDistanceTravelled();
         }
     }
 
@@ -117,7 +109,7 @@ public class GameManager : MonoBehaviour
         //check to see if player speed is below a threshold and wait x seconds then turn on the warning bubble
         if(_playerRb.velocity.x < velocityThreshold && !tomatoWarningBubble.activeInHierarchy)
         {        
-            if(_distanceTraveled > 20f && Timer(1f))
+            if(Statics.DistanceTraveled  > 20f && Timer(1f))
             {
                 //reset player's speed
                 _player.speed  = _player.startSpeed;

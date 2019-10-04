@@ -10,14 +10,14 @@ public class MainMenu : MonoBehaviour
     public GameObject menuUI;
     public GameObject gameUI;
     public DialogueSequence dialogue;
-    public TextMeshProUGUI highScore;
+    public TextMeshProUGUI furthestTravelled;
     public TextMeshProUGUI mostStickersCollected;
     public TextMeshProUGUI totalStickers;
 
     void Start()
     {
         MainMenuDefualt(startPaused);
-        highScore.text = PlayerPrefs.GetInt("HighScore").ToString() + "m";
+        furthestTravelled.text = PlayerPrefs.GetInt("LongestDistanceTravelled").ToString() + "m";
         mostStickersCollected.text = PlayerPrefs.GetInt("StickersCollected").ToString();
         totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
     }
@@ -43,10 +43,10 @@ public class MainMenu : MonoBehaviour
         GameManager._player._anim.SetBool("Sit", enable);
         GameManager._player._anim.SetTrigger("Scared");
         
-        if(enable)
+        /* if(enable)
             dialogue.startDialogue();
         else
-            dialogue.endDialogue();
+            dialogue.endDialogue();*/
     }
 
      public void MainMenuDefualt(bool enable)
@@ -58,10 +58,10 @@ public class MainMenu : MonoBehaviour
         Debug.Log("paused = " + Statics.paused);
         GameManager._player._anim.SetBool("Sit", enable);
         
-        if(enable)
+        /*/if(enable)
             dialogue.startDialogue();
         else
-            dialogue.endDialogue();
+            dialogue.endDialogue();*/
     }
 
     public void DelayTransitionEnable(GameObject obj)
@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
        PlayerPrefs.DeleteKey("HighScore");
        PlayerPrefs.DeleteKey("StickersCollected");
        PlayerPrefs.DeleteKey("FirstTimeStart");
-       highScore.text = "0m";
+       furthestTravelled.text = "0m";
        mostStickersCollected.text = "0";
    }
 }

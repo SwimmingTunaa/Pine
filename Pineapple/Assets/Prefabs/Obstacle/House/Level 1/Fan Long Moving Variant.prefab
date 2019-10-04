@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 7817899949442712528}
   - component: {fileID: 5788875980935143525}
   - component: {fileID: 1236120061256871736}
+  - component: {fileID: 8185063248019635106}
   m_Layer: 0
   m_Name: Blades
   m_TagString: Untagged
@@ -722,6 +723,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyHair: 1
   damageAmount: 1
+  destroyAfterDamage: 0
+  hitSoundEffect: {fileID: 0}
+  hitEffect: {fileID: 0}
+--- !u!114 &8185063248019635106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7485803004622033635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4352aa268b536ed46bd33da2eb767a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAmount: 1
+  scoreToAdd: 100
+  scoreMessage: Haircut!
+  isTrigger: 1
 --- !u!1 &8895621249307516464
 GameObject:
   m_ObjectHideFlags: 0

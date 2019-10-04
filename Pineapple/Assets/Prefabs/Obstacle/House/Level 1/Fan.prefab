@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 582956377880539678}
   - component: {fileID: 582956377880539679}
   - component: {fileID: 8951698917378108529}
+  - component: {fileID: 6610572966485828158}
   m_Layer: 0
   m_Name: Fan
   m_TagString: Untagged
@@ -293,6 +294,22 @@ MonoBehaviour:
   destroyAfterDamage: 0
   hitSoundEffect: {fileID: 0}
   hitEffect: {fileID: 0}
+--- !u!114 &6610572966485828158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582956377880539673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4352aa268b536ed46bd33da2eb767a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAmount: 1
+  scoreToAdd: 100
+  scoreMessage: Haircut!
+  isTrigger: 1
 --- !u!1 &2355711469132328132
 GameObject:
   m_ObjectHideFlags: 0

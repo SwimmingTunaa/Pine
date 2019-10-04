@@ -7,7 +7,7 @@ public class RewardSpawner : Spawner
     public List<ObjectPools> poolToSpawn = new List<ObjectPools>();
     public GameObject[] spawnPoints;
     public float timerMin, timerMax;
-
+    public int randomIndex;
     public override void DoSpawn()
     {
         getPoolToSpawnFrom();
@@ -16,7 +16,7 @@ public class RewardSpawner : Spawner
     void getPoolToSpawnFrom()
     {
         var randomIndexGetter = new cummulativeCalculator<ObjectPools>();
-        int randomIndex = randomIndexGetter.GetRandomEntryIndex(poolToSpawn);
+        randomIndex = randomIndexGetter.GetRandomEntryIndex(poolToSpawn);
         ObjectPools poolToUse = poolToSpawn[randomIndex];
         GameObject tempObj = poolToUse.spawnedObjectPool[Random.Range(0,poolToUse.spawnedObjectPool.Count)];
         tempObj.SetActive(true); 

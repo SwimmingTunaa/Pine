@@ -66,7 +66,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -634492947
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300080, guid: c25cc3dd3dc905540922d22aebfb240d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 322923045}
   - component: {fileID: 322923046}
   - component: {fileID: 1193513299}
+  - component: {fileID: 6306649899675306214}
   m_Layer: 16
   m_Name: Couch
   m_TagString: Obstacle
@@ -157,6 +158,22 @@ MonoBehaviour:
   bounceStrengthY: 18
   bounceStrengthX: 0
   bounceSFX: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+--- !u!114 &6306649899675306214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322923044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4352aa268b536ed46bd33da2eb767a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAmount: 99
+  scoreToAdd: 50
+  scoreMessage: Couch Bounce!
+  isTrigger: 0
 --- !u!1 &1116733678540392524
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +356,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -634492947
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300072, guid: c25cc3dd3dc905540922d22aebfb240d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -438,7 +455,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -634492947
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300072, guid: c25cc3dd3dc905540922d22aebfb240d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -586,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 2730328752051888709, guid: 1df1560598d18f6418691c0c02955f80,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1df1560598d18f6418691c0c02955f80, type: 3}
