@@ -170,6 +170,18 @@ TextureImporter:
   - first:
       213: 8364323908783094963
     second: wooden plank cracked
+  - first:
+      213: -7392174416458314448
+    second: Knife
+  - first:
+      213: 8019305471523877199
+    second: Glove
+  - first:
+      213: -3034074116769764042
+    second: Glove Spring
+  - first:
+      213: -7639983640336234951
+    second: Belt
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -329,7 +341,7 @@ TextureImporter:
       name: fridge
       rect:
         serializedVersion: 2
-        x: 599
+        x: 598
         y: 2237
         width: 326
         height: 458
@@ -1350,6 +1362,90 @@ TextureImporter:
       bones: []
       spriteID: ddb5597676fe8ec48a599257adb5f13c
       internalID: 8364323908783094963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knife
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 2279
+        width: 449
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc0c42e2e3de084f9dfe832de7e848f
+      internalID: -7392174416458314448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glove
+      rect:
+        serializedVersion: 2
+        x: 1851
+        y: 2504
+        width: 243
+        height: 215
+      alignment: 9
+      pivot: {x: 0.06469877, y: 0.50000113}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37a7de1149735654a80123ff6b707dd4
+      internalID: 8019305471523877199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Glove Spring
+      rect:
+        serializedVersion: 2
+        x: 2114
+        y: 2627
+        width: 811
+        height: 94
+      alignment: 9
+      pivot: {x: 0.009710535, y: 0.49738458}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78086fa720b43ea4da8e72bad53f1e9e
+      internalID: -3034074116769764042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Belt
+      rect:
+        serializedVersion: 2
+        x: 1862
+        y: 2389
+        width: 212
+        height: 96
+      alignment: 9
+      pivot: {x: 0.39864996, y: 0.27618662}
+      border: {x: 0, y: 7, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 022d9780c5f944148aca40e7aa3a6d7d
+      internalID: -7639983640336234951
       vertices: []
       indices: 
       edges: []

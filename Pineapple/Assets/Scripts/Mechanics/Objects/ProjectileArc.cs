@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ProjectileArc : MonoBehaviour
 {   
-    
+    public float speed = 1f;
     [MinMaxSlider(-12f ,-3f)] public Vector2 xMinMax;
     [MinMaxSlider(3.0f ,15.0f)] public Vector2 yMinMax;
+    bool move = false;
 
-   
     private Rigidbody2D _rb;
 
     // Start is called before the first frame update
@@ -19,13 +19,18 @@ public class ProjectileArc : MonoBehaviour
 
     void OnEnable()
     {
+        _rb.velocity = Vector2.zero;
+        move = true;
+    }
+
+    void FixedUpdate()
+    {
+        if(!move) return;
         Move();
     }
     
     void Move()
     {
-        _rb.velocity = Vector2.zero;
-        _rb.AddForce(new Vector2(Random.Range(xMinMax.x, xMinMax.y), Random.Range(yMinMax.x, yMinMax.y)), ForceMode2D.Impulse);
-        _rb.AddTorque(100f);
+        _rb.velocity = -transform.right * speed;
     }
 }

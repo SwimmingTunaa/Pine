@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class StickerMagnet : PickUpsBase
 {   
+    [Header("Sticker")]
     public float effectRadius;
     public float transitionSpeed;
     public GameObject activeEffect;
     public GameObject visual;
     private bool active;
-
-    void Start()
+    
+    void OnEnable()
     {
         visual.SetActive(true);
         activeEffect.SetActive(false);

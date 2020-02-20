@@ -54,7 +54,7 @@ public class StatsManager: MonoBehaviour
         currentScore += amount;
         GameObject tempGo = Instantiate(scoreAddText, scoreSpawnPos.position, scoreAddText.transform.rotation);
         tempGo.GetComponentInChildren<TextMeshProUGUI>().text = "+" + amount + " - " + scoreText;
-        tempGo.transform.parent = scoreSpawnPos.transform;
+        tempGo.transform.SetParent(scoreSpawnPos.transform);
         Destroy(tempGo, 3f);
     }
 }

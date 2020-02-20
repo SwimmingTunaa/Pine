@@ -20,19 +20,22 @@ public class ProjectileSpawner : Spawner
     public float moveSpeed;
     [MinMaxSlider(1,5)] public Vector2 spawnAmount = new Vector2(1, 3);
     
+    [HideInInspector]public float disableOSpawnerTimer = 2;
+    [HideInInspector]public float warningTimer = 2.75f;
     private float _halfHeight;
     private float _halfWidth;
     private float _newY;
-
+    private Transform _cameraTransform;
     void Awake()
     {
         projectilePool = Instantiate(projectilePool, transform.position, transform.rotation);
+        _cameraTransform = Camera.main.transform;
     }
 
     void Update()
     {
         //bounce this obj up and down
-        _newY = Mathf.Sin(moveSpeed * Time.time) * yAmplitude;
+        _newY = _cameraTransform.position.y + Mathf.Sin(moveSpeed * Time.time) * yAmplitude;
         transform.position = new Vector3(transform.position.x, _newY, transform.position.z);
     }
     
@@ -46,6 +49,7 @@ public class ProjectileSpawner : Spawner
         _halfHeight = Camera.main.orthographicSize;
         _halfWidth  = Camera.main.aspect * _halfHeight; 
         spawnType = (SpawnType)Random.Range(0, System.Enum.GetValues(typeof(SpawnType)).Length);
+        masterSpawner.enabled = false;
         switch(spawnType)
         {
             case SpawnType.line:
@@ -55,8 +59,7 @@ public class ProjectileSpawner : Spawner
                 StartCoroutine(SpawnWave());
             break;
         }
-        masterSpawner.enabled = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(disableOSpawnerTimer);
         masterSpawner.enabled = true;
     }
 
@@ -65,7 +68,7 @@ public class ProjectileSpawner : Spawner
         int r = (int)Random.Range(spawnAmount.x,spawnAmount.y);
         for(int i = 0; i < r; i++)
         {
-            StartCoroutine(SpawnObject(Random.Range(-yAmplitude, yAmplitude)));
+            StartCoroutine(SpawnObject(Random.Range(Camera.main.transform.position.y - yAmplitude, Camera.main.transform.position.y + yAmplitude)));
         }
     }
 
@@ -83,6 +86,7 @@ public class ProjectileSpawner : Spawner
     {
         GameObject o = projectilePool.spawnedObjectPool[Random.Range(0,projectilePool.spawnedObjectPool.Count)];
         projectilePool.spawnedObjectPool.Remove(o);
+        //wait for this Warning to finish then continue
         yield return StartCoroutine(Warning(o,yPos));
         o.SetActive(true);
         o.transform.position = new Vector3(Camera.main.transform.position.x + _halfWidth, yPos, transform.position.z);
@@ -95,7 +99,7 @@ public class ProjectileSpawner : Spawner
         {
             w.SetActive(true);
             w.transform.position = new Vector3(Camera.main.transform.position.x + _halfWidth, yPos, transform.position.z);
-            yield return new WaitForSeconds(2.25f);
+            yield return new WaitForSeconds(warningTimer);
             w.SetActive(false);
         }
     }

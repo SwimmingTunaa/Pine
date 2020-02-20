@@ -7,9 +7,10 @@ public class PanelSpawner : Spawner
 {
     public GameObject startingPanel;
     public ObjectPoolManager objectPoolManager;
+    public GameObject panelHolder;
 
-    private ObjectPools _pool;
-    private bool _firstSpawn = true;
+    [HideInInspector]public ObjectPools _pool;
+    [HideInInspector] public bool _firstSpawn = true;
     private List<GameObject> _panelsToSpawn = new List<GameObject>();
 
     void Start()
@@ -29,16 +30,17 @@ public class PanelSpawner : Spawner
         if(!_pool.spawnedObjectPool.Contains(nextSpawn.transform.parent.gameObject))
         {
             _panelsToSpawn[0].transform.position = GetNextSpawnPos(previousSprite, nextSpawn);
+            _panelsToSpawn[0].transform.parent = panelHolder.transform;
             _panelsToSpawn[0].SetActive(true);
             _previousSpawn = _panelsToSpawn[0];
             _panelsToSpawn.Remove(_previousSpawn);
         } 
     }
     
-    void InitialSpawn()
+    public void InitialSpawn()
     {   
-        //spawn the start panels and then some queued panles afterwards
-        for(int i = 0; i <= 3; i++)
+        //spawn the start panels and then some queued panels afterwards
+        for(int i = 0; i <= 4; i++)
         {
             SetPanels(_pool.spawnedObjectPool);
             if(_firstSpawn)

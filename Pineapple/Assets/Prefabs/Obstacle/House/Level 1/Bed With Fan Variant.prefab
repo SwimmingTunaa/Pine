@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 6989178799162553116, guid: 35227792d44ff734a841c18939ba86db,
         type: 3}
       propertyPath: m_Name
-      value: Bed With Fan
+      value: Bed With Fan Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6989178799162553116, guid: 35227792d44ff734a841c18939ba86db,
         type: 3}
@@ -72,6 +72,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6603608455385077051, guid: 35227792d44ff734a841c18939ba86db,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35227792d44ff734a841c18939ba86db, type: 3}
 --- !u!4 &2418626216587671199 stripped
@@ -91,6 +96,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fan
+      objectReference: {fileID: 0}
+    - target: {fileID: 582956377880539673, guid: 7643b026c474921468085cf8d6cc9799,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 582956377880539678, guid: 7643b026c474921468085cf8d6cc9799,
         type: 3}

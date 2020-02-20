@@ -7,7 +7,6 @@ public class ObstacleSpawner : Spawner
     public ObstaclePoolConfig currentLevelConfig;
     public ObstacleLevelConfig levelConfig;
 
-
     [Space(10)]
     public GameObject[] spawnPoints;
     public Collider2D floorCollider;

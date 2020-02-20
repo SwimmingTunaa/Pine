@@ -38,6 +38,8 @@ public class MasterSpawner : Spawner
         _randomInterval = Random.Range(minDistance, maxDistance);
         spawnInterval = Statics.DistanceTraveled + _randomInterval;
         Debug.Log("Spawn Amount: " + _spawnAmount);
+        if(Statics.playerRestartedGame)
+            ChangeSpawnAmount(1);
     }
 
     void OnEnable()
@@ -60,17 +62,19 @@ public class MasterSpawner : Spawner
                 _spawnAmount = Random.Range(minSpawnAmount, maxSpawnAmount);  
                 if(levelPro != null && levelPro.roundsCompleted >= 1)
                 {
-                    levelPro.difficultyLvl = Random.Range(0,1);
+                    //make the level harder
+                    levelPro.difficultyLvl += 1;
                     levelPro.SetNewCheckpoints(Random.Range(75f,100f),Random.Range(75f,150f), Random.Range(100f,150f),Random.Range(75f,100f));
                 }
                 return;
             }
-
+    
             if(_spawnAmount > 0)
             {
                 _spawnAmount--;
                 if(_spawnAmount <=0)
                 {
+                    //set how many rewards to spawn in
                     _rewardAmount = Random.Range(minRewardAmount, maxRewardAmount);
                     pickUpSpawned = 0;
                 }
@@ -111,8 +115,14 @@ public class MasterSpawner : Spawner
                     if(s.Key == RewardSpawner && pickUpSpawned == 0)
                         if(RewardSpawner.poolToSpawn[RewardSpawner.randomIndex].objectType == ObjType.Pickups)
                         {
-                            pickUpSpawned += 1;
+                            pickUpSpawned++;
                             s.Key.DoSpawn();
+                            //check to see if its the special item spawner
+                            if(RewardSpawner.poolToSpawn[RewardSpawner.randomIndex] == RewardSpawner.poolToSpawn[2])
+                            {
+                                //make sure no more reward spawn after special item has been spawned
+                                _rewardAmount = 0;
+                            }
                             break;
                         }
                     s.Key.DoSpawn();
@@ -134,6 +144,11 @@ public class MasterSpawner : Spawner
         projectileSpawner.enabled = true;
         obstacleSpawner.enabled = true;
         RewardSpawner.enabled = true;
+    }
+
+    public void ChangeSpawnAmount(int newSpawnAmount)
+    {
+        _spawnAmount = newSpawnAmount;
     }
 
     float getSpawnInterval()

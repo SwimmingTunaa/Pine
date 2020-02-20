@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8720149089339125958
 Transform:
   m_ObjectHideFlags: 0
@@ -224,6 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1918902579772665285}
   - component: {fileID: 1182429257160212881}
+  - component: {fileID: 7646753483744633687}
   m_Layer: 14
   m_Name: Bathroom
   m_TagString: Untagged
@@ -286,6 +287,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 8.5}
   m_EdgeRadius: 0
+--- !u!114 &7646753483744633687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362453142170762194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346f4a1b92687614aac7fd3357d920ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelHolderLocation: 2
 --- !u!1 &1453722688480891127
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,9 +897,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6898263087696771472}
   - component: {fileID: 6639332821149458251}
-  - component: {fileID: 6113133494805045194}
+  - component: {fileID: 5353360602196307379}
   m_Layer: 0
-  m_Name: Collider (2)
+  m_Name: Trigger Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -931,7 +945,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11.437189, y: 0.42081457}
   m_EdgeRadius: 0
---- !u!114 &6113133494805045194
+--- !u!114 &5353360602196307379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -940,14 +954,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6113836687402317582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d87d5c5b9e724e4985053eb22419460, type: 3}
+  m_Script: {fileID: 11500000, guid: 346f4a1b92687614aac7fd3357d920ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyHair: 0
-  damageAmount: 9999
-  destroyAfterDamage: 0
-  hitSoundEffect: {fileID: 0}
-  hitEffect: {fileID: 0}
+  panelHolderLocation: 2
 --- !u!1 &6184319292336183453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,7 +1111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3210380820679758256
 Transform:
   m_ObjectHideFlags: 0

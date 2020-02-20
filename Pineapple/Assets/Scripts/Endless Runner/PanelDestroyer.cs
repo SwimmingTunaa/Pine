@@ -14,8 +14,9 @@ public class PanelDestroyer : MonoBehaviour
             ObjectID id = other.GetComponent<ObjectID>();
             if(id.objectType == ObjType.Panel)
             {
-                 pSpawner.SpawnSets();
+                pSpawner.SpawnSets();
             }
+            
             id.Disable();
         }
     }

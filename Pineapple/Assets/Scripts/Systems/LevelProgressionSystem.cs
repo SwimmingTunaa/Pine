@@ -23,6 +23,7 @@ public class LevelProgressionSystem : MonoBehaviour
     public int roundsCompleted;  
     private float _currentCheckpoint;
     private int startCounter = 0;
+    private int _sItemForcedSpawnCounter;
 
     void Start()
     {
@@ -79,7 +80,7 @@ public class LevelProgressionSystem : MonoBehaviour
         {
             SetDifficulty(3, 12f, 18f);
             //TODO: different spawn pool
-            masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.3f);
+            masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.2f,0.1f);
             masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.levelthree;
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0.1f,0.1f);
             masterSpawner.ChangeSpawnerTypeChance(0.2f, 0.8f);
@@ -91,11 +92,22 @@ public class LevelProgressionSystem : MonoBehaviour
         {
             SetDifficulty(4, 10f, 14f);
             //TODO: different spawn pool
-            masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.3f);
+            masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.15f,0.15f);
+            //force spawn the special item only every 2 rounds
+            if(_sItemForcedSpawnCounter < 1)
+                _sItemForcedSpawnCounter++;
+                else if(_sItemForcedSpawnCounter >= 2)
+                {
+                   masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0, 0,1f); 
+                }
             masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.levelthree;
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0f,0.2f);
             masterSpawner.ChangeSpawnerTypeChance(0.1f, 0.9f);
+            //Changing Projectile spawner settings
             masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,5);
+            masterSpawner.projectileSpawner.warningTimer = 2f;
+            masterSpawner.projectileSpawner.disableOSpawnerTimer = 1.5f;
+            //////////////////////////////////////
             masterSpawner.minSpawnAmount += 1;
             masterSpawner.maxSpawnAmount += 2;
             Debug.Log( "Lvl " + difficultyLvl);

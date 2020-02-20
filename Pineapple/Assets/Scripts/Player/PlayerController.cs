@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip hairSlicedAudio;
     [HideInInspector] public bool _haircut;
 
+    public PlayerItemSlots playerItemSlots;
 
     [HideInInspector] public Animator _anim;
     [HideInInspector] public float _horiMove;

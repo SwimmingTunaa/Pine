@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameoverUIBody;
     public TextMeshProUGUI totalStickers;
     public TextMeshProUGUI gameoverStickerText;
+    public TextMeshProUGUI gameOverFinalScore;
+    public TextMeshProUGUI gameOverTotalScore;
 
     private float _distanceFromChaser;
     public static PlayerController _player;
@@ -94,10 +96,12 @@ public class GameManager : MonoBehaviour
             finalScore.text = distanceText.text;
             distanceText.gameObject.SetActive(false);
             //set Stickers collected in this round
-            gameoverStickerText.text = stats.stickerCollected.ToString();
+            gameoverStickerText.text = stats.stickerCollected.ToString() + " x 10";
             //the total amount of stickers the player has
             stats.AddStickersToTotalOwnedAmount();
             totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
+            gameOverFinalScore.text = stats.currentScore.ToString();
+            gameOverTotalScore.text = (stats.currentScore + (stats.stickerCollected * 10) + Statics.DistanceTraveled).ToString();
             //update stats part
             stats.AddStickersToTotalEverCollected();
             stats.UpdateFurthestDistanceTravelled();
@@ -161,5 +165,7 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);
+        //check if the pressed play again
+        Statics.playerRestartedGame = true;
     }
 }

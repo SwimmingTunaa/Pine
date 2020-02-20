@@ -12,7 +12,7 @@ public class PickUpsBase : MonoBehaviour
     private float _initialDuration;
     private SpriteRenderer _visual;
     private float _timer;
-    private bool _timerActive;
+    public bool _timerActive;
 
     void Awake()
     {
@@ -49,13 +49,17 @@ public class PickUpsBase : MonoBehaviour
         }
         return false;
     }
+    public virtual void DisablePickUp()
+    {
+        GetComponent<ObjectID>().Disable();
+        _timerActive = false;
+        Debug.Log("Item Disabled");
+    
+    }
 
-    void Update()
+    public virtual void Update()
     {
         if(_timerActive && effectDuration > 0 && Timer(effectDuration))
-        {
-            GetComponent<ObjectID>().Disable();
-            Debug.Log("Item Disabled");
-        }
+            DisablePickUp();
     }
 }

@@ -24,6 +24,12 @@ public class ObjectID : MonoBehaviour
    {
       if(!parentPool.spawnedObjectPool.Contains(gameObject))
          parentPool.spawnedObjectPool.Add(gameObject);
+      //remove this panel from the parent panel holder
+      gameObject.transform.parent = null;
+      foreach(Transform t in transform)
+      {
+         t.gameObject.SetActive(true);
+      }
       gameObject.SetActive(false);
    }
 }

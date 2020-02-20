@@ -9,6 +9,8 @@ public interface IChanceValue
 
 public class ObjectPools : MonoBehaviour, IChanceValue
 {
+   public bool manual;
+   /////////////////////////////
    public float spawnChanceValue;
    public float Chance{get {return spawnChanceValue;}}
    public ObjType objectType;
@@ -23,8 +25,11 @@ public class ObjectPools : MonoBehaviour, IChanceValue
 
    void Awake()
    {
-      spawnedObjectPool.Clear();
-      Initialize(objectPool, spawnedObjectPool, objectType);
+      if(!manual)
+      {
+         spawnedObjectPool.Clear();
+         Initialize(objectPool, spawnedObjectPool, objectType);
+      }
    }
 
    public void Initialize(List<GameObject> pool, List<GameObject> poolToAddTo, ObjType type)

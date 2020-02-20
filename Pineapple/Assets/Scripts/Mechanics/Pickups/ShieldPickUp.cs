@@ -27,14 +27,16 @@ public class ShieldPickUp : PickUpsBase
         transform.parent = player.transform;
         transform.position = player.transform.position;
         health.AddHealth(shieldStrength);
-        GetComponentInChildren<Animator>().Play("Shield Start");
+        if(GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Shield Shine"))
+            GetComponentInChildren<Animator>().Play("Shield Start");
     }
 
-    void Update()
+    public override void Update()
     {
         if(health != null && health.health <= 1 && active)
         {
             active = false;
+            if(deathSound != null)
             GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>().PlayOneShot(deathSound);
             transform.parent = null;
             GetComponent<ObjectID>().Disable();

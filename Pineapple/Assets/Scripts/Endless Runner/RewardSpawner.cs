@@ -24,9 +24,10 @@ public class RewardSpawner : Spawner
         poolToUse.spawnedObjectPool.Remove(tempObj);
     }
 
-    public void ChangeRewardPoolSpawnChances(float stickerSpawnChance, float itemSpawnChance)
+    public void ChangeRewardPoolSpawnChances(float stickerSpawnChance, float itemSpawnChance,float sItemSpawnChance)
     {
         poolToSpawn[0].spawnChanceValue = itemSpawnChance;
         poolToSpawn[1].spawnChanceValue = stickerSpawnChance;
+        poolToSpawn[2].spawnChanceValue = sItemSpawnChance;
     }
 }
