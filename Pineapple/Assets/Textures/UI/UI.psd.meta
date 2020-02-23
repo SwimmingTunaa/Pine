@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: 21300008
     second: Title
+  - first:
+      213: -4121644796293663891
+    second: Market Roof
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -110,94 +113,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arrow
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 1719
-        width: 239
-        height: 282
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 31006b54055279e40a762cc7a9c32eb0
-      internalID: 21300000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Action Button
-      rect:
-        serializedVersion: 2
-        x: 365
-        y: 1719
-        width: 238
-        height: 282
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dbe467052f6df5d49aba8ea80d6b253c
-      internalID: 21300002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Arrow Pressed
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 1431
-        width: 239
-        height: 282
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 967171865bb8ea441a636dc3d99b47a3
-      internalID: 21300004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Action Pressed
-      rect:
-        serializedVersion: 2
-        x: 363
-        y: 1431
-        width: 238
-        height: 282
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf668845ec8a06e499126c896936c745
-      internalID: 21300006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Title
       rect:
         serializedVersion: 2
-        x: 662
+        x: 16
         y: 1690
         width: 566
         height: 321
@@ -210,6 +129,27 @@ TextureImporter:
       bones: []
       spriteID: 33d785c71c0c04e4d954b16d5f92b250
       internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Market Roof
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 1868
+        width: 850
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb7c7a8d25b1a034db47f5e75a5d007a
+      internalID: -4121644796293663891
       vertices: []
       indices: 
       edges: []

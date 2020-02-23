@@ -13,7 +13,7 @@ public class Sticker : Item
 
     void Start()
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, Random.Range(-45f,45f));
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, Random.Range(-90f,90f));
         sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<StatsManager>();
         triggerAmount = 1;
     }
@@ -49,6 +49,6 @@ public class Sticker : Item
 
     public void moveStickerToTarget(GameObject target, float speed)
     {
-        transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.deltaTime * speed);
+        transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.deltaTime * (speed + target.GetComponent<Rigidbody2D>().velocity.x));
     }
 }

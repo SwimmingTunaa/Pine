@@ -75,7 +75,7 @@ public class MainMenu : MonoBehaviour
    
    IEnumerator Delay(GameObject obj, bool active)
    {
-       yield return new WaitForSeconds(0.9f);
+       yield return new WaitForSeconds(0.5f);
        obj.SetActive(active);
    }
    public void ResetStats()

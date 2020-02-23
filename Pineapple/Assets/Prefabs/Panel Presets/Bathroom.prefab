@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8720149089339125958
 Transform:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef17e81ee014d94479823810b67ec8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 1
   healthRecoverTime: 0
   dead: 0
   startHealth: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4352aa268b536ed46bd33da2eb767a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerAmount: 2
+  triggerAmount: 1
   scoreToAdd: 50
   scoreMessage: Break the Planks
   isTrigger: 1
