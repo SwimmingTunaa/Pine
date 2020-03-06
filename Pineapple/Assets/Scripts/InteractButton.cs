@@ -35,9 +35,9 @@ public class InteractButton : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _interactButtonImg = GetComponentInChildren<Image>();
-        _defaultColor = _interactButtonImg.color;
+      /*  _defaultColor = _interactButtonImg.color;
         _activateColor.a = _defaultColor.a;
-        _deactivateColor.a = _defaultColor.a;
+        _deactivateColor.a = _defaultColor.a;*/
         resetBtn(gameObject);
     }
 

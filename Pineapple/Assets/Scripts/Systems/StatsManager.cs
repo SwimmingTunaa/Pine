@@ -5,6 +5,8 @@ using TMPro;
 
 public class StatsManager: MonoBehaviour
 {
+    public List<string> trackedItems = new List<string>();
+
     public int currentScore;
     public int stickerCollected;
     public int couchBounced;
@@ -13,15 +15,20 @@ public class StatsManager: MonoBehaviour
     [Header("UI")]
     public GameObject scoreAddText;
     public Transform scoreSpawnPos;
+    public TextMeshProUGUI furthestTravelled;
+    public TextMeshProUGUI mostStickersCollected;
 
-    void Start()
+    void Awake()
     {
-        PlayerPrefs.GetInt("CouchBounced");
-        PlayerPrefs.GetInt("TotalStickers");
-        PlayerPrefs.GetInt("StickersCollected");
-        PlayerPrefs.GetInt("HighScore");
-        PlayerPrefs.GetInt("LongestDistanceTravelled");
-        PlayerPrefs.GetInt("HaircutsTaken");
+        foreach(string s in trackedItems)
+            PlayerPrefs.GetInt(s);
+        Initialise();
+    }
+
+    public void Initialise()
+    {
+        furthestTravelled.text = PlayerPrefs.GetInt("LongestDistanceTravelled").ToString() + "m";
+        mostStickersCollected.text = PlayerPrefs.GetInt("StickersCollected").ToString();
     }
 
     public void AddStickersToTotalOwnedAmount()
@@ -30,6 +37,17 @@ public class StatsManager: MonoBehaviour
         PlayerPrefs.SetInt("TotalStickers", allStickers);
     }
 
+    public void AddStickersToTotalOwnedAmount(int amount)
+    {
+        int allStickers = PlayerPrefs.GetInt("TotalStickers") + amount;
+        PlayerPrefs.SetInt("TotalStickers", allStickers);
+    }
+
+    public static void MinusStickers(int amount)
+    {
+        int allStickers = PlayerPrefs.GetInt("TotalStickers") - amount;
+        PlayerPrefs.SetInt("TotalStickers", allStickers);
+    }
     public void AddStickersToTotalEverCollected()
     {
         if(stickerCollected > PlayerPrefs.GetInt("StickersCollected"))
@@ -57,4 +75,14 @@ public class StatsManager: MonoBehaviour
         tempGo.transform.SetParent(scoreSpawnPos.transform);
         Destroy(tempGo, 3f);
     }
+
+     public void ResetStats()
+   {
+       /*PlayerPrefs.DeleteKey("HighScore");
+       PlayerPrefs.DeleteKey("StickersCollected");
+       //PlayerPrefs.DeleteKey("FirstTimeStart");
+       foreach(string s in trackedItems)
+            PlayerPrefs.DeleteKey(s);*/
+        PlayerPrefs.DeleteAll();
+   }
 }

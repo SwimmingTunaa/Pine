@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StickerMagnet : PickUpsBase
+public class StickerMagnet : PickUpsBase, IUpgradable
 {   
     [Header("Sticker")]
     public float effectRadius;
@@ -38,5 +38,10 @@ public class StickerMagnet : PickUpsBase
         transform.position = player.transform.position;
         GetComponent<CircleCollider2D>().radius = effectRadius;
         active = true;
+    }
+
+    public void Upgrade(float timeToAdd)
+    {
+        effectDuration += timeToAdd;
     }
 }

@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void pauseGame(bool enable)
+    public static void pauseGame(bool enable)
     {
         //Time.timeScale = 0; // TODO: Not sure if this is correct. Something about timescale pausing all scripts and everything?
         float tempCurrentSpeed = _player.speed;
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         Statics.paused = enable;
     }
 
-    public void DisablePlayerInput(bool enabled)
+    public static void DisablePlayerInput(bool enabled)
     {
         _player.enabled = !enabled;
         _player.jumpable = !enabled;
