@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StickerMagnet : PickUpsBase, IUpgradable
+public class StickerMagnet : PickUpsBase
 {   
     [Header("Sticker")]
     public float effectRadius;
     public float transitionSpeed;
     public GameObject activeEffect;
     public GameObject visual;
-    private bool active;
     
     void OnEnable()
     {
@@ -19,14 +18,8 @@ public class StickerMagnet : PickUpsBase, IUpgradable
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player") && triggerAmount > 0)
-        {
+        if(triggerAmount > 0)
             DoAction(other.gameObject);
-        }
-        if(other.GetComponent<Sticker>() != null && active)
-        {
-            other.GetComponent<Sticker>().move = true;
-        }
     }
 
     public override void DoAction(GameObject player)
@@ -36,12 +29,6 @@ public class StickerMagnet : PickUpsBase, IUpgradable
         base.DoAction(player);
         transform.parent = player.transform;
         transform.position = player.transform.position;
-        GetComponent<CircleCollider2D>().radius = effectRadius;
-        active = true;
     }
 
-    public void Upgrade(float timeToAdd)
-    {
-        effectDuration += timeToAdd;
-    }
 }

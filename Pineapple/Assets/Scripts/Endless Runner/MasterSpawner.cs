@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MasterSpawner : Spawner
 {
+    public bool active = true;
     public float minDistance, maxDistance;
     [Header("Projectile Spawner")]
     public float pSpawnChance;  
@@ -11,8 +12,8 @@ public class MasterSpawner : Spawner
     [Header("Obstacle Spawner")]
     public float oSpawnChance;
     public ObstacleSpawner obstacleSpawner;
-    [Header("Sticker Spawner")]
-    public float sSpawnChance;  
+    [Header("Reward Spawner")]
+    public float rSpawnChance;  
     public RewardSpawner RewardSpawner;
     [Header("Progression")]
     public int minSpawnAmount, maxSpawnAmount;
@@ -23,17 +24,19 @@ public class MasterSpawner : Spawner
     private int _rewardAmount;
     private Dictionary<Spawner, float>  _challengeSpawnerList = new Dictionary<Spawner, float>();
     private Dictionary<Spawner, float>  _rewardSpawnerList = new Dictionary<Spawner, float>();
-    private Rigidbody2D _playerRb;
     private float _randomInterval;
     private int pickUpSpawned; //the amount of pickup already spawned;
-
-    void Start()
+    
+    void Awake()
     {
-        IniatilizeSpawners();
-        _playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        //add these to the challenges
         AddToChanceList(projectileSpawner, pSpawnChance);
         AddToChanceList(obstacleSpawner, oSpawnChance);
-        _rewardSpawnerList.Add(RewardSpawner, sSpawnChance);
+        _rewardSpawnerList.Add(RewardSpawner, rSpawnChance);
+    }
+    void Start()
+    {
+        IniatilizeSpawners(active);
         _spawnAmount = Random.Range(minSpawnAmount,maxSpawnAmount);
         _randomInterval = Random.Range(minDistance, maxDistance);
         spawnInterval = Statics.DistanceTraveled + _randomInterval;
@@ -139,11 +142,11 @@ public class MasterSpawner : Spawner
         _challengeSpawnerList[obstacleSpawner] = newOchance;
     }
 
-    void IniatilizeSpawners()
+    void IniatilizeSpawners(bool active)
     {
-        projectileSpawner.enabled = true;
-        obstacleSpawner.enabled = true;
-        RewardSpawner.enabled = true;
+        projectileSpawner.enabled = active;
+        obstacleSpawner.enabled = active;
+        RewardSpawner.enabled = active;
     }
 
     public void ChangeSpawnAmount(int newSpawnAmount)

@@ -27,15 +27,14 @@ public class Shadow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!body.GetComponent<CharacterController2D>().m_Grounded)
+        if(body.activeSelf && !body.GetComponent<CharacterController2D>().m_Grounded)
             ShadowScale();
     }
 
     void ShadowScale()
     {
-        RaycastHit2D hit = Physics2D.Raycast(body.transform.position, -Vector3.up, layerToDetect);
-//        Debug.Log(hit.collider.gameObject.name);
-
+        RaycastHit2D hit = Physics2D.Raycast(body.transform.position, -Vector3.up, 10, layerToDetect);
+       // Debug.Log("Shadow raycast hit: " + hit.collider.gameObject.name);
         //if layer is equal to ground then make the shadow stay on the ground
         if(hit.collider.gameObject.layer == 12)
         {
@@ -51,6 +50,6 @@ public class Shadow : MonoBehaviour
             spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, Mathf.InverseLerp(2,0, distanceFromGround));
         }
         else
-            spriteRenderer.enabled = false;      
+            spriteRenderer.enabled = false;
     }
 }

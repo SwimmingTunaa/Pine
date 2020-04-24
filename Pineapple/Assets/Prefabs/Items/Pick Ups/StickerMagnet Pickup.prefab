@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4954042576267753515}
-  - component: {fileID: 8610365863135255558}
   - component: {fileID: 2844681211913572906}
   - component: {fileID: 2309616322033859557}
-  m_Layer: 0
-  m_Name: StickerMagnet
+  - component: {fileID: 4624010219132840465}
+  m_Layer: 18
+  m_Name: StickerMagnet Pickup
   m_TagString: PickUps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,22 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &8610365863135255558
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 444876811940292258}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.34}
-  serializedVersion: 2
-  m_Radius: 0.28
 --- !u!82 &2844681211913572906
 AudioSource:
   m_ObjectHideFlags: 0
@@ -163,10 +147,29 @@ MonoBehaviour:
   pickUpSound: {fileID: 8300000, guid: 1705df466e01a9b49ac546cad6a75123, type: 3}
   deathFX: {fileID: 0}
   effectDuration: 8
+  itemMaxLevel: 1
+  _initialDuration: 0
+  _timerActive: 0
   effectRadius: 4
   transitionSpeed: 1.5
   activeEffect: {fileID: 3055955045805142380}
   visual: {fileID: 720319584918440013}
+--- !u!58 &4624010219132840465
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444876811940292258}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.42
 --- !u!1 &720319584918440013
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720319584918440013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.348, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.16444871, y: 0.16444871, z: 0.16444871}
   m_Children:
   - {fileID: 2703842019028428051}
@@ -268,6 +271,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &8117529185389454303
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055955045805142380}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
+--- !u!114 &8452087042228264205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055955045805142380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e919a002d2274dd4e8576f5950ede4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2705184761002399717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -335,16 +366,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.9504737
       objectReference: {fileID: 0}
-    - target: {fileID: 199218836714256136, guid: 968c924d2be019d4b9e67647551eec3e,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -586163359
-      objectReference: {fileID: 0}
-    - target: {fileID: 199218836714256136, guid: 968c924d2be019d4b9e67647551eec3e,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 199240645737875422, guid: 968c924d2be019d4b9e67647551eec3e,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -361,6 +382,16 @@ PrefabInstance:
       value: -586163359
       objectReference: {fileID: 0}
     - target: {fileID: 199753946071232444, guid: 968c924d2be019d4b9e67647551eec3e,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 199218836714256136, guid: 968c924d2be019d4b9e67647551eec3e,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -586163359
+      objectReference: {fileID: 0}
+    - target: {fileID: 199218836714256136, guid: 968c924d2be019d4b9e67647551eec3e,
         type: 3}
       propertyPath: m_SortingLayer
       value: 6
@@ -390,11 +421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4299952606933750, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.009999896
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4299952606933750, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.337
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4299952606933750, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -444,16 +475,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.116701
       objectReference: {fileID: 0}
-    - target: {fileID: 199218836714256136, guid: 968c924d2be019d4b9e67647551eec3e,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -586163359
-      objectReference: {fileID: 0}
-    - target: {fileID: 199218836714256136, guid: 968c924d2be019d4b9e67647551eec3e,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 199240645737875422, guid: 968c924d2be019d4b9e67647551eec3e,
         type: 3}
       propertyPath: m_SortingLayerID
@@ -470,6 +491,16 @@ PrefabInstance:
       value: -586163359
       objectReference: {fileID: 0}
     - target: {fileID: 199753946071232444, guid: 968c924d2be019d4b9e67647551eec3e,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 199218836714256136, guid: 968c924d2be019d4b9e67647551eec3e,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -586163359
+      objectReference: {fileID: 0}
+    - target: {fileID: 199218836714256136, guid: 968c924d2be019d4b9e67647551eec3e,
         type: 3}
       propertyPath: m_SortingLayer
       value: 6

@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private struct Direction {
-        public const float left = -1.0f;
-        public const float right = 1.0f;
-        public const float none = 0.0f;
-    }
+    public Transform cameraFollowTarget;
     public static bool jumpPressed;
-
+    public bool pausePlayer;
     [HideInInspector] public float startSpeed;
     public float speed;
-    public float MaxSpeed;
+    public float maxSpeed;
+ 
     public bool jumpable = true;
     public bool immobile = false;
 
@@ -39,63 +36,19 @@ public class PlayerController : MonoBehaviour
         startSpeed = speed;
     }
 
-    void Update()
-    {
-        setMovement();
-        setAnimations();
-    }
-
     void FixedUpdate()
     {
-        float moveDistance = speed * Time.fixedDeltaTime;
-
-        _characterController.Move(moveDistance, false, _jump);
-        _jump = false;
-    }
-
-    public void OnLanding()  // TODO: Doesn't look like this is being used???
-    {
-        _anim.SetBool("Jump", false);
-    }
-
-    private void setMovement()
-    {
-        _horiMove = Mathf.Abs(speed);
-
-        if (!immobile)
+        if(!pausePlayer)
         {
-            checkKeyboardMovement();
-
-            if (TouchUtility.touched)
-            {
-                switch(TouchUtility.state)
-                {
-                    case Enums.TouchState.pressedLeft:
-                        _horiMove = Direction.left;
-                        break;
-                    case Enums.TouchState.pressedRight:
-                        _horiMove = Direction.right;
-                        break;
-                    case Enums.TouchState.tapped:
-                        setJump(1f);
-                        break;
-                }
-            }
+            setAnimations();
+            _characterController.Move(speed * Time.fixedDeltaTime, false, _jump);
+            _jump = false;
         }
     }
-
-    private void checkKeyboardMovement()
-    {
-        //_horiMove = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump"))
-        {
-            setJump(1f);
-        }
-    }
-
     public void OnPointerPressed(bool triggered)
     {
-        if(triggered && jumpable)
+        Debug.Log("Jumped Pressed");
+        if(triggered && !pausePlayer)
             setJump(1f); // was character controller
         jumpPressed = triggered;
     }
@@ -106,9 +59,15 @@ public class PlayerController : MonoBehaviour
         {
             //_jump = true;
             _characterController.Jump(true, multiplier);
-            _anim.SetBool("Jump", true);
+            _anim.SetBool(!_characterController.canDoubleJump ? "DoubleJump" : "Jump", true);
         }
     }
+
+    public void OnLanding()
+	{
+		//to use with the OnLand event if we need anything to happen.
+        //_anim.SetBool(!_characterController.canDoubleJump ? "DoubleJump" : "Jump", false);
+	}
 
     private void setAnimations()
     {
@@ -116,5 +75,21 @@ public class PlayerController : MonoBehaviour
         _anim.SetFloat("yVelocity", _rigidBody.velocity.y);
         _anim.SetBool("Grounded", _characterController.m_Grounded);
         _anim.SetFloat("Speed", speed);
+        if(_rigidBody.velocity.y < -2f)
+        {
+            _anim.SetBool("DoubleJump", false);
+        }
+    }
+
+    public void AddForce(Vector2 forceAmount)
+    {
+        _rigidBody.velocity = Vector2.zero;
+        _rigidBody.AddForce(forceAmount, ForceMode2D.Impulse);
+        Debug.Log("Add Force");
+    }
+
+    public bool StoppedMoving()
+    {
+        return _rigidBody.velocity == Vector2.zero ? true : false;
     }
 }

@@ -8,23 +8,9 @@ public class DialogueSequence : MonoBehaviour
     public DialogueConfig[] dialogues;
     public SpeechBubble speechBubble;
 
-    private InteractButton _interactBtn;
-    private PlayerController _playerController;
     private float _timer = 0;
     private int _currentDialogue = 0;
     private bool _scriptRunning = false;
-
-    private void Awake()
-    {
-        _playerController = GameObject
-            .FindGameObjectWithTag("Player")
-            .GetComponent<PlayerController>();
-
-        _interactBtn = GameObject
-            .FindGameObjectWithTag("InteractBtn")
-            .GetComponent<InteractButton>();
-    }
-
     private void Update()
     {
         if (_scriptRunning)
@@ -60,27 +46,12 @@ public class DialogueSequence : MonoBehaviour
     public void startDialogue()
     {
         _scriptRunning = true;
-        if(stopPlayerMoving)
-        {
-            _playerController.immobile = true;
-            _interactBtn.set(gameObject, "Skip", null, Enums.InteractColor.deactivate, null);
-            _interactBtn.setDoAction(gameObject, endDialogue);
-        }
-
         setSpeechbubble(dialogues[_currentDialogue]);
     }
 
     public void endDialogue()
     {
         _scriptRunning = false;
-        
-        // Check if it was this script that stopped the player moving.
-        if (stopPlayerMoving)
-        {
-            // If so let them move again.
-            _playerController.immobile = false;
-            _interactBtn.resetBtn(gameObject);
-        }
 
         speechBubble.gameObject.SetActive(false);
         //gameObject.SetActive(false);

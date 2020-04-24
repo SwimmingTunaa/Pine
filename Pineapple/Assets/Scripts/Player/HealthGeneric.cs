@@ -5,7 +5,6 @@ using UnityEngine;
 public class HealthGeneric : MonoBehaviour {
 
 	public float health = 2;
-	public float healthRecoverTime;
 	public bool dead = false;
 	[HideInInspector] public float startHealth;
 	

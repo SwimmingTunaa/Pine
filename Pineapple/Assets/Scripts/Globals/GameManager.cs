@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("Game UI")]
     public TextMeshProUGUI distanceText;
     public TextMeshProUGUI stickersText; 
+    public EventTrigger jumpEventTrigger;
 
     [Header("Chaser")]
     public GameObject chaser;
@@ -31,8 +35,11 @@ public class GameManager : MonoBehaviour
     public static PlayerController _player;
     private Rigidbody2D _playerRb;
     private Vector2 _playerCachedPos;
+    private GameObject _trackedPosition;
     private float _timer;
     private bool _gameover;
+    private PlayerHealth _playerHealth;
+    private static Animator _playerAnim;
 
     void Awake()
     {
@@ -40,29 +47,40 @@ public class GameManager : MonoBehaviour
         Statics.DistanceTraveled = 0;
         Statics.currentDifficultyLevel = 0;
         Statics.paused = true;
-        ////////////////////////////
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        Time.timeScale = 1;
+        //InitialisePlayer();
+    }
+
+    public void InitialisePlayer()
+    {
+        //Debug.Log("GM: " + CharacterManager.activeCharacter.name);
+        _player = CharacterManager.activeCharacter.GetComponent<PlayerController>();
+        _playerHealth = CharacterManager.activeCharacter.GetComponent<PlayerHealth>();
+        _playerAnim = CharacterManager.activeCharacter.GetComponentInChildren<Animator>();
+        _trackedPosition = _player.gameObject;
         _playerCachedPos = _player.transform.position;
         _playerRb = _player.GetComponent<Rigidbody2D>();
-        Time.timeScale = 1;
-        //PlayerPrefs.DeleteAll();
+        followVirtualCamera.Follow = _player.cameraFollowTarget;
+        stopVirutalCameara.Follow = _player.cameraFollowTarget;
     }
 
     void FixedUpdate()
     {
-        Statics.DistanceTraveled = Mathf.RoundToInt(Vector2.Distance(_playerCachedPos, _player.transform.position));
+        Statics.DistanceTraveled = Mathf.RoundToInt(Vector2.Distance(_playerCachedPos, _trackedPosition.transform.position));
         distanceText.text = Statics.DistanceTraveled .ToString()+"m";
         stickersText.text = stats.stickerCollected.ToString();
         if(!Statics.paused)
         {
-            SpawnChaser();
-            StartCoroutine(Gameover());
+            if(!_playerHealth.dead) 
+            {
+                SpawnChaser();
+            }
+            else Gameover();    
         }
     }
 
     public static void pauseGame(bool enable)
     {
-        //Time.timeScale = 0; // TODO: Not sure if this is correct. Something about timescale pausing all scripts and everything?
         float tempCurrentSpeed = _player.speed;
         DisablePlayerInput(enable);
         Statics.paused = enable;
@@ -70,8 +88,14 @@ public class GameManager : MonoBehaviour
 
     public static void DisablePlayerInput(bool enabled)
     {
+        _playerAnim.SetBool("Sit", enabled);
         _player.enabled = !enabled;
         _player.jumpable = !enabled;
+    }
+
+    public void CharacterJump(bool triggered)
+    {
+        _player.OnPointerPressed(triggered);
     }
 
     bool Timer(float interval)
@@ -85,26 +109,32 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    IEnumerator Gameover()
+    void Gameover()
     {
-        if(_player.GetComponent<HealthGeneric>().dead && !_gameover)
+        //change the camera to follow the furtherst part
+        followVirtualCamera.Follow = _playerHealth.FindFurthestBodyPart();
+        //change what the tracked object for distance is
+        _trackedPosition = followVirtualCamera.Follow.gameObject;
+        if(_playerHealth.BodyPartsStopMoving())
         {
-            _gameover = true;
-            yield return new WaitForSeconds(2f);
-            pauseGame(true);
-            gameoverUIBody.SetActive(true);
-            finalScore.text = distanceText.text;
-            distanceText.gameObject.SetActive(false);
-            //set Stickers collected in this round
-            gameoverStickerText.text = stats.stickerCollected.ToString() + " x 10";
-            //the total amount of stickers the player has
-            stats.AddStickersToTotalOwnedAmount();
-            totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
-            gameOverFinalScore.text = stats.currentScore.ToString();
-            gameOverTotalScore.text = (stats.currentScore + (stats.stickerCollected * 10) + Statics.DistanceTraveled).ToString();
-            //update stats part
-            stats.AddStickersToTotalEverCollected();
-            stats.UpdateFurthestDistanceTravelled();
+            if(!_gameover)
+            {
+                _gameover = true;
+                pauseGame(true);
+                gameoverUIBody.SetActive(true);
+                finalScore.text = distanceText.text;
+                distanceText.gameObject.SetActive(false);
+                //set Stickers collected in this round
+                gameoverStickerText.text = stats.stickerCollected.ToString() + " x 10";
+                //the total amount of stickers the player has
+                stats.AddStickersToTotalOwnedAmount();
+                totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
+                gameOverFinalScore.text = stats.currentScore.ToString();
+                gameOverTotalScore.text = (stats.currentScore + (stats.stickerCollected * 10) + Statics.DistanceTraveled).ToString();
+                //update stats part
+                stats.AddStickersToTotalEverCollected();
+                stats.UpdateFurthestDistanceTravelled();  
+            }
         }
     }
 
@@ -120,8 +150,11 @@ public class GameManager : MonoBehaviour
                 tomatoWarningBubble.SetActive(true);
                 _timer = 0;
             } 
+            if(!_playerHealth.dead)
+            {
                 followVirtualCamera.gameObject.SetActive(false);
-                stopVirutalCameara.gameObject.SetActive(true);        
+                stopVirutalCameara.gameObject.SetActive(true);   
+            }     
         }
         else if(tomatoWarningBubble.activeInHierarchy  && !chaser.activeInHierarchy)
         {

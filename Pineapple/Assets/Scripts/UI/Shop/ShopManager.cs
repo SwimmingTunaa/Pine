@@ -44,6 +44,22 @@ public class ShopManager : MonoBehaviour
             insufficientFundButton.SetActive(true);
     }
 
+       public void OpenConfirmationCharacter(ShopItem shopItem)
+    {
+        if(PlayerPrefs.GetInt("TotalStickers") - shopItem.itemCost >= 0)
+        {
+            confirmationBody.SetActive(true);
+            //add the method to the onclick event
+            confirmButton.onClick.AddListener(() => shopItem.IncreaseItemLevel());
+            cancelButton.onClick.AddListener(()=> CloseConfirmation(shopItem.itemName));
+            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemName)",shopItem.itemName);
+            //converts the item cost to string and then add commas to the thousandth
+            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemCost)",shopItem.itemCost.ToString());
+        }
+        else
+            insufficientFundButton.SetActive(true);
+    }
+
     public void CloseConfirmation(string itemName)
     {
         confirmationBody.SetActive(false);

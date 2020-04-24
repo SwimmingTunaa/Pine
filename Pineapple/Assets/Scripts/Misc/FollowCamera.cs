@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-    public GameObject player;
     void Update()
     {
-        this.transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        this.transform.position = !CharacterManager.activeCharacter.GetComponent<PlayerHealth>().dead ? new Vector3(CharacterManager.activeCharacter.transform.position.x, transform.position.y, transform.position.z) :
+       new Vector3(CharacterManager.activeCharacter.GetComponent<PlayerHealth>().FindFurthestBodyPart().gameObject.transform.position.x, transform.position.y, transform.position.z);
     }
 }

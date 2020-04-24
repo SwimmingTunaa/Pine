@@ -7,19 +7,27 @@ public class SelfDamage : HealthGeneric
     public Sprite crackedWood;
     public GameObject deathEffect;
     public AudioClip deathSound;
-
+    public static bool isOpened;
+    public float delayTime = 0.5f;
+    
+    void OnEnable()
+    {
+        if(isOpened)
+            gameObject.SetActive(false);
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
-            GetComponent<HealthGeneric>().TakeDamage(1);            
+            TakeDamage(1); 
+            isOpened = true;           
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("Player") && health == 0)
         {
-            StartCoroutine(delayTurnOff(false));
+            StartCoroutine(delayTurnOff(false, delayTime));
         }
     }
     public override void TakeDamage(float damage)
@@ -34,13 +42,12 @@ public class SelfDamage : HealthGeneric
         }
     }
 
-    IEnumerator delayTurnOff(bool active)
+    IEnumerator delayTurnOff(bool active, float delayTime)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(delayTime);
         deathEffect.SetActive(!active);
         gameObject.SetActive(active);
         GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>().PlayOneShot(deathSound);
         Instantiate(deathEffect, transform.position, transform.rotation);
-        
     } 
 }

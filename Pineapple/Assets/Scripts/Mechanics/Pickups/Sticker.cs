@@ -5,11 +5,14 @@ using TMPro;
 
 public class Sticker : Item
 {
+    [Header("Sticker")]
     public int value;
     public GameObject deathEffect;
     private StatsManager sm;
     [HideInInspector] public GameObject moveToTarget;
     [HideInInspector] public bool move;
+    private GameManager effectParentObj;
+
 
     void Start()
     {
@@ -19,15 +22,15 @@ public class Sticker : Item
     }
     void OnEnable()
     {
+        deathEffect.transform.SetParent(this.gameObject.transform);
+        deathEffect.transform.position = this.gameObject.transform.position;
         gameObject.SetActive(true);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if((other.CompareTag("Player") || other.CompareTag("Hair")) && triggerAmount > 0)
-        {
+        if(triggerAmount > 0 && other.CompareTag("Player"))
             DoAction(other.gameObject);
-        }
     }
 
     void Update()
@@ -40,8 +43,14 @@ public class Sticker : Item
 
     public override void DoAction(GameObject player)
     {
-        if(sm != null && !sm.gameObject.GetComponent<AudioSource>().isPlaying)
-            sm.gameObject.GetComponent<AudioSource>().PlayOneShot(itemObject.pickUpSound);
+        if(sm != null)
+        {
+            AudioSource a = sm.gameObject.GetComponent<AudioSource>();
+            a.Stop();
+            a.PlayOneShot(itemObject.pickUpSound);
+        }
+        deathEffect.SetActive(true);
+        deathEffect.transform.parent = null;
         sm.stickerCollected += value;
         move = false;
         base.DoAction(player);

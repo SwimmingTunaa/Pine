@@ -5,8 +5,6 @@ using TMPro;
 
 public class StatsManager: MonoBehaviour
 {
-    public List<string> trackedItems = new List<string>();
-
     public int currentScore;
     public int stickerCollected;
     public int couchBounced;
@@ -20,8 +18,6 @@ public class StatsManager: MonoBehaviour
 
     void Awake()
     {
-        foreach(string s in trackedItems)
-            PlayerPrefs.GetInt(s);
         Initialise();
     }
 
@@ -64,7 +60,7 @@ public class StatsManager: MonoBehaviour
     {
         int totalAmount = PlayerPrefs.GetInt(statName) + amount;
         PlayerPrefs.SetInt(statName, totalAmount);
-        Debug.Log("Added 1 to " + statName + ". Total now = " + PlayerPrefs.GetInt(statName));
+        //Debug.Log("Added 1 to " + statName + ". Total now = " + PlayerPrefs.GetInt(statName));
     }
 
     public void AddToScore(int amount, string scoreText)

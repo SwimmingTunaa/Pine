@@ -28,7 +28,8 @@ public class LevelProgressionSystem : MonoBehaviour
     void Start()
     {
         _currentCheckpoint = PlayerPrefs.GetInt("FirstTimeStart")<1 ? 40f: speedCheckpointDistance;
-        Debug.Log(PlayerPrefs.GetInt("FirstTimeStart"));
+        Debug.Log(_currentCheckpoint);
+        //Debug.Log(PlayerPrefs.GetInt("FirstTimeStart"));
     }
 
     // Update is called once per frame
@@ -49,15 +50,16 @@ public class LevelProgressionSystem : MonoBehaviour
     void DifficultyIncrease()
     {
         //increases players speed overtime
-        if(Statics.DistanceTraveled  > _currentCheckpoint && GameManager._player.speed < GameManager._player.MaxSpeed)
+        if(Statics.DistanceTraveled  > _currentCheckpoint && GameManager._player.speed < GameManager._player.maxSpeed)
         {
             _currentCheckpoint = Statics.DistanceTraveled + speedCheckpointDistance;
             Debug.Log("Checkpoint: " + _currentCheckpoint);
             GameManager._player.speed += speedIncreaseAmount;
+            Debug.Log("player speed is: " + GameManager._player.speed);
             //Debug.Log("Speed increased. <color=red>The new speed is: </color>"  + _player.speed +  " || <color=blue>The next checkpoint is: </color>"  + _currentCheckpoint+"m");
         }
         //Debug.Log("Lvl " + difficultyLvl);
-        if(difficultyLvl == 3) return;
+        //if(difficultyLvl == 3) return;
         
         if(CheckDistanceAndLevel(lvl1Checkpoint, 0))
         {
@@ -69,7 +71,7 @@ public class LevelProgressionSystem : MonoBehaviour
         if(CheckDistanceAndLevel(lvl2Checkpoint, 1))
         {
             SetDifficulty(2, 15f, 20f);
-            masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.leveltwo;
+            masterSpawner.obstacleSpawner.UpdateLevelConfig(masterSpawner.obstacleSpawner.levelConfig.leveltwo);
             StartCoroutine(masterSpawner.projectileSpawner.RandomSpawnType());
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.35f,0.20f,0.45f);
             masterSpawner.ChangeSpawnerTypeChance(0.3f, 0.7f);
@@ -81,7 +83,7 @@ public class LevelProgressionSystem : MonoBehaviour
             SetDifficulty(3, 12f, 18f);
             //TODO: different spawn pool
             masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.2f,0.1f);
-            masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.levelthree;
+           masterSpawner.obstacleSpawner.UpdateLevelConfig(masterSpawner.obstacleSpawner.levelConfig.levelthree);
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0.1f,0.1f);
             masterSpawner.ChangeSpawnerTypeChance(0.2f, 0.8f);
             masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,4);
@@ -100,12 +102,12 @@ public class LevelProgressionSystem : MonoBehaviour
                 {
                    masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0, 0,1f); 
                 }
-            masterSpawner.obstacleSpawner.currentLevelConfig = masterSpawner.obstacleSpawner.levelConfig.levelthree;
+            masterSpawner.obstacleSpawner.UpdateLevelConfig(masterSpawner.obstacleSpawner.levelConfig.levelthree);
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0f,0.2f);
             masterSpawner.ChangeSpawnerTypeChance(0.1f, 0.9f);
             //Changing Projectile spawner settings
             masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,5);
-            masterSpawner.projectileSpawner.warningTimer = 2f;
+            masterSpawner.projectileSpawner.warningTimer = 1f;
             masterSpawner.projectileSpawner.disableOSpawnerTimer = 1.5f;
             //////////////////////////////////////
             masterSpawner.minSpawnAmount += 1;

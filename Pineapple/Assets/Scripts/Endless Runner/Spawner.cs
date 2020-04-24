@@ -10,9 +10,9 @@ public abstract class Spawner : MonoBehaviour
 
     public Vector2 GetNextSpawnPos(SpriteRenderer previousSpawnSPos, SpriteRenderer nextSpawn)
     {
-        Vector2 newSpawnPos = new Vector2((previousSpawnSPos.transform.position.x + (previousSpawnSPos.sprite.bounds.extents.x * previousSpawnSPos.gameObject.transform.localScale.x))
-                                             + (nextSpawn.sprite.bounds.extents.x * nextSpawn.transform.localScale.x),
-                                             previousSpawnSPos.transform.position.y);
+        float previousX = (previousSpawnSPos.size.x/2 * previousSpawnSPos.gameObject.transform.localScale.x);
+        float nextX = (nextSpawn.size.x/2 * nextSpawn.transform.localScale.x);
+        Vector2 newSpawnPos = new Vector2((previousSpawnSPos.transform.position.x + previousX) + nextX, previousSpawnSPos.transform.position.y);
         return newSpawnPos;
     }
 

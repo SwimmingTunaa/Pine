@@ -36,10 +36,6 @@ public abstract class ShopItem : MonoBehaviour
         _startCost = itemCost;
         Initialise();
     }
-    void Start()
-    {
-        //_currentText = _confirmButtonText.text;
-    }
 
     public virtual void Initialise()
     {
@@ -53,6 +49,7 @@ public abstract class ShopItem : MonoBehaviour
         UpdateText();
         CompletedItem();
     }
+
     #region //old Code
     
     /*public void UpgradeTimer(PickUpsBase p)
@@ -114,7 +111,7 @@ public abstract class ShopItem : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log(itemName + " enabled");
+        //Debug.Log(itemName + " enabled");
         Initialise();
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstaclePool : ObjectPools
 {
-    public Enums.ObstacleSpawnPoint spawnPoint;
+    public Enums.ObstacleSpawnPoint spawnPointChoice;
 
     
 }

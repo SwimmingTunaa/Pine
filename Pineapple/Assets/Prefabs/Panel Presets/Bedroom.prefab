@@ -328,8 +328,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 126182293
   m_BackSortingLayerID: 126182293
-  m_FrontSortingLayer: 7
-  m_BackSortingLayer: 7
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 35
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 1
@@ -360,7 +360,7 @@ Transform:
   m_GameObject: {fileID: 8975136868009301383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 58892645}
   m_RootOrder: 0
@@ -400,14 +400,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 126182293
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 30a2bd88d394da44cb5523b704e3eeef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 9.17, y: 5.65}
+  m_DrawMode: 1
+  m_Size: {x: 14, y: 5.65}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -28,10 +28,10 @@ public class PuncherPickup : PickUpsBase
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") && triggerAmount >= 1)
+        if(triggerAmount >= 1)
         {
-            _health = other.gameObject.GetComponent<PlayerHealth>();
-            DoAction(other.gameObject);
+            _health = other.gameObject.GetComponentInParent<PlayerHealth>();
+            DoAction(_health.gameObject);
         }
     }
 

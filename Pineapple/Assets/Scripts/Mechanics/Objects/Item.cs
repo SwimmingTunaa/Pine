@@ -43,5 +43,6 @@ public class Item : Interactable
             Instantiate(itemObject.deathFX,transform.position,transform.rotation);
         
         gameObject.SetActive(false);
+        triggerAmount = 1;
     }
 }

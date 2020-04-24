@@ -2,22 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     public bool startPaused;
     public GameObject gameUI;
     public DialogueSequence dialogue;
-    public TextMeshProUGUI furthestTravelled;
-    public TextMeshProUGUI mostStickersCollected;
-    public TextMeshProUGUI totalStickers;
-    public Animator playerAnim;
+    public Button PlayButton;
 
     void Start()
     {
         MainMenuDefualt(startPaused);
-        furthestTravelled.text = PlayerPrefs.GetInt("LongestDistanceTravelled").ToString() + "m";
-        mostStickersCollected.text = PlayerPrefs.GetInt("StickersCollected").ToString();
         //totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
     }
 
@@ -28,11 +24,13 @@ public class MainMenu : MonoBehaviour
 
     public void MainMenuDisable(float waitTime)
     {
+        PlayButton.interactable = false;
         StartCoroutine(MainMenuWait(false, waitTime));
     }
 
     public IEnumerator MainMenuWait(bool enable, float waitTime)
     {
+        Debug.Log(waitTime);
         yield return new WaitForSeconds(waitTime);
         MainMenuDefualt(enable);
     }

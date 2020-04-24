@@ -25,16 +25,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175922566}
-  m_LocalRotation: {x: -0, y: -0, z: 0.29431728, w: 0.9557078}
+  m_LocalRotation: {x: -0, y: -0, z: 0.26814342, w: 0.963379}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4843152, y: 0.4843152, z: 0.4843152}
+  m_LocalScale: {x: 0.58626354, y: 0.58626354, z: 0.58626354}
   m_Children: []
   m_Father: {fileID: 4947600216400792369}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 34.233}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 31.108002}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -177, y: 3.1}
+  m_AnchoredPosition: {x: -224.2, y: 3.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &175922569
@@ -334,14 +334,14 @@ RectTransform:
   m_GameObject: {fileID: 690959173182401905}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2.225, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2008939725934540352}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 0.9375, y: 0.75}
-  m_AnchoredPosition: {x: 1.9898682, y: 0.01}
+  m_AnchoredPosition: {x: 1.9898682, y: 0.010000229}
   m_SizeDelta: {x: 3.97, y: 0.522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2187789359297072715
@@ -415,7 +415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25.5, y: 18.4}
+  m_AnchoredPosition: {x: -80.9, y: 18.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6247515818030488978
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001623483793756740}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -648,7 +648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 139.6, y: 23.6}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 69.84, y: 13.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6866194241105022392
@@ -776,7 +776,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -12.99, y: 3.7000046}
-  m_SizeDelta: {x: 405.58, y: 87.7}
+  m_SizeDelta: {x: 538.51, y: 87.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6161080172824880895
 CanvasRenderer:
@@ -799,14 +799,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3557761, g: 0.6132076, b: 0.5445592, a: 1}
+  m_Color: {r: 0.45882356, g: 0.8196079, b: 0.72156864, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300002, guid: 30a2bd88d394da44cb5523b704e3eeef, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -842,7 +842,7 @@ RectTransform:
   m_GameObject: {fileID: 3501084570604197182}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2.225, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1374554325448531855}
   m_RootOrder: 1
@@ -915,7 +915,7 @@ RectTransform:
   m_GameObject: {fileID: 5145100514788862420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.001, y: 2.001, z: 2.001}
   m_Children:
   - {fileID: 2008939725934540352}
   m_Father: {fileID: 5683712513301320004}
@@ -923,7 +923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60.29999, y: 0}
+  m_AnchoredPosition: {x: 121.3, y: 22.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5234239855180511206
@@ -962,7 +962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60.3, y: 0}
+  m_AnchoredPosition: {x: -27.4, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5562044309759160117
@@ -975,7 +975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5683712513301320004}
   - component: {fileID: 160068282290605794}
-  - component: {fileID: 1770608499}
+  - component: {fileID: 5177973688369320540}
   m_Layer: 5
   m_Name: Item Display
   m_TagString: Untagged
@@ -1101,7 +1101,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1770608499
+--- !u!114 &5177973688369320540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1114,8 +1114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopManager: {fileID: 0}
-  itemName: Sticker Magnet
-  itemCost: 250
+  itemName: Sticker Magnet Timer
+  itemCost: 300
   costIncrement: 250
   itemInGame:
   - {fileID: 0}
@@ -1163,7 +1163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 199.70001, y: 0}
+  m_AnchoredPosition: {x: 294.5, y: 0}
   m_SizeDelta: {x: 112.6, y: 69.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3294954389338257413
@@ -1221,7 +1221,7 @@ MonoBehaviour:
         m_MethodName: OpenConfirmation
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1770608499}
+          m_ObjectArgument: {fileID: 5177973688369320540}
           m_ObjectArgumentAssemblyTypeName: ShopItem, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 1
@@ -1307,8 +1307,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300002, guid: 30a2bd88d394da44cb5523b704e3eeef, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1343,7 +1343,7 @@ RectTransform:
   m_GameObject: {fileID: 8031384926322992912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2.225, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1374554325448531855}
   m_RootOrder: 0
@@ -1575,7 +1575,7 @@ RectTransform:
   m_GameObject: {fileID: 8970649111197203324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.36667687, y: 0.36667687, z: 0.36667687}
+  m_LocalScale: {x: 0.20400435, y: 0.20400435, z: 0.20400435}
   m_Children: []
   m_Father: {fileID: 1374554325448531855}
   m_RootOrder: 2
@@ -1741,7 +1741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25.5, y: -17}
+  m_AnchoredPosition: {x: -80.90002, y: -17}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8203575495475305138
@@ -1772,9 +1772,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Increase the duration of the sticker magnet.
+  m_text: 'Increase the duration of the Sticker Magnet!
 
-    Get more of them stickers!'
+    Attract all of those stickers!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3fba733f13457e649a0cd661d12603da, type: 2}
   m_sharedMaterial: {fileID: -725233196992196533, guid: 3fba733f13457e649a0cd661d12603da,
@@ -1841,10 +1841,10 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -100.63632, w: 9.539751}
+  m_margin: {x: 0, y: 0, z: -217.58296, w: 9.539751}
   m_textInfo:
     textComponent: {fileID: 1580547085452403507}
-    characterCount: 71
+    characterCount: 75
     spriteCount: 0
     spaceCount: 11
     wordCount: 12

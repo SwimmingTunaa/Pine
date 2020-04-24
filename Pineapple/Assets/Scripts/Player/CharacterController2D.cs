@@ -3,7 +3,8 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-	public float m_JumpForce = 400f;							// Amount of force added when the player jumps.
+	public float m_JumpForce = 400f;	// Amount of force added when the player jumps.
+	public float doubleJumpForce;						
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private float m_fallMulitplier = 2.5f;
@@ -20,6 +21,7 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	public bool canDoubleJump;
 	public bool flippable;
 
 	[Header("Events")]
@@ -47,9 +49,10 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if(m_Grounded) canDoubleJump = true;
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
-
+	
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
 		Collider2D[] colliders = Physics2D.OverlapBoxAll(m_GroundCheck.position, _GroundedBoxSize, 0, m_WhatIsGround);
@@ -64,9 +67,9 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 		//make the player fall faster and jump higher if button is held
-		if(m_Rigidbody2D.velocity.y < 0)
+		if(m_Rigidbody2D.velocity.y < 0 && canDoubleJump)
 			m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (m_fallMulitplier - 1) * Time.fixedDeltaTime;
-		else if(m_Rigidbody2D.velocity.y > 0 && !PlayerController.jumpPressed)
+		else if(m_Rigidbody2D.velocity.y > 0 && !PlayerController.jumpPressed || !canDoubleJump)
 			m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (m_lowJumpMulitplier - 1) * Time.fixedDeltaTime;
 	}
 
@@ -148,8 +151,15 @@ public class CharacterController2D : MonoBehaviour
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce * multiplier), ForceMode2D.Impulse);
-			
+			float newJumpForce = m_JumpForce * multiplier;
+			m_Rigidbody2D.AddForce(new Vector2(0f, newJumpForce), ForceMode2D.Impulse);
+		}
+		else if(canDoubleJump)
+		{
+			m_Grounded = false;
+			canDoubleJump = false;
+			float newJumpForce = doubleJumpForce * multiplier;
+			m_Rigidbody2D.AddForce(new Vector2(10f, newJumpForce), ForceMode2D.Impulse);
 		}
 	}
 

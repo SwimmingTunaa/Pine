@@ -33,7 +33,6 @@ public class Damage : MonoBehaviour
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>().PlayOneShot(hitSoundEffect);
             if(destroyAfterDamage)
             {
-                Debug.Log(collision);
                 var newRot = Quaternion.Euler(0, 0, -Vector3.Angle(GetComponent<Rigidbody2D>().velocity, -collision.GetContact(0).normal));
                 Instantiate(hitEffect, collision.GetContact(0).point,newRot);
                 gameObject.GetComponent<ObjectID>().Disable();
