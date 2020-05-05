@@ -53,10 +53,9 @@ public class LevelProgressionSystem : MonoBehaviour
         if(Statics.DistanceTraveled  > _currentCheckpoint && GameManager._player.speed < GameManager._player.maxSpeed)
         {
             _currentCheckpoint = Statics.DistanceTraveled + speedCheckpointDistance;
-            Debug.Log("Checkpoint: " + _currentCheckpoint);
+//            Debug.Log("Checkpoint: " + _currentCheckpoint);
             GameManager._player.speed += speedIncreaseAmount;
-            Debug.Log("player speed is: " + GameManager._player.speed);
-            //Debug.Log("Speed increased. <color=red>The new speed is: </color>"  + _player.speed +  " || <color=blue>The next checkpoint is: </color>"  + _currentCheckpoint+"m");
+            //Debug.Log("Speed increased. <color=red>The new speed is: </color>"  + GameManager._player.speed +  " || <color=blue>The next checkpoint is: </color>"  + _currentCheckpoint+"m");
         }
         //Debug.Log("Lvl " + difficultyLvl);
         //if(difficultyLvl == 3) return;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2844681211913572906}
   - component: {fileID: 2309616322033859557}
   - component: {fileID: 4624010219132840465}
+  - component: {fileID: 1598059126}
   m_Layer: 18
   m_Name: StickerMagnet Pickup
   m_TagString: PickUps
@@ -147,8 +148,8 @@ MonoBehaviour:
   pickUpSound: {fileID: 8300000, guid: 1705df466e01a9b49ac546cad6a75123, type: 3}
   deathFX: {fileID: 0}
   effectDuration: 8
-  itemMaxLevel: 1
-  _initialDuration: 0
+  itemMaxLevel: 5
+  _initialDuration: 8
   _timerActive: 0
   effectRadius: 4
   transitionSpeed: 1.5
@@ -170,6 +171,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.42
+--- !u!114 &1598059126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444876811940292258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787c888dd1ea22a4e9601c74dc60c522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 3
+  parentPool: {fileID: 0}
 --- !u!1 &720319584918440013
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviour
     public StatsManager stats;
     [Header("Game UI")]
     public TextMeshProUGUI distanceText;
-    public TextMeshProUGUI stickersText; 
-    public EventTrigger jumpEventTrigger;
+    public TextMeshProUGUI stickersText;
 
     [Header("Chaser")]
     public GameObject chaser;

@@ -42,7 +42,11 @@ public class MasterSpawner : Spawner
         spawnInterval = Statics.DistanceTraveled + _randomInterval;
         Debug.Log("Spawn Amount: " + _spawnAmount);
         if(Statics.playerRestartedGame)
-            ChangeSpawnAmount(1);
+        {
+            _spawnAmount = 0;
+            _rewardAmount = 2;
+        }
+           
     }
 
     void OnEnable()
@@ -71,7 +75,8 @@ public class MasterSpawner : Spawner
                 }
                 return;
             }
-    
+            Debug.Log("Spawn amount: " + _spawnAmount);
+            Debug.Log("Reward Spawn amount: " + _rewardAmount);
             if(_spawnAmount > 0)
             {
                 _spawnAmount--;
@@ -80,8 +85,7 @@ public class MasterSpawner : Spawner
                     //set how many rewards to spawn in
                     _rewardAmount = Random.Range(minRewardAmount, maxRewardAmount);
                     pickUpSpawned = 0;
-                }
-                    
+                }    
                 SpawnType(_challengeSpawnerList);
             }
             else if(_spawnAmount <=0 && _rewardAmount > 0)

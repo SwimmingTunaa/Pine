@@ -159,6 +159,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			canDoubleJump = false;
 			float newJumpForce = doubleJumpForce * multiplier;
+			m_Rigidbody2D.velocity = Vector2.zero;
 			m_Rigidbody2D.AddForce(new Vector2(10f, newJumpForce), ForceMode2D.Impulse);
 		}
 	}

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class PuncherPickup : PickUpsBase
 {
     [Header("Puncher")]
@@ -30,6 +30,7 @@ public class PuncherPickup : PickUpsBase
     {
         if(triggerAmount >= 1)
         {
+            triggerAmount--;
             _health = other.gameObject.GetComponentInParent<PlayerHealth>();
             DoAction(_health.gameObject);
         }
@@ -41,8 +42,7 @@ public class PuncherPickup : PickUpsBase
         {
             DisablePickUp();
             Debug.Log("Disable Glove");
-        }
-            
+        }        
     }
 
     public override void DoAction(GameObject player)
@@ -68,6 +68,7 @@ public class PuncherPickup : PickUpsBase
     {
         if(_sfxActive)
         {
+            vfxCamera.GetComponent<CinemachineVirtualCamera>().Follow = CharacterManager.activeCharacter.transform;
             mainCam.SetActive(false);
             vfxCamera.SetActive(true);
             //Pause player and everything else
@@ -76,8 +77,9 @@ public class PuncherPickup : PickUpsBase
             WaitForSecondsRT wait = new WaitForSecondsRT(0.5f);
             while(_sfxActive)
             {
+                _anim = CharacterManager.activeCharacter.GetComponentInChildren<Animator>();
+                outfit = CharacterManager.activeCharacter.GetComponent<Outfits>().outfit.puncherOutfit;
                 //shows face change
-                _anim = player.GetComponentInChildren<Animator>();
                 _anim.SetBool("Fierce", enableEffect);
                 yield return wait.NewTime(0.2f);
                 //play the transform animation
@@ -97,8 +99,8 @@ public class PuncherPickup : PickUpsBase
 
                 puncherObj.SetActive(enableEffect);
                 outfit.SetActive(enableEffect);
-                outfit.transform.parent = player.GetComponent<PlayerController>().playerItemSlots.bodySlot;
-                outfit.transform.position = player.GetComponent<PlayerController>().playerItemSlots.bodySlot.position;
+                //outfit.transform.parent = player.GetComponent<PlayerController>().playerItemSlots.bodySlot;
+                //outfit.transform.position = player.GetComponent<PlayerController>().playerItemSlots.bodySlot.position;
                 if(!enableEffect)
                 {
                     if(_health.health > 1)
@@ -106,7 +108,6 @@ public class PuncherPickup : PickUpsBase
                     _effectActive = false;
                     GetComponent<ObjectID>().Disable();
                 }
-                  
                 _sfxActive = false;
             }
         }
