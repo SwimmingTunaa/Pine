@@ -37,7 +37,7 @@ public class Sticker : Item
     {
         if(move)
         {
-            moveStickerToTarget(GameManager._player.gameObject, 9f);
+            moveStickerToTarget(CharacterManager.activeCharacter, 9f);
         }
     }
 

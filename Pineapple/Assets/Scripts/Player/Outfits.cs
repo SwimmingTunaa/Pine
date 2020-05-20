@@ -5,5 +5,6 @@ using UnityEngine;
 
 public class Outfits: MonoBehaviour
 {
+    public Transform powerUpEffectSpawnPoint;
     public OutfitConfig outfit; 
 }

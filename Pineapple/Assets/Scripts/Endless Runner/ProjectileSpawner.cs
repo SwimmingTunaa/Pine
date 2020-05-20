@@ -56,7 +56,7 @@ public class ProjectileSpawner : Spawner
                 SpawnLine();
             break;
             case SpawnType.wave:
-                StartCoroutine(SpawnWave());
+                StartCoroutine(SpawnWaveHoming());
             break;
         }
         yield return new WaitForSeconds(disableOSpawnerTimer);
@@ -67,7 +67,6 @@ public class ProjectileSpawner : Spawner
     {
         int r = (int)Random.Range(spawnAmount.x,spawnAmount.y);
         float yPos = _newY;
-        float intialYPos = yPos;
         for(int i = 0; i < r; i++)
         {
             StartCoroutine(SpawnObject(yPos));
@@ -89,6 +88,16 @@ public class ProjectileSpawner : Spawner
         }
     }
 
+    public IEnumerator SpawnWaveHoming()
+    {
+        int r = (int)Random.Range(spawnAmount.x,spawnAmount.y);
+        for(int i = 0; i < r; i++)
+        { 
+           StartCoroutine(SpawnObject(CharacterManager.activeCharacter.transform.position.y));
+           yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
     IEnumerator SpawnObject(float yPos)
     {
         _halfHeight = _camera.orthographicSize;
@@ -97,6 +106,7 @@ public class ProjectileSpawner : Spawner
         projectilePool.spawnedObjectPool.Remove(o);
         //wait for this Warning to finish then continue
         yield return StartCoroutine(Warning(o,yPos));
+        //reset trailrenderer
         o.GetComponentInChildren<TrailRenderer>().Clear();
         o.SetActive(true);
         o.transform.position = new Vector3(Camera.main.transform.position.x + _halfWidth, yPos, transform.position.z);

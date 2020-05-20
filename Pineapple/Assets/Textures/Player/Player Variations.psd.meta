@@ -35,6 +35,21 @@ TextureImporter:
   - first:
       213: 8268489473007983171
     second: Kiwi Blue Shorts
+  - first:
+      213: 5803212287241616462
+    second: Kiwi_Sad
+  - first:
+      213: -6785977505279413722
+    second: Kiwi_Surprised
+  - first:
+      213: 8912906432631704465
+    second: Kiwi_Scared
+  - first:
+      213: -2061107555408407933
+    second: Kiwi_Angry
+  - first:
+      213: -3034889304175677951
+    second: Kiwi_Fierce
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -93,7 +108,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -104,7 +119,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -115,7 +130,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -354,6 +369,111 @@ TextureImporter:
       bones: []
       spriteID: c08c9c23121702e46babe1e4011a9c82
       internalID: 8268489473007983171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kiwi_Sad
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 1553
+        width: 80
+        height: 88
+      alignment: 9
+      pivot: {x: 0.53509676, y: 0.5372231}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44d3c6f6db591e247b6f300008c716c8
+      internalID: 5803212287241616462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kiwi_Surprised
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 1545
+        width: 74
+        height: 95
+      alignment: 9
+      pivot: {x: 0.5114544, y: 0.5773283}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7b5d4c62f82ada4092fce4ed06bcce1
+      internalID: -6785977505279413722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kiwi_Scared
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 1560
+        width: 71
+        height: 106
+      alignment: 9
+      pivot: {x: 0.5238772, y: 0.37738612}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e5224cf900e7994682ae6cb395ba8aa
+      internalID: 8912906432631704465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kiwi_Angry
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 1559
+        width: 74
+        height: 101
+      alignment: 9
+      pivot: {x: 0.50936145, y: 0.40768462}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8fe668590fa336419f3e67fb9a06c9c
+      internalID: -2061107555408407933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kiwi_Fierce
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 1566
+        width: 76
+        height: 82
+      alignment: 9
+      pivot: {x: 0.51421076, y: 0.41658577}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38cf5a7e9b9c1ac45bc7171ac5cab5fb
+      internalID: -3034889304175677951
       vertices: []
       indices: 
       edges: []

@@ -37,7 +37,7 @@ public class Item : Interactable
             _inventory.AddItem(itemObject);
 
         //Only plays these if they are not null
-        if(itemObject.pickUpSound)
+        if(itemObject.pickUpSound && GetComponent<AudioSource>().isActiveAndEnabled)
             GetComponent<AudioSource>().PlayOneShot(itemObject.pickUpSound);
         if(itemObject.deathFX)
             Instantiate(itemObject.deathFX,transform.position,transform.rotation);

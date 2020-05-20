@@ -16,8 +16,7 @@ public class PanelDestroyer : MonoBehaviour
             {
                 pSpawner.SpawnSets();
             }
-            
-            id.Disable();
+            if(!id.selfDestroy) id.Disable();
         }
     }
 }

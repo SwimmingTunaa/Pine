@@ -29,14 +29,6 @@ public class Puncher : MonoBehaviour
     }
    void OnTriggerStay2D(Collider2D other)
    {
-       /*if(other.GetComponent<ObjectID>() != null)
-       {
-            if(!_activateSpring &&other.GetComponent<ObjectID>().objectType == ObjType.Obstacle)
-            {
-                _activateSpring = true;
-                _targetGameObject = other.gameObject;
-            }
-       }*/
         _activateSpring = true;
         _targetGameObject = other.gameObject;
    }
@@ -51,6 +43,7 @@ public class Puncher : MonoBehaviour
         if(_activateSpring) 
             StretchSpring(_targetGameObject);
     }
+
    void StretchSpring(GameObject target)
    {
         //stop the spring from extending once the destination is reached
@@ -63,9 +56,7 @@ public class Puncher : MonoBehaviour
             if(target.GetComponent<ObjectID>() != null)
                 target.GetComponent<ObjectID>().Disable();
             else
-            {
                 target.SetActive(false);
-            }
             _anim.GetComponentInParent<AudioSource>().PlayOneShot(killSoundEffect);
        }
        //retract the spring

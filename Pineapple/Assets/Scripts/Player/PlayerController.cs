@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
     }
     public void OnPointerPressed(bool triggered)
     {
-        Debug.Log("Jumped Pressed");
         if(triggered && !pausePlayer)
             setJump(1f); // was character controller
         jumpPressed = triggered;

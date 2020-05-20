@@ -51,9 +51,11 @@ public class PickUpsBase : MonoBehaviour
     }
     public virtual void DisablePickUp()
     {
-        GetComponent<ObjectID>().Disable();
+        if(GetComponent<ObjectID>() != null)
+            GetComponent<ObjectID>().Disable();
         _timerActive = false;
-        Debug.Log("Item Disabled");
+        //Debug.Log("Item Disabled");
+        triggerAmount = 1;
     }
 
     public virtual void Update()
@@ -61,6 +63,4 @@ public class PickUpsBase : MonoBehaviour
         if(_timerActive && effectDuration > 0 && Timer(effectDuration))
             DisablePickUp();
     }
-
-    
 }

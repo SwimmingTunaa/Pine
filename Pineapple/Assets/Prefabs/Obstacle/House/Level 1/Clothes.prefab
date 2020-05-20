@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7224360997320921030}
   - component: {fileID: 3523180327071213844}
   - component: {fileID: 1153993641490656141}
+  - component: {fileID: 839307212047648615}
   m_Layer: 16
   m_Name: Clothes
   m_TagString: Obstacle
@@ -213,8 +214,33 @@ MonoBehaviour:
   triggerAmount: 1
   pickUpSound: {fileID: 8300000, guid: 8c287f25bbea84c0588789c62f6fb47d, type: 3}
   deathFX: {fileID: 1489403914, guid: 38decb2d9e5f8764d8e1f28da794ae9d, type: 3}
-  effectDuration: 2
-  slowAmount: 20
+  effectDuration: 1
+  itemMaxLevel: 1
+  _initialDuration: 0
+  _timerActive: 0
+  slowAmount: 10
+--- !u!114 &839307212047648615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619217471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4939e7142a87aaa4a81f5183e49a81ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopPlayerMoving: 0
+  randomDia: 0
+  dialogues:
+  - character: {fileID: 0}
+    text: aahhh what a mess!
+    diallogueInterval: 2
+    bubbleSize: 1
+  speechBubble: {fileID: 0}
+  triggerAmount: 1
+  randomDialogue: 0
 --- !u!1 &1445039094357652739
 GameObject:
   m_ObjectHideFlags: 0

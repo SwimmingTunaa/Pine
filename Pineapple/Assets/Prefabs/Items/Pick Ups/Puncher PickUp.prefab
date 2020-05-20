@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 613217687020364245}
   - component: {fileID: 7493112127681020871}
   - component: {fileID: 1721756419}
+  - component: {fileID: 516393055}
   m_Layer: 18
   m_Name: Puncher PickUp
   m_TagString: Untagged
@@ -111,6 +112,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 3
   parentPool: {fileID: 0}
+--- !u!114 &516393055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2351070184530464020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4939e7142a87aaa4a81f5183e49a81ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopPlayerMoving: 0
+  dialogues:
+  - character: {fileID: 0}
+    text: Insert pucnhline here!
+    diallogueInterval: 4
+    bubbleSize: 1
+  speechBubble: {fileID: 0}
+  triggerAmount: 1
 --- !u!1 &2552167452966878694
 GameObject:
   m_ObjectHideFlags: 0

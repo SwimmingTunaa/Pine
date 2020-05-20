@@ -5,10 +5,14 @@ using UnityEngine;
 public class PlaySoundEvent : StateMachineBehaviour
 {
     public AudioClip SFX;
+    public float pitchLevel = 1;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponentInParent<AudioSource>().PlayOneShot(SFX);
+        AudioSource a = animator.GetComponentInParent<AudioSource>();
+        a.pitch = pitchLevel;
+        a.PlayOneShot(SFX);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -18,10 +22,11 @@ public class PlaySoundEvent : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        AudioSource a = animator.GetComponentInParent<AudioSource>();
+        a.pitch = 1;
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

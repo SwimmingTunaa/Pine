@@ -13,6 +13,7 @@ public class ObjectID : MonoBehaviour
 {
    public ObjType objectType;
    public ObjectPools parentPool;
+   public bool selfDestroy;
    
    public void CreateID(ObjType type, ObjectPools pool)
    {
@@ -31,5 +32,6 @@ public class ObjectID : MonoBehaviour
          t.gameObject.SetActive(true);
       }
       gameObject.SetActive(false);
+
    }
 }

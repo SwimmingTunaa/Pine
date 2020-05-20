@@ -28,7 +28,7 @@ public class LevelProgressionSystem : MonoBehaviour
     void Start()
     {
         _currentCheckpoint = PlayerPrefs.GetInt("FirstTimeStart")<1 ? 40f: speedCheckpointDistance;
-        Debug.Log(_currentCheckpoint);
+        Debug.Log(_currentCheckpoint + " current checkpoint");
         //Debug.Log(PlayerPrefs.GetInt("FirstTimeStart"));
     }
 
@@ -64,7 +64,7 @@ public class LevelProgressionSystem : MonoBehaviour
         {
             SetDifficulty(1, 20f, 25f);
             masterSpawner.obstacleSpawner.changePoolSpawnChance(0.2f,0.2f,0.6f);
-            Debug.Log("Lvl " + difficultyLvl);
+//            Debug.Log("Lvl " + difficultyLvl);
         }
         else
         if(CheckDistanceAndLevel(lvl2Checkpoint, 1))
@@ -158,9 +158,9 @@ public class LevelProgressionSystem : MonoBehaviour
                 dialogue.text = "Press and hold to jump higher";
 
                 dialogueSequence.dialogues[0] = dialogue;
-                dialogueSequence.setSpeechbubble(dialogueSequence.dialogues[0]);
+                dialogueSequence.SetSpeechbubble(dialogueSequence.dialogues[0]);
                 dialogueSequence.stopPlayerMoving = false;
-                dialogueSequence.startDialogue();
+                dialogueSequence.StartDialogue(CharacterManager.activeCharacter);
             
                 SpawnSpecificObjectAtFloor(startCounter);
             

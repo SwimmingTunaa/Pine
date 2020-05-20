@@ -36,7 +36,7 @@ public class Shadow : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(body.transform.position, -Vector3.up, 10, layerToDetect);
        // Debug.Log("Shadow raycast hit: " + hit.collider.gameObject.name);
         //if layer is equal to ground then make the shadow stay on the ground
-        if(hit.collider.gameObject.layer == 12)
+        if(hit.collider != null && hit.collider.gameObject.layer == 12)
         {
             spriteRenderer.enabled = true;
             float newYPos = hit.point.y;

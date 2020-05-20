@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2309616322033859557}
   - component: {fileID: 4624010219132840465}
   - component: {fileID: 1598059126}
+  - component: {fileID: 615092789}
   m_Layer: 18
   m_Name: StickerMagnet Pickup
   m_TagString: PickUps
@@ -185,6 +186,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 3
   parentPool: {fileID: 0}
+--- !u!114 &615092789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444876811940292258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4939e7142a87aaa4a81f5183e49a81ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopPlayerMoving: 0
+  dialogues:
+  - character: {fileID: 0}
+    text: Stickers, I'm attracted to you!
+    diallogueInterval: 4
+    bubbleSize: 1
+  speechBubble: {fileID: 0}
+  triggerAmount: 1
 --- !u!1 &720319584918440013
 GameObject:
   m_ObjectHideFlags: 0

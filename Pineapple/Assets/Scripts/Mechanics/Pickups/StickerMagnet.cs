@@ -18,7 +18,7 @@ public class StickerMagnet : PickUpsBase
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(triggerAmount > 0)
+        if(triggerAmount > 0 && other.CompareTag("Player"))
             DoAction(other.gameObject);
     }
 
@@ -27,8 +27,8 @@ public class StickerMagnet : PickUpsBase
         activeEffect.SetActive(true);
         visual.SetActive(false);
         base.DoAction(player);
-        transform.parent = player.transform;
-        transform.position = player.transform.position;
+        transform.parent = player.GetComponent<Outfits>().powerUpEffectSpawnPoint;
+        transform.position = player.GetComponent<Outfits>().powerUpEffectSpawnPoint.position;
     }
 
 }

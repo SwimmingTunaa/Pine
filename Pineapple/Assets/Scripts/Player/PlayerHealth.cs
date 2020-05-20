@@ -20,7 +20,8 @@ public class PlayerHealth : HealthGeneric {
 	{
 		if(!invincible)
 		{
-			Invulnerable(1.5f);
+			if(health == 1)
+				Invulnerable(1.5f);
 			base.TakeDamage(damage);
 		}
 		StartCoroutine(killPlayer());

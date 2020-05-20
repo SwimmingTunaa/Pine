@@ -47,7 +47,7 @@ public class Damage : MonoBehaviour
                 DialogueSequence dialogue = p.GetComponent<DialogueSequence>();
                 dialogue.dialogues[0].text = "MY HAIR!";
                 dialogue.dialogues[0].diallogueInterval = 2;
-                dialogue.startDialogue();
+                dialogue.StartDialogue(p.gameObject);
                 p._anim.SetTrigger("Sad");
                 p.GetComponent<AudioSource>().PlayOneShot(p.hairSlicedAudio);
                 StatsManager.AddToAStat(1,"HaircutsTaken");

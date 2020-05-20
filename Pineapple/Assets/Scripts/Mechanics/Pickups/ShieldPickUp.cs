@@ -24,8 +24,8 @@ public class ShieldPickUp : PickUpsBase
     {
         active = true;
         base.DoAction(player);
-        transform.parent = player.transform;
-        transform.position = player.transform.position;
+        transform.parent = player.GetComponent<Outfits>().powerUpEffectSpawnPoint;
+        transform.position = player.GetComponent<Outfits>().powerUpEffectSpawnPoint.position;
         health.AddHealth(shieldStrength);
         if(GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Shield Shine"))
             GetComponentInChildren<Animator>().Play("Shield Start");

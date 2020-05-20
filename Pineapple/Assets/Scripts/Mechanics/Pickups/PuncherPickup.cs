@@ -20,11 +20,13 @@ public class PuncherPickup : PickUpsBase
     private Animator _anim;
     private bool _sfxActive = false;
     private bool _effectActive = false;
+    private bool _disableEffect;
 
     void OnEnable()
     {
         puncherObj.SetActive(false);
         visual.SetActive(true);
+        _disableEffect = false;
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -61,7 +63,12 @@ public class PuncherPickup : PickUpsBase
     public override void DisablePickUp()
     {
         _sfxActive = true;
-        StartCoroutine(ActivateEffect(_health.gameObject, false));
+        if(!_disableEffect)
+        {
+            _disableEffect = true;
+            StartCoroutine(ActivateEffect(_health.gameObject, false));
+        }
+        triggerAmount = 1;
     }
 
     IEnumerator ActivateEffect(GameObject player, bool enableEffect)

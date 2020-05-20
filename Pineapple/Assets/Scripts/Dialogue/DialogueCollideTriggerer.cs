@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class DialogueCollideTriggerer : DialogueSequence
 {
-    public Collider2D triggerCollider;
     public int triggerAmount = 1;
+    public bool randomDialogue;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (triggerCollider.transform == other.transform && triggerAmount > 0)
+        if (other.CompareTag("Player") && triggerAmount > 0)
         {
             triggerAmount--;
-            startDialogue();
+            if(!speechBubble)
+                speechBubble = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().speachBubble;
+            if (randomDialogue)  StartRandomDialogueSequence(other.gameObject); else StartDialogue(other.gameObject);
         }
     }
+
 }

@@ -14,12 +14,13 @@ public class GameManager : MonoBehaviour
     [Header("Game UI")]
     public TextMeshProUGUI distanceText;
     public TextMeshProUGUI stickersText;
+    public SpeechBubble speachBubble;
 
     [Header("Chaser")]
     public GameObject chaser;
     public float warningDistance;
     public float velocityThreshold = 5f; // the threshold for when the tomato spawns;
-    public CinemachineVirtualCamera followVirtualCamera, stopVirutalCameara;
+    public CinemachineVirtualCamera followVirtualCamera, stopVirutalCameara, chaseVirtualCamera;
     public GameObject tomatoWarningBubble;
 
     [Header("Gameover")]
@@ -145,7 +146,7 @@ public class GameManager : MonoBehaviour
             if(Statics.DistanceTraveled  > 20f && Timer(1f))
             {
                 //reset player's speed
-                _player.speed  = _player.startSpeed;
+                //_player.speed  = _player.startSpeed;
                 tomatoWarningBubble.SetActive(true);
                 _timer = 0;
             } 
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour
             {
                 followVirtualCamera.gameObject.SetActive(false);
                 stopVirutalCameara.gameObject.SetActive(true);   
+                TomatoController.chasePlayer = false;
             }     
         }
         else if(tomatoWarningBubble.activeInHierarchy  && !chaser.activeInHierarchy)
@@ -164,7 +166,7 @@ public class GameManager : MonoBehaviour
                 //spawn the tomato to a certain distnce behind the palyer
                 Vector2 spawnPos = new Vector2(_player.transform.position.x - 15f, chaser.transform.position.y);
                 chaser.transform.position = spawnPos; 
-                chaser.GetComponent<TomatoController>().speed = _player.speed + 1f;
+                chaser.GetComponent<TomatoController>().speed = _player.speed + 2f;
                 _timer = 0;
             }
         }

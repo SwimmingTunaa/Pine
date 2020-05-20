@@ -4899,7 +4899,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899080974548298941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.002, y: 0.362, z: -0.056489915}
+  m_LocalPosition: {x: -0.002, y: 0, z: -0.056489915}
   m_LocalScale: {x: 0.90491086, y: 0.90491086, z: 0.90491086}
   m_Children:
   - {fileID: 899080974548398233}
@@ -9633,7 +9633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3353038821725096356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.348, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.38120824, y: 0.38120824, z: 0.38120824}
   m_Children: []
   m_Father: {fileID: 3353038822971548102}
@@ -9720,6 +9720,7 @@ GameObject:
   - component: {fileID: 3353038822971548103}
   - component: {fileID: 3353038822971548100}
   - component: {fileID: 948564338}
+  - component: {fileID: 681300592}
   m_Layer: 18
   m_Name: Shield Pickup
   m_TagString: Untagged
@@ -9735,7 +9736,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3353038822971548096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.998, y: -2.759, z: 0.096460566}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.7075714, y: 1.7075714, z: 1.7075714}
   m_Children:
   - {fileID: 3353038821725096347}
@@ -9777,7 +9778,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.34}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!82 &3353038822971548100
@@ -9890,3 +9891,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 3
   parentPool: {fileID: 0}
+--- !u!114 &681300592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353038822971548096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4939e7142a87aaa4a81f5183e49a81ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopPlayerMoving: 0
+  randomDialogue: 0
+  dialogues:
+  - character: {fileID: 0}
+    text: Cant touch this!
+    diallogueInterval: 4
+    bubbleSize: 1
+  speechBubble: {fileID: 0}
+  triggerAmount: 1
+  randomDialogue: 0
