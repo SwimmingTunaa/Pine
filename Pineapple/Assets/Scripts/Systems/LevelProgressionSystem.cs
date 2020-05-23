@@ -83,7 +83,7 @@ public class LevelProgressionSystem : MonoBehaviour
             //TODO: different spawn pool
             masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.2f,0.1f);
            masterSpawner.obstacleSpawner.UpdateLevelConfig(masterSpawner.obstacleSpawner.levelConfig.levelthree);
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0.1f,0.1f);
+            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.5f,0.25f,0.25f);
             masterSpawner.ChangeSpawnerTypeChance(0.2f, 0.8f);
             masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,4);
             Debug.Log( "Lvl " + difficultyLvl);
@@ -93,7 +93,7 @@ public class LevelProgressionSystem : MonoBehaviour
         {
             SetDifficulty(4, 10f, 14f);
             //TODO: different spawn pool
-            masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.15f,0.15f);
+            masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.6f, 0.2f,0.2f);
             //force spawn the special item only every 2 rounds
             if(_sItemForcedSpawnCounter < 1)
                 _sItemForcedSpawnCounter++;

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4148940210128514621, guid: b26f967f6fffbf94bbb46fef2fa22d9a,
         type: 3}
       propertyPath: m_Name
-      value: BookShelf Tall Tutorial
+      value: BookShelf Tall Tutorial Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1510611634662511517, guid: b26f967f6fffbf94bbb46fef2fa22d9a,
         type: 3}
@@ -66,6 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7301944662546094312, guid: b26f967f6fffbf94bbb46fef2fa22d9a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b26f967f6fffbf94bbb46fef2fa22d9a, type: 3}
@@ -147,33 +152,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3011023867199859837, guid: 98bc5016ebfa77546a425e667dd781c6,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 2.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 5551948012565501743, guid: 98bc5016ebfa77546a425e667dd781c6,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4450835939344193990, guid: 98bc5016ebfa77546a425e667dd781c6,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c39114cca5ec3ed47ba73266cade04ec,
-        type: 3}
-    - target: {fileID: 1700621959429062296, guid: 98bc5016ebfa77546a425e667dd781c6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2040017444747185885, guid: 98bc5016ebfa77546a425e667dd781c6,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 21395271413447762, guid: d633907a84ca1c143a32f91f39315ad0,
-        type: 2}
     - target: {fileID: 6492331261963727768, guid: 98bc5016ebfa77546a425e667dd781c6,
         type: 3}
       propertyPath: m_Mesh
@@ -183,8 +161,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 21395271413447762, guid: d633907a84ca1c143a32f91f39315ad0,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5604731670395106768, guid: 98bc5016ebfa77546a425e667dd781c6,
         type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -214,6 +191,37 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.lineCount
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3011023867199859837, guid: 98bc5016ebfa77546a425e667dd781c6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551948012565501743, guid: 98bc5016ebfa77546a425e667dd781c6,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450835939344193990, guid: 98bc5016ebfa77546a425e667dd781c6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c39114cca5ec3ed47ba73266cade04ec,
+        type: 3}
+    - target: {fileID: 4450835939344193990, guid: 98bc5016ebfa77546a425e667dd781c6,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1700621959429062296, guid: 98bc5016ebfa77546a425e667dd781c6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040017444747185885, guid: 98bc5016ebfa77546a425e667dd781c6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98bc5016ebfa77546a425e667dd781c6, type: 3}

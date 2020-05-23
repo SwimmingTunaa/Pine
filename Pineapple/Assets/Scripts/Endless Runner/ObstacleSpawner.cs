@@ -65,8 +65,8 @@ public class ObstacleSpawner : Spawner
         spawnpointConfig = new Dictionary <Enums.ObstacleSpawnPoint, Vector3>
         {
             {currentLevelConfig.top.spawnPointChoice, spawnPoints[0].transform.position},
-            {currentLevelConfig.mid.spawnPointChoice, spawnPoints[1].transform.position},
-            {currentLevelConfig.bot.spawnPointChoice, _tempGO == null ? floorCollider.transform.position : GetFloorSpawnPoint(currentLevelConfig, _tempGO.GetComponent<Collider2D>())}
+            {currentLevelConfig.mid.spawnPointChoice, spawnPoints[(int)Random.Range(1,2)].transform.position},
+            {currentLevelConfig.bot.spawnPointChoice, _tempGO == null ? floorCollider.transform.position : GetFloorSpawnPoint(currentLevelConfig, _tempGO.GetComponent<Collider2D>())},
         };
     }
 
