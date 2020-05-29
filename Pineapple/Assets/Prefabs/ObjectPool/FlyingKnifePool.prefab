@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7337542671448534909}
   - component: {fileID: 7337542671448534910}
   m_Layer: 15
-  m_Name: FryingPanPool
+  m_Name: FlyingKnifePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,8 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49433b88d48c8fa42bde92c53b7a83f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manual: 0
+  spawnChanceValue: 0
   objectType: 1
-  duplicateAmount: 10
+  duplicateAmount: 20
   objectPool:
   - {fileID: 8708506291051815775, guid: 090e0b9ebcd6208489a7f290e86a7d4b, type: 3}
   startTranstionPool: []

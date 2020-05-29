@@ -30,8 +30,12 @@ public class SlowDebuff : PickUpsBase
 
    void OnTriggerEnter2D(Collider2D other)
    {
+      _playerController  = CharacterManager.activeCharacter.GetComponent<PlayerController>();
+      _gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+      _tomato = _gameManager.chaser.gameObject;
       if(other.CompareTag("Player") && triggerAmount > 0)
       {  
+         Debug.Log("times hit: " + timesHit);
          DoAction(other.gameObject);
          switch(timesHit)
          {
@@ -50,7 +54,8 @@ public class SlowDebuff : PickUpsBase
                   _tomato.GetComponent<TomatoController>().speed = _playerController.speed + 15f;
                break;
          }
-         timesHit += 1;
+         timesHit ++;
+         Debug.Log("times hit added: " + timesHit );
       }     
    }
 
@@ -67,18 +72,18 @@ public class SlowDebuff : PickUpsBase
    }
    public override void DisablePickUp()
    {
-      if(timesHit == 0)
+      if(timesHit <= 1)
       {
          _tomato.GetComponentInChildren<Animator>().Play("Disappear");
          //objects get turn off by animation - see TurnOffGameObjectOnExit
          TomatoController.chasePlayer = false;
       }
+      base.DisablePickUp();
       Reset();
    }
 
    public void Reset()
    {
-      base.DisablePickUp();
       _gameManager.chaseVirtualCamera.gameObject.SetActive(false);
       _playerController.speed += slowAmount;
       triggerAmount = 1;

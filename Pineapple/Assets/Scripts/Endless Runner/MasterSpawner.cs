@@ -15,6 +15,8 @@ public class MasterSpawner : Spawner
     [Header("Reward Spawner")]
     public float rSpawnChance;  
     public RewardSpawner RewardSpawner;
+    [Header("Critter Spawner")]
+    public CritterSpawner critterSpawner;
     [Header("Progression")]
     public int minSpawnAmount, maxSpawnAmount;
     public int minRewardAmount, maxRewardAmount;
@@ -63,6 +65,7 @@ public class MasterSpawner : Spawner
     {
         if(Statics.DistanceTraveled >= spawnInterval)
         {
+            critterSpawner.DoSpawn();
             spawnInterval = getSpawnInterval();
             if(_spawnAmount <=0 && _rewardAmount <=0)
             {
@@ -120,20 +123,29 @@ public class MasterSpawner : Spawner
                 {
                     //make sure the reward only spawn pick ups items once
                     if(s.Key == RewardSpawner && pickUpSpawned == 0)
+                    {
                         if(RewardSpawner.poolToSpawn[RewardSpawner.randomIndex].objectType == ObjType.Pickups)
                         {
+                            
                             pickUpSpawned++;
-                            s.Key.DoSpawn();
                             //check to see if its the special item spawner
                             if(RewardSpawner.poolToSpawn[RewardSpawner.randomIndex] == RewardSpawner.poolToSpawn[2])
                             {
+                                s.Key.DoSpawn();
                                 //make sure no more reward spawn after special item has been spawned
                                 _rewardAmount = 0;
                             }
-                            break;
+                            else
+                            {
+                                //spawn normal pick ups instead and add an xtra reward so it spawns stickers
+                                s.Key.DoSpawn();
+                                _rewardAmount += 1;
+                            }
                         }
-                    s.Key.DoSpawn();
-                    break;
+                    }
+                    else 
+                        //spawns the stickers
+                        s.Key.DoSpawn();
                 }
                 else
                     val -= s.Value;

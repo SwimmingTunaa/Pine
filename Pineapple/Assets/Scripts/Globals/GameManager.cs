@@ -10,6 +10,8 @@ using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
+    public const float PLAYERSTARTSPEED = 60;
+    public const float TOMATOSTARTSPEED = 55;
     public StatsManager stats;
     [Header("Game UI")]
     public TextMeshProUGUI distanceText;
@@ -44,17 +46,23 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         //reset statics
+        ResetStatics();
+        //InitialisePlayer();
+    }
+    void ResetStatics()
+    {
         Statics.DistanceTraveled = 0;
         Statics.currentDifficultyLevel = 0;
         Statics.paused = true;
         Time.timeScale = 1;
-        //InitialisePlayer();
     }
 
     public void InitialisePlayer()
     {
         //Debug.Log("GM: " + CharacterManager.activeCharacter.name);
         _player = CharacterManager.activeCharacter.GetComponent<PlayerController>();
+        _player.speed = PLAYERSTARTSPEED;
+        chaser.GetComponent<TomatoController>().speed = TOMATOSTARTSPEED;
         _playerHealth = CharacterManager.activeCharacter.GetComponent<PlayerHealth>();
         _playerAnim = CharacterManager.activeCharacter.GetComponentInChildren<Animator>();
         _trackedPosition = _player.gameObject;
@@ -62,6 +70,7 @@ public class GameManager : MonoBehaviour
         _playerRb = _player.GetComponent<Rigidbody2D>();
         followVirtualCamera.Follow = _player.cameraFollowTarget;
         stopVirutalCameara.Follow = _player.cameraFollowTarget;
+        chaseVirtualCamera.Follow = _player.cameraFollowTarget;
     }
 
     void FixedUpdate()
@@ -79,7 +88,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void pauseGame(bool enable)
+    public static void PauseGame(bool enable)
     {
         float tempCurrentSpeed = _player.speed;
         DisablePlayerInput(enable);
@@ -112,7 +121,8 @@ public class GameManager : MonoBehaviour
     void Gameover()
     {
         //change the camera to follow the furtherst part
-        followVirtualCamera.Follow = _playerHealth.FindFurthestBodyPart();
+        Vector3 newCamPos = new Vector3(_playerHealth.FindFurthestBodyPart().position.x, followVirtualCamera.Follow.transform.position.y, followVirtualCamera.Follow.transform.position.z);
+        followVirtualCamera.Follow.position = newCamPos;
         //change what the tracked object for distance is
         _trackedPosition = followVirtualCamera.Follow.gameObject;
         if(_playerHealth.BodyPartsStopMoving())
@@ -120,7 +130,7 @@ public class GameManager : MonoBehaviour
             if(!_gameover)
             {
                 _gameover = true;
-                pauseGame(true);
+                PauseGame(true);
                 gameoverUIBody.SetActive(true);
                 finalScore.text = distanceText.text;
                 distanceText.gameObject.SetActive(false);
@@ -201,5 +211,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
         //check if the pressed play again
         Statics.playerRestartedGame = true;
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+    }
+
+    public void Retry()
+    {
+        PauseGame(false);
+        InitialisePlayer();
+        ResetStatics();
     }
 }

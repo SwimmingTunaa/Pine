@@ -21,7 +21,7 @@ public class ProjectileSpawner : Spawner
     [MinMaxSlider(1,5)] public Vector2 spawnAmount = new Vector2(1, 3);
     public AudioClip warningSound;
     
-    [HideInInspector]public float disableOSpawnerTimer = 2;
+    [HideInInspector]public float disableOSpawnerTimer = 4;
     [HideInInspector]public float warningTimer = 1.5f;
     private float _halfHeight;
     private float _halfWidth;
@@ -72,9 +72,9 @@ public class ProjectileSpawner : Spawner
             StartCoroutine(SpawnObject(yPos));
             //check the distance between the yPos
             if(yPos + 1 < _camera.transform.position.y + yAmplitude)
-                yPos += Random.Range(1.75f, 2.5f);
+                yPos += Random.Range(2f, 3f);
             else
-                 yPos -= Random.Range(3f,5f);
+                 yPos -= Random.Range(4f,6f);
         }
     }
 

@@ -67,9 +67,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -634492947
-  m_SortingLayer: 4
-  m_SortingOrder: 6
+  m_SortingLayerID: 171790405
+  m_SortingLayer: 7
+  m_SortingOrder: 21
   m_Sprite: {fileID: 21300018, guid: c25cc3dd3dc905540922d22aebfb240d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -610,11 +610,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 582956377880539678}
     m_Modifications:
-    - target: {fileID: 75722532183294455, guid: 316597fd796ff884dac40181c607e3db,
-        type: 3}
-      propertyPath: m_Name
-      value: Fan Spin SFX
-      objectReference: {fileID: 0}
     - target: {fileID: 75722532182875607, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -684,6 +679,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0137198
+      objectReference: {fileID: 0}
+    - target: {fileID: 75722532183294455, guid: 316597fd796ff884dac40181c607e3db,
+        type: 3}
+      propertyPath: m_Name
+      value: Fan Spin SFX
       objectReference: {fileID: 0}
     - target: {fileID: 75722532202272919, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}

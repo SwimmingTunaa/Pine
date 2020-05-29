@@ -71,6 +71,24 @@ TextureImporter:
   - first:
       213: 2755244890027603063
     second: Speech Line
+  - first:
+      213: 1786246863626547964
+    second: Pause
+  - first:
+      213: -1557013538026691241
+    second: Music
+  - first:
+      213: -1557013538026691241
+    second: Audio
+  - first:
+      213: 7698148936575896213
+    second: Home
+  - first:
+      213: 4530770355093785710
+    second: Play
+  - first:
+      213: 6867387764308572057
+    second: Retry
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -529,7 +547,7 @@ TextureImporter:
         width: 117
         height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -537,6 +555,132 @@ TextureImporter:
       bones: []
       spriteID: d3aab5ae1fafa544f9698e504e98acdd
       internalID: 2755244890027603063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pause
+      rect:
+        serializedVersion: 2
+        x: 1927
+        y: 1696
+        width: 75
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82f9b0bd201548e4abc3a2036ba81cb8
+      internalID: 1786246863626547964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Music
+      rect:
+        serializedVersion: 2
+        x: 1874
+        y: 1537
+        width: 139
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62096e9fcc6df1748a1054bab11bcc68
+      internalID: -1557013538026691241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Audio
+      rect:
+        serializedVersion: 2
+        x: 1898
+        y: 1378
+        width: 114
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 005dcde9e2991d14ca7c236d1bb4940e
+      internalID: -1557013538026691241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Home
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 1405
+        width: 130
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d811358b025d544bf3227266a45ada
+      internalID: 7698148936575896213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Play
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 1484
+        width: 130
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dce3946be4335d46a584f66bae93639
+      internalID: 4530770355093785710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Retry
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 1233
+        width: 128
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 132002c3d7bfcb845b1890419b257e37
+      internalID: 6867387764308572057
       vertices: []
       indices: 
       edges: []

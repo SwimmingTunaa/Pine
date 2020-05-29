@@ -83,13 +83,13 @@ public class LevelProgressionSystem : MonoBehaviour
             //TODO: different spawn pool
             masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.2f,0.1f);
            masterSpawner.obstacleSpawner.UpdateLevelConfig(masterSpawner.obstacleSpawner.levelConfig.levelthree);
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.5f,0.25f,0.25f);
-            masterSpawner.ChangeSpawnerTypeChance(0.2f, 0.8f);
+            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.3f,0.5f,0.2f);
+            masterSpawner.ChangeSpawnerTypeChance(0.25f, 0.75f);
             masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,4);
             Debug.Log( "Lvl " + difficultyLvl);
 
         }else
-        if(CheckDistanceAndLevel(lvl4Checkpoint, 2))
+        if(CheckDistanceAndLevel(lvl4Checkpoint, 3))
         {
             SetDifficulty(4, 10f, 14f);
             //TODO: different spawn pool
@@ -102,12 +102,12 @@ public class LevelProgressionSystem : MonoBehaviour
                    masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0, 0,1f); 
                 }
             masterSpawner.obstacleSpawner.UpdateLevelConfig(masterSpawner.obstacleSpawner.levelConfig.levelthree);
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.8f,0f,0.2f);
-            masterSpawner.ChangeSpawnerTypeChance(0.1f, 0.9f);
+            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.4f,0.4f,0.2f);
+            masterSpawner.ChangeSpawnerTypeChance(0.4f, 0.6f);
             //Changing Projectile spawner settings
-            masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,5);
+            masterSpawner.projectileSpawner.spawnAmount = new Vector2(3,4);
             masterSpawner.projectileSpawner.warningTimer = 1f;
-            masterSpawner.projectileSpawner.disableOSpawnerTimer = 1.5f;
+            masterSpawner.projectileSpawner.disableOSpawnerTimer = 2.5f;
             //////////////////////////////////////
             masterSpawner.minSpawnAmount += 1;
             masterSpawner.maxSpawnAmount += 2;

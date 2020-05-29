@@ -6,7 +6,8 @@ public enum ObjType{
    Panel,
    Obstacle,
    Sticker,
-   Pickups
+   Pickups,
+   Critter
 }
 
 public class ObjectID : MonoBehaviour

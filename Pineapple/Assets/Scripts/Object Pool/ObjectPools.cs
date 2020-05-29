@@ -16,9 +16,6 @@ public class ObjectPools : MonoBehaviour, IChanceValue
    public ObjType objectType;
    public int duplicateAmount = 1;
    public List<GameObject> objectPool = new List<GameObject>();
-   public List<GameObject> startTranstionPool = new List<GameObject>();
-   public List<GameObject> endTranstionPool = new List<GameObject>();
-
    public List<GameObject> spawnedObjectPool = new List<GameObject>();
    [HideInInspector] public List<GameObject> spawnedStartTranstionPool = new List<GameObject>();
    [HideInInspector] public List<GameObject> spawnedEndTranstionPool = new List<GameObject>();
