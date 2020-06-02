@@ -8,6 +8,7 @@ public class AddScore : MonoBehaviour
     public int scoreToAdd;
     public string scoreMessage;
     public bool isTrigger; 
+    public string statReference;
     
     private StatsManager stats;
     private int startTriggerAmount;
@@ -24,19 +25,22 @@ public class AddScore : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") || other.CompareTag("Hair") && triggerAmount > 0 && isTrigger)
-        {
-            triggerAmount--;
-            stats.AddToScore(scoreToAdd, scoreMessage);
-        }
+        AddScoreAndStats(other.gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Hair") && triggerAmount > 0 && !isTrigger)
+        AddScoreAndStats(other.gameObject);
+    }
+
+    void AddScoreAndStats(GameObject other)
+    {
+        if(other.CompareTag("Player") || other.CompareTag("Hair") && triggerAmount > 0 && !isTrigger)
         {
             triggerAmount--;
             stats.AddToScore(scoreToAdd, scoreMessage);
+            if(statReference != null)
+                StatsManager.AddToAStat(1, statReference);
         }
     }
 }

@@ -35,9 +35,9 @@ public class SpeechBubble : MonoBehaviour
     private void Update()
     {
         //dialogue follow player hack
-        if (gameObject.activeInHierarchy)
+        if (gameObject.activeSelf)
         {
-            this.transform.position = _attachedCharacter.transform.position + _currentConfig.bubbleOffset;
+            gameObject.transform.position = _attachedCharacter.transform.position + _currentConfig.bubbleOffset;
         }
     }
 

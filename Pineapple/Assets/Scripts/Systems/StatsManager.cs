@@ -7,14 +7,15 @@ public class StatsManager: MonoBehaviour
 {
     public int currentScore;
     public int stickerCollected;
-    public int couchBounced;
-    public int haircutsTaken;
 
     [Header("UI")]
     public GameObject scoreAddText;
     public Transform scoreSpawnPos;
     public TextMeshProUGUI furthestTravelled;
     public TextMeshProUGUI mostStickersCollected;
+    public TextMeshProUGUI hairCuts;
+    public TextMeshProUGUI killByFans;
+    public TextMeshProUGUI CouchBounce;
 
     void Awake()
     {
@@ -25,6 +26,9 @@ public class StatsManager: MonoBehaviour
     {
         furthestTravelled.text = PlayerPrefs.GetInt("LongestDistanceTravelled").ToString() + "m";
         mostStickersCollected.text = PlayerPrefs.GetInt("StickersCollected").ToString();
+        hairCuts.text = PlayerPrefs.GetInt("HaircutsTaken").ToString();
+        killByFans.text = PlayerPrefs.GetInt("KilledByFans").ToString();
+        CouchBounce.text = PlayerPrefs.GetInt("CouchBounce").ToString();
     }
 
     public void AddStickersToTotalOwnedAmount()

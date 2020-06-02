@@ -310,6 +310,7 @@ MonoBehaviour:
   scoreToAdd: 100
   scoreMessage: Haircut!
   isTrigger: 1
+  statReference: KilledByFans
 --- !u!1 &3091860780506468094
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +611,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 582956377880539678}
     m_Modifications:
+    - target: {fileID: 75722532183294455, guid: 316597fd796ff884dac40181c607e3db,
+        type: 3}
+      propertyPath: m_Name
+      value: Fan Spin SFX
+      objectReference: {fileID: 0}
     - target: {fileID: 75722532182875607, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -679,11 +685,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0137198
-      objectReference: {fileID: 0}
-    - target: {fileID: 75722532183294455, guid: 316597fd796ff884dac40181c607e3db,
-        type: 3}
-      propertyPath: m_Name
-      value: Fan Spin SFX
       objectReference: {fileID: 0}
     - target: {fileID: 75722532202272919, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}

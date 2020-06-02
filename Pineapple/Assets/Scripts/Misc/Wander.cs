@@ -30,7 +30,6 @@ public class Wander : MonoBehaviour
     Vector3 NewPosition()
     {
         Vector3 newPos = new Vector3(transform.position.x + Random.Range(-maxDistance + 2, maxDistance), transform.position.y, 0f);
-        Debug.Log("x difference " + (newPos.x - transform.position.x));
         if (newPos.x - transform.position.x > 0 ) 
             transform.rotation = Quaternion.Euler(0,0,0);
             else

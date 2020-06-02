@@ -7,13 +7,24 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public bool startPaused;
+    public GameManager gameManager;
     public GameObject gameUI;
     public DialogueSequence dialogue;
     public Button PlayButton;
+    public GameObject followCamera, debuffCamera;
+    public GameObject[] objectsToToggleOn;
+    public GameObject[] objectsToToggleOff;
 
     void Start()
     {
-        MainMenuDefualt(startPaused);
+        if(PlayerPrefs.GetInt("Retry") == 0)
+            MainMenuDefualt(startPaused);
+        else
+            if(PlayerPrefs.GetInt("Retry") == 1)
+            {
+                MainMenuDisable(1);
+                PlayerPrefs.SetInt("Retry", 0);
+            }
         //totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
     }
 
@@ -30,22 +41,28 @@ public class MainMenu : MonoBehaviour
 
     public IEnumerator MainMenuWait(bool enable, float waitTime)
     {
-        Debug.Log(waitTime);
+        gameManager.enabled = !enable;
+        foreach (GameObject g in objectsToToggleOn)
+        {
+            g.SetActive(!enable);
+        }
+        foreach (GameObject g in objectsToToggleOff)
+        {
+            g.SetActive(enable);
+        }
+        debuffCamera.SetActive(!enable);
         yield return new WaitForSeconds(waitTime);
         MainMenuDefualt(enable);
+        followCamera.SetActive(!enable);
+        debuffCamera.SetActive(enable);
     }
 
      public void MainMenuDefualt(bool enable)
     {
         Statics.paused = enable;
         gameUI.SetActive(!enable);
-        GameManager.pauseGame(enable);
-        Debug.Log("paused = " + Statics.paused);
-        this.gameObject.SetActive(enable);
-        /*/if(enable)
-            dialogue.startDialogue();
-        else
-            dialogue.endDialogue();*/
+        GameManager.PauseGame(enable);
+        this.gameObject.SetActive(enable);       
     }
 }
  

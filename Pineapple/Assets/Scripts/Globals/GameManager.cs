@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverFinalScore;
     public TextMeshProUGUI gameOverTotalScore;
 
+    [Header("Retry")]
+    public Button playButton;
+    public MainMenu startMenu;
+
     private float _distanceFromChaser;
     public static PlayerController _player;
     private Rigidbody2D _playerRb;
@@ -47,8 +51,8 @@ public class GameManager : MonoBehaviour
     {
         //reset statics
         ResetStatics();
-        //InitialisePlayer();
     }
+
     void ResetStatics()
     {
         Statics.DistanceTraveled = 0;
@@ -97,9 +101,9 @@ public class GameManager : MonoBehaviour
 
     public static void DisablePlayerInput(bool enabled)
     {
-        _playerAnim.SetBool("Sit", enabled);
         _player.enabled = !enabled;
         _player.jumpable = !enabled;
+        _playerAnim.SetBool("Sit", enabled);
     }
 
     public void CharacterJump(bool triggered)
@@ -216,12 +220,12 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        PauseGame(Time.timeScale == 0 ? true : false);
     }
 
     public void Retry()
     {
-        PauseGame(false);
-        InitialisePlayer();
-        ResetStatics();
+        PlayerPrefs.SetInt("Retry", 1);
+        LoadLevel(0);
     }
 }
