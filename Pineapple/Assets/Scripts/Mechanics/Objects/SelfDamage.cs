@@ -2,44 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelfDamage : HealthGeneric
+public class SelfDamage : MonoBehaviour
 {
+    public int triggerAmount = 2;
+    public static int health = 2;
     public Sprite crackedWood;
     public GameObject deathEffect;
     public AudioClip deathSound;
-    public static bool isOpened;
+    public static bool floorIsOpened;
     public float delayTime = 0.5f;
     
     void OnEnable()
     {
-        if(isOpened)
+        if(floorIsOpened)
             gameObject.SetActive(false);
+        UpdateState();
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && triggerAmount > 0)
         {
             TakeDamage(1); 
-            isOpened = true;           
+            triggerAmount--;   
+            UpdateState();
         }
     }
-    void OnTriggerExit2D(Collider2D other)
+
+    void UpdateState()
     {
-        if(other.CompareTag("Player") && health == 0)
-        {
-            StartCoroutine(delayTurnOff(false, delayTime));
-        }
-    }
-    public override void TakeDamage(float damage)
-    {
-        base.TakeDamage(damage);
-        if(health == 1)
-        {
-            foreach (Transform child in transform)
+        if(health == 0)
             {
-                child.GetComponent<SpriteRenderer>().sprite = crackedWood;
+                floorIsOpened = true; 
+                StartCoroutine(delayTurnOff(false, delayTime));   
             }
-        }
+            else    
+                if(health == 1)
+                {
+                    foreach (Transform child in transform)
+                    {
+                        child.GetComponent<SpriteRenderer>().sprite = crackedWood;
+                    }
+                }
+    }
+    
+    static void TakeDamage(int damage)
+    {
+        if(health > 0)
+            health -= damage;
     }
 
     IEnumerator delayTurnOff(bool active, float delayTime)

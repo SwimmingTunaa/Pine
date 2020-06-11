@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
         Statics.currentDifficultyLevel = 0;
         Statics.paused = true;
         Time.timeScale = 1;
+        SelfDamage.floorIsOpened = false;
+        SelfDamage.health = 2;
     }
 
     public void InitialisePlayer()

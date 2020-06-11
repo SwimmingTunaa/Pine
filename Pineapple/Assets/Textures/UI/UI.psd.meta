@@ -89,6 +89,12 @@ TextureImporter:
   - first:
       213: 6867387764308572057
     second: Retry
+  - first:
+      213: 2308424125875831988
+    second: Settings
+  - first:
+      213: 6944488083685397595
+    second: Splash Title
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -563,10 +569,10 @@ TextureImporter:
       name: Pause
       rect:
         serializedVersion: 2
-        x: 1927
-        y: 1696
-        width: 75
-        height: 90
+        x: 1921
+        y: 1690
+        width: 91
+        height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -631,7 +637,7 @@ TextureImporter:
         width: 130
         height: 155
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -652,7 +658,7 @@ TextureImporter:
         width: 130
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -673,7 +679,7 @@ TextureImporter:
         width: 128
         height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -681,6 +687,48 @@ TextureImporter:
       bones: []
       spriteID: 132002c3d7bfcb845b1890419b257e37
       internalID: 6867387764308572057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Settings
+      rect:
+        serializedVersion: 2
+        x: 1905
+        y: 1241
+        width: 119
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04776bfb37aa286478fc5013b0721378
+      internalID: 2308424125875831988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Splash Title
+      rect:
+        serializedVersion: 2
+        x: 1727
+        y: 1038
+        width: 306
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3f3a3ae4cddde0409d74a208c3800c1
+      internalID: 6944488083685397595
       vertices: []
       indices: 
       edges: []
