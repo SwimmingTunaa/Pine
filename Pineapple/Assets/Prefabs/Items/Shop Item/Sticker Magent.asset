@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095f3d40ac1076e46887e50e76127cd0, type: 3}
+  m_Name: Sticker Magent
+  m_EditorClassIdentifier: 
+  itemName: Sticker Magnet Timer
+  itemCost: 1500
+  costIncrement: 800
+  effectDuration: 10
+  itemMaxLevel: 5
+  pickUpSound: {fileID: 8300000, guid: 8773868887102484fb629c2d87575142, type: 3}
+  deathFX: {fileID: 0}
+  Instance: {fileID: 0}

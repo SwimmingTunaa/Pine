@@ -16,7 +16,7 @@ public class Bounce : MonoBehaviour
             other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector3(bounceStrengthX,bounceStrengthY), ForceMode2D.Impulse);
             other.gameObject.GetComponent<AudioSource>().PlayOneShot(bounceSFX);
             other.gameObject.GetComponent<PlayerController>()._anim.SetTrigger("Surprise");
-            StatsManager.AddToAStat(1, "CouchBounced");
+            StatsManager.Instance.AddToAStat(1, "CouchBounced");
         }
     }
 }

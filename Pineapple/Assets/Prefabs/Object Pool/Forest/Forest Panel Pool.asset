@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49433b88d48c8fa42bde92c53b7a83f3, type: 3}
+  m_Name: Forest Panel Pool
+  m_EditorClassIdentifier: 
+  manual: 0
+  spawnChanceValue: 0
+  objectType: 0
+  duplicateAmount: 1
+  objectPool:
+  - {fileID: 1923623857945120315, guid: ad7f8076ac0dc5a4fb1b34e2b765534f, type: 3}
+  - {fileID: 1923623857945120315, guid: ad7f8076ac0dc5a4fb1b34e2b765534f, type: 3}
+  - {fileID: 1923623857945120315, guid: ad7f8076ac0dc5a4fb1b34e2b765534f, type: 3}
+  spawnedObjectPool: []

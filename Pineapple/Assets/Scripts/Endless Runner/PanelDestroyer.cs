@@ -5,7 +5,6 @@ using UnityEngine;
 public class PanelDestroyer : MonoBehaviour
 {   
     public PanelSpawner pSpawner;
-    public ObjectPoolManager objectPoolManager;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,7 +14,9 @@ public class PanelDestroyer : MonoBehaviour
             if(id.objectType == ObjType.Panel)
             {
                 pSpawner.SpawnSets();
+                other.transform.parent = null;
             }
+
             if(!id.selfDestroy) id.Disable();
         }
     }

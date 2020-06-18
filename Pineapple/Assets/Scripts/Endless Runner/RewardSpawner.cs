@@ -6,8 +6,18 @@ public class RewardSpawner : Spawner
 {
     public List<ObjectPools> poolToSpawn = new List<ObjectPools>();
     public GameObject[] spawnPoints;
-    public float timerMin, timerMax;
     public int randomIndex;
+    private List<ObjectPools> poolToSpawnInstances = new List<ObjectPools>();
+
+    void Awake()
+    {
+        for (int i = 0; i < poolToSpawn.Count;  i++)
+        {
+            poolToSpawnInstances.Add(Instantiate(poolToSpawn[i]));
+            poolToSpawnInstances[i].Initialise();
+        }
+    }
+
     public override void DoSpawn()
     {
         getPoolToSpawnFrom();
@@ -16,18 +26,17 @@ public class RewardSpawner : Spawner
     void getPoolToSpawnFrom()
     {
         var randomIndexGetter = new cummulativeCalculator<ObjectPools>();
-        randomIndex = randomIndexGetter.GetRandomEntryIndex(poolToSpawn);
-        ObjectPools poolToUse = poolToSpawn[randomIndex];
-        GameObject tempObj = poolToUse.spawnedObjectPool[Random.Range(0,poolToUse.spawnedObjectPool.Count)];
+        randomIndex = randomIndexGetter.GetRandomEntryIndex(poolToSpawnInstances);
+        ObjectPools poolToUse = poolToSpawnInstances[randomIndex];
+        GameObject tempObj = GetNextItem(poolToUse.spawnedObjectPool);
         tempObj.SetActive(true); 
         tempObj.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
-        poolToUse.spawnedObjectPool.Remove(tempObj);
     }
 
     public void ChangeRewardPoolSpawnChances(float stickerSpawnChance, float itemSpawnChance,float sItemSpawnChance)
     {
-        poolToSpawn[0].spawnChanceValue = itemSpawnChance;
-        poolToSpawn[1].spawnChanceValue = stickerSpawnChance;
-        poolToSpawn[2].spawnChanceValue = sItemSpawnChance;
+        poolToSpawnInstances[0].spawnChanceValue = itemSpawnChance;
+        poolToSpawnInstances[1].spawnChanceValue = stickerSpawnChance;
+        poolToSpawnInstances[2].spawnChanceValue = sItemSpawnChance;
     }
 }

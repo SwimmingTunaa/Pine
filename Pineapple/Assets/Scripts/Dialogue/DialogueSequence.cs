@@ -66,6 +66,7 @@ public class DialogueSequence : MonoBehaviour
         dialogues[_currentDialogue].character = character;
         SetSpeechbubble(dialogues[_currentDialogue]);
     }
+
     public void StartRandomDialogueSequence()
     {
         _scriptRunning = true;
@@ -78,13 +79,13 @@ public class DialogueSequence : MonoBehaviour
     public void EndDialogue()
     {
         _scriptRunning = false;
-
         speechBubble.gameObject.SetActive(false);
         //gameObject.SetActive(false);
     }
 
     public void SetSpeechbubble(DialogueConfig dialogue)
     {
+        dialogues[_currentDialogue].character = CharacterManager.activeCharacter;
         //turn off and on object so animation replays
         speechBubble.gameObject.SetActive(false);
         speechBubble.gameObject.SetActive(true);

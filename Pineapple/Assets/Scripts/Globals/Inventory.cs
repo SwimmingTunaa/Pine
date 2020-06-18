@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public List<ItemObject> inventoryItems = new List<ItemObject>();
+   /* public List<PickUpObject> inventoryItems = new List<PickUpObject>();
     public List<Image> inventorySpaces = new List<Image>();
 
     void Awake()
@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
         ResetInvetory();
     }
 
-    public void AddItem(ItemObject itemToAdd)
+    public void AddItem(PickUpObject itemToAdd)
     {
         //TODO: could do a check to see if the same item is not already inventory using itemObject.ID
         for(int i = 0; i < inventorySpaces.Count; i++)
@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void RemoveItem(ItemObject itemToRemove)
+    public void RemoveItem(PickUpObject itemToRemove)
     {
         for(int i = 0; i < inventorySpaces.Count; i++)
         {
@@ -50,5 +50,5 @@ public class Inventory : MonoBehaviour
             i.enabled = false;
         }
         inventoryItems.Clear();
-    }
+    }*/
 }

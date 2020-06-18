@@ -29,13 +29,14 @@ public class SpeechBubble : MonoBehaviour
 
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _textRect = GetComponentInChildren<RectTransform>();
-        _textMesh = GetComponentInChildren<TextMeshPro>();        
+        _textMesh = GetComponentInChildren<TextMeshPro>(); 
+        _attachedCharacter = CharacterManager.activeCharacter;       
     }
 
     private void Update()
     {
         //dialogue follow player hack
-        if (gameObject.activeSelf)
+        if (gameObject.activeInHierarchy && _attachedCharacter != null)
         {
             gameObject.transform.position = _attachedCharacter.transform.position + _currentConfig.bubbleOffset;
         }
@@ -54,7 +55,8 @@ public class SpeechBubble : MonoBehaviour
         // Set the bubble sprite
         _spriteRenderer.sprite = _currentConfig.sprite;
         // Set the bubble relative to the character talking
-        this.transform.position = _attachedCharacter.transform.position + _currentConfig.bubbleOffset;
+        if(_attachedCharacter != null)
+            this.transform.position = _attachedCharacter.transform.position + _currentConfig.bubbleOffset;
 
         // Set the text relative to bubble size.
         _textRect.localPosition = _currentConfig.textOffset;

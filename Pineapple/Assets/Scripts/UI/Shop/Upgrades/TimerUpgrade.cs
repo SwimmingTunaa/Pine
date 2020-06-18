@@ -7,14 +7,14 @@ public class TimerUpgrade : ShopItem
     [Header("Timer")]
     public float timeToAdd;
 
+    private float _initialDuration;
+
     public override void Initialise()
     {
         base.Initialise();
-        foreach(PickUpsBase p in itemInGame)
-        {
-            p.effectDuration = p._initialDuration + (timeToAdd * currentLevel);
-            UpgradeTimer();
-        }
+        _initialDuration = itemInstance.effectDuration;
+        if(currentLevel > 1)
+            itemInstance.effectDuration = _initialDuration + (timeToAdd * currentLevel);
     }
 
     public override void IncreaseItemLevel()
@@ -25,9 +25,6 @@ public class TimerUpgrade : ShopItem
 
     public void UpgradeTimer()
     {
-        foreach(PickUpsBase p in itemInGame)
-        {
-            p.effectDuration = p._initialDuration + (timeToAdd * currentLevel);
-        }
+        itemInstance.effectDuration = _initialDuration + (timeToAdd * currentLevel);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShieldUpgrade : ShopItem
 {
     [Header("Shield")]
-    public float strengthToAdd;
+    public int strengthToAdd;
     public override void Initialise()
     {
         base.Initialise();
@@ -20,9 +20,8 @@ public class ShieldUpgrade : ShopItem
 
     public void UpgradeShield()
     {
-        foreach(ShieldPickUp p in itemInGame)
-        {
-            p.shieldStrength = currentLevel + strengthToAdd; 
-        }
+        ShieldPickUpObject s = itemInstance as ShieldPickUpObject;
+        s.shieldStrength = currentLevel + strengthToAdd; 
+        Debug.Log(s.shieldStrength);
     }
 }

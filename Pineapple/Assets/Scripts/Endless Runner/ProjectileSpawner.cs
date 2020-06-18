@@ -10,9 +10,7 @@ using UnityEngine;
     
 public class ProjectileSpawner : Spawner
 {       
-    public MasterSpawner masterSpawner;
-    [Header("Object Pool")]
-    public ObjectPools projectilePool;
+    public float spawnIntervalTime = 1;
 
     [Header("Spawner Details")]
     public SpawnType spawnType;
@@ -21,15 +19,16 @@ public class ProjectileSpawner : Spawner
     [MinMaxSlider(1,5)] public Vector2 spawnAmount = new Vector2(1, 3);
     public AudioClip warningSound;
     
-    [HideInInspector]public float disableOSpawnerTimer = 4;
+    [HideInInspector]public float disableOSpawnerTimer = 3;
     [HideInInspector]public float warningTimer = 1.5f;
     private float _halfHeight;
     private float _halfWidth;
     private float _newY;
     private Camera _camera;
+    private ObjectPools projectilePool;
     void Awake()
     {
-        projectilePool = Instantiate(projectilePool, transform.position, transform.rotation);
+        projectilePool = MasterSpawner.Instance.activeRegion.projectiles;
         _camera = Camera.main;
     }
 
@@ -49,7 +48,7 @@ public class ProjectileSpawner : Spawner
     {
         
         spawnType = (SpawnType)Random.Range(0, System.Enum.GetValues(typeof(SpawnType)).Length);
-        if(masterSpawner != null) masterSpawner.enabled = false;
+        if(MasterSpawner.Instance != null) MasterSpawner.Instance.enabled = false;
         switch(spawnType)
         {
             case SpawnType.line:
@@ -60,7 +59,7 @@ public class ProjectileSpawner : Spawner
             break;
         }
         yield return new WaitForSeconds(disableOSpawnerTimer);
-        if(masterSpawner != null) masterSpawner.enabled = true;
+        if(MasterSpawner.Instance != null) MasterSpawner.Instance.enabled = true;
     }
 
     public void SpawnLine()
@@ -84,7 +83,7 @@ public class ProjectileSpawner : Spawner
         for(int i = 0; i < r; i++)
         { 
            StartCoroutine(SpawnObject(_newY));
-           yield return new WaitForSeconds(spawnInterval);
+           yield return new WaitForSeconds(spawnIntervalTime);
         }
     }
 
@@ -94,7 +93,7 @@ public class ProjectileSpawner : Spawner
         for(int i = 0; i < r; i++)
         { 
            StartCoroutine(SpawnObject(CharacterManager.activeCharacter.transform.position.y));
-           yield return new WaitForSeconds(spawnInterval);
+           yield return new WaitForSeconds(spawnIntervalTime);
         }
     }
 
@@ -102,14 +101,13 @@ public class ProjectileSpawner : Spawner
     {
         _halfHeight = _camera.orthographicSize;
         _halfWidth  = _camera.aspect * _halfHeight; 
-        GameObject o = projectilePool.spawnedObjectPool[Random.Range(0,projectilePool.spawnedObjectPool.Count)];
-        projectilePool.spawnedObjectPool.Remove(o);
+        GameObject nextSpawn = GetNextItem(projectilePool.spawnedObjectPool);
         //wait for this Warning to finish then continue
-        yield return StartCoroutine(Warning(o,yPos));
+        yield return StartCoroutine(Warning(nextSpawn,yPos));
         //reset trailrenderer
-        o.GetComponentInChildren<TrailRenderer>().Clear();
-        o.SetActive(true);
-        o.transform.position = new Vector3(Camera.main.transform.position.x + _halfWidth, yPos, transform.position.z);
+        nextSpawn.GetComponentInChildren<TrailRenderer>().Clear();
+        nextSpawn.SetActive(true);
+        nextSpawn.transform.position = new Vector3(Camera.main.transform.position.x + _halfWidth, yPos, transform.position.z);
     }
 
     IEnumerator Warning(GameObject obj, float yPos)

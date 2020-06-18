@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : Interactable
 {
-    public ItemObject itemObject;
+/*    public PickUpObject itemObject;
     public Collider2D otherCollider;
     public int triggerAmount;
     public bool addThisItemToInventory;
@@ -44,5 +44,5 @@ public class Item : Interactable
         
         gameObject.SetActive(false);
         triggerAmount = 1;
-    }
+    }*/
 }

@@ -6,12 +6,7 @@ public class PickUpsBase : MonoBehaviour
 {
     [Header("Base")]
     public int triggerAmount = 1;
-    public AudioClip pickUpSound;
-    public GameObject deathFX;
-    public float effectDuration;
-    public int itemMaxLevel = 1;
-
-    public float _initialDuration;
+    public PickUpObject item;
     private SpriteRenderer _visual;
     private float _timer;
     [HideInInspector] public bool _timerActive;
@@ -32,10 +27,10 @@ public class PickUpsBase : MonoBehaviour
         triggerAmount--;
         _timerActive = true;
         //Only plays these if they are not null
-        if(pickUpSound)
-            GetComponent<AudioSource>().PlayOneShot(pickUpSound);
-        if(deathFX)
-            Instantiate(deathFX,transform.position,transform.rotation);
+        if(item.pickUpSound)
+            GetComponent<AudioSource>().PlayOneShot(item.pickUpSound);
+        if(item.deathFX)
+            Instantiate(item.deathFX);
         //_visual.enabled = false;
     }
 
@@ -49,6 +44,7 @@ public class PickUpsBase : MonoBehaviour
         }
         return false;
     }
+    
     public virtual void DisablePickUp()
     {
         if(GetComponent<ObjectID>() != null)
@@ -60,7 +56,7 @@ public class PickUpsBase : MonoBehaviour
 
     public virtual void Update()
     {
-        if(_timerActive && effectDuration > 0 && Timer(effectDuration))
+        if(_timerActive && item.effectDuration > 0 && Timer(item.effectDuration))
             DisablePickUp();
     }
 }

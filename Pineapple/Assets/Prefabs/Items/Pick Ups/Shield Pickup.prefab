@@ -9757,11 +9757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerAmount: 1
-  pickUpSound: {fileID: 8300000, guid: 56d176135168e4788b212b0059fee63b, type: 3}
-  deathFX: {fileID: 0}
-  effectDuration: 0
-  itemMaxLevel: 3
-  _initialDuration: 1
+  item: {fileID: 11400000, guid: e5a291c1c29d6bf49877cf294b1566c2, type: 2}
   _timerActive: 0
   shieldStrength: 1
   deathSound: {fileID: 8300000, guid: c2790bf53e7304e459c2c3a7017d24dc, type: 3}
@@ -9890,7 +9886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 3
-  parentPool: {fileID: 0}
+  selfDestroy: 0
 --- !u!114 &681300592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9904,7 +9900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopPlayerMoving: 0
-  randomDialogue: 0
+  randomDia: 0
   dialogues:
   - character: {fileID: 0}
     text: Cant touch this!

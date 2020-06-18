@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09033c7247c81243aec75b48388a513, type: 3}
+  m_Name: House Obstacle Pool Floor
+  m_EditorClassIdentifier: 
+  manual: 0
+  spawnChanceValue: 0
+  objectType: 1
+  duplicateAmount: 1
+  objectPool:
+  - {fileID: 6989178799162553116, guid: 35227792d44ff734a841c18939ba86db, type: 3}
+  - {fileID: 2418626216587671196, guid: 66293ae4f518f9f448545218d49a2d54, type: 3}
+  - {fileID: 145392974647268761, guid: 19482a2c1f6c8484a988fb297e1ec04e, type: 3}
+  - {fileID: 8671503900048735120, guid: 3d5285e48fac184448c7bce4f22ce108, type: 3}
+  - {fileID: 8376299548016296293, guid: 385c3cca2e8d700498c624b629bb9d6a, type: 3}
+  - {fileID: 4148940210128514621, guid: b26f967f6fffbf94bbb46fef2fa22d9a, type: 3}
+  - {fileID: 1619217471, guid: e09cc0e8860a9fa498eccc238aab1d69, type: 3}
+  - {fileID: 1619217471, guid: e09cc0e8860a9fa498eccc238aab1d69, type: 3}
+  - {fileID: 1619217471, guid: e09cc0e8860a9fa498eccc238aab1d69, type: 3}
+  - {fileID: 1619217471, guid: e09cc0e8860a9fa498eccc238aab1d69, type: 3}
+  - {fileID: 1619217471, guid: e09cc0e8860a9fa498eccc238aab1d69, type: 3}
+  - {fileID: 322923044, guid: 25b28755cf7198c4aa8a6101b2353e88, type: 3}
+  - {fileID: 322923044, guid: 25b28755cf7198c4aa8a6101b2353e88, type: 3}
+  - {fileID: 7375154768271231842, guid: fed97068c3e16dc4fad81fd55cc508fa, type: 3}
+  - {fileID: 7375154768271231842, guid: fed97068c3e16dc4fad81fd55cc508fa, type: 3}
+  - {fileID: 4184087154265647493, guid: 57a77138ff927614ca6fba196d75c573, type: 3}
+  - {fileID: 4184087154265647493, guid: 57a77138ff927614ca6fba196d75c573, type: 3}
+  - {fileID: 6891917695122255138, guid: 4704759efc173c64b8326323d4b2df81, type: 3}
+  spawnedObjectPool: []
+  spawnPointChoice: 2

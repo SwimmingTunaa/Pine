@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09033c7247c81243aec75b48388a513, type: 3}
+  m_Name: House Obstacle Pool Mid
+  m_EditorClassIdentifier: 
+  manual: 0
+  spawnChanceValue: 0
+  objectType: 1
+  duplicateAmount: 1
+  objectPool:
+  - {fileID: 4184087154265647493, guid: 57a77138ff927614ca6fba196d75c573, type: 3}
+  - {fileID: 7478172108897363928, guid: e5ef5548a39a1754582a4adfcd002b95, type: 3}
+  - {fileID: 6328082816560442986, guid: 6cf4e5cad89daa24fa7a01b70478a78d, type: 3}
+  - {fileID: 8778387156850733157, guid: 6787f6cef9cae624696862f2a4ed1c0c, type: 3}
+  - {fileID: 3069447904017453340, guid: 394bbf53c41916e4db9218eb314dd88e, type: 3}
+  - {fileID: 5208661094515775315, guid: 26d726fcfabaffc44bf90ff2b25a9694, type: 3}
+  - {fileID: 582956377880539673, guid: 7643b026c474921468085cf8d6cc9799, type: 3}
+  - {fileID: 582956377880539673, guid: 7643b026c474921468085cf8d6cc9799, type: 3}
+  - {fileID: 582956377880539673, guid: 7643b026c474921468085cf8d6cc9799, type: 3}
+  - {fileID: 7742640170620559818, guid: 66bb0db2665363941ab4fcd25e953f98, type: 3}
+  - {fileID: 9106538405181979431, guid: 1c8548b11c6d9624a884a154db94b5d0, type: 3}
+  - {fileID: 4233513696493634014, guid: 0b513d9debaa7334b9d4db8e20191598, type: 3}
+  spawnedObjectPool: []
+  spawnPointChoice: 1

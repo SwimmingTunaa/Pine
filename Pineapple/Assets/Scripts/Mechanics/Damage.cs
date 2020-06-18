@@ -50,7 +50,7 @@ public class Damage : MonoBehaviour
                 dialogue.StartDialogue(p.gameObject);
                 p._anim.SetTrigger("Sad");
                 p.GetComponent<AudioSource>().PlayOneShot(p.hairSlicedAudio);
-                StatsManager.AddToAStat(1,"HaircutsTaken");
+                StatsManager.Instance.AddToAStat(1,"HaircutsTaken");
                 GameObject tempObj = Instantiate(p.slicedHair, other.transform.position, p.slicedHair.transform.rotation);
                 Destroy(tempObj, 1f);
             }

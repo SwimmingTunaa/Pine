@@ -1,0 +1,23 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "New PickUp", menuName = "Item/Pick Up Item")]
+public class PickUpObject : ScriptableObject
+{
+    [Header("About This Item")]
+    public string itemName;
+    public int itemCost;
+    public int costIncrement;
+    public float effectDuration;
+    public int itemMaxLevel = 1;
+    public AudioClip pickUpSound;
+    public GameObject deathFX;
+    public PickUpObject Instance;
+
+    public void Init()
+    {
+        Instance = Instantiate(this);
+    }
+}
+

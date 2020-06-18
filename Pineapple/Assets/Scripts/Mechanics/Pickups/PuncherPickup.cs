@@ -6,7 +6,6 @@ public class PuncherPickup : PickUpsBase
 {
     [Header("Puncher")]
     public GameObject puncherObj;
-    public GameObject outfit;
     public GameObject visual;
 
     [Header("VFX")]
@@ -15,7 +14,8 @@ public class PuncherPickup : PickUpsBase
     private PlayerController pController;
     public GameObject transformVFX;
     public AudioClip transformSFX;
-
+    
+    private GameObject outfit;
     private PlayerHealth _health;
     private Animator _anim;
     private bool _sfxActive = false;
@@ -40,7 +40,7 @@ public class PuncherPickup : PickUpsBase
 
     public override void Update()
     {
-        if(_effectActive && (_timerActive && effectDuration > 0 && Timer(effectDuration) ||_health != null && _health.health <= 1))
+        if(_effectActive && (_timerActive && item.effectDuration > 0 && Timer(item.effectDuration) ||_health != null && _health.health <= 1))
         {
             DisablePickUp();
             Debug.Log("Disable Glove");

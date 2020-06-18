@@ -74,6 +74,21 @@ TextureImporter:
   - first:
       213: -9088269654632666071
     second: Rock 4
+  - first:
+      213: 4744539469030172471
+    second: Cave Floor
+  - first:
+      213: -475443288125945228
+    second: stalactities
+  - first:
+      213: -3952816048303423947
+    second: Cave Wall
+  - first:
+      213: -8608973952279340171
+    second: Stalactities Background
+  - first:
+      213: -6415286824942858424
+    second: stalactities small
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -212,7 +227,7 @@ TextureImporter:
       name: Floor Outside
       rect:
         serializedVersion: 2
-        x: 65
+        x: 10
         y: 456
         width: 1638
         height: 109
@@ -233,7 +248,7 @@ TextureImporter:
       name: Floor
       rect:
         serializedVersion: 2
-        x: 62
+        x: 18
         y: 2
         width: 1752
         height: 98
@@ -254,8 +269,8 @@ TextureImporter:
       name: Window
       rect:
         serializedVersion: 2
-        x: 59
-        y: 113
+        x: 14
+        y: 112
         width: 1751
         height: 337
       alignment: 0
@@ -490,7 +505,7 @@ TextureImporter:
         width: 272
         height: 152
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -507,11 +522,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 285
-        y: 1035
+        y: 1038
         width: 210
-        height: 135
+        height: 132
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -532,7 +547,7 @@ TextureImporter:
         width: 254
         height: 102
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -553,7 +568,7 @@ TextureImporter:
         width: 110
         height: 71
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -561,6 +576,111 @@ TextureImporter:
       bones: []
       spriteID: 2966a820b02986c43b0ddcdae7b3fbae
       internalID: -9088269654632666071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cave Floor
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 580
+        width: 1637
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f086b0c949474a47b1b0557c53e91b8
+      internalID: 4744539469030172471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stalactities
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 822
+        width: 408
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92682de39cfc0f9459b92fb3ee264c6f
+      internalID: -475443288125945228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cave Wall
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 710
+        width: 800
+        height: 327
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 791bd0143c00fe14c812ff1610f17c1b
+      internalID: -3952816048303423947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stalactities Background
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 1038
+        width: 822
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa5d634bd7966fc42bbd3c26aae7e266
+      internalID: -8608973952279340171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stalactities small
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 886
+        width: 152
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93c0591c30ccf284485097ddc275bf3a
+      internalID: -6415286824942858424
       vertices: []
       indices: 
       edges: []

@@ -26,7 +26,8 @@ public class ShieldPickUp : PickUpsBase
         base.DoAction(player);
         transform.parent = player.GetComponent<Outfits>().powerUpEffectSpawnPoint;
         transform.position = player.GetComponent<Outfits>().powerUpEffectSpawnPoint.position;
-        health.AddHealth(shieldStrength);
+        ShieldPickUpObject s = item.Instance as ShieldPickUpObject;
+        health.AddHealth(s.shieldStrength);
         if(GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Shield Shine"))
             GetComponentInChildren<Animator>().Play("Shield Start");
     }
@@ -37,7 +38,7 @@ public class ShieldPickUp : PickUpsBase
         {
             active = false;
             if(deathSound != null)
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>().PlayOneShot(deathSound);
+            GameManager.Instance.GetComponent<AudioSource>().PlayOneShot(deathSound);
             transform.parent = null;
             GetComponent<ObjectID>().Disable();
         }

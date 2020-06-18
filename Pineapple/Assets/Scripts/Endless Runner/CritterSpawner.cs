@@ -16,10 +16,9 @@ public class CritterSpawner : Spawner
             Vector3 newSpawnPos = new Vector3(spawnPoint.position.x + Random.Range(-3, 2), spawnPoint.position.y, spawnPoint.position.z);
             for (int i = 0; i < randomSpawnAmount; i++)
             {
-                GameObject tempObj =  critterPool.spawnedObjectPool[0];
+                GameObject tempObj =  GetNextItem(critterPool.spawnedObjectPool);
                 tempObj.SetActive(true);
                 tempObj.transform.position = newSpawnPos;
-                critterPool.spawnedObjectPool.Remove(tempObj);
             }
         }
        

@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Sticker : Item
+public class Sticker : MonoBehaviour
 {
     [Header("Sticker")]
+    public int triggerAmount = 1;
     public int value;
+    public AudioClip pickUpSound;
     public GameObject deathEffect;
-    private StatsManager sm;
     [HideInInspector] public GameObject moveToTarget;
     [HideInInspector] public bool move;
-    private GameManager effectParentObj;
-
-
+  
     void Start()
     {
         transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, Random.Range(-90f,90f));
-        sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<StatsManager>();
-        triggerAmount = 1;
     }
+
     void OnEnable()
     {
+        triggerAmount = 1;
         deathEffect.transform.SetParent(this.gameObject.transform);
         deathEffect.transform.position = this.gameObject.transform.position;
         gameObject.SetActive(true);
@@ -41,19 +40,16 @@ public class Sticker : Item
         }
     }
 
-    public override void DoAction(GameObject player)
+    public void DoAction(GameObject player)
     {
-        if(sm != null)
-        {
-            AudioSource a = sm.gameObject.GetComponent<AudioSource>();
-            a.Stop();
-            a.PlayOneShot(itemObject.pickUpSound);
-        }
+        AudioSource a = StatsManager.Instance.gameObject.GetComponent<AudioSource>();
+        a.Stop();
+        a.PlayOneShot(pickUpSound);
         deathEffect.SetActive(true);
         deathEffect.transform.parent = null;
-        sm.stickerCollected += value;
+        StatsManager.Instance.stickerCollected += value;
         move = false;
-        base.DoAction(player);
+        //base.DoAction(player);
     }
 
     public void moveStickerToTarget(GameObject target, float speed)

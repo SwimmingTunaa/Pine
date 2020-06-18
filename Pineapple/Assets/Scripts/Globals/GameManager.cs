@@ -10,6 +10,7 @@ using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     public const float PLAYERSTARTSPEED = 60;
     public const float TOMATOSTARTSPEED = 55;
     public StatsManager stats;
@@ -49,6 +50,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null) 
+                Destroy(gameObject);
+            else
+                Instance = this;
         //reset statics
         ResetStatics();
     }

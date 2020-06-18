@@ -10,11 +10,8 @@ using System.Text.RegularExpressions;
 public abstract class ShopItem : MonoBehaviour
 {
     [Header("Base Item Info")]
-    public ShopManager shopManager;
-    public string itemName;
-    public int itemCost;
-    public int costIncrement;
-    public List<PickUpsBase> itemInGame = new List<PickUpsBase>();
+    public PickUpObject item;
+    [HideInInspector] public PickUpObject itemInstance;
 
     [Header("Text")]
     public Slider progressBar;
@@ -29,23 +26,26 @@ public abstract class ShopItem : MonoBehaviour
     
     void Awake()
     {
-        PlayerPrefs.GetInt(itemName);
+        item.Init();
+        if(item)
+            itemInstance = item.Instance;
+        //PlayerPrefs.GetInt(item.itemName);
         //set the level of the item to its tracked level
         //_confirmButtonText = confirmationBody.GetComponentInChildren<TextMeshProUGUI>();
         //get the base price of the item
-        _startCost = itemCost;
-        Initialise();
+        _startCost = itemInstance.itemCost;
+        //Initialise();
     }
 
     public virtual void Initialise()
     {
          //set the level of the item to its tracked level
-         if(PlayerPrefs.GetInt(itemName) <= 0)
+         if(PlayerPrefs.GetInt(itemInstance.itemName) <= 0)
          {
-             PlayerPrefs.SetInt(itemName, 1);
+             PlayerPrefs.SetInt(itemInstance.itemName, 1);
          }
-        _currentLevel = PlayerPrefs.GetInt(itemName);
-        itemCost = _startCost * _currentLevel;  
+        _currentLevel = PlayerPrefs.GetInt(itemInstance.itemName);
+        itemInstance.itemCost = _startCost + (itemInstance.costIncrement * _currentLevel);  
         UpdateText();
         CompletedItem();
     }
@@ -118,21 +118,21 @@ public abstract class ShopItem : MonoBehaviour
     public virtual void IncreaseItemLevel()
     {  
         //pay first before level is increased then increase the price
-        StatsManager.MinusStickers(itemCost);
-        itemCost = _startCost + (_currentLevel * costIncrement);
+        StatsManager.Instance.MinusStickers(itemInstance.itemCost);
+        itemInstance.itemCost = _startCost + (_currentLevel * itemInstance.costIncrement);
         //increase level
         _currentLevel += 1;
-        PlayerPrefs.SetInt(itemName, _currentLevel);
-        Debug.Log(itemName + " current level: " + _currentLevel);
+        PlayerPrefs.SetInt(itemInstance.itemName, _currentLevel);
+        Debug.Log(itemInstance.itemName + " current level: " + _currentLevel);
         //update text
         UpdateText();
         CompletedItem();
-        shopManager.CloseConfirmation(itemName);
+        ShopManager.Instance.CloseConfirmation(itemInstance.itemName);
     }
 
     void CompletedItem()
     {
-        if(_currentLevel >= itemInGame[0].itemMaxLevel)
+        if(_currentLevel >= itemInstance.itemMaxLevel)
         {
             purchaseText.text = "COMPLETED";
             GetComponentInChildren<Button>().interactable = false;
@@ -142,9 +142,9 @@ public abstract class ShopItem : MonoBehaviour
 
     void UpdateText()
     {
-        levelText.text = _currentLevel + "/" + itemInGame[0].itemMaxLevel;
-        priceText.text = itemCost.ToString("N0");
-        progressBar.maxValue = itemInGame[0].itemMaxLevel;
+        levelText.text = _currentLevel + "/" + itemInstance.itemMaxLevel;
+        priceText.text = itemInstance.itemCost.ToString("N0");
+        progressBar.maxValue = itemInstance.itemMaxLevel;
         progressBar.value = _currentLevel;
     }
 }

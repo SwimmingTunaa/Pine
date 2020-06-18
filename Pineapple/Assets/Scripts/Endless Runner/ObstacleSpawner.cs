@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class ObstacleSpawner : Spawner
 {   
-    public ObstaclePoolConfig currentLevelConfig;
-    public ObstacleLevelConfig levelConfig;
-
-    [Space(10)]
     public GameObject[] spawnPoints;
     public Collider2D floorCollider;
 
-    GameObject _tempGO;
+    private ObstaclePoolConfig _currentRegionLevel;
+    private GameObject _NextObstacleToSpawn;
     private List<ObstaclePool> _obstacleSpawnPools;
     private Dictionary <Enums.ObstacleSpawnPoint, Vector3> spawnpointConfig = new Dictionary<Enums.ObstacleSpawnPoint, Vector3>();
     
     void Awake()
     {
-        currentLevelConfig = levelConfig.startLevel;
+        
     }
     void Start()
     {
+        
         Initialize();
     }
  
@@ -34,17 +32,15 @@ public class ObstacleSpawner : Spawner
         Initialize();
         //get random pool to spawn
         var randomIndexGetter = new cummulativeCalculator<ObstaclePool>();
-        int randomIndex = randomIndexGetter.GetRandomEntryIndex(_obstacleSpawnPools);
+        int randomIndex = randomIndexGetter.GetRandomEntryIndex(_currentRegionLevel.poolList);
         //get previous spawned object
-        Transform previousObj = _tempGO != null ? _tempGO.transform : null;
-//        Debug.Log(previousObj + " previous Spawn");
-        ObstaclePool poolToUse = _obstacleSpawnPools[randomIndex]; 
-        _tempGO = GetObjToSpawn(poolToUse);
-        //instantiate a new obj if the current one is already active
-        createNewObstacle();
-        _tempGO.SetActive(true);
+        Transform previousObj = _NextObstacleToSpawn != null ? _NextObstacleToSpawn.transform : null;
+//       Debug.Log(previousObj + " previous Spawn");
+        ObstaclePool poolToUse = _currentRegionLevel.poolList[randomIndex]; 
+        _NextObstacleToSpawn = GetNextItem(poolToUse.spawnedObjectPool);
+        _NextObstacleToSpawn.SetActive(true);
         //update the floor spawn point so that it includes the temp objects collider difference
-        spawnpointConfig[currentLevelConfig.bot.spawnPointChoice] = GetFloorSpawnPoint(currentLevelConfig, _tempGO.GetComponent<Collider2D>());
+        spawnpointConfig[_currentRegionLevel.bot.spawnPointChoice] = GetFloorSpawnPoint(_currentRegionLevel, _NextObstacleToSpawn.GetComponent<Collider2D>());
         //Find the spawnpoint so that it spawn further from the previous spawn item
         float getXDifference = previousObj != null ? GetFurthestObjectDistance(previousObj.transform) - previousObj.position.x : 0;
         float newX = spawnpointConfig[poolToUse.spawnPointChoice].x + 
@@ -52,21 +48,17 @@ public class ObstacleSpawner : Spawner
         Vector3 NewSpawnPoint = new Vector2 (newX, spawnpointConfig[poolToUse.spawnPointChoice].y);
         //spawn object from the pool
         Spawn(NewSpawnPoint);
-        poolToUse.spawnedObjectPool.Remove(_tempGO);
     }
 
     public void Initialize()
     {
-        _obstacleSpawnPools = new List<ObstaclePool>();
-        _obstacleSpawnPools.Add(currentLevelConfig.top);
-        _obstacleSpawnPools.Add(currentLevelConfig.mid);
-        _obstacleSpawnPools.Add(currentLevelConfig.bot);
+        _currentRegionLevel = MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[0];
         //get the spwanpoint positions from the config
         spawnpointConfig = new Dictionary <Enums.ObstacleSpawnPoint, Vector3>
         {
-            {currentLevelConfig.top.spawnPointChoice, spawnPoints[0].transform.position},
-            {currentLevelConfig.mid.spawnPointChoice, spawnPoints[(int)Random.Range(1,2)].transform.position},
-            {currentLevelConfig.bot.spawnPointChoice, _tempGO == null ? floorCollider.transform.position : GetFloorSpawnPoint(currentLevelConfig, _tempGO.GetComponent<Collider2D>())},
+            {_currentRegionLevel.top.spawnPointChoice, spawnPoints[0].transform.position},
+            {_currentRegionLevel.mid.spawnPointChoice, spawnPoints[(int)Random.Range(1,2)].transform.position},
+            {_currentRegionLevel.bot.spawnPointChoice, _NextObstacleToSpawn == null ? floorCollider.transform.position : GetFloorSpawnPoint(_currentRegionLevel, _NextObstacleToSpawn.GetComponent<Collider2D>())},
         };
     }
 
@@ -90,7 +82,7 @@ public class ObstacleSpawner : Spawner
 
     void Spawn(Vector2 spawnPoint)
     {
-        _tempGO.transform.position = spawnPoint;   
+        _NextObstacleToSpawn.transform.position = spawnPoint;   
     }
 
     public Vector3 GetFloorSpawnPoint(ObstaclePoolConfig config, Collider2D objectCollider)
@@ -105,30 +97,16 @@ public class ObstacleSpawner : Spawner
         return spawnPoints[3].transform.position;
     }
 
-    void createNewObstacle()
-    {
-        //instantiate a new obj if the current one is already active
-        if(_tempGO.activeInHierarchy)
-        {
-            GameObject newObj = Instantiate(_tempGO,transform.position, transform.rotation);
-            newObj.layer = _tempGO.layer;
-            newObj.tag = _tempGO.tag;
-            newObj.GetComponent<ObjectID>().CreateID(ObjType.Obstacle, _tempGO.GetComponent<ObjectID>().parentPool);
-            _tempGO = newObj;
-            _tempGO.SetActive(false);
-        }
-    }
-
     public void changePoolSpawnChance(float top, float mid, float bot)
     {
-        currentLevelConfig.top.spawnChanceValue = top;
-        currentLevelConfig.mid.spawnChanceValue = mid;
-        currentLevelConfig.bot.spawnChanceValue = bot;
+        _currentRegionLevel.top.spawnChanceValue = top;
+        _currentRegionLevel.mid.spawnChanceValue = mid;
+        _currentRegionLevel.bot.spawnChanceValue = bot;
     }
 
     public void UpdateLevelConfig(ObstaclePoolConfig newPoolConfig)
     {
-        currentLevelConfig = newPoolConfig;
+        _currentRegionLevel = newPoolConfig;
         Initialize();
     }
 } 

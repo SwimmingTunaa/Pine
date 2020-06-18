@@ -6,6 +6,7 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
+    public static ShopManager Instance;
     [Header("Confirmation Button")]
     public GameObject confirmationBody;
     public Button confirmButton;
@@ -20,6 +21,10 @@ public class ShopManager : MonoBehaviour
 
     public void Awake()
     {
+        if (Instance != null) 
+                Destroy(gameObject);
+            else
+                Instance = this;
         _confirmButtonText = confirmationBody.GetComponentInChildren<TextMeshProUGUI>();
     }
     public void Start()
@@ -30,15 +35,15 @@ public class ShopManager : MonoBehaviour
 
     public void OpenConfirmation(ShopItem shopItem)
     {
-        if(PlayerPrefs.GetInt("TotalStickers") - shopItem.itemCost >= 0)
+        if(PlayerPrefs.GetInt("TotalStickers") - shopItem.item.itemCost >= 0)
         {
             confirmationBody.SetActive(true);
             //add the method to the onclick event
             confirmButton.onClick.AddListener(() => shopItem.IncreaseItemLevel());
-            cancelButton.onClick.AddListener(()=> CloseConfirmation(shopItem.itemName));
-            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemName)",shopItem.itemName);
+            cancelButton.onClick.AddListener(()=> CloseConfirmation(shopItem.item.itemName));
+            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemName)",shopItem.item.itemName);
             //converts the item cost to string and then add commas to the thousandth
-            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemCost)",shopItem.itemCost.ToString());
+            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemCost)",shopItem.itemInstance.itemCost.ToString());
         }
         else
             insufficientFundButton.SetActive(true);
@@ -46,15 +51,15 @@ public class ShopManager : MonoBehaviour
 
        public void OpenConfirmationCharacter(ShopItem shopItem)
     {
-        if(PlayerPrefs.GetInt("TotalStickers") - shopItem.itemCost >= 0)
+        if(PlayerPrefs.GetInt("TotalStickers") - shopItem.itemInstance.itemCost >= 0)
         {
             confirmationBody.SetActive(true);
             //add the method to the onclick event
             confirmButton.onClick.AddListener(() => shopItem.IncreaseItemLevel());
-            cancelButton.onClick.AddListener(()=> CloseConfirmation(shopItem.itemName));
-            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemName)",shopItem.itemName);
+            cancelButton.onClick.AddListener(()=> CloseConfirmation(shopItem.item.itemName));
+            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemName)",shopItem.item.itemName);
             //converts the item cost to string and then add commas to the thousandth
-            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemCost)",shopItem.itemCost.ToString());
+            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemCost)",shopItem.itemInstance.itemCost.ToString());
         }
         else
             insufficientFundButton.SetActive(true);

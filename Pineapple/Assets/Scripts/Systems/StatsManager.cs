@@ -5,6 +5,7 @@ using TMPro;
 
 public class StatsManager: MonoBehaviour
 {
+    public static StatsManager Instance;
     public int currentScore;
     public int stickerCollected;
 
@@ -19,6 +20,10 @@ public class StatsManager: MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null) 
+                Destroy(gameObject);
+            else
+                Instance = this;
         Initialise();
     }
 
@@ -43,7 +48,7 @@ public class StatsManager: MonoBehaviour
         PlayerPrefs.SetInt("TotalStickers", allStickers);
     }
 
-    public static void MinusStickers(int amount)
+    public void MinusStickers(int amount)
     {
         int allStickers = PlayerPrefs.GetInt("TotalStickers") - amount;
         PlayerPrefs.SetInt("TotalStickers", allStickers);
@@ -60,7 +65,7 @@ public class StatsManager: MonoBehaviour
             PlayerPrefs.SetInt("LongestDistanceTravelled", (int)Statics.DistanceTraveled );
     }
 
-    public static void AddToAStat(int amount, string statName)
+    public void AddToAStat(int amount, string statName)
     {
         int totalAmount = PlayerPrefs.GetInt(statName) + amount;
         PlayerPrefs.SetInt(statName, totalAmount);

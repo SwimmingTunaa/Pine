@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7eec5fcfe47f9d4993e65309f7bb56a, type: 3}
+  m_Name: Forest Region
+  m_EditorClassIdentifier: 
+  tag: Forest
+  panels: {fileID: 11400000, guid: 830a624a9c2da714ba92d6ee95ab9b05, type: 2}
+  projectiles: {fileID: 11400000, guid: 1ac7203569c1c4d41b65e6ccb1ee75bd, type: 2}
+  obstaclePoolsLevel:
+  - {fileID: 11400000, guid: be8ef1497cfbebc4594e4b385cc5a7a6, type: 2}
+  - {fileID: 11400000, guid: c8000f2781f23304dbc778101471ba78, type: 2}
+  obstaclePoolsInstances: []

@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MasterSpawner : Spawner
+public class MasterSpawner : MonoBehaviour
 {
+    public static MasterSpawner Instance;
+
     public bool active = true;
+    public float spawnInterval = 1;
+    public Region activeRegion;
     public float minDistance, maxDistance;
     [Header("Projectile Spawner")]
     public float pSpawnChance;  
@@ -31,6 +35,11 @@ public class MasterSpawner : Spawner
     
     void Awake()
     {
+        if (Instance != null) 
+                Destroy(gameObject);
+            else
+                Instance = this;
+                
         //add these to the challenges
         AddToChanceList(projectileSpawner, pSpawnChance);
         AddToChanceList(obstacleSpawner, oSpawnChance);
@@ -61,7 +70,7 @@ public class MasterSpawner : Spawner
         DoSpawn();
     }
 
-    public override void DoSpawn()
+    public void DoSpawn()
     {
         if(Statics.DistanceTraveled >= spawnInterval)
         {

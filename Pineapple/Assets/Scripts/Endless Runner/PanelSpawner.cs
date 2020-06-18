@@ -6,70 +6,66 @@ using UnityEngine;
 public class PanelSpawner : Spawner
 {
     public GameObject startingPanel;
-    public ObjectPoolManager objectPoolManager;
+    public RegionPoolManager RegionPoolManager;
     public GameObject panelHolder;
 
-    [HideInInspector]public ObjectPools _pool;
+    public ObjectPools _pool;
     [HideInInspector] public bool _firstSpawn = true;
-    private List<GameObject> _panelsToSpawn = new List<GameObject>();
+    private GameObject _nextPanelToSpawn;
 
     void Start()
     {
-          //get the begining pool which is the house pool
-        _pool = objectPoolManager.spawnedObjectPool[0];
+        //get the begining pool which is the house pool
+        _pool = MasterSpawner.Instance.activeRegion.panels;
         InitialSpawn();
     }
 
     public override void DoSpawn()
     {
-        if(_panelsToSpawn == null || _panelsToSpawn.Count == 0)
+        if(_nextPanelToSpawn == null)
             return;
-        
-        SpriteRenderer nextSpawn = _panelsToSpawn[0].GetComponentInChildren<SpriteRenderer>();
+
+        SpriteRenderer nextSpawn = _nextPanelToSpawn.GetComponentInChildren<SpriteRenderer>();
         SpriteRenderer previousSprite = _previousSpawn.GetComponentInChildren<SpriteRenderer>();
-        if(!_pool.spawnedObjectPool.Contains(nextSpawn.transform.parent.gameObject))
-        {
-            _panelsToSpawn[0].transform.position = GetNextSpawnPos(previousSprite, nextSpawn);
-            _panelsToSpawn[0].transform.parent = panelHolder.transform;
-            _panelsToSpawn[0].SetActive(true);
-            _previousSpawn = _panelsToSpawn[0];
-            _panelsToSpawn.Remove(_previousSpawn);
-        } 
+        _nextPanelToSpawn.transform.position = GetNextSpawnPos(previousSprite, nextSpawn);
+        _nextPanelToSpawn.transform.parent = panelHolder.transform;
+        _nextPanelToSpawn.SetActive(true);
+        //check to see if the gameobject is from the same region as the previous panel
+        if(!_nextPanelToSpawn.gameObject.CompareTag(_previousSpawn.gameObject.tag))
+                //change the pool to match the region
+                _pool = RegionPoolManager.panelPoolTypeDic[_nextPanelToSpawn.gameObject.tag];
+        _previousSpawn = _nextPanelToSpawn;
+        _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool); 
     }
     
     public void InitialSpawn()
     {   
+        _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool);
         //spawn the start panels and then some queued panels afterwards
         for(int i = 0; i <= 4; i++)
         {
-            SetPanels(_pool.spawnedObjectPool);
             if(_firstSpawn)
             {
-                _panelsToSpawn[0].transform.position = GetNextSpawnPos(startingPanel.GetComponentInChildren<SpriteRenderer>(),
-                                                                    _panelsToSpawn[0].GetComponentInChildren<SpriteRenderer>());
-                _panelsToSpawn[0].SetActive(true);
-                _previousSpawn = _panelsToSpawn[0];
-                _panelsToSpawn.RemoveAt(0);
                 _firstSpawn = false;
+                _nextPanelToSpawn.transform.position = GetNextSpawnPos(startingPanel.GetComponentInChildren<SpriteRenderer>(),
+                                                                    _nextPanelToSpawn.GetComponentInChildren<SpriteRenderer>());
+                _nextPanelToSpawn.SetActive(true);
+                _previousSpawn = _nextPanelToSpawn;
+                if(!_nextPanelToSpawn.gameObject.CompareTag(startingPanel.gameObject.tag))
+                    //change the pool to match the region
+                    _pool = RegionPoolManager.panelPoolTypeDic[_nextPanelToSpawn.gameObject.tag];
+                _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool);
+            }else
+            {
+                _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool);
+                DoSpawn();
             }
-            DoSpawn();
-            SetPanels(_pool.spawnedObjectPool);
         }  
     }
 
     public void SpawnSets()
     {
-        SetPanels(_pool.spawnedObjectPool);
+        _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool);
         DoSpawn();
-    }
-    
-    public void SetPanels(List<GameObject> poolType)
-    {
-        GameObject tempObj = poolType[Random.Range(0,poolType.Count)];
-        if(!_panelsToSpawn.Contains(tempObj))
-        {
-            _panelsToSpawn.Add(tempObj);
-            poolType.Remove(tempObj);
-        } 
     }
 }

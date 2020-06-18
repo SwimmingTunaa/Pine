@@ -10,7 +10,6 @@ public class AddScore : MonoBehaviour
     public bool isTrigger; 
     public string statReference;
     
-    private StatsManager stats;
     private int startTriggerAmount;
     void Awake()
     {
@@ -19,7 +18,6 @@ public class AddScore : MonoBehaviour
 
     void Start()
     {
-        stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<StatsManager>();
         triggerAmount = startTriggerAmount;
     }
 
@@ -38,9 +36,9 @@ public class AddScore : MonoBehaviour
         if(other.CompareTag("Player") || other.CompareTag("Hair") && triggerAmount > 0 && !isTrigger)
         {
             triggerAmount--;
-            stats.AddToScore(scoreToAdd, scoreMessage);
+            StatsManager.Instance.AddToScore(scoreToAdd, scoreMessage);
             if(statReference != null)
-                StatsManager.AddToAStat(1, statReference);
+                StatsManager.Instance.AddToAStat(1, statReference);
         }
     }
 }

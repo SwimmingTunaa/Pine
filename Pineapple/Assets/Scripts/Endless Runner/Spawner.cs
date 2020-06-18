@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Spawner : MonoBehaviour
 {
-    public float spawnInterval = 1;
+    
+    public bool shouldExpand;
     private float _timer;
     [HideInInspector] public  GameObject _previousSpawn;
 
@@ -19,7 +20,7 @@ public abstract class Spawner : MonoBehaviour
         return newSpawnPos;
     }
 
-    public bool SpawnTimer()
+    /*public bool SpawnTimer()
     {
         _timer += Time.deltaTime;
         if(_timer > spawnInterval)
@@ -28,7 +29,30 @@ public abstract class Spawner : MonoBehaviour
             return true;
         }
         return false;
-    }
+    }*/
 
     public abstract void DoSpawn();
+
+    public GameObject GetNextItem(List<GameObject> poolType)
+    {
+        GameObject objectToPool = null;
+        for (int i = 0; i < poolType.Count; i++)
+        {
+            GameObject tempObj = poolType[Random.Range(0,poolType.Count)];
+            objectToPool = tempObj;
+            if(!tempObj.activeInHierarchy)
+                return tempObj;
+        }
+
+        if (shouldExpand) 
+        {
+            GameObject obj = (GameObject)Instantiate(objectToPool);
+            obj.GetComponent<ObjectID>().CreateID(ObjType.Obstacle);
+            obj.SetActive(false);
+            poolType.Add(obj);
+            return obj;
+        } 
+        else 
+            return null;
+    }
 }
