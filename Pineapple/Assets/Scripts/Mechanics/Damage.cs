@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
+    public int triggerAmount = 1;
     public bool destroyHair;
     public float damageAmount;
     public bool destroyAfterDamage;
@@ -26,34 +27,39 @@ public class Damage : MonoBehaviour
 
     void DoDamage(GameObject other)
     {
-        if(other.CompareTag("Player"))
+        if (triggerAmount > 0)
         {
-            other.GetComponent<HealthGeneric>().TakeDamage(damageAmount);
-            if(hitSoundEffect != null)
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>().PlayOneShot(hitSoundEffect);
-            if(destroyAfterDamage)
+            triggerAmount--;
+            if(other.CompareTag("Player"))
             {
-                var newRot = Quaternion.Euler(0, 0, -Vector3.Angle(GetComponent<Rigidbody2D>().velocity, -collision.GetContact(0).normal));
-                Instantiate(hitEffect, collision.GetContact(0).point,newRot);
-                gameObject.GetComponent<ObjectID>().Disable();
+                other.GetComponent<HealthGeneric>().TakeDamage(damageAmount);
+                if(hitSoundEffect != null)
+                    GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>().PlayOneShot(hitSoundEffect);
+                if(destroyAfterDamage)
+                {
+                    var newRot = Quaternion.Euler(0, 0, -Vector3.Angle(GetComponent<Rigidbody2D>().velocity, -collision.GetContact(0).normal));
+                    Instantiate(hitEffect, collision.GetContact(0).point,newRot);
+                    gameObject.GetComponent<ObjectID>().Disable();
+                }
+            }
+            if(other.CompareTag("Hair") && destroyHair)
+            {
+                PlayerController p =  other.GetComponentInParent<PlayerController>();
+                if(!p.hairMask.activeInHierarchy)
+                {
+                    p.hairMask.SetActive(true);
+                    DialogueSequence dialogue = p.GetComponent<DialogueSequence>();
+                    dialogue.dialogues[0].text = "MY HAIR!";
+                    dialogue.dialogues[0].diallogueInterval = 2;
+                    dialogue.StartDialogue(p.gameObject);
+                    p._anim.SetTrigger("Sad");
+                    p.GetComponent<AudioSource>().PlayOneShot(p.hairSlicedAudio);
+                    StatsManager.Instance.AddToAStat(1,"HaircutsTaken");
+                    GameObject tempObj = Instantiate(p.slicedHair, other.transform.position, p.slicedHair.transform.rotation);
+                    Destroy(tempObj, 1f);
+                }
             }
         }
-        if(other.CompareTag("Hair") && destroyHair)
-        {
-            PlayerController p =  other.GetComponentInParent<PlayerController>();
-            if(!p.hairMask.activeInHierarchy)
-            {
-                p.hairMask.SetActive(true);
-                DialogueSequence dialogue = p.GetComponent<DialogueSequence>();
-                dialogue.dialogues[0].text = "MY HAIR!";
-                dialogue.dialogues[0].diallogueInterval = 2;
-                dialogue.StartDialogue(p.gameObject);
-                p._anim.SetTrigger("Sad");
-                p.GetComponent<AudioSource>().PlayOneShot(p.hairSlicedAudio);
-                StatsManager.Instance.AddToAStat(1,"HaircutsTaken");
-                GameObject tempObj = Instantiate(p.slicedHair, other.transform.position, p.slicedHair.transform.rotation);
-                Destroy(tempObj, 1f);
-            }
-        }
+       
     }
 }

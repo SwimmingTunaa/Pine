@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public const float PLAYERSTARTSPEED = 60;
     public const float TOMATOSTARTSPEED = 55;
     public StatsManager stats;
+
     [Header("Game UI")]
     public TextMeshProUGUI distanceText;
     public TextMeshProUGUI stickersText;
@@ -23,8 +24,13 @@ public class GameManager : MonoBehaviour
     public GameObject chaser;
     public float warningDistance;
     public float velocityThreshold = 5f; // the threshold for when the tomato spawns;
-    public CinemachineVirtualCamera followVirtualCamera, stopVirutalCameara, chaseVirtualCamera;
     public GameObject tomatoWarningBubble;
+
+    [Header("Cameras")]
+    public CinemachineVirtualCamera followVirtualCamera;
+    public CinemachineVirtualCamera stopVirutalCameara;
+    public CinemachineVirtualCamera chaseVirtualCamera;
+    public CinemachineVirtualCamera vfxVirtualCamera;
 
     [Header("Gameover")]
     public TextMeshProUGUI finalScore;

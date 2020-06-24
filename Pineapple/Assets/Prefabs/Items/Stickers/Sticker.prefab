@@ -73,13 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5771c29afeee72d4ba21568e81424add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonBg: {fileID: 21300006, guid: 71554729de8148b43a988ab919db5998, type: 3}
-  activateButtonText: Move
-  itemObject: {fileID: 11400000, guid: 90fc152ad45fca142b8b27f34a5a4e72, type: 2}
-  otherCollider: {fileID: 0}
   triggerAmount: 1
-  addThisItemToInventory: 0
   value: 1
+  pickUpSound: {fileID: 8300000, guid: 8f54db8b1abd7384a8e4a5f754b6e9af, type: 3}
   deathEffect: {fileID: 925110804261391364}
   moveToTarget: {fileID: 0}
   move: 0
@@ -299,11 +295,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4156494940163766650}
     m_Modifications:
-    - target: {fileID: -587835813944566210, guid: 902d0bdf181c1a34dab70972f61d339b,
-        type: 3}
-      propertyPath: OnlyDeactivate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1247311384876784, guid: 902d0bdf181c1a34dab70972f61d339b, type: 3}
       propertyPath: m_Name
       value: Sticker Pick Up Effect
@@ -375,6 +366,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -587835813944566210, guid: 902d0bdf181c1a34dab70972f61d339b,
+        type: 3}
+      propertyPath: OnlyDeactivate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114756874033953806, guid: 902d0bdf181c1a34dab70972f61d339b,
         type: 3}

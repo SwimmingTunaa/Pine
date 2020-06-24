@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelProgressionSystem : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public static LevelProgressionSystem Instance;
     [Header("First Time Starting Game")]
     public ObstaclePool startingPool;
     public DialogueSequence dialogueSequence;
@@ -25,6 +25,8 @@ public class LevelProgressionSystem : MonoBehaviour
     private int startCounter = 0;
     private int _sItemForcedSpawnCounter;
     private MasterSpawner masterSpawner;
+
+    void Awake() => Instance = this;
 
     void Start()
     {
@@ -178,6 +180,6 @@ public class LevelProgressionSystem : MonoBehaviour
             startingPool.spawnedObjectPool[objectIndex].SetActive(true);
             tempConfig.bot = startingPool;
             startingPool.spawnedObjectPool[objectIndex].transform.position = masterSpawner.obstacleSpawner
-                .GetFloorSpawnPoint(tempConfig, startingPool.spawnedObjectPool[objectIndex].GetComponent<Collider2D>());      
+                .GetFloorSpawnPoint(startingPool.spawnedObjectPool[objectIndex].GetComponent<Collider2D>());      
     }
 }

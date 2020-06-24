@@ -4,28 +4,21 @@ using UnityEngine;
 
 public class ObstacleSpawner : Spawner
 {   
+    public static ObstacleSpawner Instance;
     public GameObject[] spawnPoints;
     public Collider2D floorCollider;
+    public List<GameObject> activeObstacles;
 
     private ObstaclePoolConfig _currentRegionLevel;
     private GameObject _NextObstacleToSpawn;
-    private List<ObstaclePool> _obstacleSpawnPools;
+   
     private Dictionary <Enums.ObstacleSpawnPoint, Vector3> spawnpointConfig = new Dictionary<Enums.ObstacleSpawnPoint, Vector3>();
-    
-    void Awake()
-    {
-        
-    }
-    void Start()
-    {
-        
-        Initialize();
-    }
- 
-    public override void DoSpawn()
-    {
-        SpawnAllObstacles();
-    }
+
+    void Awake() =>  Instance = this;
+
+    void Start() => Initialize();
+
+    public override void DoSpawn() => SpawnAllObstacles();
 
     void SpawnAllObstacles()
     {
@@ -40,7 +33,8 @@ public class ObstacleSpawner : Spawner
         _NextObstacleToSpawn = GetNextItem(poolToUse.spawnedObjectPool);
         _NextObstacleToSpawn.SetActive(true);
         //update the floor spawn point so that it includes the temp objects collider difference
-        spawnpointConfig[_currentRegionLevel.bot.spawnPointChoice] = GetFloorSpawnPoint(_currentRegionLevel, _NextObstacleToSpawn.GetComponent<Collider2D>());
+        if(_currentRegionLevel.bot)
+            spawnpointConfig[_currentRegionLevel.bot.spawnPointChoice] = GetFloorSpawnPoint(_NextObstacleToSpawn.GetComponent<Collider2D>());
         //Find the spawnpoint so that it spawn further from the previous spawn item
         float getXDifference = previousObj != null ? GetFurthestObjectDistance(previousObj.transform) - previousObj.position.x : 0;
         float newX = spawnpointConfig[poolToUse.spawnPointChoice].x + 
@@ -48,18 +42,17 @@ public class ObstacleSpawner : Spawner
         Vector3 NewSpawnPoint = new Vector2 (newX, spawnpointConfig[poolToUse.spawnPointChoice].y);
         //spawn object from the pool
         Spawn(NewSpawnPoint);
+        activeObstacles.Add(_NextObstacleToSpawn);
     }
 
     public void Initialize()
     {
-        _currentRegionLevel = MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[0];
+        _currentRegionLevel = MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[LevelProgressionSystem.Instance.difficultyLvl];
         //get the spwanpoint positions from the config
-        spawnpointConfig = new Dictionary <Enums.ObstacleSpawnPoint, Vector3>
-        {
-            {_currentRegionLevel.top.spawnPointChoice, spawnPoints[0].transform.position},
-            {_currentRegionLevel.mid.spawnPointChoice, spawnPoints[(int)Random.Range(1,2)].transform.position},
-            {_currentRegionLevel.bot.spawnPointChoice, _NextObstacleToSpawn == null ? floorCollider.transform.position : GetFloorSpawnPoint(_currentRegionLevel, _NextObstacleToSpawn.GetComponent<Collider2D>())},
-        };
+        spawnpointConfig.Clear();
+        if(_currentRegionLevel.top) spawnpointConfig.Add(_currentRegionLevel.top.spawnPointChoice, spawnPoints[0].transform.position);
+        if(_currentRegionLevel.mid) spawnpointConfig.Add(_currentRegionLevel.mid.spawnPointChoice, spawnPoints[(int)Random.Range(1,2)].transform.position);
+        if(_currentRegionLevel.bot) spawnpointConfig.Add(_currentRegionLevel.bot.spawnPointChoice, _NextObstacleToSpawn == null ? floorCollider.transform.position : GetFloorSpawnPoint(_NextObstacleToSpawn.GetComponent<Collider2D>()));
     }
 
     float GetFurthestObjectDistance(Transform go)
@@ -85,9 +78,9 @@ public class ObstacleSpawner : Spawner
         _NextObstacleToSpawn.transform.position = spawnPoint;   
     }
 
-    public Vector3 GetFloorSpawnPoint(ObstaclePoolConfig config, Collider2D objectCollider)
+    public Vector3 GetFloorSpawnPoint(Collider2D objectCollider)
     {
-        if(floorCollider != null && config.bot != null)
+        if(floorCollider != null)
         {
             float yPos = (floorCollider.transform.position.y + floorCollider.bounds.extents.y) + (objectCollider.bounds.extents.y + Mathf.Abs(objectCollider.offset.y));
 
@@ -99,9 +92,9 @@ public class ObstacleSpawner : Spawner
 
     public void changePoolSpawnChance(float top, float mid, float bot)
     {
-        _currentRegionLevel.top.spawnChanceValue = top;
-        _currentRegionLevel.mid.spawnChanceValue = mid;
-        _currentRegionLevel.bot.spawnChanceValue = bot;
+        if(_currentRegionLevel.top) _currentRegionLevel.top.spawnChanceValue = top;
+        if(_currentRegionLevel.mid) _currentRegionLevel.mid.spawnChanceValue = mid;
+        if(_currentRegionLevel.bot) _currentRegionLevel.bot.spawnChanceValue = bot;
     }
 
     public void UpdateLevelConfig(ObstaclePoolConfig newPoolConfig)

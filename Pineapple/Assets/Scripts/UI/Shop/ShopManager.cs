@@ -35,7 +35,7 @@ public class ShopManager : MonoBehaviour
 
     public void OpenConfirmation(ShopItem shopItem)
     {
-        if(PlayerPrefs.GetInt("TotalStickers") - shopItem.item.itemCost >= 0)
+        if(PlayerPrefs.GetInt("TotalStickers") - shopItem.itemInstance.itemCost >= 0)
         {
             confirmationBody.SetActive(true);
             //add the method to the onclick event

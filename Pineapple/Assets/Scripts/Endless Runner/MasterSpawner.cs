@@ -87,8 +87,8 @@ public class MasterSpawner : MonoBehaviour
                 }
                 return;
             }
-            Debug.Log("Spawn amount: " + _spawnAmount);
-            Debug.Log("Reward Spawn amount: " + _rewardAmount);
+            //Debug.Log("Spawn amount: " + _spawnAmount);
+            //Debug.Log("Reward Spawn amount: " + _rewardAmount);
             if(_spawnAmount > 0)
             {
                 _spawnAmount--;

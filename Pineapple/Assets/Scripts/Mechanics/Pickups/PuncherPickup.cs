@@ -40,7 +40,7 @@ public class PuncherPickup : PickUpsBase
 
     public override void Update()
     {
-        if(_effectActive && (_timerActive && item.effectDuration > 0 && Timer(item.effectDuration) ||_health != null && _health.health <= 1))
+        if(_effectActive && (_timerActive && item.Instance.effectDuration > 0 && Timer(item.Instance.effectDuration) ||_health != null && _health.health <= 1))
         {
             DisablePickUp();
             Debug.Log("Disable Glove");
@@ -75,9 +75,9 @@ public class PuncherPickup : PickUpsBase
     {
         if(_sfxActive)
         {
-            vfxCamera.GetComponent<CinemachineVirtualCamera>().Follow = CharacterManager.activeCharacter.transform;
-            mainCam.SetActive(false);
-            vfxCamera.SetActive(true);
+            GameManager.Instance.vfxVirtualCamera.Follow = CharacterManager.activeCharacter.transform;
+            GameManager.Instance.followVirtualCamera.gameObject.SetActive(false);
+            GameManager.Instance.vfxVirtualCamera.gameObject.SetActive(true);
             //Pause player and everything else
             Time.timeScale = 0;
             //Zoom into players body
@@ -100,8 +100,8 @@ public class PuncherPickup : PickUpsBase
                 if(pController == null)
                     pController =  player.GetComponent<PlayerController>();
                 pController.speed = enableEffect ? pController.speed += 10: pController.speed -=10;
-                mainCam.SetActive(true);
-                vfxCamera.SetActive(false);
+                GameManager.Instance.followVirtualCamera.gameObject.SetActive(false);
+                GameManager.Instance.vfxVirtualCamera.gameObject.SetActive(false);
                 Time.timeScale = 1;
 
                 puncherObj.SetActive(enableEffect);

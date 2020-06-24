@@ -22,6 +22,5 @@ public class ShieldUpgrade : ShopItem
     {
         ShieldPickUpObject s = itemInstance as ShieldPickUpObject;
         s.shieldStrength = currentLevel + strengthToAdd; 
-        Debug.Log(s.shieldStrength);
     }
 }

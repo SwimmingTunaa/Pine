@@ -212,12 +212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerAmount: 1
-  pickUpSound: {fileID: 8300000, guid: 8c287f25bbea84c0588789c62f6fb47d, type: 3}
-  deathFX: {fileID: 1489403914, guid: 38decb2d9e5f8764d8e1f28da794ae9d, type: 3}
-  effectDuration: 4
-  itemMaxLevel: 1
-  _initialDuration: 4
+  item: {fileID: 11400000, guid: 711c180c18c58de45b2778f28b7e8cca, type: 2}
   _timerActive: 0
+  animationName: Explode
   slowAmount: 10
 --- !u!114 &839307212047648615
 MonoBehaviour:

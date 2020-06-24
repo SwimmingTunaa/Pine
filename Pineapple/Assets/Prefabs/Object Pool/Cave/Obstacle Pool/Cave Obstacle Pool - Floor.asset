@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: Cave Obstacle Pool - Floor
   m_EditorClassIdentifier: 
   manual: 0
-  spawnChanceValue: 0
+  spawnChanceValue: 0.45
   objectType: 1
-  duplicateAmount: 8
+  duplicateAmount: 5
   objectPool:
   - {fileID: 1796550258336305473, guid: 123a9b818adeca84ab7c23dc991f95b6, type: 3}
+  - {fileID: 1796550258336305473, guid: aa64626c6ddb7354c8b297b3e1edbcc1, type: 3}
   spawnedObjectPool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

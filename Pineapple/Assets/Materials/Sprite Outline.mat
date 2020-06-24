@@ -8,8 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sprite Outline
-  m_Shader: {fileID: 4800000, guid: 1c70439fcce6fd5409213b6dad78ba43, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA PIXELSNAP_ON
+  m_Shader: {fileID: 4800000, guid: 62505ee61d20098489c6f861ed25cce1, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA PIXELSNAP_ON _CONNECTEDALPHA_ON _OUTLINEENABLED_ON
+    _OUTLINEMODE_SOLID _OUTLINEPOSITION_INSIDE_OVER_SPRITE _OUTLINESHAPE_CONTOUR _TILEMODE_STRETCH
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -43,6 +44,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FrameTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -61,7 +66,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 1
+    - _AlphaThreshold: 0
+    - _Angle: 45
     - _BumpScale: 1
+    - _ConnectedAlpha: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -73,16 +81,27 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Outline: 0
+    - _OutlineEnabled: 1
+    - _OutlineMode: 0
+    - _OutlinePosition: 1
+    - _OutlineShape: 0
     - _OutlineSize: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Thickness: 4.98
+    - _TileMode: 0
     - _UVSec: 0
+    - _Weight: 0.288
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientOutline1: {r: 0.8867924, g: 0.46431112, b: 0.46431112, a: 1}
+    - _GradientOutline2: {r: 0.3520019, g: 0.7075472, b: 0.33041117, a: 1}
+    - _ImageOutline: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SolidOutline: {r: 0, g: 0, b: 0, a: 1}

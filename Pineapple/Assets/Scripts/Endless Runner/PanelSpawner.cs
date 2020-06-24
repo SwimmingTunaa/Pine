@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PanelSpawner : Spawner
 {
+    public int intialSpawnAmount = 2;
     public GameObject startingPanel;
     public RegionPoolManager RegionPoolManager;
     public GameObject panelHolder;
@@ -42,7 +43,7 @@ public class PanelSpawner : Spawner
     {   
         _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool);
         //spawn the start panels and then some queued panels afterwards
-        for(int i = 0; i <= 4; i++)
+        for(int i = 0; i <= intialSpawnAmount; i++)
         {
             if(_firstSpawn)
             {

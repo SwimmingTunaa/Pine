@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 464110}
   - component: {fileID: 19804374}
   - component: {fileID: 19915826}
+  - component: {fileID: 2023927148999813286}
   m_Layer: 0
   m_Name: Sparks
   m_TagString: Untagged
@@ -4813,6 +4814,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2023927148999813286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnlyDeactivate: 1
 --- !u!1 &110600
 GameObject:
   m_ObjectHideFlags: 0
@@ -5172,6 +5186,7 @@ GameObject:
   - component: {fileID: 452562}
   - component: {fileID: 19864462}
   - component: {fileID: 19927346}
+  - component: {fileID: 1371416011167554731}
   m_Layer: 0
   m_Name: Bubbles
   m_TagString: Untagged
@@ -9922,6 +9937,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1371416011167554731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnlyDeactivate: 1
 --- !u!1 &174822
 GameObject:
   m_ObjectHideFlags: 0
@@ -9978,10 +10006,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayOnStart: 1
-  Loop: 1
+  Loop: 0
   Duration: 2
   Size: 1
-  destroyOnFinish: 0
+  destroyOnFinish: 1
 --- !u!114 &11486362
 MonoBehaviour:
   m_ObjectHideFlags: 0

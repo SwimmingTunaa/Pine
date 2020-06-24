@@ -9,39 +9,40 @@ public class SlowDebuff : PickUpsBase
    public static int timesHit = 0;
    [Header("Slow Debuff")]
    public float slowAmount;
+   public string animationName;
+   public ParticleSystem additionalEffect;
+   public GameObject visuals;
 
    private GameObject _tomato;
    private PlayerController _playerController;
-   private GameManager _gameManager;
+   private static float DEBUFFTIMER;
 
    void Start()
    {
+      Debug.Log(item.Instance.effectDuration);
       GetComponent<ObjectID>().selfDestroy = true;
       gameObject.SetActive(true);
+      _tomato = GameManager.Instance.chaser.gameObject;
       _playerController  = CharacterManager.activeCharacter.GetComponent<PlayerController>();
-      _gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-      _tomato = _gameManager.chaser.gameObject;
    }
 
    void OnEnable()
    {
       triggerAmount = 1;
    }
-
+  
    void OnTriggerEnter2D(Collider2D other)
    {
+      _tomato = GameManager.Instance.chaser.gameObject;
       _playerController  = CharacterManager.activeCharacter.GetComponent<PlayerController>();
-      _gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-      _tomato = _gameManager.chaser.gameObject;
       if(other.CompareTag("Player") && triggerAmount > 0)
       {  
-         Debug.Log("times hit: " + timesHit);
          DoAction(other.gameObject);
          switch(timesHit)
          {
             case 0:
-                  _gameManager.chaseVirtualCamera.gameObject.SetActive(true);
-                  _gameManager.chaseVirtualCamera.Follow = _playerController.cameraFollowTarget;
+                  GameManager.Instance.chaseVirtualCamera.gameObject.SetActive(true);
+                  GameManager.Instance.chaseVirtualCamera.Follow = _playerController.cameraFollowTarget;
                   _tomato.SetActive(true);
                   _tomato.GetComponentInChildren<Animator>().Play("Appear");
                   TomatoController.chasePlayer = true;
@@ -54,27 +55,44 @@ public class SlowDebuff : PickUpsBase
                   _tomato.GetComponent<TomatoController>().speed = _playerController.speed + 15f;
                break;
          }
+         Debug.Log("end of switch");
          timesHit ++;
-         Debug.Log("times hit added: " + timesHit );
       }     
+   }
+
+   public override bool Timer(float interval)
+   {
+      DEBUFFTIMER += Time.deltaTime;
+        if(DEBUFFTIMER > interval)
+        {
+            DEBUFFTIMER = 0f;
+            return true;
+        }
+        return false;
    }
 
    public override void DoAction(GameObject player)
    {
+      DEBUFFTIMER = 0;
       //TODO: Make it so that it resets before it gets destroyed by panelDestroyer
       base.DoAction(player);
       if(_playerController.speed > 60)
          _playerController.speed -= slowAmount;
       _playerController._anim.SetTrigger("Trip");
       _playerController._anim.SetTrigger("Sad");
-      GetComponentInChildren<Animator>().Play("Explode",0);
-      //visuals.SetActive(false);
+      if(animationName.Length > 0)
+         GetComponentInChildren<Animator>().Play(animationName,0);
+      else 
+      {
+         visuals.SetActive(false);
+         if(additionalEffect) additionalEffect.gameObject.SetActive(true);
+      }
    }
    public override void DisablePickUp()
    {
       if(timesHit <= 1)
       {
-         _tomato.GetComponentInChildren<Animator>().Play("Disappear");
+         _tomato.GetComponentInChildren<Animator>().Play("Dissapear");
          //objects get turn off by animation - see TurnOffGameObjectOnExit
          TomatoController.chasePlayer = false;
       }
@@ -84,7 +102,7 @@ public class SlowDebuff : PickUpsBase
 
    public void Reset()
    {
-      _gameManager.chaseVirtualCamera.gameObject.SetActive(false);
+      GameManager.Instance.chaseVirtualCamera.gameObject.SetActive(false);
       _playerController.speed += slowAmount;
       triggerAmount = 1;
       timesHit = 0;

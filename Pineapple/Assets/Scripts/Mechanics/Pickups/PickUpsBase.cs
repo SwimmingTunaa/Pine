@@ -13,6 +13,7 @@ public class PickUpsBase : MonoBehaviour
 
     void Awake()
     {
+        item.Init();
         _visual = GetComponentInChildren<SpriteRenderer>();
     }
 
@@ -30,11 +31,11 @@ public class PickUpsBase : MonoBehaviour
         if(item.pickUpSound)
             GetComponent<AudioSource>().PlayOneShot(item.pickUpSound);
         if(item.deathFX)
-            Instantiate(item.deathFX);
+            Instantiate(item.deathFX, transform.position, item.deathFX.transform.rotation);
         //_visual.enabled = false;
     }
 
-    public bool Timer(float interval)
+    public virtual bool Timer(float interval)
     {
         _timer += Time.deltaTime;
         if(_timer > interval)
@@ -56,7 +57,7 @@ public class PickUpsBase : MonoBehaviour
 
     public virtual void Update()
     {
-        if(_timerActive && item.effectDuration > 0 && Timer(item.effectDuration))
+        if(_timerActive && item.effectDuration > 0 && Timer(item.Instance.effectDuration))
             DisablePickUp();
     }
 }

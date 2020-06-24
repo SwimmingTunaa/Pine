@@ -16,7 +16,9 @@ public class PanelDestroyer : MonoBehaviour
                 pSpawner.SpawnSets();
                 other.transform.parent = null;
             }
-
+            else if (id.objectType == ObjType.Obstacle)
+                ObstacleSpawner.Instance.activeObstacles.Remove(other.gameObject);
+                
             if(!id.selfDestroy) id.Disable();
         }
     }

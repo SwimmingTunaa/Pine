@@ -28,7 +28,7 @@ public class Sticker : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(triggerAmount > 0 && other.CompareTag("Player"))
+        if(triggerAmount > 0 && (other.CompareTag("Player") || other.CompareTag("Hair")))
             DoAction(other.gameObject);
     }
 
@@ -42,6 +42,7 @@ public class Sticker : MonoBehaviour
 
     public void DoAction(GameObject player)
     {
+        triggerAmount--;
         AudioSource a = StatsManager.Instance.gameObject.GetComponent<AudioSource>();
         a.Stop();
         a.PlayOneShot(pickUpSound);
@@ -49,6 +50,7 @@ public class Sticker : MonoBehaviour
         deathEffect.transform.parent = null;
         StatsManager.Instance.stickerCollected += value;
         move = false;
+        gameObject.SetActive(false);
         //base.DoAction(player);
     }
 

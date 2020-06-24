@@ -13,9 +13,9 @@ public class ShieldPickUp : PickUpsBase
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(triggerAmount > 0)
+        if(triggerAmount > 0 && other.CompareTag("Player"))
         {
-            health = other.gameObject.GetComponentInParent<PlayerHealth>();
+            health = other.gameObject.GetComponent<PlayerHealth>();
             DoAction(health.gameObject);
         }
     }
