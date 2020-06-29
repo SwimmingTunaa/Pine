@@ -43,16 +43,17 @@ public abstract class Spawner : MonoBehaviour
             if(!tempObj.activeInHierarchy)
                 return tempObj;
         }
-
-        if (shouldExpand) 
+        return null;
+        /*if (shouldExpand) 
         {
             GameObject obj = (GameObject)Instantiate(objectToPool);
-            obj.GetComponent<ObjectID>().CreateID(ObjType.Obstacle);
+            if(GetComponent<ObjectID>() == null)
+                obj.GetComponent<ObjectID>().CreateID(ObjType.Obstacle);
             obj.SetActive(false);
             poolType.Add(obj);
             return obj;
         } 
         else 
-            return null;
+            return null;*/
     }
 }

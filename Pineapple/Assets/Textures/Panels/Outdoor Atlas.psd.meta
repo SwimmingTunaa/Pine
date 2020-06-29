@@ -89,6 +89,9 @@ TextureImporter:
   - first:
       213: -6415286824942858424
     second: stalactities small
+  - first:
+      213: -5105553603535451559
+    second: Cliff Ramp
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -128,8 +131,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 0
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -584,13 +587,13 @@ TextureImporter:
       name: Cave Floor
       rect:
         serializedVersion: 2
-        x: 10
-        y: 580
+        x: 8
+        y: 581
         width: 1637
         height: 124
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 27, y: 0, z: 21, w: 114}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -673,7 +676,7 @@ TextureImporter:
         width: 152
         height: 116
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -681,6 +684,27 @@ TextureImporter:
       bones: []
       spriteID: 93c0591c30ccf284485097ddc275bf3a
       internalID: -6415286824942858424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cliff Ramp
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 709
+        width: 534
+        height: 185
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83b5ec6c75ab4084a918a15f385c5041
+      internalID: -5105553603535451559
       vertices: []
       indices: 
       edges: []

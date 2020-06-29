@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3523180327071213844}
   - component: {fileID: 1153993641490656141}
   - component: {fileID: 839307212047648615}
+  - component: {fileID: 4683249399734567408}
   m_Layer: 16
   m_Name: Clothes
   m_TagString: Obstacle
@@ -214,8 +215,10 @@ MonoBehaviour:
   triggerAmount: 1
   item: {fileID: 11400000, guid: 711c180c18c58de45b2778f28b7e8cca, type: 2}
   _timerActive: 0
-  animationName: Explode
   slowAmount: 10
+  animationName: Explode
+  additionalEffect: {fileID: 0}
+  visuals: {fileID: 0}
 --- !u!114 &839307212047648615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +241,20 @@ MonoBehaviour:
   speechBubble: {fileID: 0}
   triggerAmount: 1
   randomDialogue: 0
+--- !u!114 &4683249399734567408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619217471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787c888dd1ea22a4e9601c74dc60c522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 1
+  selfDestroy: 1
 --- !u!1 &1445039094357652739
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,8 +51,9 @@ public class PickUpsBase : MonoBehaviour
         if(GetComponent<ObjectID>() != null)
             GetComponent<ObjectID>().Disable();
         _timerActive = false;
-        //Debug.Log("Item Disabled");
         triggerAmount = 1;
+        //allow items to be spawned again
+        RewardSpawner.instance.itemSpawned = false;
     }
 
     public virtual void Update()

@@ -46,8 +46,9 @@ public class ObstacleSpawner : Spawner
     }
 
     public void Initialize()
-    {
-        _currentRegionLevel = MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[LevelProgressionSystem.Instance.difficultyLvl];
+    {   
+        int lvl = LevelProgressionSystem.Instance.difficultyLvl;
+        _currentRegionLevel = MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[lvl - 1 < 0 ? 0 : lvl - 1];
         //get the spwanpoint positions from the config
         spawnpointConfig.Clear();
         if(_currentRegionLevel.top) spawnpointConfig.Add(_currentRegionLevel.top.spawnPointChoice, spawnPoints[0].transform.position);

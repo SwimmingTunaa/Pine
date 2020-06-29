@@ -19,7 +19,6 @@ public class SlowDebuff : PickUpsBase
 
    void Start()
    {
-      Debug.Log(item.Instance.effectDuration);
       GetComponent<ObjectID>().selfDestroy = true;
       gameObject.SetActive(true);
       _tomato = GameManager.Instance.chaser.gameObject;
@@ -55,7 +54,6 @@ public class SlowDebuff : PickUpsBase
                   _tomato.GetComponent<TomatoController>().speed = _playerController.speed + 15f;
                break;
          }
-         Debug.Log("end of switch");
          timesHit ++;
       }     
    }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,11 +15,9 @@ public class LevelProgressionSystem : MonoBehaviour
     public float speedCheckpointDistance;
     
     public int difficultyLvl = 0;
-    public float lvl1Checkpoint;
-    public float lvl2Checkpoint;
-    public float lvl3Checkpoint;
-    public float lvl4Checkpoint;
+    [SerializeField] public List<LevelInfo> levelInfos = new List<LevelInfo>();
 
+    private int currentDifficulty;
     public int roundsCompleted;  
     private float _currentCheckpoint;
     private int startCounter = 0;
@@ -41,6 +39,7 @@ public class LevelProgressionSystem : MonoBehaviour
     {
         if(Statics.DistanceTraveled > 50f && PlayerPrefs.GetInt("FirstTimeStart") == 1)
         {
+            PlayerSpeedIncrease();
             DifficultyIncrease();
             return;
         }
@@ -51,94 +50,93 @@ public class LevelProgressionSystem : MonoBehaviour
             } 
     }
 
-    void DifficultyIncrease()
+    void PlayerSpeedIncrease()
     {
         //increases players speed overtime
         if(Statics.DistanceTraveled  > _currentCheckpoint && GameManager._player.speed < GameManager._player.maxSpeed)
         {
             _currentCheckpoint = Statics.DistanceTraveled + speedCheckpointDistance;
-//            Debug.Log("Checkpoint: " + _currentCheckpoint);
+            //Debug.Log("Checkpoint: " + _currentCheckpoint);
             GameManager._player.speed += speedIncreaseAmount;
             //Debug.Log("Speed increased. <color=red>The new speed is: </color>"  + GameManager._player.speed +  " || <color=blue>The next checkpoint is: </color>"  + _currentCheckpoint+"m");
         }
-        //Debug.Log("Lvl " + difficultyLvl);
-        //if(difficultyLvl == 3) return;
-        
-        if(CheckDistanceAndLevel(lvl1Checkpoint, 0))
-        {
-            SetDifficulty(1, 20f, 25f);
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.2f,0.2f,0.6f);
-//            Debug.Log("Lvl " + difficultyLvl);
-        }
-        else
-        if(CheckDistanceAndLevel(lvl2Checkpoint, 1))
-        {
-            SetDifficulty(2, 15f, 20f);
-            masterSpawner.obstacleSpawner.UpdateLevelConfig(MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[1]);
-            StartCoroutine(masterSpawner.projectileSpawner.RandomSpawnType());
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.35f,0.20f,0.45f);
-            masterSpawner.ChangeSpawnerTypeChance(0.3f, 0.7f);
-            Debug.Log("Lvl " + difficultyLvl);
-        }
-        else
-        if(CheckDistanceAndLevel(lvl3Checkpoint, 2))
-        {
-            SetDifficulty(3, 12f, 18f);
-            //TODO: different spawn pool
-            masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.7f, 0.2f,0.1f);
-           masterSpawner.obstacleSpawner.UpdateLevelConfig(MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[2]);
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.3f,0.5f,0.2f);
-            masterSpawner.ChangeSpawnerTypeChance(0.25f, 0.75f);
-            masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,4);
-            Debug.Log( "Lvl " + difficultyLvl);
-
-        }else
-        if(CheckDistanceAndLevel(lvl4Checkpoint, 3))
-        {
-            SetDifficulty(4, 10f, 14f);
-            //TODO: different spawn pool
-            masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0.6f, 0.2f,0.2f);
-            //force spawn the special item only every 2 rounds
-            if(_sItemForcedSpawnCounter < 1)
-                _sItemForcedSpawnCounter++;
-                else if(_sItemForcedSpawnCounter >= 2)
-                {
-                   masterSpawner.RewardSpawner.ChangeRewardPoolSpawnChances(0, 0,1f); 
-                }
-            masterSpawner.obstacleSpawner.UpdateLevelConfig(MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[4]);
-            masterSpawner.obstacleSpawner.changePoolSpawnChance(0.4f,0.4f,0.2f);
-            masterSpawner.ChangeSpawnerTypeChance(0.4f, 0.6f);
-            //Changing Projectile spawner settings
-            masterSpawner.projectileSpawner.spawnAmount = new Vector2(3,4);
-            masterSpawner.projectileSpawner.warningTimer = 1f;
-            masterSpawner.projectileSpawner.disableOSpawnerTimer = 2.5f;
-            //////////////////////////////////////
-            masterSpawner.minSpawnAmount += 1;
-            masterSpawner.maxSpawnAmount += 2;
-            Debug.Log( "Lvl " + difficultyLvl);
-            roundsCompleted ++;
-        }
-        //panel cahnge?
     }
 
-    public void SetDifficulty(int lvl, float minSpawnDistance, float maxSpawnDistance)
+    void DifficultyIncrease()
+    {
+        switch (difficultyLvl)
+        {
+            case 0: 
+                if(CheckDistanceAndLevel(levelInfos[1].checkpoint))
+                {
+                    SetDifficulty(1);
+                }
+                break;
+            case 1:
+                if(CheckDistanceAndLevel(levelInfos[2].checkpoint))
+                {
+                    SetDifficulty(2);
+                    ObstacleSpawner.Instance.UpdateLevelConfig(MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[1]);
+                    StartCoroutine(masterSpawner.projectileSpawner.RandomSpawnType());
+                    
+                }
+                break;
+            case 2:
+                if(CheckDistanceAndLevel(levelInfos[3].checkpoint))
+                {
+                    SetDifficulty(3);
+                    ObstacleSpawner.Instance.UpdateLevelConfig(MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[2]);
+                    masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,4);
+                }
+                break;
+            case 3:
+                if(CheckDistanceAndLevel(levelInfos[4].checkpoint))
+                {
+                    SetDifficulty(4);
+                    //force spawn the special item only every 2 rounds
+                    if(_sItemForcedSpawnCounter <= 1)
+                        _sItemForcedSpawnCounter++;
+                        else if(_sItemForcedSpawnCounter >= 2)
+                        {
+                            RewardSpawner.instance.ChangeRewardPoolSpawnChances(0, 0,1f);
+                            _sItemForcedSpawnCounter = 0; 
+                        }
+                    ObstacleSpawner.Instance.UpdateLevelConfig(MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[3]);
+                    //Changing Projectile spawner settings
+                    masterSpawner.projectileSpawner.spawnAmount = new Vector2(3,4);
+                    masterSpawner.projectileSpawner.warningTimer = 1f;
+                    masterSpawner.projectileSpawner.disableOSpawnerTimer = 2.5f;
+                }
+                break;
+            case 4:
+                if(CheckDistanceAndLevel(levelInfos[4].checkpoint))
+                {
+                    levelInfos[4].checkpoint += Random.Range(200f, 300f);
+                    masterSpawner.minSpawnAmount += 1;
+                    masterSpawner.maxSpawnAmount += 2;
+                    roundsCompleted ++;
+                }
+                break;
+            default:
+               break;
+        }
+    }
+
+    public void SetDifficulty(int lvl)
     {
         difficultyLvl = lvl;
-        masterSpawner.minDistance = minSpawnDistance;
-        masterSpawner.maxDistance = maxSpawnDistance;
-    }
- 
-    public void SetNewCheckpoints(float lvl1, float lvl2, float lvl3, float lvl4)
-    {
-        lvl1Checkpoint = Statics.DistanceTraveled  + lvl1;
-        lvl2Checkpoint = lvl1Checkpoint + lvl2;
-        lvl3Checkpoint = lvl2Checkpoint + lvl3;
-        lvl4Checkpoint = lvl3Checkpoint + lvl4;
+        Debug.Log("Lvl " + difficultyLvl);
+        LevelInfo levelInfo = levelInfos[difficultyLvl];
+        masterSpawner.minDistance = levelInfo.minSpawnDistance;
+        masterSpawner.maxDistance = levelInfo.maxSpawnDistance;
+        RewardSpawner.instance.ChangeRewardPoolSpawnChances(levelInfo.stickerChance, levelInfo.itemChance, levelInfo.specialItemChance);
+        masterSpawner.ChangeSpawnerTypeChance(levelInfo.projectileChance, levelInfo.obstacleChance);
+        ObstacleSpawner.Instance.changePoolSpawnChance(levelInfo.ObstTopChance, levelInfo.ObstMidChance, levelInfo.ObstBotChance);
     }
 
-    bool CheckDistanceAndLevel(float distanceToCheck, int lvlToCheck)
+    bool CheckDistanceAndLevel(float distanceToCheck)
     {
-        return Statics.DistanceTraveled  >= distanceToCheck && difficultyLvl == lvlToCheck;
+        return Statics.DistanceTraveled  >= distanceToCheck;
     }
 
     void FirstStart()
@@ -179,7 +177,28 @@ public class LevelProgressionSystem : MonoBehaviour
             ObstaclePoolConfig tempConfig = new ObstaclePoolConfig(); 
             startingPool.spawnedObjectPool[objectIndex].SetActive(true);
             tempConfig.bot = startingPool;
-            startingPool.spawnedObjectPool[objectIndex].transform.position = masterSpawner.obstacleSpawner
+            startingPool.spawnedObjectPool[objectIndex].transform.position = ObstacleSpawner.Instance
                 .GetFloorSpawnPoint(startingPool.spawnedObjectPool[objectIndex].GetComponent<Collider2D>());      
     }
+
+[System.Serializable]
+public class LevelInfo 
+{
+    public float checkpoint;
+    public float minSpawnDistance, maxSpawnDistance;
+
+    [Header("Spawner Type Chance")]
+    public float projectileChance;
+    public float obstacleChance;
+
+    [Header("Obstacle location Spawn Chance")]
+    public float ObstTopChance;
+    public float ObstMidChance;
+    public float ObstBotChance;
+
+    [Header("Reward Type Spawn Chance")]
+    public float stickerChance;
+    public float itemChance;
+    public float specialItemChance;
+}
 }

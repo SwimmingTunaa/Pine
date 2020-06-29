@@ -30,7 +30,7 @@ public class PuncherPickup : PickUpsBase
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(triggerAmount >= 1)
+        if(triggerAmount >= 1 && (other.CompareTag("Player") || other.CompareTag("Hair")))
         {
             triggerAmount--;
             _health = other.gameObject.GetComponentInParent<PlayerHealth>();
