@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1390329734713367065}
   - component: {fileID: 6996811528799953282}
   - component: {fileID: -8979818965002934534}
+  - component: {fileID: 2418665412078513863}
   m_Layer: 16
   m_Name: Rock Obstacle Long Top
   m_TagString: Obstacle
@@ -214,6 +215,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 1
   selfDestroy: 1
+--- !u!114 &2418665412078513863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796550258336305473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d87d5c5b9e724e4985053eb22419460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAmount: 1
+  damageAmount: 1
+  destroyHair: 0
+  damageShieldOnly: 1
+  destroyAfterDamage: 0
+  hitSoundEffect: {fileID: 0}
+  hitEffect: {fileID: 0}
 --- !u!1 &8274661693869524649
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +321,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1796550258336305470}
     m_Modifications:
+    - target: {fileID: 8960390824014826911, guid: d7699fc2844f24a46a2e29f74f761548,
+        type: 3}
+      propertyPath: m_Name
+      value: Rock Hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960390824014826911, guid: d7699fc2844f24a46a2e29f74f761548,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8956332523861025201, guid: d7699fc2844f24a46a2e29f74f761548,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -354,16 +384,6 @@ PrefabInstance:
     - target: {fileID: 8956332523861025201, guid: d7699fc2844f24a46a2e29f74f761548,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960390824014826911, guid: d7699fc2844f24a46a2e29f74f761548,
-        type: 3}
-      propertyPath: m_Name
-      value: Rock Hit
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960390824014826911, guid: d7699fc2844f24a46a2e29f74f761548,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9064677766563753647, guid: d7699fc2844f24a46a2e29f74f761548,

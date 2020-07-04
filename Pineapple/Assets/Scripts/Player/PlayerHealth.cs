@@ -10,7 +10,13 @@ public class PlayerHealth : HealthGeneric {
 	public bool invincible;
 	public Vector2 impulseForce;
 	public TakeScreenShot takeScreenShot;
+	[Header("Shield")]
+	public GameObject hitEffect;
+	public AudioClip shieldHitSound;
+	public bool shieldActive;
+	public List<GameObject> healthBars = new List<GameObject>();
 	private PlayerController playerController;
+	
 	void Awake()
 	{
 		playerController = GetComponent<PlayerController>();
@@ -21,7 +27,12 @@ public class PlayerHealth : HealthGeneric {
 		if(!invincible)
 		{
 			if(health == 1)
+			{
+				shieldActive = false;
 				Invulnerable(1.5f);
+			}
+			else if(shieldActive)
+					DamageShield();
 			base.TakeDamage(damage);
 		}
 		StartCoroutine(killPlayer());
@@ -30,6 +41,27 @@ public class PlayerHealth : HealthGeneric {
 	public void AddHealth(float amount)
 	{
 		health += amount;
+	}
+	
+	public void DamageShield()
+	{
+		if(hitEffect) hitEffect.SetActive(true);
+		if(shieldHitSound) GameManager.Instance.GetComponent<AudioSource>().PlayOneShot(shieldHitSound);
+		for (int i = healthBars.Count - 1; i > 0; i--)
+		{
+			if(healthBars[i].activeInHierarchy)
+			{
+				healthBars[i].SetActive(false);
+				break;
+			}
+		}
+	}
+
+	public void AddShield(float amount, List<GameObject> shieldHealthBars)
+	{
+		health += amount;
+		healthBars = shieldHealthBars;
+		shieldActive = true;
 	}
 
 	public void Invulnerable(float duration)

@@ -32,6 +32,9 @@ public class ObstacleSpawner : Spawner
         ObstaclePool poolToUse = _currentRegionLevel.poolList[randomIndex]; 
         _NextObstacleToSpawn = GetNextItem(poolToUse.spawnedObjectPool);
         _NextObstacleToSpawn.SetActive(true);
+        //spawn the floor obstacle on top so that it can raycast down
+        if(poolToUse.spawnPointChoice == Enums.ObstacleSpawnPoint.bot)
+            _NextObstacleToSpawn.transform.position = spawnpointConfig[0];
         //update the floor spawn point so that it includes the temp objects collider difference
         if(_currentRegionLevel.bot)
             spawnpointConfig[_currentRegionLevel.bot.spawnPointChoice] = GetFloorSpawnPoint(_NextObstacleToSpawn.GetComponent<Collider2D>());
@@ -81,6 +84,10 @@ public class ObstacleSpawner : Spawner
 
     public Vector3 GetFloorSpawnPoint(Collider2D objectCollider)
     {
+        RaycastHit2D hit = Physics2D.Raycast(objectCollider.transform.position, - Vector2.up, 15f, 1 << LayerMask.NameToLayer("Ground"));
+        if(hit.collider != null)
+            floorCollider = hit.collider; 
+        Debug.Log(hit.collider.name);
         if(floorCollider != null)
         {
             float yPos = (floorCollider.transform.position.y + floorCollider.bounds.extents.y) + (objectCollider.bounds.extents.y + Mathf.Abs(objectCollider.offset.y));

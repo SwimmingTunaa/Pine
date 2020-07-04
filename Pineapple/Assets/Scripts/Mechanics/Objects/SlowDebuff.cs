@@ -19,6 +19,7 @@ public class SlowDebuff : PickUpsBase
 
    void Start()
    {
+
       GetComponent<ObjectID>().selfDestroy = true;
       gameObject.SetActive(true);
       _tomato = GameManager.Instance.chaser.gameObject;
@@ -34,7 +35,7 @@ public class SlowDebuff : PickUpsBase
    {
       _tomato = GameManager.Instance.chaser.gameObject;
       _playerController  = CharacterManager.activeCharacter.GetComponent<PlayerController>();
-      if(other.CompareTag("Player") && triggerAmount > 0)
+      if(other.CompareTag("Player") && triggerAmount > 0 && !other.GetComponent<PlayerHealth>().shieldActive)
       {  
          DoAction(other.gameObject);
          switch(timesHit)
@@ -55,7 +56,9 @@ public class SlowDebuff : PickUpsBase
                break;
          }
          timesHit ++;
-      }     
+      } 
+      else if(other.CompareTag("Player"))
+         DisablePickUp();    
    }
 
    public override bool Timer(float interval)
@@ -72,7 +75,6 @@ public class SlowDebuff : PickUpsBase
    public override void DoAction(GameObject player)
    {
       DEBUFFTIMER = 0;
-      //TODO: Make it so that it resets before it gets destroyed by panelDestroyer
       base.DoAction(player);
       if(_playerController.speed > 60)
          _playerController.speed -= slowAmount;

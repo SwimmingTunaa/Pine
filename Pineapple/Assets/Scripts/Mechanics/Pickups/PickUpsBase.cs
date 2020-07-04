@@ -14,13 +14,17 @@ public class PickUpsBase : MonoBehaviour
     void Awake()
     {
         item.Init();
+        
+    }
+    void Start()
+    {
         _visual = GetComponentInChildren<SpriteRenderer>();
     }
-
     void OnEnable()
     {
         triggerAmount = 1;
-        _visual.enabled = true;
+        if(_visual)
+            _visual.enabled = true;
     }
 
     public virtual void DoAction(GameObject player)

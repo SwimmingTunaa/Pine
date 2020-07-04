@@ -5,8 +5,9 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     public int triggerAmount = 1;
-    public bool destroyHair;
     public float damageAmount;
+    public bool destroyHair;
+    public bool damageShieldOnly = false;
     public bool destroyAfterDamage;
     public AudioClip hitSoundEffect;
     public GameObject hitEffect;
@@ -16,6 +17,11 @@ public class Damage : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
        DoDamage(other.gameObject);
+    }
+
+    void OnEnable()
+    {
+        triggerAmount = 1;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -29,19 +35,25 @@ public class Damage : MonoBehaviour
     {
         if (triggerAmount > 0)
         {
-            triggerAmount--;
             if(other.CompareTag("Player"))
             {
-                other.GetComponent<HealthGeneric>().TakeDamage(damageAmount);
-                if(hitSoundEffect != null)
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioSource>().PlayOneShot(hitSoundEffect);
+                
+                HealthGeneric health = other.GetComponent<HealthGeneric>();
+                Debug.Log(health);
+                if(damageShieldOnly && health.health > 1)
+                    DealDamage(health);
+                else if(!damageShieldOnly)
+                    DealDamage(health);
+               
                 if(destroyAfterDamage)
                 {
                     var newRot = Quaternion.Euler(0, 0, -Vector3.Angle(GetComponent<Rigidbody2D>().velocity, -collision.GetContact(0).normal));
                     Instantiate(hitEffect, collision.GetContact(0).point,newRot);
                     gameObject.GetComponent<ObjectID>().Disable();
                 }
+                triggerAmount--;
             }
+            
             if(other.CompareTag("Hair") && destroyHair)
             {
                 PlayerController p =  other.GetComponentInParent<PlayerController>();
@@ -61,5 +73,12 @@ public class Damage : MonoBehaviour
             }
         }
        
+    }
+    
+    public void DealDamage(HealthGeneric health)
+    {
+        health.TakeDamage(damageAmount);
+        if(hitSoundEffect != null)
+            GameManager.Instance.GetComponent<AudioSource>().PlayOneShot(hitSoundEffect);    
     }
 }

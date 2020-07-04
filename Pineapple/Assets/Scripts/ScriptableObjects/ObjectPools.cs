@@ -37,8 +37,11 @@ public class ObjectPools : ScriptableObject, IChanceValue
          {
             GameObject tempPoolObj = Instantiate(p);
             tempPoolObj.SetActive(false);
-            ObjectID id = tempPoolObj.AddComponent<ObjectID>() as ObjectID;
-            id.CreateID(objectType);
+            if(!tempPoolObj.GetComponent<ObjectID>())
+            {
+               ObjectID id = tempPoolObj.AddComponent<ObjectID>() as ObjectID;
+               id.CreateID(objectType);
+            }
             spawnedObjectPool.Add(tempPoolObj);
          }
       }

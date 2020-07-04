@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObstacleRegionChanger : MonoBehaviour
 {
     public bool immediatelySpawnObstacle;
+    public bool disableAllOtherObstacles;
     public Region regionToChangeTo;
 
     void OnTriggerEnter2D(Collider2D other)
@@ -12,10 +13,12 @@ public class ObstacleRegionChanger : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             //clear all current active obstacles
-            foreach(GameObject g in ObstacleSpawner.Instance.activeObstacles)
+            if(disableAllOtherObstacles)
             {
-                g.GetComponent<ObjectID>().Disable();
+                foreach(GameObject g in ObstacleSpawner.Instance.activeObstacles)
+                    g.GetComponent<ObjectID>().Disable();
             }
+           
             ObstacleSpawner.Instance.activeObstacles.Clear();
             //set new region
             MasterSpawner.Instance.activeRegion = regionToChangeTo;

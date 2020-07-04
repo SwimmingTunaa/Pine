@@ -111,7 +111,7 @@ public class PuncherPickup : PickUpsBase
                 if(!enableEffect)
                 {
                     if(_health.health > 1)
-                        _health.health--;
+                        _health.health = 1;
                     _effectActive = false;
                     GetComponent<ObjectID>().Disable();
                 }

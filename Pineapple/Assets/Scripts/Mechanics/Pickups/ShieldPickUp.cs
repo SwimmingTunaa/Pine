@@ -7,9 +7,19 @@ public class ShieldPickUp : PickUpsBase
     [Header("Shield")]
     public float shieldStrength;
     public AudioClip deathSound;
+    public GameObject shieldHealthBar;
+    public GameObject hitEffect;
 
     private PlayerHealth health;
-    private bool active;
+    private List<GameObject> healthBars = new List<GameObject>();
+
+    void Awake()
+    {
+        foreach(Transform t in shieldHealthBar.transform)
+        {
+            healthBars.Add(t.gameObject);
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,21 +32,26 @@ public class ShieldPickUp : PickUpsBase
 
     public override void DoAction(GameObject player)
     {
-        active = true;
-        base.DoAction(player);
-        transform.parent = player.GetComponent<Outfits>().powerUpEffectSpawnPoint;
-        transform.position = player.GetComponent<Outfits>().powerUpEffectSpawnPoint.position;
         ShieldPickUpObject s = item.Instance as ShieldPickUpObject;
-        health.AddHealth(s.shieldStrength);
-        if(GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Shield Shine"))
-            GetComponentInChildren<Animator>().Play("Shield Start");
+        health.AddShield(s.shieldStrength, healthBars);
+        base.DoAction(player);
+        health.hitEffect = hitEffect;
+        Outfits outfit = player.GetComponent<Outfits>();
+        transform.parent = outfit.powerUpEffectSpawnPoint;
+        transform.position = outfit.powerUpEffectSpawnPoint.position;
+        //set the health bar to the shield strength
+        for (int i = 0; i < s.shieldStrength; i++)
+        {
+            healthBars[i].SetActive(true);
+        }
+        GetComponentInChildren<Animator>().Play("Shield Start");
     }
 
     public override void Update()
     {
-        if(health != null && health.health <= 1 && active)
+        if(health != null && health.health <= 1 && health.shieldActive)
         {
-            active = false;
+            health.shieldActive = false;
             if(deathSound != null)
             GameManager.Instance.GetComponent<AudioSource>().PlayOneShot(deathSound);
             transform.parent = null;
