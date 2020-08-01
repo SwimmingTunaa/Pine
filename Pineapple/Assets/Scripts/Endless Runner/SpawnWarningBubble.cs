@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnWarningBubble : MonoBehaviour
 {
     public GameObject warningBubbleToSpawn;
-
+    
     [HideInInspector] public GameObject warningBubbleClone;
     private bool _firstSpawn;
     // Start is called before the first frame update

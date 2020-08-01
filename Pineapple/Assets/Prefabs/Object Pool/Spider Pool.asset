@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49433b88d48c8fa42bde92c53b7a83f3, type: 3}
+  m_Name: Spider Pool
+  m_EditorClassIdentifier: 
+  manual: 0
+  spawnChanceValue: 1
+  objectType: 4
+  duplicateAmount: 3
+  objectPool:
+  - {fileID: 4867475688526053156, guid: a940513c4f19cab429807fdeca7444a1, type: 3}
+  spawnedObjectPool: []

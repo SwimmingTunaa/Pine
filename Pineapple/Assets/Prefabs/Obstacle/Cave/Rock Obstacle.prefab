@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 1390329734713367065}
   - component: {fileID: 6684172467818184796}
   - component: {fileID: -4130874750398234104}
-  - component: {fileID: -3392912626258241522}
   m_Layer: 16
   m_Name: Rock Obstacle
   m_TagString: Obstacle
@@ -295,25 +294,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 1
   selfDestroy: 1
---- !u!114 &-3392912626258241522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796550258336305473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d87d5c5b9e724e4985053eb22419460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerAmount: 1
-  damageAmount: 1
-  destroyHair: 0
-  damageShieldOnly: 1
-  destroyAfterDamage: 0
-  hitSoundEffect: {fileID: 0}
-  hitEffect: {fileID: 0}
 --- !u!1 &8274661693869524649
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,8 +16,6 @@ public class PanelSpawner : Spawner
 
     void Start()
     {
-        //get the begining pool which is the house pool
-        _pool = MasterSpawner.Instance.activeRegion.panels;
         InitialSpawn();
     }
 
@@ -41,6 +39,8 @@ public class PanelSpawner : Spawner
     
     public void InitialSpawn()
     {   
+        //get the begining pool which is the house pool
+        _pool = MasterSpawner.Instance.activeRegion.panels;
         _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool);
         //spawn the start panels and then some queued panels afterwards
         for(int i = 0; i <= intialSpawnAmount; i++)

@@ -43,8 +43,7 @@ public abstract class Spawner : MonoBehaviour
             if(!tempObj.activeInHierarchy)
                 return tempObj;
         }
-        return null;
-        /*if (shouldExpand) 
+        if (shouldExpand) 
         {
             GameObject obj = (GameObject)Instantiate(objectToPool);
             if(GetComponent<ObjectID>() == null)
@@ -54,6 +53,6 @@ public abstract class Spawner : MonoBehaviour
             return obj;
         } 
         else 
-            return null;*/
+            return null;
     }
 }

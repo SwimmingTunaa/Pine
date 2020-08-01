@@ -16,7 +16,7 @@ public class Damage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-       DoDamage(other.gameObject);
+        DoDamage(other.gameObject);
     }
 
     void OnEnable()
@@ -33,6 +33,7 @@ public class Damage : MonoBehaviour
 
     void DoDamage(GameObject other)
     {
+        //Debug.Log(other.name);
         if (triggerAmount > 0)
         {
             if(other.CompareTag("Player"))
@@ -45,10 +46,14 @@ public class Damage : MonoBehaviour
                 else if(!damageShieldOnly)
                     DealDamage(health);
                
+               //for the projectiles
                 if(destroyAfterDamage)
                 {
                     var newRot = Quaternion.Euler(0, 0, -Vector3.Angle(GetComponent<Rigidbody2D>().velocity, -collision.GetContact(0).normal));
-                    Instantiate(hitEffect, collision.GetContact(0).point,newRot);
+                    //Instantiate(hitEffect, collision.GetContact(0).point,newRot);
+                    hitEffect.SetActive(true);
+                    hitEffect.transform.position = collision.GetContact(0).point;
+                    hitEffect.transform.rotation = newRot;
                     gameObject.GetComponent<ObjectID>().Disable();
                 }
                 triggerAmount--;

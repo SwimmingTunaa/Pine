@@ -6,13 +6,14 @@ public class ObstacleSpawner : Spawner
 {   
     public static ObstacleSpawner Instance;
     public GameObject[] spawnPoints;
-    public Collider2D floorCollider;
+    public static Collider2D floorCollider;
     public List<GameObject> activeObstacles;
 
     private ObstaclePoolConfig _currentRegionLevel;
     private GameObject _NextObstacleToSpawn;
    
     private Dictionary <Enums.ObstacleSpawnPoint, Vector3> spawnpointConfig = new Dictionary<Enums.ObstacleSpawnPoint, Vector3>();
+    private RaycastHit2D hit;
 
     void Awake() =>  Instance = this;
 
@@ -50,8 +51,13 @@ public class ObstacleSpawner : Spawner
 
     public void Initialize()
     {   
+        hit = Physics2D.Raycast(transform.position, -transform.up, 10f, 1 << LayerMask.NameToLayer("Ground"));
+        if(hit.collider != null)
+            floorCollider = hit.collider; 
+        //Debug.Log(hit.collider.name + " is Floor spawn point");
         int lvl = LevelProgressionSystem.Instance.difficultyLvl;
         _currentRegionLevel = MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[lvl - 1 < 0 ? 0 : lvl - 1];
+//        Debug.Log(_currentRegionLevel.name);
         //get the spwanpoint positions from the config
         spawnpointConfig.Clear();
         if(_currentRegionLevel.top) spawnpointConfig.Add(_currentRegionLevel.top.spawnPointChoice, spawnPoints[0].transform.position);
@@ -84,13 +90,10 @@ public class ObstacleSpawner : Spawner
 
     public Vector3 GetFloorSpawnPoint(Collider2D objectCollider)
     {
-        RaycastHit2D hit = Physics2D.Raycast(objectCollider.transform.position, - Vector2.up, 15f, 1 << LayerMask.NameToLayer("Ground"));
-        if(hit.collider != null)
-            floorCollider = hit.collider; 
-        Debug.Log(hit.collider.name);
+      
         if(floorCollider != null)
         {
-            float yPos = (floorCollider.transform.position.y + floorCollider.bounds.extents.y) + (objectCollider.bounds.extents.y + Mathf.Abs(objectCollider.offset.y));
+            float yPos = (floorCollider.transform.position.y + floorCollider.bounds.extents.y + floorCollider.offset.y) + (objectCollider.bounds.extents.y + Mathf.Abs(objectCollider.offset.y));
 
             Vector3 _floorSpawnPoint = new Vector3(spawnPoints[2].transform.position.x, yPos, spawnPoints[2].transform.position.z); 
             return _floorSpawnPoint;                                         

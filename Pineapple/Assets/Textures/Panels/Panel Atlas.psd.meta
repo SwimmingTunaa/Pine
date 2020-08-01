@@ -194,6 +194,12 @@ TextureImporter:
   - first:
       213: -7488384384715575815
     second: Rock Obstacle 4
+  - first:
+      213: -7660407600112651742
+    second: Lava Static
+  - first:
+      213: -4729015617721637704
+    second: Lava Flow
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -234,7 +240,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -1500,6 +1506,48 @@ TextureImporter:
       bones: []
       spriteID: 842a4eabad6795645bc6bd529bfb2288
       internalID: 5784552326497774935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lava Static
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 24
+        width: 1425
+        height: 654
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c498d4fa09b65ac44a8831829b5978ed
+      internalID: -7660407600112651742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lava Flow
+      rect:
+        serializedVersion: 2
+        x: 2241
+        y: 139
+        width: 1425
+        height: 532
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cccb6026d542bf5499c50c36a2698c68
+      internalID: -4729015617721637704
       vertices: []
       indices: 
       edges: []

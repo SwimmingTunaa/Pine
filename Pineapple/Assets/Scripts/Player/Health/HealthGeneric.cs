@@ -8,12 +8,18 @@ public class HealthGeneric : MonoBehaviour {
 	public bool dead = false;
 	[HideInInspector] public float startHealth;
 	
-	void Start () {
+	void Awake () {
 		 startHealth = health;
 	}
 	virtual public void TakeDamage(float damage)
     {	
-		if(health > 0)
+		if(health > 0 && !dead)
 			health -= damage;
     }
+
+	virtual public void Dead()
+	{
+		dead = true;
+		gameObject.transform.parent.gameObject.SetActive(false);
+	}
 }

@@ -8,6 +8,11 @@ public class CritterSpawner : Spawner
     [MinMaxSlider(1,5)] public Vector2 amountToSpawn;
     public Transform spawnPoint;
 
+    void Awake()
+    {
+        critterPool.Initialise();
+    }
+
     public override void DoSpawn()
     {
         if(critterPool.spawnedObjectPool.Count > 0)

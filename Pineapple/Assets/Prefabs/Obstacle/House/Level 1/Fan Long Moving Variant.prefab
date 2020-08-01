@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 126182293
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 31
   m_Sprite: {fileID: 21300018, guid: c25cc3dd3dc905540922d22aebfb240d, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 7485803004574808578}
   - component: {fileID: 6598067745681341239}
   - component: {fileID: 8264643933355801817}
-  - component: {fileID: 7664207637887181677}
+  - component: {fileID: 4188271057235314677}
   m_Layer: 16
   m_Name: Fan Long Moving Variant
   m_TagString: Untagged
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateName: Move Up and Down
---- !u!61 &7664207637887181677
+--- !u!61 &4188271057235314677
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,21 +369,21 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.4962131, y: 0.33566445}
+    oldSize: {x: 3.38, y: 0.76}
+    newSize: {x: 0.04, y: 0.04}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.66, y: 0.26}
   m_EdgeRadius: 0
 --- !u!1 &7485803004622033635
 GameObject:
@@ -438,7 +438,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f919b6dd333a76d4bb8beadec6f9a1f0, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -640,8 +640,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d87d5c5b9e724e4985053eb22419460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyHair: 1
+  triggerAmount: 1
   damageAmount: 1
+  destroyHair: 1
+  damageShieldOnly: 0
   destroyAfterDamage: 0
   hitSoundEffect: {fileID: 0}
   hitEffect: {fileID: 0}
@@ -661,6 +663,7 @@ MonoBehaviour:
   scoreToAdd: 100
   scoreMessage: Haircut!
   isTrigger: 1
+  statReference: 
 --- !u!1 &8895621249307516464
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +705,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1494634902816180642}
     m_Modifications:
+    - target: {fileID: 75722532183294455, guid: 316597fd796ff884dac40181c607e3db,
+        type: 3}
+      propertyPath: m_Name
+      value: Fan Spin SFX
+      objectReference: {fileID: 0}
     - target: {fileID: 75722532182875607, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -771,11 +779,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0137198
-      objectReference: {fileID: 0}
-    - target: {fileID: 75722532183294455, guid: 316597fd796ff884dac40181c607e3db,
-        type: 3}
-      propertyPath: m_Name
-      value: Fan Spin SFX
       objectReference: {fileID: 0}
     - target: {fileID: 75722532202272919, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}

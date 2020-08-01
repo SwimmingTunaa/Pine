@@ -7,10 +7,16 @@ public class ObstacleRegionChanger : MonoBehaviour
     public bool immediatelySpawnObstacle;
     public bool disableAllOtherObstacles;
     public Region regionToChangeTo;
+    private int _triggerAmount = 1;
+
+    void OnEnable()
+    {
+        _triggerAmount = 1;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && _triggerAmount > 0)
         {
             //clear all current active obstacles
             if(disableAllOtherObstacles)

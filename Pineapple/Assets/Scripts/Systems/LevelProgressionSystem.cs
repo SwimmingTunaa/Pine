@@ -125,7 +125,7 @@ public class LevelProgressionSystem : MonoBehaviour
     public void SetDifficulty(int lvl)
     {
         difficultyLvl = lvl;
-        Debug.Log("Lvl " + difficultyLvl);
+        //Debug.Log("Lvl " + difficultyLvl);
         LevelInfo levelInfo = levelInfos[difficultyLvl];
         masterSpawner.minDistance = levelInfo.minSpawnDistance;
         masterSpawner.maxDistance = levelInfo.maxSpawnDistance;

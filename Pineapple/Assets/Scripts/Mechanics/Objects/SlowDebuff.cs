@@ -57,7 +57,7 @@ public class SlowDebuff : PickUpsBase
          }
          timesHit ++;
       } 
-      else if(other.CompareTag("Player"))
+      else if(other.CompareTag("Player") && other.GetComponent<PlayerHealth>().shieldActive)
          DisablePickUp();    
    }
 

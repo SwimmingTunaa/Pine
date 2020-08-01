@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
     public Button playButton;
     public MainMenu startMenu;
 
+    private float _halfHeight;
+    private float _halfWidth;
+    private Camera _camera;
     private float _distanceFromChaser;
     public static PlayerController _player;
     private Rigidbody2D _playerRb;
@@ -62,6 +65,7 @@ public class GameManager : MonoBehaviour
                 Instance = this;
         //reset statics
         ResetStatics();
+        _camera = Camera.main;
     }
 
     void ResetStatics()
@@ -167,14 +171,22 @@ public class GameManager : MonoBehaviour
 
     void SpawnChaser()
     {
+ 
+
         //check to see if player speed is below a threshold and wait x seconds then turn on the warning bubble
         if(_playerRb.velocity.x < velocityThreshold && !tomatoWarningBubble.activeInHierarchy)
         {        
+            //set the tomato waring spawn pos
+            _halfHeight = _camera.orthographicSize;
+            _halfWidth  = _camera.aspect * _halfHeight; 
+            Vector3 warningPosition = new Vector3(_camera.transform.position.x - _halfWidth, _camera.transform.position.y, transform.position.z);
+
             if(Statics.DistanceTraveled  > 20f && Timer(1f))
             {
                 //reset player's speed
                 //_player.speed  = _player.startSpeed;
                 tomatoWarningBubble.SetActive(true);
+                tomatoWarningBubble.transform.position = warningPosition;
                 _timer = 0;
             } 
             if(!_playerHealth.dead)

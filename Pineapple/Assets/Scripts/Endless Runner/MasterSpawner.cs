@@ -13,16 +13,22 @@ public class MasterSpawner : MonoBehaviour
     [Header("Projectile Spawner")]
     public float pSpawnChance;  
     public ProjectileSpawner projectileSpawner;
+
     [Header("Obstacle Spawner")]
     public float oSpawnChance;
+
     [Header("Reward Spawner")]
     public float rSpawnChance;  
+
     [Header("Critter Spawner")]
     public CritterSpawner critterSpawner;
+
     [Header("Progression")]
     public int minSpawnAmount, maxSpawnAmount;
     public int minRewardAmount, maxRewardAmount;
     public LevelProgressionSystem levelPro;
+
+    public Dictionary<string, Spawner>  listOfSpawners = new Dictionary<string, Spawner>();
 
     private int _spawnAmount;
     private int _rewardAmount;
@@ -44,6 +50,15 @@ public class MasterSpawner : MonoBehaviour
     {
         AddToChallengeChanceList(projectileSpawner, pSpawnChance);
         AddToChallengeChanceList(ObstacleSpawner.Instance, oSpawnChance);
+
+        listOfSpawners = new Dictionary<string, Spawner>(){
+            {projectileSpawner.name, projectileSpawner},
+            {ObstacleSpawner.Instance.name, ObstacleSpawner.Instance},
+            {RewardSpawner.instance.name, RewardSpawner.instance},
+            {SpiderSpawner.instance.name, SpiderSpawner.instance},
+            {critterSpawner.name, critterSpawner}
+        };
+
         _rewardSpawnerList.Add(RewardSpawner.instance, rSpawnChance);
 
         IniatilizeSpawners(active);
@@ -113,7 +128,14 @@ public class MasterSpawner : MonoBehaviour
 
     public void AddToChallengeChanceList(Spawner spawner, float chance)
     {
-        _challengeSpawnerList.Add(spawner, chance);
+        if(!_challengeSpawnerList.ContainsKey(spawner))
+            _challengeSpawnerList.Add(spawner, chance);
+    }
+
+    public void RemoveFromChallengeList(Spawner spawner)
+    {
+        if(_challengeSpawnerList.ContainsKey(spawner))
+            _challengeSpawnerList.Remove(spawner);
     }
     
     void SpawnType(Dictionary<Spawner, float> spawnerType)
@@ -129,7 +151,6 @@ public class MasterSpawner : MonoBehaviour
                     {
                         if(RewardSpawner.instance.poolToSpawnInstances[RewardSpawner.instance.randomIndex].objectType == ObjType.Pickups)
                         {
-                            
                             pickUpSpawned++;
                             //check to see if its the special item spawner
                             if(RewardSpawner.instance.poolToSpawnInstances[RewardSpawner.instance.randomIndex] == RewardSpawner.instance.poolToSpawnInstances[2])

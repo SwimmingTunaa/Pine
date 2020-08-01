@@ -124,12 +124,16 @@ MonoBehaviour:
   randomDia: 0
   dialogues:
   - character: {fileID: 0}
-    text: Insert pucnhline here!
+    text: Insert punchline here!
+    diallogueInterval: 4
+    bubbleSize: 1
+  - character: {fileID: 0}
+    text: Taste my fruit punch!
     diallogueInterval: 4
     bubbleSize: 1
   speechBubble: {fileID: 0}
   triggerAmount: 1
-  randomDialogue: 0
+  randomDialogue: 1
 --- !u!82 &6730005067475723416
 AudioSource:
   m_ObjectHideFlags: 0

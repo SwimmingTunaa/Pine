@@ -7,9 +7,9 @@ public enum PanelHolderLocation
 }
 public class MovePanelsToNewHolder : MonoBehaviour
 {   
+    public Region regionToChangeTo;
     public PanelHolderLocation panelHolderLocation;
     private Collider2D _newFloorSpawnPoint;
-    private ObstacleSpawner _obstacleSpawner;
     private PanelHolderInfo _panelHolderInfo;
     private PanelSpawner _panelSpawner;
     private Dictionary<PanelHolderLocation, PanelHolderConfig> _configs;
@@ -19,7 +19,6 @@ public class MovePanelsToNewHolder : MonoBehaviour
     {
         _panelHolderInfo = GameObject.FindObjectOfType<PanelHolderInfo>();
         _panelSpawner = GameObject.FindObjectOfType<PanelSpawner>();
-        _obstacleSpawner = GameObject.FindObjectOfType<ObstacleSpawner>();
     }
     void Start()
     {
@@ -45,7 +44,7 @@ public class MovePanelsToNewHolder : MonoBehaviour
         triggerAmount--;
         //remove the trigger panel so it doesnt spawn again
         //TODO: change this when adding in a new panel set 
-        _panelSpawner._pool.spawnedObjectPool.RemoveAll(gameObject => gameObject.name == "Bathroom");
+        //_panelSpawner._pool.spawnedObjectPool.RemoveAll(gameObject => gameObject.name == "Bathroom");
         //parent the current panel holder to the camera follow
         _panelSpawner.panelHolder.transform.parent = GameObject.FindObjectOfType<FollowCamera>().transform;
         //set up the new panel holder
@@ -55,8 +54,8 @@ public class MovePanelsToNewHolder : MonoBehaviour
 
         //setup the new floor spawnpoint for the obstacle spawner
 
-        _obstacleSpawner.floorCollider = _newFloorSpawnPoint;
-
+        ObstacleSpawner.floorCollider = _newFloorSpawnPoint;
+        MasterSpawner.Instance.activeRegion = regionToChangeTo;
         //setup the spawner to spawn at the new starting panel
         _panelSpawner.startingPanel = panelSetToChangeTo.startingPanel;
         _panelSpawner._firstSpawn = true;

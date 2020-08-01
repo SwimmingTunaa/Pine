@@ -21,6 +21,11 @@ public class AddScore : MonoBehaviour
         triggerAmount = startTriggerAmount;
     }
 
+    void OnEnable()
+    {
+        triggerAmount = startTriggerAmount;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         AddScoreAndStats(other.gameObject);
@@ -36,7 +41,7 @@ public class AddScore : MonoBehaviour
         if(other.CompareTag("Player") || other.CompareTag("Hair") && triggerAmount > 0 && !isTrigger)
         {
             triggerAmount--;
-            StatsManager.Instance.AddToScore(scoreToAdd, scoreMessage);
+            //StatsManager.Instance.AddToScore(scoreToAdd, scoreMessage);
             if(statReference != null)
                 StatsManager.Instance.AddToAStat(1, statReference);
         }

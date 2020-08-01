@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5602850742556643203}
   - component: {fileID: 1969362849045299670}
   - component: {fileID: 9156057925537262477}
+  - component: {fileID: 7043709724186422266}
   m_Layer: 0
   m_Name: Obstacle Region Changer
   m_TagString: Untagged
@@ -71,4 +72,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immediatelySpawnObstacle: 1
+  disableAllOtherObstacles: 0
   regionToChangeTo: {fileID: 11400000, guid: d4f1578988abb4d44921fec90028bed8, type: 2}
+--- !u!114 &7043709724186422266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211918161633385924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3ec7cbf1606e447b80900d6dabc06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 1
+  spawner: 
+  spawnChance: 0.25

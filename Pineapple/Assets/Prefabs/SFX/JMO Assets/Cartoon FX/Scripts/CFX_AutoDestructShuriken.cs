@@ -12,10 +12,13 @@ public class CFX_AutoDestructShuriken : MonoBehaviour
 {
 	// If true, deactivate the object instead of destroying it
 	public bool OnlyDeactivate;
-	
+	public bool reParent;
+	private Transform parent;
+
 	void OnEnable()
 	{
 		StartCoroutine("CheckIfAlive");
+		parent = transform.parent;
 	}
 	
 	IEnumerator CheckIfAlive ()
@@ -29,6 +32,9 @@ public class CFX_AutoDestructShuriken : MonoBehaviour
 			{
 				if(OnlyDeactivate)
 				{
+					if(reParent)
+						gameObject.transform.parent = parent;
+
 					#if UNITY_3_5
 						this.gameObject.SetActiveRecursively(false);
 					#else

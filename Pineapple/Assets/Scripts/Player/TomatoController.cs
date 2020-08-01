@@ -69,7 +69,6 @@ public class TomatoController : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             SlashEffect.SetActive(false);
             SlashEffect.SetActive(true);
-            target.GetComponent<HealthGeneric>().TakeDamage(1f);
         }else
         if(target.GetComponent<ObjectID>() != null)
         {
