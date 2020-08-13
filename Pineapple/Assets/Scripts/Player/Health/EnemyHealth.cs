@@ -42,7 +42,7 @@ public class EnemyHealth : HealthGeneric
         }
 
         if(deathSound)
-             GameManager.Instance.GetComponent<AudioSource>().PlayOneShot(deathSound);   
+             GameManager.Instance.GetComponent<AudioSource>().PlayOneShot(deathSound);
 
         attachedObject.SetActive(false);
     }

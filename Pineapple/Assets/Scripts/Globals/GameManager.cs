@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public const float PLAYERSTARTSPEED = 60;
     public const float TOMATOSTARTSPEED = 55;
     public StatsManager stats;
+    public Animator screenFader;
 
     [Header("Game UI")]
     public TextMeshProUGUI distanceText;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     public SpeechBubble speachBubble;
 
     [Header("Chaser")]
-    public GameObject chaser;
+    public TomatoController chaser;
     public float warningDistance;
     public float velocityThreshold = 5f; // the threshold for when the tomato spawns;
     public GameObject tomatoWarningBubble;
@@ -68,6 +69,12 @@ public class GameManager : MonoBehaviour
         _camera = Camera.main;
     }
 
+    IEnumerator ScreenFade()
+    {
+        screenFader.Play("CrossFadeEnd");
+        yield return new WaitForSeconds(screenFader.GetCurrentAnimatorClipInfo(0).Length);
+    }
+
     void ResetStatics()
     {
         Statics.DistanceTraveled = 0;
@@ -83,7 +90,7 @@ public class GameManager : MonoBehaviour
         //Debug.Log("GM: " + CharacterManager.activeCharacter.name);
         _player = CharacterManager.activeCharacter.GetComponent<PlayerController>();
         _player.speed = PLAYERSTARTSPEED;
-        chaser.GetComponent<TomatoController>().speed = TOMATOSTARTSPEED;
+        chaser.speed = TOMATOSTARTSPEED;
         _playerHealth = CharacterManager.activeCharacter.GetComponent<PlayerHealth>();
         _playerAnim = CharacterManager.activeCharacter.GetComponentInChildren<Animator>();
         _trackedPosition = _player.gameObject;
@@ -171,8 +178,6 @@ public class GameManager : MonoBehaviour
 
     void SpawnChaser()
     {
- 
-
         //check to see if player speed is below a threshold and wait x seconds then turn on the warning bubble
         if(_playerRb.velocity.x < velocityThreshold && !tomatoWarningBubble.activeInHierarchy)
         {        
@@ -183,8 +188,7 @@ public class GameManager : MonoBehaviour
 
             if(Statics.DistanceTraveled  > 20f && Timer(1f))
             {
-                //reset player's speed
-                //_player.speed  = _player.startSpeed;
+                //spawn Warning
                 tomatoWarningBubble.SetActive(true);
                 tomatoWarningBubble.transform.position = warningPosition;
                 _timer = 0;
@@ -196,15 +200,14 @@ public class GameManager : MonoBehaviour
                 TomatoController.chasePlayer = false;
             }     
         }
-        else if(tomatoWarningBubble.activeInHierarchy  && !chaser.activeInHierarchy)
+        else if(tomatoWarningBubble.activeInHierarchy && !chaser.gameObject.activeInHierarchy)
         {
             //after the another x seconds has passed while warning bubble was on then turn on the tomato
             if(Timer(0.25f))
             {
-                chaser.SetActive(true);
+                chaser.gameObject.SetActive(true);
                 //spawn the tomato to a certain distnce behind the palyer
-                Vector2 spawnPos = new Vector2(_player.transform.position.x - 15f, chaser.transform.position.y);
-                chaser.transform.position = spawnPos; 
+                chaser.SpawnChaser(-2f);
                 chaser.GetComponent<TomatoController>().speed = _player.speed + 2f;
                 _timer = 0;
             }
@@ -212,19 +215,19 @@ public class GameManager : MonoBehaviour
 
         _distanceFromChaser = Vector2.Distance(_player.transform.position, chaser.transform.position);
         //if tomato is within x dist then turn off warning otherwise if larger than x dist AND it has been x seconds, turn off both warning and tomato
-        if(_distanceFromChaser < 15f && chaser.activeInHierarchy)
+        if(_distanceFromChaser < 15f && chaser.gameObject.activeInHierarchy)
         {
             tomatoWarningBubble.SetActive(false);
         }
         else 
-            if(_distanceFromChaser >= 20f && chaser.activeInHierarchy)
+            if(_distanceFromChaser >= 20f && chaser.gameObject.activeInHierarchy)
             {
                 if(!tomatoWarningBubble.activeInHierarchy)
                     tomatoWarningBubble.SetActive(true);
                 if(Timer(1f))
                 {   
                     tomatoWarningBubble.SetActive(false);
-                    chaser.SetActive(false);
+                    chaser.gameObject.SetActive(false);
                     _timer = 0;
                 }
             }

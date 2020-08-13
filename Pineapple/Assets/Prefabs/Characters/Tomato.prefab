@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 811434940271539190}
   - component: {fileID: 670971657484559910}
   - component: {fileID: 9203410701211643719}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Body Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 661520719711031202}
+  - {fileID: 8702994199558765094}
   - {fileID: 661520719711031206}
   - {fileID: 661520719711031210}
   - {fileID: 661520719711031214}
@@ -130,7 +131,7 @@ GameObject:
   - component: {fileID: 2931376129619135978}
   - component: {fileID: 4190074104012961702}
   - component: {fileID: 4759563249416762744}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Front Arm Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661520719711031204}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Arm Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +276,7 @@ GameObject:
   - component: {fileID: 6071392257883130494}
   - component: {fileID: 8027541235663499289}
   - component: {fileID: 20161938882258657}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Back Arm Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,13 +290,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661520719710540678}
-  m_LocalRotation: {x: 0, y: 0, z: -0.9529006, w: 0.3032828}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9263424, w: 0.37668267}
   m_LocalPosition: {x: 1.6635268, y: -1.3656431, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Children:
   - {fileID: 661520719711031208}
   m_Father: {fileID: 661520719711031200}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -144.69}
 --- !u!212 &6071392257883130494
 SpriteRenderer:
@@ -386,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661520719711031208}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Arm Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +401,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661520719710540680}
-  m_LocalRotation: {x: 0, y: 0, z: 0.24286519, w: 0.9700601}
+  m_LocalRotation: {x: 0, y: 0, z: 0.008574583, w: 0.9999633}
   m_LocalPosition: {x: 2.003222, y: -0.00000028969447, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Children:
@@ -421,7 +422,7 @@ GameObject:
   - component: {fileID: 7406794342049454542}
   - component: {fileID: 3407145111702654731}
   - component: {fileID: 6233615830525789925}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Hair Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +442,7 @@ Transform:
   m_Children:
   - {fileID: 661520719711031212}
   m_Father: {fileID: 661520719711031200}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7406794342049454542
 SpriteRenderer:
@@ -532,7 +533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661520719711031212}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Hair Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +566,7 @@ GameObject:
   - component: {fileID: 8610208400479634840}
   - component: {fileID: 2661081815155371865}
   - component: {fileID: 5595473647136739595}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Front Leg Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +586,7 @@ Transform:
   m_Children:
   - {fileID: 661520719711031184}
   m_Father: {fileID: 661520719711031200}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 171.10701}
 --- !u!212 &8610208400479634840
 SpriteRenderer:
@@ -678,7 +679,7 @@ GameObject:
   - component: {fileID: 661520719711031216}
   - component: {fileID: 3287120472681751529}
   - component: {fileID: 7356129791751451014}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Tomato Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +759,7 @@ GameObject:
   - component: {fileID: 661520719711031218}
   - component: {fileID: 661520719689722288}
   - component: {fileID: 661520719699781232}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Arm Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +859,7 @@ GameObject:
   - component: {fileID: 661520719711031220}
   - component: {fileID: 661520719689722290}
   - component: {fileID: 661520719699781234}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Arm front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +958,7 @@ GameObject:
   - component: {fileID: 661520719711031222}
   - component: {fileID: 661520719689722292}
   - component: {fileID: 661520719699781236}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1056,7 +1057,7 @@ GameObject:
   - component: {fileID: 661520719711031224}
   - component: {fileID: 661520719689722294}
   - component: {fileID: 661520719699781238}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1156,7 +1157,7 @@ GameObject:
   - component: {fileID: 661520719711031226}
   - component: {fileID: 661520719689722296}
   - component: {fileID: 661520719699781240}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Leg Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,7 +1257,7 @@ GameObject:
   - component: {fileID: 661520719711031228}
   - component: {fileID: 661520719689722298}
   - component: {fileID: 661520719699781242}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: leg Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,7 +1356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661520719711031230}
   - component: {fileID: 661520719689722300}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1374,7 +1375,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 661520719711031200}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &661520719689722300
 SpriteRenderer:
@@ -1434,7 +1435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661520719711031184}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Leg Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1468,7 +1469,7 @@ GameObject:
   - component: {fileID: 1973121204263368661}
   - component: {fileID: 853414156762454687}
   - component: {fileID: 8688107289137057108}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Back Leg Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1488,7 +1489,7 @@ Transform:
   m_Children:
   - {fileID: 661520719711031188}
   m_Father: {fileID: 661520719711031200}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -161.412}
 --- !u!212 &1973121204263368661
 SpriteRenderer:
@@ -1579,7 +1580,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661520719711031188}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Leg Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1610,7 +1611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5502306650929128523}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Back Leg Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1631,6 +1632,80 @@ Transform:
   m_Father: {fileID: 661520719711031188}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10.067}
+--- !u!1 &1005279115480549088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5695747640132703916}
+  - component: {fileID: 6318955419322192965}
+  - component: {fileID: 2589403252317291122}
+  m_Layer: 20
+  m_Name: Damager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5695747640132703916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005279115480549088}
+  m_LocalRotation: {x: -0, y: -0, z: 0.23288268, w: 0.9725049}
+  m_LocalPosition: {x: -2.94, y: 7.93, z: 0}
+  m_LocalScale: {x: 21.597, y: 21.597, z: 21.597}
+  m_Children: []
+  m_Father: {fileID: 8702994199558765094}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 26.934002}
+--- !u!114 &6318955419322192965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005279115480549088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fd9447863bc2844904fdafc468bb1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageAmount: 99
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!61 &2589403252317291122
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005279115480549088}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.101194695, y: -0.07177502}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.47789916, y: 0.85644996}
+  m_EdgeRadius: 0
 --- !u!1 &1302403807258456673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,7 +1715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7898236202767047099}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Front Leg Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1671,7 +1746,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9071872548032126003}
   - component: {fileID: 6629274569603602575}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1749,7 +1824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 790754276982855636}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Front Arm Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,7 +1855,7 @@ GameObject:
   m_Component:
   - component: {fileID: 577218495242225923}
   - component: {fileID: 5906809922596541586}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Back Arm LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1846,8 +1921,8 @@ GameObject:
   - component: {fileID: 1952249402016601625}
   - component: {fileID: 1952249402016601624}
   - component: {fileID: 2611510590426740506}
-  - component: {fileID: 7350556186661114057}
-  m_Layer: 0
+  - component: {fileID: 528212066934377575}
+  m_Layer: 20
   m_Name: Tomato
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -1905,6 +1980,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSpeed: 0
   speed: 55
+  jumpStrength: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
   immobile: 0
   SlashEffect: {fileID: 5329889505711313338}
   effectSpawnPoint: {fileID: 9071872548032126003}
@@ -1917,7 +1996,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952249402016601623}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -1936,22 +2015,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.6830587, y: 9.33}
   m_EdgeRadius: 0
---- !u!114 &7350556186661114057
-MonoBehaviour:
+--- !u!70 &528212066934377575
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952249402016601623}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6664f12b00e6e4ebbae2ea7c3ebb67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DamageAmount: 99
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.5810189}
+  m_Size: {x: 1.7061641, y: 3.1620378}
+  m_Direction: 0
 --- !u!1 &2872166429007334855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,7 +2040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1676525081168173172}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: New LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1992,7 +2071,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4305816769517989532}
   - component: {fileID: 4778017126543922929}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Front Arm LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2056,7 +2135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2253672545773011060}
   - component: {fileID: 8032789064966762682}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Front Leg LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2119,7 +2198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8242943109581198199}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Front Leg LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2149,7 +2228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1430559667980339357}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Back Arm Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2163,14 +2242,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5345441899681813017}
-  m_LocalRotation: {x: -0, y: -0, z: 0.0000002682209, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.15800236, w: 0.9874388}
   m_LocalPosition: {x: 2.099, y: -0.036, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4081322466182692816}
+  m_Children: []
   m_Father: {fileID: 661520719711031208}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 18.182001}
 --- !u!1 &5697255346041425418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,7 +2259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7988304233501146199}
   - component: {fileID: 3022974691205580445}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Back Leg LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2245,7 +2323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7611022054828160216}
   - component: {fileID: 3071644581669350780}
-  m_Layer: 8
+  m_Layer: 20
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2323,7 +2401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 229326415132196805}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Back Leg LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2344,6 +2422,38 @@ Transform:
   m_Father: {fileID: 7988304233501146199}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7706721204419780944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8702994199558765094}
+  m_Layer: 20
+  m_Name: Slash Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8702994199558765094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7706721204419780944}
+  m_LocalRotation: {x: -0, y: -0, z: -0.85071385, w: 0.5256292}
+  m_LocalPosition: {x: -1.274791, y: -4.2286944, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4081322466182692816}
+  - {fileID: 5695747640132703916}
+  m_Father: {fileID: 661520719711031200}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8134672276518446469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,7 +2463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3733850355902603276}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Back Arm LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2379,7 +2489,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1430559667980339357}
+    m_TransformParent: {fileID: 8702994199558765094}
     m_Modifications:
     - target: {fileID: 5329889505018937962, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
@@ -2388,18 +2498,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5329889505018937962, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Layer
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.82
+      value: 0.82000077
       objectReference: {fileID: 0}
     - target: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.47
+      value: 2.4700007
       objectReference: {fileID: 0}
     - target: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
@@ -2419,12 +2529,12 @@ PrefabInstance:
     - target: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.23387401
+      value: 0.23387407
       objectReference: {fileID: 0}
     - target: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9722669
+      value: 0.97226685
       objectReference: {fileID: 0}
     - target: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
@@ -2449,17 +2559,17 @@ PrefabInstance:
     - target: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.426092
+      value: 7.426093
       objectReference: {fileID: 0}
     - target: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 7.426092
+      value: 7.426093
       objectReference: {fileID: 0}
     - target: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 7.4260926
+      value: 7.426093
       objectReference: {fileID: 0}
     - target: {fileID: 112279335360764156, guid: 7eb9a0c287d26c44884407993fe42a1a,
         type: 3}
@@ -2468,15 +2578,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb9a0c287d26c44884407993fe42a1a, type: 3}
---- !u!4 &4081322466182692816 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 918410192}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5329889505711313338 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5329889505018937962, guid: 7eb9a0c287d26c44884407993fe42a1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 918410192}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4081322466182692816 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4081322467012783104, guid: 7eb9a0c287d26c44884407993fe42a1a,
     type: 3}
   m_PrefabInstance: {fileID: 918410192}
   m_PrefabAsset: {fileID: 0}

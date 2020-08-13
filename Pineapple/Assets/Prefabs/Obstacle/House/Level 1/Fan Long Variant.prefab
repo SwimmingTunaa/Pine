@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3024034952449866093}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.638, z: 0}
+  m_LocalPosition: {x: 0, y: -5.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5018214384943207337}
@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 126182293
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 31
   m_Sprite: {fileID: 21300018, guid: c25cc3dd3dc905540922d22aebfb240d, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -289,8 +289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d87d5c5b9e724e4985053eb22419460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyHair: 1
+  triggerAmount: 1
   damageAmount: 1
+  destroyHair: 1
+  damageShieldOnly: 0
   destroyAfterDamage: 0
   hitSoundEffect: {fileID: 0}
   hitEffect: {fileID: 0}
@@ -310,6 +312,7 @@ MonoBehaviour:
   scoreToAdd: 100
   scoreMessage: Haircut!
   isTrigger: 1
+  statReference: 
 --- !u!1 &5763783452918978930
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5763783452918978930}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.638, z: 0}
+  m_LocalPosition: {x: 0, y: -5.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5018214384943207337}
@@ -549,7 +552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7447592751741890377}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.065, z: 0}
+  m_LocalPosition: {x: 0, y: -5.087, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5018214384943207337}
@@ -610,6 +613,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5018214384943207337}
     m_Modifications:
+    - target: {fileID: 75722532183294455, guid: 316597fd796ff884dac40181c607e3db,
+        type: 3}
+      propertyPath: m_Name
+      value: Fan Spin SFX
+      objectReference: {fileID: 0}
     - target: {fileID: 75722532182875607, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -618,7 +626,7 @@ PrefabInstance:
     - target: {fileID: 75722532182875607, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.47900003
+      value: -5.501
       objectReference: {fileID: 0}
     - target: {fileID: 75722532182875607, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}
@@ -679,11 +687,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.0137198
-      objectReference: {fileID: 0}
-    - target: {fileID: 75722532183294455, guid: 316597fd796ff884dac40181c607e3db,
-        type: 3}
-      propertyPath: m_Name
-      value: Fan Spin SFX
       objectReference: {fileID: 0}
     - target: {fileID: 75722532202272919, guid: 316597fd796ff884dac40181c607e3db,
         type: 3}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     [Header("Music")]
+    public float musicMaxVolume = 0.7f;
     public AudioSource musicSource;
     public GameObject musicChecker;
 
@@ -21,15 +22,15 @@ public class Settings : MonoBehaviour
 
     public void ToggleMusic()
     {
-        musicSource.volume = musicSource.volume == 1 ? 0 : 1;
-        PlayerPrefs.SetFloat("Music Volume", musicSource.volume);
+        musicSource.volume = musicSource.volume == musicMaxVolume ? 0 : musicMaxVolume;
+        PlayerPrefs.SetFloat("Music Volume", musicSource.volume == musicMaxVolume ? 1: 0);
         musicChecker.SetActive(PlayerPrefs.GetFloat("Music Volume") == 1 ? false : true);
     }
 
     public void ToggleMusic(GameObject marker)
     {
-        musicSource.volume = musicSource.volume == 1 ? 0 : 1;
-        PlayerPrefs.SetFloat("Music Volume", musicSource.volume);
+        musicSource.volume = musicSource.volume == musicMaxVolume ? 0 : musicMaxVolume;
+        PlayerPrefs.SetFloat("Music Volume", musicSource.volume == musicMaxVolume ? 1 : 0);
         marker.SetActive(PlayerPrefs.GetFloat("Music Volume") == 1 ? false : true);
     }
 

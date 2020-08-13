@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8720149089339125958
 Transform:
   m_ObjectHideFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196006091302962246}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.269, y: -3.0999997, z: 0}
+  m_LocalPosition: {x: -0.269, y: -3.8859997, z: 0}
   m_LocalScale: {x: 0.38989332, y: 1.10759, z: 0.7384}
   m_Children:
   - {fileID: 7974576609880901349}
@@ -42,7 +42,7 @@ Transform:
   - {fileID: 454439752941815204}
   - {fileID: 5415286873993631725}
   m_Father: {fileID: 1918902579772665285}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8803694276668024187
 BoxCollider2D:
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f99670027435a4fa1e29f67e94106e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 1
   dead: 0
   startHealth: 0
   attachedObject: {fileID: 196006091302962246}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5981709414870545159}
   - component: {fileID: 958713815473346618}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1918902579772665285}
   - component: {fileID: 1182429257160212881}
-  - component: {fileID: 7646753483744633687}
   m_Layer: 14
   m_Name: Bathroom
   m_TagString: House
@@ -227,14 +226,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 97133089513225388}
-  - {fileID: 1525391405035795612}
-  - {fileID: 3373805134549232335}
-  - {fileID: 3100557609680730023}
-  - {fileID: 4765949950544564791}
-  - {fileID: 6898263087696771472}
-  - {fileID: 4536711915185432805}
-  - {fileID: 988628309618513199}
   - {fileID: 8720149089339125958}
+  - {fileID: 988628309618513199}
+  - {fileID: 4536711915185432805}
+  - {fileID: 6898263087696771472}
+  - {fileID: 4765949950544564791}
+  - {fileID: 3100557609680730023}
+  - {fileID: 1436454195989343131}
+  - {fileID: 3373805134549232335}
+  - {fileID: 1525391405035795612}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -264,20 +264,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 8.5}
   m_EdgeRadius: 0
---- !u!114 &7646753483744633687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362453142170762194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 346f4a1b92687614aac7fd3357d920ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  regionToChangeTo: {fileID: 11400000, guid: 0f4b3d172a8f8f240a272354d7eaaa5e, type: 2}
-  panelHolderLocation: 2
 --- !u!1 &1453722688480891127
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4577237498446140828}
   - component: {fileID: 1940961176235939237}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,11 +369,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913864967179589126}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.54, y: -0.013, z: 0.19098149}
-  m_LocalScale: {x: 0.9030124, y: 0.97850114, z: 0.87011135}
+  m_LocalPosition: {x: 0.04430759, y: -3.9003987, z: 0}
+  m_LocalScale: {x: 1.0001698, y: 1.0837805, z: 0.6424859}
   m_Children: []
-  m_Father: {fileID: 3373805134549232335}
-  m_RootOrder: 0
+  m_Father: {fileID: 1918902579772665285}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7579205915401861466
 SpriteRenderer:
@@ -447,7 +433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5922086041002017484}
   - component: {fileID: 156228698101028635}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5415286873993631725}
   - component: {fileID: 4870837297754863812}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,12 +607,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4686598948938078976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.75, y: -3.1, z: -0.14102007}
+  m_LocalPosition: {x: 1.75, y: -3.886, z: -0.14102007}
   m_LocalScale: {x: 1.1075925, y: 1.1075925, z: 0.73839504}
-  m_Children:
-  - {fileID: 1436454195989343131}
+  m_Children: []
   m_Father: {fileID: 1918902579772665285}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5083152039257634928
 GameObject:
@@ -638,7 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4830743690724558419}
   - component: {fileID: 5178501214099101849}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,11 +718,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5792856924876157010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 1.669, z: 0.7}
+  m_LocalPosition: {x: 0.06, y: 0.883, z: 0.7}
   m_LocalScale: {x: 0.9853008, y: 1.2335609, z: 0.9853008}
   m_Children: []
   m_Father: {fileID: 1918902579772665285}
-  m_RootOrder: 1
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6513344209151676978
 SpriteRenderer:
@@ -812,11 +797,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6091643686341087079}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0043, y: -0.0006, z: 0}
+  m_LocalPosition: {x: 0.0043, y: -0.7866, z: 0}
   m_LocalScale: {x: 246.0732, y: 201.14401, z: 279.53094}
   m_Children: []
   m_Father: {fileID: 1918902579772665285}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!331 &5914942430694822495
 SpriteMask:
@@ -865,6 +850,21 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
+--- !u!114 &324533561602130201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113836687402317582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3ec7cbf1606e447b80900d6dabc06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 0
+  spawner: Critter Spawner
+  spawnChance: 0
 --- !u!1 &6184319292336183453
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3100557609680730023
 Transform:
   m_ObjectHideFlags: 0
@@ -890,11 +890,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6184319292336183453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.12, y: -3.0999997, z: -0.14102009}
+  m_LocalPosition: {x: -3.12, y: -3.8859997, z: -0.14102009}
   m_LocalScale: {x: 0.4399093, y: 1.10759, z: 0.7384}
   m_Children: []
   m_Father: {fileID: 1918902579772665285}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4599373994349963984
 BoxCollider2D:
@@ -932,7 +932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7974576609880901349}
   - component: {fileID: 8017032862278978247}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,7 +1018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4765949950544564791
 Transform:
   m_ObjectHideFlags: 0
@@ -1027,11 +1027,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7748405539802774045}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.54, y: -3.0999997, z: -0.14102009}
+  m_LocalPosition: {x: 3.54, y: -3.8859997, z: -0.14102009}
   m_LocalScale: {x: 0.38989332, y: 1.10759, z: 0.7384}
   m_Children: []
   m_Father: {fileID: 1918902579772665285}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5639418246709344963
 BoxCollider2D:
@@ -1069,7 +1069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4806387129231824037}
   - component: {fileID: 5852259785045920855}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1164,7 +1164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357463787487393327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.786, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1918902579772665285}
@@ -1228,7 +1228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 122417427209338756}
   - component: {fileID: 6342772187164338411}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1308,7 +1308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5428036024756012208}
   - component: {fileID: 9057419428542132361}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1388,7 +1388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5467959646980018820}
   - component: {fileID: 3124286899422758165}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1468,7 +1468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 454439752941815204}
   - component: {fileID: 5807975634748370236}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: wooden plank (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1558,7 +1558,7 @@ PrefabInstance:
     - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.99
+      value: -5.776
       objectReference: {fileID: 0}
     - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
         type: 3}
@@ -1588,7 +1588,7 @@ PrefabInstance:
     - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
         type: 3}
@@ -1605,8 +1605,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 148051490961415133, guid: ba3c04eedcc0631478f366c4823dc425, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ba3c04eedcc0631478f366c4823dc425, type: 3}
+--- !u!1 &6113836687402317582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4618494608797301468, guid: ba3c04eedcc0631478f366c4823dc425,
+    type: 3}
+  m_PrefabInstance: {fileID: 1495342906464456146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6898263087696771472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
@@ -1638,7 +1645,7 @@ PrefabInstance:
     - target: {fileID: 3653394570942741396, guid: 2f6f19e56d0fe0d4984289ae22bf19aa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.09
+      value: -3.876
       objectReference: {fileID: 0}
     - target: {fileID: 3653394570942741396, guid: 2f6f19e56d0fe0d4984289ae22bf19aa,
         type: 3}
@@ -1668,7 +1675,7 @@ PrefabInstance:
     - target: {fileID: 3653394570942741396, guid: 2f6f19e56d0fe0d4984289ae22bf19aa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3653394570942741396, guid: 2f6f19e56d0fe0d4984289ae22bf19aa,
         type: 3}

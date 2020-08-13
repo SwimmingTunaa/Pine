@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 1153993641490656141}
   - component: {fileID: 839307212047648615}
   - component: {fileID: 4683249399734567408}
-  - component: {fileID: 1502811174671799602}
-  - component: {fileID: 2831009909464283299}
+  - component: {fileID: 367963621750828715}
   m_Layer: 16
   m_Name: Clothes
   m_TagString: Obstacle
@@ -189,8 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 1
   selfDestroy: 1
---- !u!61 &1502811174671799602
-BoxCollider2D:
+--- !u!58 &367963621750828715
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -202,45 +201,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10052097, y: 0.4307809}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.13157189, y: -0.44}
   serializedVersion: 2
-  m_Size: {x: 1.5910828, y: 2.0065112}
-  m_EdgeRadius: 0
---- !u!61 &2831009909464283299
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619217471}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.5588549, y: 0.114141285}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.1487926, y: 1.373232}
-  m_EdgeRadius: 0
+  m_Radius: 1.0205675
 --- !u!1 &1445039094357652739
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445039094357652739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.083, y: -0.748, z: 0}
+  m_LocalPosition: {x: -0.083, y: -1.49, z: 0}
   m_LocalScale: {x: 0.6931513, y: 0.105486915, z: 0.6115142}
   m_Children: []
   m_Father: {fileID: 1619217472}
@@ -503,7 +466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3476908370999573607}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.263, y: 0.708, z: 0.037109375}
+  m_LocalPosition: {x: -0.263, y: 0, z: 0.037109375}
   m_LocalScale: {x: 0.5963476, y: 0.5963476, z: 0.5963476}
   m_Children:
   - {fileID: 1596708283627207386}

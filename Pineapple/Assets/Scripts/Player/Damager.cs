@@ -12,11 +12,10 @@ public class Damager : MonoBehaviour
     {
         myCollider = GetComponent<Collider2D>();
     }
-    void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if(myCollider.IsTouchingLayers(layerMask))
         {
-            Debug.Log("Damaged: " + other.name);
             if(other.GetComponent<HealthGeneric>())
                 other.GetComponent<HealthGeneric>().TakeDamage(DamageAmount);
         }

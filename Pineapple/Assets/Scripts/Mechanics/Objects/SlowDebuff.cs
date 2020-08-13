@@ -43,7 +43,7 @@ public class SlowDebuff : PickUpsBase
             case 0:
                   GameManager.Instance.chaseVirtualCamera.gameObject.SetActive(true);
                   GameManager.Instance.chaseVirtualCamera.Follow = _playerController.cameraFollowTarget;
-                  _tomato.SetActive(true);
+                  _tomato.GetComponent<TomatoController>().SpawnChaser(-2f);
                   _tomato.GetComponentInChildren<Animator>().Play("Appear");
                   TomatoController.chasePlayer = true;
                break;

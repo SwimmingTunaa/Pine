@@ -36,6 +36,7 @@ public class MainMenu : MonoBehaviour
     public void MainMenuDisable(float waitTime)
     {
         PlayButton.interactable = false;
+        GameManager.Instance.chaser.SpawnChaser(-6f);
         StartCoroutine(MainMenuWait(false, waitTime));
     }
 

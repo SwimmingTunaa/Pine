@@ -64,7 +64,7 @@ public class ProjectileSpawner : Spawner
 
     public void SpawnLine()
     {
-        int r = (int)Random.Range(spawnAmount.x,spawnAmount.y);
+        int r = 2; //(int)Random.Range(spawnAmount.x,spawnAmount.y);
         float yPos = _newY;
         for(int i = 0; i < r; i++)
         {

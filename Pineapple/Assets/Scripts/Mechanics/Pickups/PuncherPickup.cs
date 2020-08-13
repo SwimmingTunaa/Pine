@@ -9,12 +9,10 @@ public class PuncherPickup : PickUpsBase
     public GameObject visual;
 
     [Header("VFX")]
-    public GameObject mainCam;
-    public GameObject vfxCamera;
     private PlayerController pController;
     public GameObject transformVFX;
     public AudioClip transformSFX;
-    
+
     private GameObject outfit;
     private PlayerHealth _health;
     private Animator _anim;
@@ -33,7 +31,7 @@ public class PuncherPickup : PickUpsBase
         if(triggerAmount >= 1 && (other.CompareTag("Player") || other.CompareTag("Hair")))
         {
             triggerAmount--;
-            _health = other.gameObject.GetComponentInParent<PlayerHealth>();
+            _health =   CharacterManager.activeCharacter.GetComponent<PlayerHealth>();
             DoAction(_health.gameObject);
         }
     }
@@ -43,7 +41,6 @@ public class PuncherPickup : PickUpsBase
         if(_effectActive && (_timerActive && item.Instance.effectDuration > 0 && Timer(item.Instance.effectDuration) ||_health != null && _health.health <= 1))
         {
             DisablePickUp();
-            Debug.Log("Disable Glove");
         }        
     }
 
@@ -53,7 +50,6 @@ public class PuncherPickup : PickUpsBase
         _effectActive = true;
         visual.SetActive(false);
         _sfxActive = true;
-        Debug.Log("Enable Glove");
         StartCoroutine(ActivateEffect(player, true));
         base.DoAction(player);
         transform.parent = player.GetComponent<PlayerController>().playerItemSlots.bodySlot;
@@ -75,9 +71,11 @@ public class PuncherPickup : PickUpsBase
     {
         if(_sfxActive)
         {
+            Debug.Log("active char: " + CharacterManager.activeCharacter.transform + " + transform: " + CharacterManager.activeCharacter.transform.position);
             GameManager.Instance.vfxVirtualCamera.Follow = CharacterManager.activeCharacter.transform;
             GameManager.Instance.followVirtualCamera.gameObject.SetActive(false);
             GameManager.Instance.vfxVirtualCamera.gameObject.SetActive(true);
+            GameManager.Instance.vfxVirtualCamera.Follow = CharacterManager.activeCharacter.transform;
             //Pause player and everything else
             Time.timeScale = 0;
             //Zoom into players body

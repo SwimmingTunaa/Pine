@@ -9,6 +9,8 @@ public class TomatoController : MonoBehaviour
 
     [HideInInspector] public float startSpeed;
     public float speed;
+    public float jumpStrength;
+    public LayerMask whatIsGround;
     public bool immobile = false;
     public GameObject SlashEffect;
     public Transform effectSpawnPoint;
@@ -20,13 +22,24 @@ public class TomatoController : MonoBehaviour
     [Range(0, .3f)] private float m_MovementSmoothing = .05f;	
     private Animator _anim;
     [HideInInspector] public float _horiMove;
-    Vector3 movePos;
+    private RaycastHit2D _hit;
+    private float _halfHeight;
+    private float _halfWidth;
+    Camera _cam;
+    private bool _jumping;
+
     void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         _anim = GetComponentInChildren<Animator>();
-        startSpeed = speed;
-        movePos = transform.position;
+        startSpeed = speed;        
+    }
+
+    void Start()
+    {
+        _cam = Camera.main;
+        _halfHeight = _cam.orthographicSize;
+        _halfWidth  = _cam.aspect * _halfHeight; 
     }
 
     void FixedUpdate()
@@ -35,11 +48,13 @@ public class TomatoController : MonoBehaviour
             Move();
         else if(chasePlayer)
             ChasePlayer();
+            Jump();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        StartCoroutine(Kill(other.gameObject)); 
+        if(other.CompareTag("Player") || (other.gameObject.GetComponent<ObjectID>() != null && other.gameObject.GetComponent<ObjectID>().objectType == ObjType.Obstacle))
+            _anim.SetTrigger("Attack");
     }
 
     void Move()
@@ -49,40 +64,52 @@ public class TomatoController : MonoBehaviour
         // And then smoothing it out and applying it to the character
         m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
     }
+
+    void Jump()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.up, transform.right, 6f, whatIsGround);
+        if(hit.normal.x <= -1 && !_jumping)
+        {
+            m_Rigidbody2D.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
+            _jumping = true;
+        }else
+            if(hit.normal.x == -1 && m_Rigidbody2D.velocity.x <= 0)
+            {
+                m_Rigidbody2D.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
+                _jumping = true;
+            }
+            
+        if(m_Rigidbody2D.velocity.y == 0) _jumping = false;
+        else if(m_Rigidbody2D.velocity.y < 0) m_Rigidbody2D.gravityScale = 2;
+    }
+
+    public void SpawnChaser(float xOffset)
+    {
+        gameObject.SetActive(true);
+
+        _cam = Camera.main;
+        _halfHeight = _cam.orthographicSize;
+        _halfWidth  = _cam.aspect * _halfHeight; 
+        _hit = Physics2D.Raycast(new Vector2(_cam.transform.position.x - _halfWidth, _cam.transform.position.y), -transform.up, 5, whatIsGround);
+        //Debug.Log(_hit.collider != null ? _hit.collider.name + " " + _hit.point : "Null");
+        if(_hit.collider != null)
+        {
+            Vector3 newPos = new Vector3 (_cam.transform.position.x - _halfWidth + xOffset, _hit.point.y, transform.position.z);
+            transform.position = newPos;
+        }
+    }
     
     public void ChasePlayer()
     {
-        gameObject.SetActive(true);
-        Camera cam = Camera.main;
-        float _halfHeight = cam.orthographicSize;
-        float _halfWidth  = cam.aspect * _halfHeight; 
-        Vector3 previousPos = movePos;
-        movePos = new Vector3(Camera.main.transform.position.x - _halfWidth, transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(previousPos, movePos, Time.deltaTime * 5);
-    }
+        /*_cam = Camera.main;
+        _halfHeight = _cam.orthographicSize;
+        _halfWidth  = _cam.aspect * _halfHeight; 
+        var previousPos = transform.position;
+        var newPos = new Vector2(_cam.transform.position.x - _halfWidth + 1 , transform.position.y);
+        transform.position = newPos;*/
 
-    IEnumerator Kill(GameObject target)
-    {
-        if(target.tag == "Player")
-        {
-            _anim.SetTrigger("Attack");
-            yield return new WaitForSeconds(0.3f);
-            SlashEffect.SetActive(false);
-            SlashEffect.SetActive(true);
-        }else
-        if(target.GetComponent<ObjectID>() != null)
-        {
-            if(target.GetComponent<ObjectID>().objectType == ObjType.Obstacle)
-            {
-                if(!target.GetComponent<ObjectID>().selfDestroy)
-                    target.GetComponent<ObjectID>().Disable();
-                Instantiate(killEffect, target.transform.position, killEffect.transform.rotation);
-                _anim.SetTrigger("Attack");
-                yield return new WaitForSeconds(0.2f);
-                SlashEffect.SetActive(false);
-                SlashEffect.SetActive(true);
-            } 
-        }
+        speed = CharacterManager.activeCharacter.GetComponent<PlayerController>().speed;
+        Move();
     }
 
     private void setAnimations()

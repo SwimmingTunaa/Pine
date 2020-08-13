@@ -17,7 +17,8 @@ public class StatsManager: MonoBehaviour
     public TextMeshProUGUI hairCuts;
     public TextMeshProUGUI killByFans;
     public TextMeshProUGUI CouchBounce;
-
+    public TextMeshProUGUI mouseStomped;
+    public TextMeshProUGUI spidersSquished;
     void Awake()
     {
         if (Instance != null) 
@@ -34,6 +35,8 @@ public class StatsManager: MonoBehaviour
         hairCuts.text = PlayerPrefs.GetInt("HaircutsTaken").ToString();
         killByFans.text = PlayerPrefs.GetInt("KilledByFans").ToString();
         CouchBounce.text = PlayerPrefs.GetInt("CouchBounce").ToString();
+        mouseStomped.text = PlayerPrefs.GetInt("Mouse Killed").ToString();
+        spidersSquished.text = PlayerPrefs.GetInt("Spider Killed").ToString();
     }
 
     public void AddStickersToTotalOwnedAmount()

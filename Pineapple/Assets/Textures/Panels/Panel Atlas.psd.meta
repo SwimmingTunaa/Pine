@@ -4,7 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 21300000
-    second: background
+    second: Kitchen Wall
   - first:
       213: 21300002
     second: floor
@@ -258,7 +258,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -269,7 +269,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -280,7 +280,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -293,16 +293,16 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: background
+      name: Kitchen Wall
       rect:
         serializedVersion: 2
-        x: 109
+        x: 128
         y: 3031
-        width: 1972
-        height: 958
+        width: 1939
+        height: 923
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 995, w: 691}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -575,7 +575,7 @@ TextureImporter:
         height: 919
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 637, y: 0, z: 1005, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0

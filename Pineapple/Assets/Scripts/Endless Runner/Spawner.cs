@@ -9,7 +9,7 @@ public abstract class Spawner : MonoBehaviour
     private float _timer;
     [HideInInspector] public  GameObject _previousSpawn;
 
-    public Vector2 GetNextSpawnPos(SpriteRenderer previousSpawnSPos, SpriteRenderer nextSpawn)
+    public Vector2 GetNextSpawnPosHorizontal(SpriteRenderer previousSpawnSPos, SpriteRenderer nextSpawn)
     {
         //get the half size of the previous sprite
         float previousX = (previousSpawnSPos.size.x/2 * previousSpawnSPos.gameObject.transform.localScale.x);
@@ -17,6 +17,14 @@ public abstract class Spawner : MonoBehaviour
         float nextX = (nextSpawn.size.x/2 * nextSpawn.transform.localScale.x);
         //translate the new sprite to the right by previous X
         Vector2 newSpawnPos = new Vector2((previousSpawnSPos.transform.position.x + previousX) + nextX, previousSpawnSPos.transform.parent.position.y);
+        return newSpawnPos;
+    }
+
+    public Vector2 GetNextSpawnPosVertical(SpriteRenderer previousSpawnSPos, SpriteRenderer nextSpawn)
+    {
+        Vector2 previousCornerPos = new Vector2(previousSpawnSPos.size.x/2 * previousSpawnSPos.gameObject.transform.localScale.x, previousSpawnSPos.size.y/2 * previousSpawnSPos.gameObject.transform.localScale.y);
+        Vector2 newCornerPos = new Vector2(nextSpawn.size.x/2, nextSpawn.size.y * nextSpawn.gameObject.transform.localScale.y);
+        Vector2 newSpawnPos = new Vector2((previousSpawnSPos.transform.position.x - previousCornerPos.x) + newCornerPos.x, previousSpawnSPos.transform.position.y - newCornerPos.y);
         return newSpawnPos;
     }
 

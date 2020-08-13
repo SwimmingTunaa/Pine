@@ -4,7 +4,8 @@ using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
 	public float m_JumpForce = 400f;	// Amount of force added when the player jumps.
-	public float doubleJumpForce;						
+	public float doubleJumpForce;					
+	public AudioClip jumpSound;	
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private float m_fallMulitplier = 2.5f;
@@ -23,6 +24,7 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	public bool canDoubleJump;
 	public bool flippable;
+	private AudioSource _audioSource;
 
 	[Header("Events")]
 	[Space]
@@ -44,7 +46,7 @@ public class CharacterController2D : MonoBehaviour
 
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
-
+		_audioSource = GetComponent<AudioSource>();
 	}
 
 	private void FixedUpdate()
@@ -150,6 +152,8 @@ public class CharacterController2D : MonoBehaviour
 		if (m_Grounded && jump)
 		{
 			// Add a vertical force to the player.
+			_audioSource.PlayOneShot(jumpSound);
+			_audioSource.pitch = 1f;
 			m_Grounded = false;
 			float newJumpForce = m_JumpForce * multiplier;
 			m_Rigidbody2D.AddForce(new Vector2(0f, newJumpForce), ForceMode2D.Impulse);
@@ -161,6 +165,8 @@ public class CharacterController2D : MonoBehaviour
 			float newJumpForce = doubleJumpForce * multiplier;
 			m_Rigidbody2D.velocity = Vector2.zero;
 			m_Rigidbody2D.AddForce(new Vector2(10f, newJumpForce), ForceMode2D.Impulse);
+			_audioSource.PlayOneShot(jumpSound);
+			_audioSource.pitch = 1.2f;
 		}
 	}
 

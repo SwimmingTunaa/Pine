@@ -13,22 +13,11 @@ MonoBehaviour:
   m_Name: Main Level Camera Blends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: '**ANY CAMERA**'
-    m_To: VFX Player Follow Camera
-    m_Blend:
-      m_Style: 4
-      m_Time: 0.5
-      m_CustomCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
   - m_From: VFX Player Follow Camera
-    m_To: '**ANY CAMERA**'
+    m_To: Cine Player Follow Camera
     m_Blend:
       m_Style: 1
-      m_Time: 0.5
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
@@ -83,7 +72,7 @@ MonoBehaviour:
     m_To: Cine Player Follow Camera
     m_Blend:
       m_Style: 2
-      m_Time: 10
+      m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
@@ -117,6 +106,17 @@ MonoBehaviour:
     m_Blend:
       m_Style: 1
       m_Time: 5
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: '**ANY CAMERA**'
+    m_To: VFX Player Follow Camera
+    m_Blend:
+      m_Style: 1
+      m_Time: 0.5
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []

@@ -92,6 +92,15 @@ TextureImporter:
   - first:
       213: -5105553603535451559
     second: Cliff Ramp
+  - first:
+      213: 836870784443370895
+    second: Spider Web 1
+  - first:
+      213: -3393647433304560500
+    second: Spider Web 2
+  - first:
+      213: 1995406417116247570
+    second: Light Ray
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -251,10 +260,10 @@ TextureImporter:
       name: Fence
       rect:
         serializedVersion: 2
-        x: 11
-        y: 254
-        width: 255
-        height: 188
+        x: 7
+        y: 258
+        width: 511
+        height: 189
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,7 +392,7 @@ TextureImporter:
         height: 87
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 11, y: 0, z: 4, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -684,6 +693,69 @@ TextureImporter:
       bones: []
       spriteID: 83b5ec6c75ab4084a918a15f385c5041
       internalID: -5105553603535451559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spider Web 1
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 133
+        width: 231
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4ad6474a99ab05498826a4d9d7227ee
+      internalID: 836870784443370895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spider Web 2
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 163
+        width: 287
+        height: 235
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 079de5c9b06176d46aba23b4a3155d8f
+      internalID: -3393647433304560500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Light Ray
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 133
+        width: 277
+        height: 312
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a13d33eeead1a543b49e68547f88116
+      internalID: 1995406417116247570
       vertices: []
       indices: 
       edges: []

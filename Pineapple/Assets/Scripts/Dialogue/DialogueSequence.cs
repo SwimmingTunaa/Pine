@@ -78,8 +78,8 @@ public class DialogueSequence : MonoBehaviour
 
     public void EndDialogue()
     {
-        _scriptRunning = false;
         speechBubble.gameObject.SetActive(false);
+        _scriptRunning = false;
         //gameObject.SetActive(false);
     }
 

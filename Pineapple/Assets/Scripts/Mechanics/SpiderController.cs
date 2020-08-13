@@ -105,7 +105,7 @@ public class SpiderController : MonoBehaviour
             if(!_canMove)
                 ChangeRotation(); //rotate the object        
 
-        if(Timer(spiderLifeDuration)) health.TakeDamage(2);
+        if(Timer(spiderLifeDuration)) gameObject.SetActive(false);
     }
 
     
