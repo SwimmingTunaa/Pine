@@ -28,10 +28,12 @@ public class GameManager : MonoBehaviour
     public GameObject tomatoWarningBubble;
 
     [Header("Cameras")]
+    public FollowPlayer cameraFollower;
     public CinemachineVirtualCamera followVirtualCamera;
     public CinemachineVirtualCamera stopVirutalCameara;
     public CinemachineVirtualCamera chaseVirtualCamera;
     public CinemachineVirtualCamera vfxVirtualCamera;
+    public CinemachineVirtualCamera boostCamera;
 
     [Header("Gameover")]
     public TextMeshProUGUI finalScore;
@@ -96,9 +98,9 @@ public class GameManager : MonoBehaviour
         _trackedPosition = _player.gameObject;
         _playerCachedPos = _player.transform.position;
         _playerRb = _player.GetComponent<Rigidbody2D>();
-        followVirtualCamera.Follow = _player.cameraFollowTarget;
-        stopVirutalCameara.Follow = _player.cameraFollowTarget;
-        chaseVirtualCamera.Follow = _player.cameraFollowTarget;
+        //followVirtualCamera.Follow = _player.cameraFollowTarget;
+        //stopVirutalCameara.Follow = _player.cameraFollowTarget;
+        //chaseVirtualCamera.Follow = _player.cameraFollowTarget;
     }
 
     void FixedUpdate()
@@ -130,9 +132,12 @@ public class GameManager : MonoBehaviour
         _playerAnim.SetBool("Sit", enabled);
     }
 
-    public void CharacterJump(bool triggered)
+    public void ToggleVFXCamera(bool toggle)
     {
-        _player.OnPointerPressed(triggered);
+        vfxVirtualCamera.Follow = CharacterManager.activeCharacter.transform;
+        followVirtualCamera.gameObject.SetActive(!toggle);
+        vfxVirtualCamera.Follow = CharacterManager.activeCharacter.transform;
+        vfxVirtualCamera.gameObject.SetActive(toggle);
     }
 
     bool Timer(float interval)
@@ -254,6 +259,7 @@ public class GameManager : MonoBehaviour
     public void Retry()
     {
         PlayerPrefs.SetInt("Retry", 1);
+        System.GC.Collect();
         LoadLevel(0);
     }
 }

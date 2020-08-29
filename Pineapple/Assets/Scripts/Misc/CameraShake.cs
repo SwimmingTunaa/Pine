@@ -1,36 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Cinemachine;
 public class CameraShake : MonoBehaviour
 {
     // Transform of the camera to shake. Grabs the gameObject's transform
     // if null.
-    public Transform camTransform;
-    public static float shakeAffectRadius = 0.1f;
-
-	
-    // Amplitude of the shake. A larger value shakes the camera harder.
-    public static float shakeAmplitude = 0.1f;
-    public float decreaseFactor = 1.0f; 
+    public static CameraShake Instance;
+ 	public float decreaseFactor = 1.0f; 
 
     // How long the object should shake for.
-    public static float shakeDuration = 0f;
-
-    public static bool shakeActive =true;
+    public float shakeDuration = 0f;
+    public bool shakeActive = false;
 	
-    Vector3 originalPos;
+    private CinemachineVirtualCamera activeVirtualCamera;
+    private CinemachineBasicMultiChannelPerlin cmNoise;
+    private Transform cameraStartPos;
 
     void Awake()
     {
-        if (camTransform == null)
-        {
-            camTransform = Camera.main.transform;
-        }
-    }
-
-    void Start()
-    {
-        originalPos = camTransform.localPosition;
+        if(!Instance)
+            Instance = this;
     }
 
     void Update()
@@ -39,16 +28,15 @@ public class CameraShake : MonoBehaviour
             Shake();
     }
 
-    public static void ShakeCamera(float duration)
+    public void ShakeCamera(float duration, float shakeAmount, float frequency)
     {
+ 
+        activeVirtualCamera = GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+        cmNoise = activeVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cmNoise.m_AmplitudeGain = shakeAmount;
+        cmNoise.m_FrequencyGain = frequency;
         shakeDuration = duration;
-        shakeActive = true;
-    }
-    public static void ShakeCamera(float duration, float shakeRadius, float shakeAmount)
-    {
-        duration = shakeDuration;
-        shakeAffectRadius = shakeRadius;
-        shakeAmplitude = shakeAmount;
+        cameraStartPos = activeVirtualCamera.transform;
         shakeActive = true;
     }
 
@@ -56,13 +44,14 @@ public class CameraShake : MonoBehaviour
     {
         if (shakeDuration > 0)
         {
-            camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmplitude; 
-            shakeDuration -= Time.deltaTime * decreaseFactor;
+            shakeDuration -= Time.unscaledDeltaTime * decreaseFactor;
         }
         else
         {
             shakeDuration = 0f;
-            camTransform.localPosition = originalPos;
+            cmNoise.m_AmplitudeGain = 0;
+            activeVirtualCamera.transform.position = cameraStartPos.position;
+            activeVirtualCamera.transform.rotation = cameraStartPos.rotation;
             shakeActive = false;
         }
     }

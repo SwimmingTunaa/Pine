@@ -32,7 +32,7 @@ public class CharacterBuy : ShopItem
     {
         StatsManager.Instance.MinusStickers(item.itemCost);
         ShopManager.Instance.CloseConfirmation(item.name);
-        characterManager.moveToSpawnPos(characterPrefab, characterManager.spawnPos);
+        characterPrefab.SetActive(true);
         PlayerPrefs.SetInt(itemAlreadyPurchased, 1);
         characterOwned = PlayerPrefs.GetInt(itemAlreadyPurchased);
         purchaseButton.SetActive(false);

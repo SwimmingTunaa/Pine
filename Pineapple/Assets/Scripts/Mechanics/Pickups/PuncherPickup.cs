@@ -13,7 +13,7 @@ public class PuncherPickup : PickUpsBase
     public GameObject transformVFX;
     public AudioClip transformSFX;
 
-    private GameObject outfit;
+    private Outfits outfit;
     private PlayerHealth _health;
     private Animator _anim;
     private bool _sfxActive = false;
@@ -38,6 +38,7 @@ public class PuncherPickup : PickUpsBase
 
     public override void Update()
     {
+        print(item.Instance.effectDuration);
         if(_effectActive && (_timerActive && item.Instance.effectDuration > 0 && Timer(item.Instance.effectDuration) ||_health != null && _health.health <= 1))
         {
             DisablePickUp();
@@ -52,8 +53,6 @@ public class PuncherPickup : PickUpsBase
         _sfxActive = true;
         StartCoroutine(ActivateEffect(player, true));
         base.DoAction(player);
-        transform.parent = player.GetComponent<PlayerController>().playerItemSlots.bodySlot;
-        transform.position = player.transform.position;
     }
     
     public override void DisablePickUp()
@@ -61,8 +60,8 @@ public class PuncherPickup : PickUpsBase
         _sfxActive = true;
         if(!_disableEffect)
         {
-            _disableEffect = true;
             StartCoroutine(ActivateEffect(_health.gameObject, false));
+            _disableEffect = true;
         }
         triggerAmount = 1;
     }
@@ -71,11 +70,7 @@ public class PuncherPickup : PickUpsBase
     {
         if(_sfxActive)
         {
-            Debug.Log("active char: " + CharacterManager.activeCharacter.transform + " + transform: " + CharacterManager.activeCharacter.transform.position);
-            GameManager.Instance.vfxVirtualCamera.Follow = CharacterManager.activeCharacter.transform;
-            GameManager.Instance.followVirtualCamera.gameObject.SetActive(false);
-            GameManager.Instance.vfxVirtualCamera.gameObject.SetActive(true);
-            GameManager.Instance.vfxVirtualCamera.Follow = CharacterManager.activeCharacter.transform;
+            GameManager.Instance.ToggleVFXCamera(true);
             //Pause player and everything else
             Time.timeScale = 0;
             //Zoom into players body
@@ -83,27 +78,36 @@ public class PuncherPickup : PickUpsBase
             while(_sfxActive)
             {
                 _anim = CharacterManager.activeCharacter.GetComponentInChildren<Animator>();
-                outfit = CharacterManager.activeCharacter.GetComponent<Outfits>().outfit.puncherOutfit;
+                outfit = CharacterManager.activeCharacter.GetComponentInChildren<Outfits>();
                 //shows face change
                 _anim.SetBool("Fierce", enableEffect);
                 yield return wait.NewTime(0.2f);
+                CameraShake.Instance.ShakeCamera(.7f, .6f, 5);
                 //play the transform animation
                 _anim.SetTrigger("ItemAcquired");
-                Instantiate(transformVFX,player.transform.position,player.transform.rotation);
                 //wait till middle of smoke effect to play sound
                 _anim.GetComponentInParent<AudioSource>().PlayOneShot(transformSFX);
-                //wait for VFX to die out
-                yield return wait.NewTime(1.4f);
+                //wait for sound to pop at right moment
+                 yield return wait.NewTime(0.65f);
+                //create the effect
+                transformVFX.SetActive(true);
+                transformVFX.transform.position = player.transform.position;
+                transformVFX.transform.parent = null;
+                 //wait for VFX to die out
+                yield return wait.NewTime(0.65f);
+                
                 //adds speed to player
                 if(pController == null)
                     pController =  player.GetComponent<PlayerController>();
                 pController.speed = enableEffect ? pController.speed += 10: pController.speed -=10;
-                GameManager.Instance.followVirtualCamera.gameObject.SetActive(false);
-                GameManager.Instance.vfxVirtualCamera.gameObject.SetActive(false);
+                GameManager.Instance.ToggleVFXCamera(false);
                 Time.timeScale = 1;
-
+                
+                //move the glove puncher to the player
                 puncherObj.SetActive(enableEffect);
-                outfit.SetActive(enableEffect);
+                puncherObj.transform.position = outfit.glovePunchSlot.position;
+                puncherObj.transform.parent = outfit.glovePunchSlot;
+                outfit.puncherOutFit.SetActive(enableEffect);
                 //outfit.transform.parent = player.GetComponent<PlayerController>().playerItemSlots.bodySlot;
                 //outfit.transform.position = player.GetComponent<PlayerController>().playerItemSlots.bodySlot.position;
                 if(!enableEffect)

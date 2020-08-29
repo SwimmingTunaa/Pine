@@ -11,10 +11,12 @@ public class CharacterManager : MonoBehaviour
     public Dictionary<int, CharacterBuy> characters = new Dictionary<int, CharacterBuy>();
     public Dictionary<CharacterBuy, int> charactersKey = new Dictionary<CharacterBuy, int>();
     public static GameObject activeCharacter;
+    public static Outfits activeVisual;
     private CharacterBuy lastAcitveCharacterButton;
 
     void Awake()
     {
+        activeCharacter = GameObject.FindGameObjectWithTag("Player");
         //defualt pine on first startup
         if(PlayerPrefs.GetInt("ActiveCharacter") == 0)
             PlayerPrefs.SetInt("ActiveCharacter", 1);
@@ -30,12 +32,11 @@ public class CharacterManager : MonoBehaviour
         CharacterBuy tempChar = characters[PlayerPrefs.GetInt("ActiveCharacter")];
         if(tempChar.equipped)
             EquipCharacter(tempChar);
-        moveToSpawnPos(activeCharacter, spawnPos); 
+        
     }
 
     public void moveToSpawnPos(GameObject target, Transform spawnPos)
     {
-        target.SetActive(true);
         target.transform.position = spawnPos.position;
     }
 
@@ -46,16 +47,17 @@ public class CharacterManager : MonoBehaviour
             lastAcitveCharacterButton.equipButton.GetComponent<Button>().interactable = true;
             lastAcitveCharacterButton.characterPrefab.SetActive(false); 
             lastAcitveCharacterButton.purchaseText.text = "Equip";
-            
+                
             //saves who was last equipped
             PlayerPrefs.SetInt("ActiveCharacter",charactersKey[charBuy]);
 
-            //then equip the new character
-            CharacterManager.activeCharacter = charBuy.characterPrefab;
+            //then equip the new character  
+            activeVisual = charBuy.characterPrefab.GetComponent<Outfits>();
             charBuy.equipButton.GetComponent<Button>().interactable = false;
             charBuy.equipped = true;    
             charBuy.purchaseText.text = "Equipped"; 
-            moveToSpawnPos(CharacterManager.activeCharacter, spawnPos);
+            //turn on the visuals
+            charBuy.characterPrefab.SetActive(true);
             gameManager.InitialisePlayer();
             lastAcitveCharacterButton = charBuy;
     }

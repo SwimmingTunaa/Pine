@@ -6,18 +6,30 @@ public class MovePanelsToNewHolder : MonoBehaviour
 {   
     private PanelSpawner _panelSpawner;
     private int triggerAmount = 1;
-    bool trigger;
 
     void Awake()
     {
         _panelSpawner = GameObject.FindObjectOfType<PanelSpawner>();
+    }
+
+    void OnEnable()
+    {
+        triggerAmount = 1;
     }
   
     void OnTriggerEnter2D(Collider2D other)
     {
         if(triggerAmount > 0 && other.CompareTag("Player"))
         {
+            GameManager.Instance.cameraFollower.move = true;
+
             ChangePanelSpawnPoint();
+            if(MasterSpawner.Instance.activeRegion.tag == "Cloud")
+                other.GetComponent<CharacterController2D>().isFlying = true;
+            else if (other.GetComponent<CharacterController2D>().isFlying == true && MasterSpawner.Instance.activeRegion.tag != "Cloud")
+            {
+                other.GetComponent<CharacterController2D>().isFlying = false;
+            }
         }
     }
 
@@ -40,7 +52,10 @@ public class MovePanelsToNewHolder : MonoBehaviour
         for(int i = 0; i < currentChildCount; i ++)
         {
             if(i < 3)
+            {
+                 _panelSpawner.currentPanelHolder.transform.GetChild(0).gameObject.SetActive(false);
                 _panelSpawner.currentPanelHolder.transform.GetChild(0).SetParent(_panelSpawner.topPanelHolder.transform);
+            }
             else
             {
                 _panelSpawner.currentPanelHolder.transform.GetChild(0).gameObject.SetActive(false);

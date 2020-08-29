@@ -52,7 +52,7 @@ public class Puncher : MonoBehaviour
             _retract = true;
             Instantiate(killEffect, target.transform.position, killEffect.transform.rotation);
             Vibration.Vibrate(333);
-            CameraShake.ShakeCamera(0.1f);
+            CameraShake.Instance.ShakeCamera(0.2f, 0.5f, 5);
             if(target.GetComponent<ObjectID>() != null)
                 target.GetComponent<ObjectID>().Disable();
             else

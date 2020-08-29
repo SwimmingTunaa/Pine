@@ -36,9 +36,9 @@ public class ShieldPickUp : PickUpsBase
         health.AddShield(s.shieldStrength, healthBars);
         base.DoAction(player);
         health.hitEffect = hitEffect;
-        Outfits outfit = player.GetComponent<Outfits>();
-        transform.parent = outfit.powerUpEffectSpawnPoint;
-        transform.position = outfit.powerUpEffectSpawnPoint.position;
+        Outfits outfit = player.GetComponentInChildren<Outfits>();
+        transform.parent = outfit.pickUpSpawnPoint;
+        transform.position = outfit.pickUpSpawnPoint.position;
         //set the health bar to the shield strength
         for (int i = 0; i < s.shieldStrength; i++)
         {

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1598059126}
   - component: {fileID: 615092789}
   m_Layer: 18
-  m_Name: StickerMagnet Pickup
+  m_Name: Sticker Magnet Pickup
   m_TagString: PickUps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,9 +146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerAmount: 1
+  debuff: 0
   item: {fileID: 11400000, guid: 65c2f742c86c448429ab2d5d76dfa0f8, type: 2}
-  effectDuration: 8
-  _initialDuration: 8
   _timerActive: 0
   effectRadius: 4
   transitionSpeed: 1.5
@@ -282,7 +281,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.59, y: 9.88}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

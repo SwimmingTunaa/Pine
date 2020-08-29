@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09033c7247c81243aec75b48388a513, type: 3}
+  m_Name: Cloud Obstacle Pool - Floor
+  m_EditorClassIdentifier: 
+  manual: 0
+  spawnChanceValue: 0.45
+  objectType: 1
+  duplicateAmount: 5
+  objectPool:
+  - {fileID: 1796550258336305473, guid: 123a9b818adeca84ab7c23dc991f95b6, type: 3}
+  - {fileID: 1796550258336305473, guid: aa64626c6ddb7354c8b297b3e1edbcc1, type: 3}
+  spawnedObjectPool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnPointChoice: 2

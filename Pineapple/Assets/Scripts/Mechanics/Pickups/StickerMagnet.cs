@@ -27,8 +27,8 @@ public class StickerMagnet : PickUpsBase
         activeEffect.SetActive(true);
         visual.SetActive(false);
         base.DoAction(player);
-        transform.parent = player.GetComponent<Outfits>().powerUpEffectSpawnPoint;
-        transform.position = player.GetComponent<Outfits>().powerUpEffectSpawnPoint.position;
+        transform.parent = player.GetComponentInChildren<Outfits>().pickUpSpawnPoint;
+        transform.position = player.GetComponentInChildren<Outfits>().pickUpSpawnPoint.position;
     }
 
 }

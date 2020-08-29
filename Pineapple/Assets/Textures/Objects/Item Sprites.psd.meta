@@ -41,6 +41,60 @@ TextureImporter:
   - first:
       213: 6396681902381595263
     second: Magnet
+  - first:
+      213: 8352527437545349059
+    second: Machette
+  - first:
+      213: 4908026694638859071
+    second: Sticker
+  - first:
+      213: 7316881558390704877
+    second: Shield 1
+  - first:
+      213: 1680978398460053945
+    second: Shield 2
+  - first:
+      213: 1456220306542219734
+    second: Shield 3
+  - first:
+      213: -4847536126050778057
+    second: Shield 4
+  - first:
+      213: -3864682676003526879
+    second: Magnet
+  - first:
+      213: -4266472077794999284
+    second: cape 1
+  - first:
+      213: -8525893450936698908
+    second: cape 2
+  - first:
+      213: -5741495211463124361
+    second: Shield 5
+  - first:
+      213: 6096149378623220291
+    second: Shield 6
+  - first:
+      213: 5506736538427407614
+    second: Shield 7
+  - first:
+      213: 5530215018304590708
+    second: Shield 8
+  - first:
+      213: -1893561907015868077
+    second: Item Sprites_13
+  - first:
+      213: -6433984469619585697
+    second: Item Sprites_14
+  - first:
+      213: 1719435077369945797
+    second: Item Sprites_15
+  - first:
+      213: -6162724705507821170
+    second: Item Sprites_16
+  - first:
+      213: -6699800697197068554
+    second: Cape Clip
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -134,10 +188,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Control
+      name: Machette
       rect:
         serializedVersion: 2
-        x: 0
+        x: 256
         y: 1792
         width: 256
         height: 256
@@ -148,29 +202,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2ada33d5f818784499575751b33863c
-      internalID: 21300002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Knife
-      rect:
-        serializedVersion: 2
-        x: 255
-        y: 1792
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab0a8378191f1584eb82a3751cbeafa0
-      internalID: 21300004
+      spriteID: 0257af8971a431f4a9fecf987146b595
+      internalID: 8352527437545349059
       vertices: []
       indices: 
       edges: []
@@ -179,10 +212,10 @@ TextureImporter:
       name: Sticker
       rect:
         serializedVersion: 2
-        x: 558
-        y: 1854
-        width: 165
-        height: 130
+        x: 512
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,20 +223,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 994253c4d0a163f47a2c2e17e5b661fc
-      internalID: 21300006
+      spriteID: fb6095f6d7198c441831cf14a64cc8fa
+      internalID: 4908026694638859071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shield 1
+      name: Shield 1
       rect:
         serializedVersion: 2
-        x: 771
-        y: 1799
-        width: 248
-        height: 248
+        x: 768
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,20 +244,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea9aeb79e66ed1645995b8468f8bba4b
-      internalID: 5586232059807958857
+      spriteID: 6c9b837b5631cb843af0b7a174c5e9ee
+      internalID: 7316881558390704877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shield 2
+      name: Shield 2
       rect:
         serializedVersion: 2
-        x: 1027
-        y: 1799
-        width: 249
-        height: 248
+        x: 1024
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,20 +265,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f7e5821009c6414686830080da5116f
-      internalID: 8364828346423198648
+      spriteID: 7cf03588388463d488dfef7e204741e0
+      internalID: 1680978398460053945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shield 3
+      name: Shield 3
       rect:
         serializedVersion: 2
-        x: 1283
-        y: 1799
-        width: 248
-        height: 248
+        x: 1280
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,20 +286,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6be3df2a9a5b2c449b97e456dfa52189
-      internalID: -7765002787326406489
+      spriteID: 283aeb32c1efe1c47accee53336b18c1
+      internalID: 1456220306542219734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shield 4
+      name: Shield 4
       rect:
         serializedVersion: 2
-        x: 1539
-        y: 1799
-        width: 248
-        height: 249
+        x: 1536
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,92 +307,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a90235ec4ce6e804eaa6102851d14807
-      internalID: -5989969127270608777
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shield 5
-      rect:
-        serializedVersion: 2
-        x: 771
-        y: 1543
-        width: 248
-        height: 248
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f39459febe8d6041ad98ab7bfb562f0
-      internalID: 898656288140718869
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shield 6
-      rect:
-        serializedVersion: 2
-        x: 1027
-        y: 1543
-        width: 248
-        height: 249
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 905606a2f55d8074392accfa06f8ce94
-      internalID: 4995706892211820892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shield 7
-      rect:
-        serializedVersion: 2
-        x: 1283
-        y: 1543
-        width: 248
-        height: 248
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d83f129f5201af24fa9aa4bccb4c9528
-      internalID: -7086164401218754649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: shield 8
-      rect:
-        serializedVersion: 2
-        x: 1539
-        y: 1543
-        width: 248
-        height: 248
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1fcc27b10f6d2ad41ac38743b27c0d2c
-      internalID: 3034737093568795641
+      spriteID: ca7d95019df11574b8618b4fede8ac96
+      internalID: -4847536126050778057
       vertices: []
       indices: 
       edges: []
@@ -368,10 +317,10 @@ TextureImporter:
       name: Magnet
       rect:
         serializedVersion: 2
-        x: 1802
-        y: 1800
-        width: 235
-        height: 243
+        x: 1790
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -379,8 +328,239 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d726e385db17cec42b40d13761f1590d
-      internalID: 6396681902381595263
+      spriteID: bb218eac28acf104590011dc366a0272
+      internalID: -3864682676003526879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cape 1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1afebbb238544d54b816ed90a6b79037
+      internalID: -4266472077794999284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cape 2
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 1538
+        width: 256
+        height: 256
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eca84d177c80e9545be06cca7894160b
+      internalID: -8525893450936698908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield 5
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1538
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d8dac3110b3dbb479883752d68da7f2
+      internalID: -5741495211463124361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield 6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1534
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61b2610e43f6b514cb539a6ebfa6fc17
+      internalID: 6096149378623220291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield 7
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71714ec8447101f498946449310a354d
+      internalID: 5506736538427407614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield 8
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e19c2860341dd54f847df1c85944c18
+      internalID: 5530215018304590708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item Sprites_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d6333e6e1b44f4aaecdc5f632be8d1
+      internalID: -1893561907015868077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item Sprites_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 483693d470c00ac4ca70641b01bb4eb9
+      internalID: -6433984469619585697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item Sprites_15
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 514229aba221226468a106ec3d663d47
+      internalID: 1719435077369945797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item Sprites_16
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 201674401be4bed4e9bf4d21bf9e74df
+      internalID: -6162724705507821170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cape Clip
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 1888
+        width: 139
+        height: 109
+      alignment: 9
+      pivot: {x: 0.7529775, y: 0.37651676}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1cabfe6ad7d1ef43b5781def59827d0
+      internalID: -6699800697197068554
       vertices: []
       indices: 
       edges: []

@@ -11,24 +11,25 @@ public class LevelProgressionSystem : MonoBehaviour
     public DialogueSequence dialogueSequence;
 
     [Header("Normal Game Mode")]
+    public GameObject holePanelToAdd;
     public float speedIncreaseAmount;
     public float speedCheckpointDistance;
     
     public int difficultyLvl = 0;
     [SerializeField] public List<LevelInfo> levelInfos = new List<LevelInfo>();
 
-    private int currentDifficulty;
     public int roundsCompleted;  
     private float _currentCheckpoint;
     private int startCounter = 0;
     private int _sItemForcedSpawnCounter;
-    private MasterSpawner masterSpawner;
+    private MasterSpawner _masterSpawner;
+    private bool _addPanel = true;
 
     void Awake() => Instance = this;
 
     void Start()
     {
-        masterSpawner = MasterSpawner.Instance;
+        _masterSpawner = MasterSpawner.Instance;
         _currentCheckpoint = PlayerPrefs.GetInt("FirstTimeStart")<1 ? 40f: speedCheckpointDistance;
         Debug.Log(_currentCheckpoint + " current checkpoint");
         //Debug.Log(PlayerPrefs.GetInt("FirstTimeStart"));
@@ -59,6 +60,17 @@ public class LevelProgressionSystem : MonoBehaviour
             //Debug.Log("Checkpoint: " + _currentCheckpoint);
             GameManager._player.speed += speedIncreaseAmount;
             //Debug.Log("Speed increased. <color=red>The new speed is: </color>"  + GameManager._player.speed +  " || <color=blue>The next checkpoint is: </color>"  + _currentCheckpoint+"m");
+            if(_addPanel)
+            {
+                //add hole panel so that player can fall down into new area
+                for (int i = 0; i < MasterSpawner.Instance.activeRegion.panels.duplicateAmount; i++)
+                {
+                    GameObject temp = Instantiate(holePanelToAdd);
+                    MasterSpawner.Instance.activeRegion.panels.spawnedObjectPool.Add(temp);
+                    temp.SetActive(false);
+                    _addPanel = false;
+                }
+            }
         }
     }
 
@@ -70,6 +82,11 @@ public class LevelProgressionSystem : MonoBehaviour
                 if(CheckDistanceAndLevel(levelInfos[1].checkpoint))
                 {
                     SetDifficulty(1);
+                       //add hole panel so that player can fall down into new area
+                    for (int i = 0; i < MasterSpawner.Instance.activeRegion.panels.duplicateAmount; i++)
+                    {
+                        MasterSpawner.Instance.activeRegion.panels.spawnedObjectPool.Add(Instantiate(holePanelToAdd));
+                    }
                 }
                 break;
             case 1:
@@ -77,8 +94,8 @@ public class LevelProgressionSystem : MonoBehaviour
                 {
                     SetDifficulty(2);
                     ObstacleSpawner.Instance.UpdateLevelConfig(MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[1]);
-                    StartCoroutine(masterSpawner.projectileSpawner.RandomSpawnType());
-                    
+                    StartCoroutine(_masterSpawner.projectileSpawner.RandomSpawnType());
+
                 }
                 break;
             case 2:
@@ -86,7 +103,9 @@ public class LevelProgressionSystem : MonoBehaviour
                 {
                     SetDifficulty(3);
                     ObstacleSpawner.Instance.UpdateLevelConfig(MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[2]);
-                    masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,4);
+                    _masterSpawner.projectileSpawner.spawnAmount = new Vector2(2,4);
+                  
+                    
                 }
                 break;
             case 3:
@@ -103,17 +122,18 @@ public class LevelProgressionSystem : MonoBehaviour
                         }
                     ObstacleSpawner.Instance.UpdateLevelConfig(MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[3]);
                     //Changing Projectile spawner settings
-                    masterSpawner.projectileSpawner.spawnAmount = new Vector2(3,4);
-                    masterSpawner.projectileSpawner.warningTimer = 1f;
-                    masterSpawner.projectileSpawner.disableOSpawnerTimer = 2.5f;
+                    _masterSpawner.projectileSpawner.spawnAmount = new Vector2(3,4);
+                    _masterSpawner.projectileSpawner.warningTimer = 1f;
+                    _masterSpawner.projectileSpawner.disableOSpawnerTimer = 2.5f;
+                
                 }
                 break;
             case 4:
                 if(CheckDistanceAndLevel(levelInfos[4].checkpoint))
                 {
                     levelInfos[4].checkpoint += Random.Range(200f, 300f);
-                    masterSpawner.minSpawnAmount += 1;
-                    masterSpawner.maxSpawnAmount += 2;
+                    _masterSpawner.minSpawnAmount += 1;
+                    _masterSpawner.maxSpawnAmount += 2;
                     roundsCompleted ++;
                 }
                 break;
@@ -127,10 +147,10 @@ public class LevelProgressionSystem : MonoBehaviour
         difficultyLvl = lvl;
         //Debug.Log("Lvl " + difficultyLvl);
         LevelInfo levelInfo = levelInfos[difficultyLvl];
-        masterSpawner.minDistance = levelInfo.minSpawnDistance;
-        masterSpawner.maxDistance = levelInfo.maxSpawnDistance;
+        _masterSpawner.minDistance = levelInfo.minSpawnDistance;
+        _masterSpawner.maxDistance = levelInfo.maxSpawnDistance;
         RewardSpawner.instance.ChangeRewardPoolSpawnChances(levelInfo.stickerChance, levelInfo.itemChance, levelInfo.specialItemChance);
-        masterSpawner.ChangeSpawnerTypeChance(levelInfo.projectileChance, levelInfo.obstacleChance);
+        _masterSpawner.ChangeSpawnerTypeChance(levelInfo.projectileChance, levelInfo.obstacleChance);
         ObstacleSpawner.Instance.changePoolSpawnChance(levelInfo.ObstTopChance, levelInfo.ObstMidChance, levelInfo.ObstBotChance);
     }
 
@@ -144,7 +164,7 @@ public class LevelProgressionSystem : MonoBehaviour
         //spawn small jumpable obstacle
         if(Statics.DistanceTraveled  >= _currentCheckpoint && startCounter < 3)
         {
-            masterSpawner.enabled = false;
+            _masterSpawner.enabled = false;
             _currentCheckpoint = Statics.DistanceTraveled  + 30f;
             Debug.Log("Spawned");
             SpawnSpecificObjectAtFloor(startCounter);
@@ -166,7 +186,7 @@ public class LevelProgressionSystem : MonoBehaviour
             
                 SpawnSpecificObjectAtFloor(startCounter);
             
-                masterSpawner.enabled = true;
+                _masterSpawner.enabled = true;
                 PlayerPrefs.SetInt("FirstTimeStart", 1);
                 startCounter++;
             }

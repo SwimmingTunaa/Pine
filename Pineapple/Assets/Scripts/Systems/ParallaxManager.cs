@@ -6,6 +6,7 @@ public class ParallaxManager : MonoBehaviour
 {
     public static ParallaxManager instance;
     public GameObject caveParallax;
+    public GameObject cloudParallax;
 
     public Dictionary<string, GameObject> parallaxDic;
 

@@ -6,8 +6,9 @@ public class CritterSpawner : Spawner
 {
     public ObjectPools critterPool;
     [MinMaxSlider(1,5)] public Vector2 amountToSpawn;
-    public Transform spawnPoint;
-
+    public LayerMask whatIsGround;
+    private Vector3 groundPos;
+    private RaycastHit2D hit;
     void Awake()
     {
         critterPool.Initialise();
@@ -15,10 +16,14 @@ public class CritterSpawner : Spawner
 
     public override void DoSpawn()
     {
+        hit = Physics2D.Raycast(gameObject.transform.position, -Vector3.up, 8f, whatIsGround);
+        if(hit)
+            groundPos = hit.point;
+
         if(critterPool.spawnedObjectPool.Count > 0)
         {
             int randomSpawnAmount = (int)Random.Range(amountToSpawn.x, amountToSpawn.y);
-            Vector3 newSpawnPos = new Vector3(spawnPoint.position.x + Random.Range(-3, 2), spawnPoint.position.y, spawnPoint.position.z);
+            Vector3 newSpawnPos = new Vector3(groundPos.x + Random.Range(-3, 2), groundPos.y, groundPos.z);
             for (int i = 0; i < randomSpawnAmount; i++)
             {
                 GameObject tempObj =  GetNextItem(critterPool.spawnedObjectPool);

@@ -5,21 +5,38 @@ using UnityEngine;
 
 public class PanelSpawner : Spawner
 {
+    public static PanelSpawner Instance;
     public int intialSpawnAmount = 2;
     public GameObject startingPanel;
     public RegionPoolManager RegionPoolManager;
     public GameObject topPanelHolder;
     public GameObject currentPanelHolder;
     public GameObject bottomPanelHolder;
+    public SpriteRenderer blackBarTop, blackBarBot;
+    public float barTransitionSpeed = 40f;
 
+    private bool _changeBlackBarHeight;
     public ObjectPools _pool;
     [HideInInspector] public bool _firstSpawn = true;
     private GameObject _nextPanelToSpawn;
     private GameObject _firstPanel;
+    private float panelHalfSize;
+    [HideInInspector] public GameObject _currentStartingPanel;
+
+    void Awake()
+    {
+        if(Instance != this)
+            Instance = this;
+    }
 
     void Start()
     {
         InitialSpawn();
+    }
+
+    void LateUpdate()
+    {
+        if(_changeBlackBarHeight) ChangeBlackBarHeight();
     }
 
     public override void DoSpawn()
@@ -63,16 +80,18 @@ public class PanelSpawner : Spawner
                 DoSpawn();
             }
         } 
+        SetBlackBarHeight();
         SpawnPanelsDown(); 
     }
 
+    
     void SpawnPanelsDown()
     {
         var nextRegionPanelPool = RegionPoolManager.nextRegion.panels;
         bool initialSpawn = true;
         var _nextBelowPanel = GetNextItem(nextRegionPanelPool.spawnedObjectPool);
         GameObject previousPanel = null;
-
+        
         for (int i = 0; i < 2; i++)
         {
             if(initialSpawn)
@@ -103,13 +122,30 @@ public class PanelSpawner : Spawner
 
                     previousPanel = _nextBelowPanel;
                     _nextBelowPanel.transform.parent = bottomPanelHolder.transform;
-
                     //set a the last spawned panel to be the new starting panel
                     startingPanel = _nextBelowPanel; 
 
                     if(i + 1 <= 2) _nextBelowPanel = GetNextItem(nextRegionPanelPool.spawnedObjectPool);
                 }
         }
+    }
+
+    public void SetBlackBarHeight()
+    {
+        panelHalfSize = startingPanel.GetComponentInChildren<SpriteRenderer>().size.y/2;
+        _changeBlackBarHeight = true;
+        _currentStartingPanel = startingPanel;
+      
+    }
+
+    void ChangeBlackBarHeight()
+    {
+        Vector3 topNewYPos = new Vector3(blackBarTop.transform.position.x, _currentStartingPanel.transform.position.y + panelHalfSize + blackBarTop.bounds.extents.y);
+        Vector3 botNewYPos = new Vector3(blackBarTop.transform.position.x, _currentStartingPanel.transform.position.y - panelHalfSize - blackBarBot.bounds.extents.y);
+        blackBarTop.transform.position = Vector3.MoveTowards(blackBarTop.transform.position, topNewYPos, Time.deltaTime* barTransitionSpeed);
+        blackBarBot.transform.position = Vector3.MoveTowards(blackBarBot.transform.position, botNewYPos, Time.deltaTime* barTransitionSpeed);
+          
+        if(blackBarTop.transform.position == topNewYPos && blackBarBot.transform.position == botNewYPos) _changeBlackBarHeight = false;                                           
     }
 
     void FirstPanelSpawn(Vector3 spawnPos)

@@ -33,7 +33,7 @@ public class Shadow : MonoBehaviour
 
     void ShadowScale()
     {
-        RaycastHit2D hit = Physics2D.Raycast(body.transform.position, -Vector3.up, 10, layerToDetect);
+        RaycastHit2D hit = Physics2D.Raycast(body.transform.position, -transform.up, 8, layerToDetect);
        // Debug.Log("Shadow raycast hit: " + hit.collider.gameObject.name);
         //if layer is equal to ground then make the shadow stay on the ground
         if(hit.collider != null && hit.collider.gameObject.layer == 12)

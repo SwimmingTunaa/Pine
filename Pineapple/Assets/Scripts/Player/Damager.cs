@@ -10,8 +10,9 @@ public class Damager : MonoBehaviour
 
     void Start()
     {
-        myCollider = GetComponent<Collider2D>();
+        myCollider = gameObject.GetComponent<Collider2D>();
     }
+
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if(myCollider.IsTouchingLayers(layerMask))

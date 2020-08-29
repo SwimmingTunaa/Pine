@@ -6,9 +6,11 @@ public class PickUpsBase : MonoBehaviour
 {
     [Header("Base")]
     public int triggerAmount = 1;
+    public bool debuff;
     public PickUpObject item;
     private SpriteRenderer _visual;
     private float _timer;
+    private GameObject deathEffect;
     [HideInInspector] public bool _timerActive;
 
     void Awake()
@@ -30,12 +32,21 @@ public class PickUpsBase : MonoBehaviour
     public virtual void DoAction(GameObject player)
     {
         triggerAmount--;
+        if(!debuff) RewardSpawner.instance.itemCurrentlyActive = true;
         _timerActive = true;
         //Only plays these if they are not null
         if(item.pickUpSound)
             GetComponent<AudioSource>().PlayOneShot(item.pickUpSound);
-        if(item.deathFX)
-            Instantiate(item.deathFX, transform.position, item.deathFX.transform.rotation);
+        if(!deathEffect)
+        {
+            if(item.deathFX)
+                deathEffect = Instantiate(item.deathFX, transform.position, item.deathFX.transform.rotation);
+        }
+        else
+        {
+            deathEffect.SetActive(true);
+            deathEffect.transform.position = transform.position;
+        }
         //_visual.enabled = false;
     }
 
@@ -57,7 +68,7 @@ public class PickUpsBase : MonoBehaviour
         _timerActive = false;
         triggerAmount = 1;
         //allow items to be spawned again
-        RewardSpawner.instance.itemSpawned = false;
+        if(!debuff) RewardSpawner.instance.itemCurrentlyActive = false;
     }
 
     public virtual void Update()

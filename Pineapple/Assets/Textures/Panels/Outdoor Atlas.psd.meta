@@ -101,6 +101,15 @@ TextureImporter:
   - first:
       213: 1995406417116247570
     second: Light Ray
+  - first:
+      213: 1600605286120894894
+    second: Clam
+  - first:
+      213: -6237507165293676879
+    second: Clam Wing
+  - first:
+      213: 2571838854271582890
+    second: Sky Floor
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -203,7 +212,7 @@ TextureImporter:
         height: 653
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 6, y: 0, z: 717, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -756,6 +765,69 @@ TextureImporter:
       bones: []
       spriteID: 5a13d33eeead1a543b49e68547f88116
       internalID: 1995406417116247570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clam
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 640
+        width: 112
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c6567ba8e196b4db0fbc4a9b0815ab
+      internalID: 1600605286120894894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Clam Wing
+      rect:
+        serializedVersion: 2
+        x: 1779
+        y: 656
+        width: 94
+        height: 46
+      alignment: 9
+      pivot: {x: 0.96692026, y: 0.9565921}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff1737a1461ff7c41b411e0a333fb0f1
+      internalID: -6237507165293676879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sky Floor
+      rect:
+        serializedVersion: 2
+        x: 1876
+        y: 584
+        width: 172
+        height: 817
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 165, y: 279, z: 6, w: 215}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13e2d7ba112f9b145b3588a923744fea
+      internalID: 2571838854271582890
       vertices: []
       indices: 
       edges: []

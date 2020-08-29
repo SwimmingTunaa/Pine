@@ -24,7 +24,8 @@ public abstract class Spawner : MonoBehaviour
     {
         Vector2 previousCornerPos = new Vector2(previousSpawnSPos.size.x/2 * previousSpawnSPos.gameObject.transform.localScale.x, previousSpawnSPos.size.y/2 * previousSpawnSPos.gameObject.transform.localScale.y);
         Vector2 newCornerPos = new Vector2(nextSpawn.size.x/2, nextSpawn.size.y * nextSpawn.gameObject.transform.localScale.y);
-        Vector2 newSpawnPos = new Vector2((previousSpawnSPos.transform.position.x - previousCornerPos.x) + newCornerPos.x, previousSpawnSPos.transform.position.y - newCornerPos.y);
+        Vector2 newSpawnPos = new Vector2((previousSpawnSPos.transform.position.x - previousCornerPos.x) + newCornerPos.x, (previousSpawnSPos.transform.position.y - previousCornerPos.y) - newCornerPos.y/2);
+        //Vector2 newSpawnPos = new Vector2((previousSpawnSPos.transform.position.x - previousCornerPos.x) + newCornerPos.x, previousSpawnSPos.transform.position.y - newCornerPos.y);
         return newSpawnPos;
     }
 
@@ -63,4 +64,6 @@ public abstract class Spawner : MonoBehaviour
         else 
             return null;
     }
+
+   
 }

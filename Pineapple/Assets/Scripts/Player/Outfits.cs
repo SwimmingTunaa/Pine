@@ -5,6 +5,14 @@ using UnityEngine;
 
 public class Outfits: MonoBehaviour
 {
-    public Transform powerUpEffectSpawnPoint;
-    public OutfitConfig outfit; 
+    public GameObject deathEffect;
+    public Transform pickUpSpawnPoint;
+    public Transform glovePunchSlot;
+    public GameObject puncherOutFit; 
+    public GameObject boostOutFit;
+
+    public void toggleOutfit(GameObject outfit, bool toggle)
+    {
+        outfit.SetActive(toggle);        
+    }
 }

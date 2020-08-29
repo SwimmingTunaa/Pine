@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2768824887118311617}
   - component: {fileID: 2768824887118311616}
-  - component: {fileID: 1065178426}
   m_Layer: 0
   m_Name: Panel Spawner
   m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2800000, guid: 90727ef1e5c911a4ebb89c62265b4dd6, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,31 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a1b4ef86f42394dbe87846f6587d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 1
+  shouldExpand: 0
   _previousSpawn: {fileID: 0}
+  intialSpawnAmount: 4
   startingPanel: {fileID: 0}
-  objectPoolManager: {fileID: 0}
-  panelHolder: {fileID: 0}
+  RegionPoolManager: {fileID: 0}
+  topPanelHolder: {fileID: 0}
+  currentPanelHolder: {fileID: 2768824887118311619}
+  bottomPanelHolder: {fileID: 0}
   _pool: {fileID: 0}
   _firstSpawn: 1
---- !u!114 &1065178426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2768824887118311619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc429b95418f1945be4b7ec01ace85c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelHolderConfigTop:
-    parentPanelHolder: {fileID: 0}
-    startingPanel: {fileID: 0}
-  panelHolderConfigMid:
-    parentPanelHolder: {fileID: 0}
-    startingPanel: {fileID: 0}
-  panelHolderConfigBot:
-    parentPanelHolder: {fileID: 0}
-    startingPanel: {fileID: 0}

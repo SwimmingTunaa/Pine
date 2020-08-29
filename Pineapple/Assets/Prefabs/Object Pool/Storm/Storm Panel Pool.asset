@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49433b88d48c8fa42bde92c53b7a83f3, type: 3}
+  m_Name: Storm Panel Pool
+  m_EditorClassIdentifier: 
+  manual: 0
+  spawnChanceValue: 0
+  objectType: 0
+  duplicateAmount: 3
+  objectPool:
+  - {fileID: 4695075772472356328, guid: a9d8ef33fa4752a42845d784189f281c, type: 3}
+  - {fileID: 4695075772472356328, guid: a9d8ef33fa4752a42845d784189f281c, type: 3}
+  - {fileID: 1950325741022836812, guid: 06688bc444d11f7439382a7a6c1547f0, type: 3}
+  spawnedObjectPool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

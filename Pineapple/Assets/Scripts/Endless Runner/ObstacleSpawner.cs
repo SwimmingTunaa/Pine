@@ -15,6 +15,7 @@ public class ObstacleSpawner : Spawner
     private Dictionary <Enums.ObstacleSpawnPoint, Vector3> spawnpointConfig = new Dictionary<Enums.ObstacleSpawnPoint, Vector3>();
     private RaycastHit2D hit;
     private float newY;
+    private Quaternion newRot;
 
     void Awake() =>  Instance = this;
 
@@ -49,11 +50,8 @@ public class ObstacleSpawner : Spawner
 
     public void Initialize()
     {   
-
-        //Debug.Log(hit.collider.name + " is Floor spawn point");
         int lvl = LevelProgressionSystem.Instance.difficultyLvl;
         _currentRegionLevel = MasterSpawner.Instance.activeRegion.obstaclePoolsLevelInstances[lvl - 1 < 0 ? 0 : lvl - 1];
-        //Debug.Log(_currentRegionLevel.name);
         //get the spwanpoint positions from the config
         spawnpointConfig.Clear();
     }
@@ -63,9 +61,9 @@ public class ObstacleSpawner : Spawner
         hit = Physics2D.Raycast(transform.position, -transform.up, 10f, 1 << LayerMask.NameToLayer("Ground"));
         if(hit.collider != null)
             newY = hit.point.y;
-           
+                   
         if(_currentRegionLevel.top) spawnpointConfig.Add(_currentRegionLevel.top.spawnPointChoice, spawnPoints[0].transform.position);
-        if(_currentRegionLevel.mid) spawnpointConfig.Add(_currentRegionLevel.mid.spawnPointChoice, spawnPoints[(int)Random.Range(1,2)].transform.position);
+        if(_currentRegionLevel.mid) spawnpointConfig.Add(_currentRegionLevel.mid.spawnPointChoice, spawnPoints[(int)Random.Range(1,spawnPoints.Length)].transform.position);
         if(_currentRegionLevel.bot != null) spawnpointConfig.Add(_currentRegionLevel.bot.spawnPointChoice, GetFloorSpawnPoint(_NextObstacleToSpawn.GetComponent<Collider2D>()));
     }
 
@@ -89,7 +87,8 @@ public class ObstacleSpawner : Spawner
 
     void Spawn(Vector2 spawnPoint)
     {
-        _NextObstacleToSpawn.transform.position = spawnPoint;   
+        _NextObstacleToSpawn.transform.position = spawnPoint;
+        _NextObstacleToSpawn.transform.rotation = Quaternion.FromToRotation(_NextObstacleToSpawn.transform.up, hit.normal);   
     }
 
     public Vector3 GetFloorSpawnPoint(Collider2D objectCollider)

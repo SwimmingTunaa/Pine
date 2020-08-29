@@ -7,20 +7,20 @@ public class PlayerController : MonoBehaviour
     public Transform cameraFollowTarget;
     public static bool jumpPressed;
     public bool pausePlayer;
+    [Header("Running inputs")]
     [HideInInspector] public float startSpeed;
     public float speed;
-    public float maxSpeed;
- 
+    public float maxSpeed; 
     public bool jumpable = true;
-    public bool immobile = false;
+
+    [Header("Flying Inputs")]
+    public float flySpeed;
+    private bool fly;
 
     [Header("Hair")]
     public GameObject slicedHair;
     public GameObject hairMask;
     public AudioClip hairSlicedAudio;
-    [HideInInspector] public bool _haircut;
-
-    public PlayerItemSlots playerItemSlots;
 
     [HideInInspector] public Animator _anim;
     [HideInInspector] public float _horiMove;
@@ -31,9 +31,14 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         _characterController = GetComponent<CharacterController2D>();
-        _anim = GetComponentInChildren<Animator>();
+        
         _rigidBody = GetComponent<Rigidbody2D>();
         startSpeed = speed;
+    }
+    
+    void Start()
+    {
+        _anim = CharacterManager.activeVisual.GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -41,14 +46,23 @@ public class PlayerController : MonoBehaviour
         if(!pausePlayer)
         {
             setAnimations();
-            _characterController.Move(speed * Time.fixedDeltaTime, false, _jump);
-            _jump = false;
+            _characterController.Move(speed * Time.deltaTime, false, _jump);
+
+            if(fly) _characterController.Fly(flySpeed);
+            //_jump = false;
         }
     }
     public void OnPointerPressed(bool triggered)
     {
-        if(triggered && !pausePlayer)
-            setJump(1f); // was character controller
+        //triggered by press jump button event
+        if(triggered && !pausePlayer && !_characterController.isFlying)
+        {
+            setJump(1f); 
+        }
+        if(_characterController.isFlying)
+        {
+            fly = triggered;
+        }
         jumpPressed = triggered;
     }
 
@@ -61,12 +75,6 @@ public class PlayerController : MonoBehaviour
             _anim.SetBool(!_characterController.canDoubleJump ? "DoubleJump" : "Jump", true);
         }
     }
-
-    public void OnLanding()
-	{
-		//to use with the OnLand event if we need anything to happen.
-        //_anim.SetBool(!_characterController.canDoubleJump ? "DoubleJump" : "Jump", false);
-	}
 
     private void setAnimations()
     {

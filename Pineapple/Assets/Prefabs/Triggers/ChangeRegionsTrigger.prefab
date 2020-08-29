@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5438953935722001474}
   - component: {fileID: 5252077278585836185}
   - component: {fileID: 6812384284872908897}
-  - component: {fileID: 148051490961415133}
   m_Layer: 0
   m_Name: ChangeRegionsTrigger
   m_TagString: Untagged
@@ -71,20 +70,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346f4a1b92687614aac7fd3357d920ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  regionToChangeTo: {fileID: 11400000, guid: 0f4b3d172a8f8f240a272354d7eaaa5e, type: 2}
-  panelHolderLocation: 2
---- !u!114 &148051490961415133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4618494608797301468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a4fc4b80740c33409a244f90ca01436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  immediatelySpawnObstacle: 0
-  disableAllOtherObstacles: 0
-  regionToChangeTo: {fileID: 11400000, guid: 0f4b3d172a8f8f240a272354d7eaaa5e, type: 2}

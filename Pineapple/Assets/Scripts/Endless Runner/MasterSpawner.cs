@@ -94,6 +94,7 @@ public class MasterSpawner : MonoBehaviour
             if(_spawnAmount <=0 && _rewardAmount <=0)
             {
                 _spawnAmount = Random.Range(minSpawnAmount, maxSpawnAmount); 
+                RewardSpawner.instance.itemSpawned = false;
                 return;
             }
             //Debug.Log("Spawn amount: " + _spawnAmount);

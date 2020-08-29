@@ -21,7 +21,6 @@ public class Sticker : MonoBehaviour
     void OnEnable()
     {
         triggerAmount = 1;
-        deathEffect.transform.SetParent(this.gameObject.transform);
         deathEffect.transform.position = this.gameObject.transform.position;
         gameObject.SetActive(true);
     }
@@ -36,7 +35,7 @@ public class Sticker : MonoBehaviour
     {
         if(move)
         {
-            moveStickerToTarget(CharacterManager.activeCharacter, 9f);
+            moveStickerToTarget(CharacterManager.activeCharacter, 10f);
         }
     }
 

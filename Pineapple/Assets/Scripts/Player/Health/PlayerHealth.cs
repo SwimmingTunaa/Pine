@@ -20,6 +20,12 @@ public class PlayerHealth : HealthGeneric {
 	void Awake()
 	{
 		playerController = GetComponent<PlayerController>();
+		
+	}
+
+	void Start()
+	{
+		deathEffect = CharacterManager.activeVisual.deathEffect;
 	}
 
 	override public void TakeDamage(float damage)

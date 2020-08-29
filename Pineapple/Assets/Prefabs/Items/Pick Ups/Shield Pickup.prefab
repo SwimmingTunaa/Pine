@@ -4904,7 +4904,7 @@ Transform:
   m_Children:
   - {fileID: 899080974548398233}
   m_Father: {fileID: 3353038822971548102}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &899080974567798237
 ParticleSystem:
@@ -9607,6 +9607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+  reParent: 0
 --- !u!1 &1657606508845711703
 GameObject:
   m_ObjectHideFlags: 0
@@ -9717,7 +9718,7 @@ Transform:
   m_Children:
   - {fileID: 7703078395528454741}
   m_Father: {fileID: 3353038822971548102}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3353038821725096346
 SpriteRenderer:
@@ -9756,13 +9757,13 @@ SpriteRenderer:
   m_SortingLayerID: -586163359
   m_SortingLayer: 6
   m_SortingOrder: 18
-  m_Sprite: {fileID: 5586232059807958857, guid: 71554729de8148b43a988ab919db5998,
+  m_Sprite: {fileID: 7316881558390704877, guid: 71554729de8148b43a988ab919db5998,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.59, y: 9.88}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9819,9 +9820,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.7075714, y: 1.7075714, z: 1.7075714}
   m_Children:
+  - {fileID: 8585744259734320481}
   - {fileID: 3353038821725096347}
   - {fileID: 899080974548398237}
-  - {fileID: 8585744259734320481}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9838,6 +9839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerAmount: 1
+  debuff: 0
   item: {fileID: 11400000, guid: e5a291c1c29d6bf49877cf294b1566c2, type: 2}
   _timerActive: 0
   shieldStrength: 1
@@ -10196,7 +10198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10228,7 +10230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10244,15 +10246,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.7307405
+      value: 1.7307403
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.7307405
+      value: 1.7307403
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.7307405
+      value: 1.7307403
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
       propertyPath: InitialModule.maxNumParticles

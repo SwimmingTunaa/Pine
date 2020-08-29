@@ -48,7 +48,8 @@ public class TomatoController : MonoBehaviour
             Move();
         else if(chasePlayer)
             ChasePlayer();
-            Jump();
+            //Jump();
+            MoveUpCollider();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -63,6 +64,17 @@ public class TomatoController : MonoBehaviour
         Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
         // And then smoothing it out and applying it to the character
         m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+    }
+
+    void MoveUpCollider()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.up, transform.right, 1f, whatIsGround);
+        if(hit)
+        {
+            print("Move up collider");
+            Vector3 newYPos = new Vector3 (0, (hit.collider.bounds.extents.y), 0); 
+            transform.position = transform.position + newYPos;
+        }
     }
 
     void Jump()
