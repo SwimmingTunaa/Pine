@@ -7,7 +7,7 @@ public class RegionPoolManager : MonoBehaviour
 { 
    public int duplicateAmount = 1; 
    public List<Region> RegionsToPool;
-   public Dictionary<string, ObjectPools> panelPoolTypeDic = new Dictionary<string, ObjectPools>();
+   public Dictionary<string, Region> regionDic = new Dictionary<string, Region>();
    public static Region nextRegion;
 
    void Awake()
@@ -19,9 +19,9 @@ public class RegionPoolManager : MonoBehaviour
    public void GetNextRegion()
    {
       bool r = true;
+      int index = Random.Range(0, RegionsToPool.Count);
       while(r)
       {
-         int index = Random.Range(0, RegionsToPool.Count);
          if(MasterSpawner.Instance.activeRegion != RegionsToPool[index]) 
          {
             nextRegion = RegionsToPool[index];
@@ -35,7 +35,7 @@ public class RegionPoolManager : MonoBehaviour
       foreach(Region r in RegionsToPool)
       {
          r.Initialise();
-         panelPoolTypeDic.Add(r.tag, r.panels);
+         regionDic.Add(r.tag, r);
       }
    }
 }

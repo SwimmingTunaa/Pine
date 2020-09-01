@@ -36,6 +36,7 @@ public class PanelSpawner : Spawner
 
     void LateUpdate()
     {
+
         if(_changeBlackBarHeight) ChangeBlackBarHeight();
     }
 
@@ -51,11 +52,16 @@ public class PanelSpawner : Spawner
         _nextPanelToSpawn.SetActive(true);
         //check to see if the gameobject is from the same region as the previous panel
         if(!_nextPanelToSpawn.gameObject.CompareTag(_previousSpawn.gameObject.tag))
-                //change the pool to match the region
-                _pool = RegionPoolManager.panelPoolTypeDic[_nextPanelToSpawn.gameObject.tag];
+        {
+            //change the pool to match the region
+                _pool = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag].panels;
+            //change the region to match the next set of panels
+                MasterSpawner.Instance.activeRegion = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag];
+        }
         _previousSpawn = _nextPanelToSpawn;
         _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool); 
     }
+    
     
     public void InitialSpawn()
     {   
@@ -117,9 +123,10 @@ public class PanelSpawner : Spawner
 
                     //check to see if the gameobject is from the same region as the previous panel
                     if(!_nextBelowPanel.gameObject.CompareTag(previousPanel.gameObject.tag))
-                            //change the pool to match the region
-                            nextRegionPanelPool = RegionPoolManager.panelPoolTypeDic[_nextBelowPanel.gameObject.tag];
-
+                    {
+                        //change the pool to match the region
+                        nextRegionPanelPool = RegionPoolManager.regionDic[_nextBelowPanel.gameObject.tag].panels;
+                    }
                     previousPanel = _nextBelowPanel;
                     _nextBelowPanel.transform.parent = bottomPanelHolder.transform;
                     //set a the last spawned panel to be the new starting panel
@@ -148,6 +155,57 @@ public class PanelSpawner : Spawner
         if(blackBarTop.transform.position == topNewYPos && blackBarBot.transform.position == botNewYPos) _changeBlackBarHeight = false;                                           
     }
 
+    public void ChangePanelSpawnPoint()
+    {
+        //change the region
+        MasterSpawner.Instance.activeRegion = RegionPoolManager.nextRegion;
+
+        //remove all panels from the top panel holder and turn othe panels off
+        
+        int botChildCount = bottomPanelHolder.transform.childCount;
+        int currentChildCount = currentPanelHolder.transform.childCount;
+
+        //move the current panels to the top panel holder
+        for(int i = 0; i < currentChildCount; i ++)
+        {
+            if(i < 3)
+            {
+                currentPanelHolder.transform.GetChild(0).SetParent(topPanelHolder.transform);
+            }
+            else
+            {
+                currentPanelHolder.transform.GetChild(0).gameObject.SetActive(false);
+                currentPanelHolder.transform.GetChild(0).SetParent(null);
+            }            
+        }
+
+        int topChildCount = topPanelHolder.transform.childCount;
+        //remove all panels from the top panel holder and turn othe panels off
+        for(int i = 0; i < topChildCount; i ++)
+        {
+           StartCoroutine(DelayDisable(topPanelHolder.transform.GetChild(i).gameObject));
+        }
+
+        //parent bot panel holder panels into the current panel holder
+        for(int i = 0; i < botChildCount; i ++)
+        {
+            bottomPanelHolder.transform.GetChild(0).SetParent(currentPanelHolder.transform);
+        }
+
+        //the bot panel holder is set in the panel spawner script under the SpawnPanelsDown() method
+
+        //setup the spawner to spawn at the new starting panel
+        _firstSpawn = true;
+        InitialSpawn();
+    }
+
+    IEnumerator DelayDisable(GameObject obj)
+    {
+        yield return new WaitForSeconds(1f);
+        obj.SetActive(false);
+        obj.transform.parent = null;
+    }
+
     void FirstPanelSpawn(Vector3 spawnPos)
     {
         _nextPanelToSpawn.SetActive(true);
@@ -156,8 +214,12 @@ public class PanelSpawner : Spawner
         _previousSpawn = _nextPanelToSpawn;
         //check to see if is previous panel matches the same region
         if(!_nextPanelToSpawn.gameObject.CompareTag(startingPanel.gameObject.tag))
+        {
             //change the pool to match the region
-            _pool = RegionPoolManager.panelPoolTypeDic[_nextPanelToSpawn.gameObject.tag];
+            _pool = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag].panels;
+            MasterSpawner.Instance.activeRegion = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag];
+        }
+            
         _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool);
     }
 

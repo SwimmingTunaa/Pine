@@ -4357,16 +4357,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6485380228268265625}
     m_Modifications:
-    - target: {fileID: 9211918161633385924, guid: 72d3b37a3833e53478cf8ac79f1ccd9b,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle Region Changer
-      objectReference: {fileID: 0}
-    - target: {fileID: 9211918161633385924, guid: 72d3b37a3833e53478cf8ac79f1ccd9b,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 5602850742556643203, guid: 72d3b37a3833e53478cf8ac79f1ccd9b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4422,6 +4412,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9211918161633385924, guid: 72d3b37a3833e53478cf8ac79f1ccd9b,
+        type: 3}
+      propertyPath: m_Name
+      value: Obstacle Region Changer
+      objectReference: {fileID: 0}
+    - target: {fileID: 9211918161633385924, guid: 72d3b37a3833e53478cf8ac79f1ccd9b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9156057925537262477, guid: 72d3b37a3833e53478cf8ac79f1ccd9b,
         type: 3}
       propertyPath: immediatelySpawnObstacle
@@ -4451,7 +4451,7 @@ PrefabInstance:
     - target: {fileID: 2770983448643193601, guid: 5d3f67f007c2b484c9fc259627eb85a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.600006
+      value: -29.55
       objectReference: {fileID: 0}
     - target: {fileID: 2770983448643193601, guid: 5d3f67f007c2b484c9fc259627eb85a5,
         type: 3}

@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class ParallaxToggle : MonoBehaviour
 {
-    public bool toggle;
-    public int triggerAmount = 1;
-    public string parallaxName;
+    private int triggerAmount = 1;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") && triggerAmount > 0 && parallaxName!= null)
+        if(other.CompareTag("Player") && triggerAmount > 0)
         {
             triggerAmount--;
-            ParallaxManager.instance.ToggleParallax(toggle, parallaxName);
+            ParallaxManager.instance.ChangeParallax();
         }
     }
 
