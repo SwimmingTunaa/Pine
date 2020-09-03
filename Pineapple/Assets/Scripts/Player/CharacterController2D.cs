@@ -23,7 +23,6 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	private Vector3 m_FlyVelocity = Vector3.zero;
 	private AudioSource _audioSource;
-	private float flyVel;
 
 	private void Awake()
 	{
@@ -64,17 +63,15 @@ public class CharacterController2D : MonoBehaviour
     	Gizmos.DrawWireCube(m_GroundCheck.position, _GroundedBoxSize);
  	}
 
-	public void Move(float move, bool crouch, bool jump)
+	public void Move(float move)
 	{
 		
 		//only control the player if grounded or airControl is turned on
-		if (m_Grounded)
-		{
+	
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-		}
 	}
 
 	public void Fly(float ySpeed)
@@ -100,7 +97,6 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			canDoubleJump = false;
 			float newJumpForce = doubleJumpForce * multiplier;
-			print(m_Rigidbody2D.velocity.y);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_Rigidbody2D.velocity.y <= -8f ? newJumpForce * 2f : newJumpForce), ForceMode2D.Impulse);
 			_audioSource.PlayOneShot(jumpSound);
 			_audioSource.pitch = 1.2f;

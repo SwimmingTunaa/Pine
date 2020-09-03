@@ -6,7 +6,8 @@ using System.Linq;
 public class RegionPoolManager : MonoBehaviour
 { 
    public int duplicateAmount = 1; 
-   public List<Region> RegionsToPool;
+   public List<Region> primaryRegionsToPool;
+   public List<Region> secondaryRegions;
    public Dictionary<string, Region> regionDic = new Dictionary<string, Region>();
    public static Region nextRegion;
 
@@ -19,12 +20,12 @@ public class RegionPoolManager : MonoBehaviour
    public void GetNextRegion()
    {
       bool r = true;
-      int index = Random.Range(0, RegionsToPool.Count);
       while(r)
       {
-         if(MasterSpawner.Instance.activeRegion != RegionsToPool[index]) 
+         int index = Random.Range(0, primaryRegionsToPool.Count);
+         if(MasterSpawner.Instance.activeRegion != primaryRegionsToPool[index]) 
          {
-            nextRegion = RegionsToPool[index];
+            nextRegion = primaryRegionsToPool[index];
             r = false;
          }
       }
@@ -32,10 +33,17 @@ public class RegionPoolManager : MonoBehaviour
 
    public void Initialize()
    {
-      foreach(Region r in RegionsToPool)
+      foreach(Region r in primaryRegionsToPool)
       {
          r.Initialise();
          regionDic.Add(r.tag, r);
       }
+
+       foreach(Region r in secondaryRegions)
+      {
+         r.Initialise();
+         regionDic.Add(r.tag, r);
+      }
+      
    }
 }

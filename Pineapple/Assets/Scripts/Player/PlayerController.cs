@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public Animator _anim;
     [HideInInspector] public float _horiMove;
-    private bool _jump = false;
     private CharacterController2D _characterController;
     private Rigidbody2D _rigidBody;
 
@@ -46,7 +45,7 @@ public class PlayerController : MonoBehaviour
         if(!pausePlayer)
         {
             setAnimations();
-            _characterController.Move(speed * Time.deltaTime, false, _jump);
+            _characterController.Move(speed * Time.deltaTime);
 
             if(fly) _characterController.Fly(flySpeed);
             //_jump = false;
@@ -88,15 +87,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void AddForce(Vector2 forceAmount)
+/*    public void AddForce(Vector2 forceAmount)
     {
+        print("Add Force");
         _rigidBody.velocity = Vector2.zero;
         _rigidBody.AddForce(forceAmount, ForceMode2D.Impulse);
-        Debug.Log("Add Force");
     }
 
     public bool StoppedMoving()
     {
+        print("stopped Moving");
         return _rigidBody.velocity == Vector2.zero ? true : false;
-    }
+    }*/
 }

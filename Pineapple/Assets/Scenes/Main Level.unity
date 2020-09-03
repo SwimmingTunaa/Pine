@@ -566,6 +566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f944de6ea51e38d46b7da07a38b26507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerActive: 0
+  delayTransitionTime: 2
   currentActiveParallax: {fileID: 1569210413}
   mainParallax: {fileID: 1569210413}
   caveParallax: {fileID: 628154805}
@@ -5431,6 +5433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Parallax Clouds
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013663334567188343, guid: 13eb345991c7afe4da00a13ec06ce2b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6013663334567188340, guid: 13eb345991c7afe4da00a13ec06ce2b3,
         type: 3}
@@ -21713,13 +21720,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duplicateAmount: 1
-  RegionsToPool:
-  - {fileID: 11400000, guid: d4f1578988abb4d44921fec90028bed8, type: 2}
-  - {fileID: 11400000, guid: 0f4b3d172a8f8f240a272354d7eaaa5e, type: 2}
+  primaryRegionsToPool:
   - {fileID: 11400000, guid: 0392b3852446e004781ab24e1453b25f, type: 2}
-  - {fileID: 11400000, guid: 3c20835cfed6281459f77f745aab8a74, type: 2}
+  - {fileID: 11400000, guid: 0f4b3d172a8f8f240a272354d7eaaa5e, type: 2}
   - {fileID: 11400000, guid: 180ae0ba3f047fe4fb1439f326a7494e, type: 2}
+  secondaryRegions:
   - {fileID: 11400000, guid: a3471ccf4fc0aff428b709f8a8188566, type: 2}
+  - {fileID: 11400000, guid: 3c20835cfed6281459f77f745aab8a74, type: 2}
+  - {fileID: 11400000, guid: d4f1578988abb4d44921fec90028bed8, type: 2}
 --- !u!1 &1252314449
 GameObject:
   m_ObjectHideFlags: 0
@@ -30230,12 +30238,12 @@ PrefabInstance:
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -154
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
@@ -30255,7 +30263,7 @@ PrefabInstance:
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
@@ -30265,7 +30273,7 @@ PrefabInstance:
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
@@ -30897,8 +30905,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1374963032}
   m_HandleRect: {fileID: 1374963031}
   m_Direction: 2
-  m_Value: 0.98971725
-  m_Size: 0.28225982
+  m_Value: 0.9897176
+  m_Size: 0.28225985
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -32271,12 +32279,12 @@ PrefabInstance:
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -258
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
@@ -32296,7 +32304,7 @@ PrefabInstance:
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
@@ -32306,7 +32314,7 @@ PrefabInstance:
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
@@ -33582,7 +33590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontFollowPanelY: 1
   move: 0
-  transitionSpeed: 40
+  transitionSpeed: 60
 --- !u!1 &2097525271
 GameObject:
   m_ObjectHideFlags: 0
@@ -34374,12 +34382,12 @@ PrefabInstance:
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
@@ -34399,7 +34407,7 @@ PrefabInstance:
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
@@ -34409,7 +34417,7 @@ PrefabInstance:
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5683712513301320004, guid: c31e557c52e2d9e4a8be100dd5f3bfd4,
         type: 3}
@@ -34775,7 +34783,7 @@ PrefabInstance:
     - target: {fileID: 784558440493643210, guid: 543de37a8ce791d4aabc33d2f02ea1d5,
         type: 3}
       propertyPath: isFlying
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7200127950516088244, guid: 543de37a8ce791d4aabc33d2f02ea1d5,
         type: 3}

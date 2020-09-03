@@ -5,6 +5,8 @@ using UnityEngine;
 public class ParallaxManager : MonoBehaviour
 {
     public static ParallaxManager instance;
+    public bool timerActive;
+    public float delayTransitionTime;
     public GameObject currentActiveParallax;
 
     public GameObject mainParallax;
@@ -14,6 +16,7 @@ public class ParallaxManager : MonoBehaviour
     public Dictionary<string, GameObject> parallaxDic;
 
     private GameObject _previousParallax;
+    private float _timer;
 
     void Awake()
     {
@@ -35,6 +38,26 @@ public class ParallaxManager : MonoBehaviour
             {"Forest", mainParallax}
         };
     }
+
+    void Update()
+    {
+        if(_previousParallax && timerActive && Timer(delayTransitionTime))
+        {
+            _previousParallax?.SetActive(false);
+            timerActive = false;
+        }
+    }
+
+    public bool Timer(float interval)
+    {
+        _timer += Time.deltaTime;
+        if(_timer > interval)
+        {
+            _timer = 0f;
+            return true;
+        }
+        return false;
+    }
     
     public void ToggleParallax(bool activeState, string parallaxName)
     {
@@ -43,16 +66,15 @@ public class ParallaxManager : MonoBehaviour
 
     public void ChangeParallax()
     {
-        _previousParallax = currentActiveParallax;
         if(!parallaxDic[MasterSpawner.Instance.activeRegion.tag].activeInHierarchy)
-        {
-            
-            StartCoroutine(DelayDisable(_previousParallax));
-
-            //turn on new parallax
-            currentActiveParallax = parallaxDic[MasterSpawner.Instance.activeRegion.tag];
-            currentActiveParallax.SetActive(true);
-        }
+            _previousParallax = currentActiveParallax;
+        else
+            _previousParallax = null;
+        _timer = 0;
+        timerActive = true;
+        //turn on new parallax
+        currentActiveParallax = parallaxDic[MasterSpawner.Instance.activeRegion.tag];
+        currentActiveParallax.SetActive(true);
     }
 
     IEnumerator DelayDisable(GameObject obj)

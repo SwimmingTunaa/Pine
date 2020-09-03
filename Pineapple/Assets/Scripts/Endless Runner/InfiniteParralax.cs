@@ -16,7 +16,7 @@ public class InfiniteParralax : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         float temp = (cam.transform.position.x * (1- depth));
         float dist  = (cam.transform.position.x * depth);

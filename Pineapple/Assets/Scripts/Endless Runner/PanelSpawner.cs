@@ -56,7 +56,7 @@ public class PanelSpawner : Spawner
             //change the pool to match the region
                 _pool = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag].panels;
             //change the region to match the next set of panels
-                MasterSpawner.Instance.activeRegion = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag];
+                //MasterSpawner.Instance.activeRegion = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag];
         }
         _previousSpawn = _nextPanelToSpawn;
         _nextPanelToSpawn = GetNextItem(_pool.spawnedObjectPool); 
@@ -164,6 +164,17 @@ public class PanelSpawner : Spawner
         
         int botChildCount = bottomPanelHolder.transform.childCount;
         int currentChildCount = currentPanelHolder.transform.childCount;
+        int topChildCount = topPanelHolder.transform.childCount;
+
+        //remove all panels from the top panel holder and turn other panels off
+        //TODO: Make Timer
+        for(int i = 0; i < topChildCount; i ++)
+        {
+           //StartCoroutine(DelayDisable(topPanelHolder.transform.GetChild(i).gameObject));
+           //topPanelHolder.transform.GetChild(i).gameObject.SetActive(false);
+            topPanelHolder.transform.GetChild(0).gameObject.SetActive(false);
+            topPanelHolder.transform.GetChild(0).SetParent(null);
+        }
 
         //move the current panels to the top panel holder
         for(int i = 0; i < currentChildCount; i ++)
@@ -179,12 +190,7 @@ public class PanelSpawner : Spawner
             }            
         }
 
-        int topChildCount = topPanelHolder.transform.childCount;
-        //remove all panels from the top panel holder and turn othe panels off
-        for(int i = 0; i < topChildCount; i ++)
-        {
-           StartCoroutine(DelayDisable(topPanelHolder.transform.GetChild(i).gameObject));
-        }
+      
 
         //parent bot panel holder panels into the current panel holder
         for(int i = 0; i < botChildCount; i ++)
