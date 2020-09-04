@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     public GameObject hairMask;
     public AudioClip hairSlicedAudio;
 
+    [Header("Hover Board")]
+    public GameObject hoverBoard;
+
     [HideInInspector] public Animator _anim;
     [HideInInspector] public float _horiMove;
     private CharacterController2D _characterController;
@@ -87,16 +90,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-/*    public void AddForce(Vector2 forceAmount)
+    public IEnumerator EquipHoverBoard()
     {
-        print("Add Force");
-        _rigidBody.velocity = Vector2.zero;
-        _rigidBody.AddForce(forceAmount, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(.2f);
+        _characterController.isFlying = true;
+        Time.timeScale = 0;
+        _anim.SetBool("Fierce", true);
+        GameManager.Instance.vfxVirtualCamera.gameObject.SetActive(true);
+        hoverBoard.SetActive(true);
+        yield return new WaitForSecondsRT(0.7f);
+        _anim.SetBool("Fly", true);
+        _anim.SetBool("Fierce", false);
+        GameManager.Instance.vfxVirtualCamera.gameObject.SetActive(false);
+        yield return new WaitForSecondsRT(.8f);
+        Time.timeScale = 1;
+        _characterController.AddForce(Vector2.up * 1000f);
     }
 
-    public bool StoppedMoving()
+    public void UnequipHoverBoard()
     {
-        print("stopped Moving");
-        return _rigidBody.velocity == Vector2.zero ? true : false;
-    }*/
+        _anim.SetBool("Fly", false);
+        hoverBoard.SetActive(false);
+    }
 }

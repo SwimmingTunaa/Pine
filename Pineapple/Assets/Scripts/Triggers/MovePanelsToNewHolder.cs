@@ -18,11 +18,15 @@ public class MovePanelsToNewHolder : MonoBehaviour
             GameManager.Instance.cameraFollower.move = true;
             triggerAmount--;
             PanelSpawner.Instance.ChangePanelSpawnPoint();
+            print(MasterSpawner.Instance.activeRegion.tag);
             if(MasterSpawner.Instance.activeRegion.tag == "Cloud")
-                other.GetComponent<CharacterController2D>().isFlying = true;
+            {
+                StartCoroutine(CharacterManager.activeCharacter.GetComponent<PlayerController>().EquipHoverBoard());
+            }
             else if (other.GetComponent<CharacterController2D>().isFlying == true && MasterSpawner.Instance.activeRegion.tag != "Cloud")
             {
                 other.GetComponent<CharacterController2D>().isFlying = false;
+                CharacterManager.activeCharacter.GetComponent<PlayerController>().UnequipHoverBoard();
             }
         }
     }

@@ -80,6 +80,11 @@ public class CharacterController2D : MonoBehaviour
 		m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetYVelocity,ref m_FlyVelocity, m_MovementSmoothing);
 	}
 
+	public void AddForce(Vector2 direction)
+	{
+		m_Rigidbody2D.AddForce(direction);
+	}
+
 	public void Jump(bool jump, float multiplier = 1)
 	{
 		// If the player should jump...

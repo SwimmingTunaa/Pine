@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class PlayerHealth : HealthGeneric {
 
-	public GameObject deathEffect;
-	public GameObject deathEffectHairCut;
+		public GameObject deathEffectHairCut;
 	public bool invincible;
 	public Vector2 impulseForce;
 	public TakeScreenShot takeScreenShot;
@@ -15,6 +14,8 @@ public class PlayerHealth : HealthGeneric {
 	public AudioClip shieldHitSound;
 	public bool shieldActive;
 	public List<GameObject> healthBars = new List<GameObject>();
+
+	private GameObject _deathEffect;
 	private PlayerController playerController;
 	
 	void Awake()
@@ -25,7 +26,7 @@ public class PlayerHealth : HealthGeneric {
 
 	void Start()
 	{
-		deathEffect = CharacterManager.activeVisual.deathEffect;
+		_deathEffect = CharacterManager.activeVisual.deathEffect;
 	}
 
 	override public void TakeDamage(float damage)
@@ -57,7 +58,7 @@ public class PlayerHealth : HealthGeneric {
 		{
 			if(healthBars[i].activeInHierarchy)
 			{
-				healthBars[i].SetActive(false);
+				healthBars[i].SetActive(false); 
 				break;
 			}
 		}
@@ -92,9 +93,9 @@ public class PlayerHealth : HealthGeneric {
 			//player is dead
 			dead = true;
 			//Instantiate(playerController._haircut ? deathEffectHairCut : deathEffect, transform.position + Vector3.up * 2.5f, transform.rotation);
-			deathEffect.SetActive(true);
-			deathEffect.transform.parent = null;
-			foreach(Rigidbody2D r in deathEffect.GetComponentsInChildren<Rigidbody2D>())
+			_deathEffect.SetActive(true);
+			_deathEffect.transform.parent = null;
+			foreach(Rigidbody2D r in _deathEffect.GetComponentsInChildren<Rigidbody2D>())
 			{
 				r.AddForce(new Vector2(impulseForce.x + Random.Range(-2,2), impulseForce.y + Random.Range(-2,2)), ForceMode2D.Impulse);
 			}
@@ -106,7 +107,7 @@ public class PlayerHealth : HealthGeneric {
 	public Transform FindFurthestBodyPart()
 	{
 		Transform g = null;
-		foreach(Transform child in deathEffect.transform)
+		foreach(Transform child in _deathEffect.transform)
 		{
 			if(g == null)
 				g = child;
@@ -119,7 +120,7 @@ public class PlayerHealth : HealthGeneric {
 	public bool BodyPartsStopMoving()
 	{
 		List<bool> allStopped = new List<bool>();
-		foreach(Rigidbody2D r in deathEffect.GetComponentsInChildren<Rigidbody2D>())
+		foreach(Rigidbody2D r in _deathEffect.GetComponentsInChildren<Rigidbody2D>())
 			allStopped.Add(r.velocity == Vector2.zero);
 			
 		return !allStopped.Contains(false) ? true : false;

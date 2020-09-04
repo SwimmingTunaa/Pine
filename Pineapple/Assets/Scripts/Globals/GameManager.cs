@@ -259,7 +259,7 @@ public class GameManager : MonoBehaviour
     public void Retry()
     {
         PlayerPrefs.SetInt("Retry", 1);
-        System.GC.Collect();
+        //System.GC.Collect();
         LoadLevel(0);
     }
 }
