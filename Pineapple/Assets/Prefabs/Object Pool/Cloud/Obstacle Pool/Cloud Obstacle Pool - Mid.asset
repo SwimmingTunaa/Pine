@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b09033c7247c81243aec75b48388a513, type: 3}
-  m_Name: Cloud Obstacle Pool - Roof
+  m_Name: Cloud Obstacle Pool - Mid
   m_EditorClassIdentifier: 
   manual: 0
-  spawnChanceValue: 0.35
+  spawnChanceValue: 0.25
   objectType: 1
-  duplicateAmount: 8
+  duplicateAmount: 4
   objectPool:
-  - {fileID: 1796550258336305473, guid: a85a8ade696a1e6459669bf7a3e3acae, type: 3}
+  - {fileID: 329000953993701636, guid: ee13317bc76cd2c4697479f2b3a457ba, type: 3}
+  - {fileID: 9110244745462282597, guid: 772f432018c3cb04aba818f5d0578e78, type: 3}
   spawnedObjectPool:
   - {fileID: 0}
   - {fileID: 0}
@@ -27,4 +28,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  spawnPointChoice: 0
+  spawnPointChoice: 1

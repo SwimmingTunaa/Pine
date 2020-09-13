@@ -19,11 +19,11 @@ public class MovePanelsToNewHolder : MonoBehaviour
             triggerAmount--;
             PanelSpawner.Instance.ChangePanelSpawnPoint();
             print(MasterSpawner.Instance.activeRegion.tag);
-            if(MasterSpawner.Instance.activeRegion.tag == "Cloud")
+            if(MasterSpawner.Instance.activeRegion.tag == "Cloud" || MasterSpawner.Instance.activeRegion.tag == "Storm")
             {
                 StartCoroutine(CharacterManager.activeCharacter.GetComponent<PlayerController>().EquipHoverBoard());
             }
-            else if (other.GetComponent<CharacterController2D>().isFlying == true && MasterSpawner.Instance.activeRegion.tag != "Cloud")
+            else if (other.GetComponent<CharacterController2D>().isFlying == true && (MasterSpawner.Instance.activeRegion.tag != "Cloud" || MasterSpawner.Instance.activeRegion.tag == "Storm"))
             {
                 other.GetComponent<CharacterController2D>().isFlying = false;
                 CharacterManager.activeCharacter.GetComponent<PlayerController>().UnequipHoverBoard();

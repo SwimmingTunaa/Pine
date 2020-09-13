@@ -24,6 +24,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Hover Board")]
     public GameObject hoverBoard;
+    public ParticleSystem flame, flameTwo;
+    public AudioClip hoverBoardSoundStart;
+    public AudioClip hoverBoardSoundEnd;
+    public AudioClip hoverBoardSoundLoop;
+    private AudioSource boardAudioSource;
 
     [HideInInspector] public Animator _anim;
     [HideInInspector] public float _horiMove;
@@ -63,7 +68,31 @@ public class PlayerController : MonoBehaviour
         }
         if(_characterController.isFlying)
         {
-            fly = triggered;
+            if(!boardAudioSource)
+                boardAudioSource = hoverBoard.GetComponent<AudioSource>();
+            fly = triggered;     
+            var emmision = flame.emission;      
+            if(triggered)
+            {
+                boardAudioSource.PlayOneShot(hoverBoardSoundStart);
+                boardAudioSource.clip = hoverBoardSoundLoop;
+                boardAudioSource.Play();
+                flame.Play();
+                flameTwo.Play();
+                emmision = flame.emission;
+                emmision.enabled = true;
+                emmision = flameTwo.emission;
+                emmision.enabled = true;
+            } 
+            else
+            {
+                emmision = flame.emission;
+                emmision.enabled = false;
+                emmision = flameTwo.emission;
+                emmision.enabled = false;
+                boardAudioSource.clip = null;
+                boardAudioSource.PlayOneShot(hoverBoardSoundEnd);
+            } 
         }
         jumpPressed = triggered;
     }
@@ -87,6 +116,21 @@ public class PlayerController : MonoBehaviour
         if(_rigidBody.velocity.y < -2f)
         {
             _anim.SetBool("DoubleJump", false);
+        }
+    }
+
+    public void DestroyHair()
+    {
+        if(!hairMask.activeInHierarchy)
+        {
+            _anim.SetTrigger("Sad");
+            hairMask.SetActive(true);
+            DialogueSequence dialogue = GetComponent<DialogueSequence>();
+            dialogue.dialogues[0].text = "MY HAIR!";
+            dialogue.dialogues[0].diallogueInterval = 2;
+            dialogue.StartDialogue(gameObject);
+            GetComponent<AudioSource>().PlayOneShot(hairSlicedAudio);
+            StatsManager.Instance.AddToAStat(1,"HaircutsTaken");
         }
     }
 

@@ -23,11 +23,8 @@ public class ObstaclePoolConfig: ScriptableObject
 
     public void Initialise()
     {
-        if(top != null)
-            top.Initialise();
-        if(mid != null)
-            mid.Initialise();
-        if(bot != null)
-            bot.Initialise();
+            top?.Initialise();
+            mid?.Initialise();
+            bot?.Initialise();
     }
 }

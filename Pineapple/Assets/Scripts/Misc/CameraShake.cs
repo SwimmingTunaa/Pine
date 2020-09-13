@@ -33,10 +33,10 @@ public class CameraShake : MonoBehaviour
  
         activeVirtualCamera = GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
         cmNoise = activeVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cameraStartPos = activeVirtualCamera.transform;
         cmNoise.m_AmplitudeGain = shakeAmount;
         cmNoise.m_FrequencyGain = frequency;
         shakeDuration = duration;
-        cameraStartPos = activeVirtualCamera.transform;
         shakeActive = true;
     }
 

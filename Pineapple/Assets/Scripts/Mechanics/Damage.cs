@@ -6,7 +6,7 @@ public class Damage : MonoBehaviour
 {
     public int triggerAmount = 1;
     public float damageAmount;
-    public bool destroyHair;
+    public bool CanDestroyHair;
     public bool damageShieldOnly = false;
     public bool destroyAfterDamage;
     public AudioClip hitSoundEffect;
@@ -59,7 +59,7 @@ public class Damage : MonoBehaviour
                 triggerAmount--;
             }
             
-            if(other.CompareTag("Hair") && destroyHair)
+            if(other.CompareTag("Hair") && CanDestroyHair)
             {
                 PlayerController p =  other.GetComponentInParent<PlayerController>();
                 if(!p.hairMask.activeInHierarchy)

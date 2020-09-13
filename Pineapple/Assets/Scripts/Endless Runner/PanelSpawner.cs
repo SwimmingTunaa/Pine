@@ -47,14 +47,18 @@ public class PanelSpawner : Spawner
 
         SpriteRenderer nextSpawn = _nextPanelToSpawn.GetComponentInChildren<SpriteRenderer>();
         SpriteRenderer previousSprite = _previousSpawn.GetComponentInChildren<SpriteRenderer>();
+        //move panel to position
         _nextPanelToSpawn.transform.position = GetNextSpawnPosHorizontal(previousSprite, nextSpawn);
         _nextPanelToSpawn.transform.parent = currentPanelHolder.transform;
+        //spawn panel
         _nextPanelToSpawn.SetActive(true);
+
         //check to see if the gameobject is from the same region as the previous panel
         if(!_nextPanelToSpawn.gameObject.CompareTag(_previousSpawn.gameObject.tag))
         {
             //change the pool to match the region
                 _pool = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag].panels;
+                print("Panel Tag: " + _nextPanelToSpawn.tag);
             //change the region to match the next set of panels
                 //MasterSpawner.Instance.activeRegion = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag];
         }
@@ -89,7 +93,6 @@ public class PanelSpawner : Spawner
         SetBlackBarHeight();
         SpawnPanelsDown(); 
     }
-
     
     void SpawnPanelsDown()
     {

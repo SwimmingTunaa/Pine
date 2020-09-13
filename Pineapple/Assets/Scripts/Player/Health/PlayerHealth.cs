@@ -42,7 +42,8 @@ public class PlayerHealth : HealthGeneric {
 					DamageShield();
 			base.TakeDamage(damage);
 		}
-		StartCoroutine(killPlayer());
+		//check if player is dead after deducting health
+		if(health <= 0 && !dead) StartCoroutine(killPlayer());
 	}
 
 	public void AddHealth(float amount)
@@ -85,23 +86,20 @@ public class PlayerHealth : HealthGeneric {
 
 	IEnumerator killPlayer()
 	{
-		if(health <= 0 && !dead)
+		playerController._anim.SetBool("Sad", true);
+		//player is dead
+		dead = true;
+		playerController.pausePlayer = true;
+		if(takeScreenShot)
+			yield return (StartCoroutine(takeScreenShot.ScreenShot()));
+		//Instantiate(playerController._haircut ? deathEffectHairCut : deathEffect, transform.position + Vector3.up * 2.5f, transform.rotation);
+		_deathEffect.SetActive(true);
+		_deathEffect.transform.parent = null;
+		foreach(Rigidbody2D r in _deathEffect.GetComponentsInChildren<Rigidbody2D>())
 		{
-			playerController._anim.SetBool("Sad", true);
-			if(takeScreenShot)
-				yield return (StartCoroutine(takeScreenShot.ScreenShot()));
-			//player is dead
-			dead = true;
-			//Instantiate(playerController._haircut ? deathEffectHairCut : deathEffect, transform.position + Vector3.up * 2.5f, transform.rotation);
-			_deathEffect.SetActive(true);
-			_deathEffect.transform.parent = null;
-			foreach(Rigidbody2D r in _deathEffect.GetComponentsInChildren<Rigidbody2D>())
-			{
-				r.AddForce(new Vector2(impulseForce.x + Random.Range(-2,2), impulseForce.y + Random.Range(-2,2)), ForceMode2D.Impulse);
-			}
-			playerController.pausePlayer = true;
-			gameObject.SetActive(false);
+			r.AddForce(new Vector2(impulseForce.x + Random.Range(-2,2), impulseForce.y + Random.Range(-2,2)), ForceMode2D.Impulse);
 		}
+		gameObject.SetActive(false);
 	}
 
 	public Transform FindFurthestBodyPart()

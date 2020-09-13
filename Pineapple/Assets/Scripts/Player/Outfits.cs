@@ -7,6 +7,10 @@ public class Outfits: MonoBehaviour
 {
     public GameObject deathEffect;
     public Transform pickUpSpawnPoint;
+    [Header("Hair")]
+    public GameObject slicedHairMask;
+
+    [Header("Outfits")]
     public Transform glovePunchSlot;
     public GameObject puncherOutFit; 
     public GameObject boostOutFit;

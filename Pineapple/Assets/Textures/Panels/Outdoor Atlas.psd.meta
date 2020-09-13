@@ -113,6 +113,15 @@ TextureImporter:
   - first:
       213: 8553726081833050773
     second: Hover Board
+  - first:
+      213: 1932321895275581534
+    second: Cloud
+  - first:
+      213: -1128946236407654568
+    second: Lightling Bolt
+  - first:
+      213: -643017860371576494
+    second: Rain Drops
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -844,7 +853,7 @@ TextureImporter:
         width: 186
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -852,6 +861,69 @@ TextureImporter:
       bones: []
       spriteID: c4efc8f848528dc4bbf8e292c71323f1
       internalID: 8553726081833050773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloud
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 918
+        width: 305
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa071231f1b5dff40ae96c30b50f5227
+      internalID: 1932321895275581534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lightling Bolt
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 895
+        width: 57
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8d6118b6ad5e49498f738881ce3f851
+      internalID: -1128946236407654568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rain Drops
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 991
+        width: 236
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ced841bd9d220f45b802dcf048477ed
+      internalID: -643017860371576494
       vertices: []
       indices: 
       edges: []
