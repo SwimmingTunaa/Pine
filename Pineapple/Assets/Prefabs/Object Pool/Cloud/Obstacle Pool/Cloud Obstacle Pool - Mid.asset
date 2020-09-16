@@ -13,13 +13,20 @@ MonoBehaviour:
   m_Name: Cloud Obstacle Pool - Mid
   m_EditorClassIdentifier: 
   manual: 0
-  spawnChanceValue: 0.25
+  spawnChanceValue: 0.5
   objectType: 1
-  duplicateAmount: 4
+  duplicateAmount: 3
   objectPool:
   - {fileID: 329000953993701636, guid: ee13317bc76cd2c4697479f2b3a457ba, type: 3}
   - {fileID: 9110244745462282597, guid: 772f432018c3cb04aba818f5d0578e78, type: 3}
+  - {fileID: 9110244745462282597, guid: e9694c1f25e6e8548b2dcdc9fb32af55, type: 3}
+  - {fileID: 329000953993701636, guid: ee13317bc76cd2c4697479f2b3a457ba, type: 3}
+  - {fileID: 9110244745462282597, guid: 772f432018c3cb04aba818f5d0578e78, type: 3}
   spawnedObjectPool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

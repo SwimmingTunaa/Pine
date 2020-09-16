@@ -41,7 +41,7 @@ public class ParallaxManager : MonoBehaviour
 
     void Update()
     {
-        if(_previousParallax && timerActive && Timer(delayTransitionTime))
+        if(timerActive && _previousParallax != currentActiveParallax && Timer(delayTransitionTime))
         {
             _previousParallax?.SetActive(false);
             timerActive = false;
@@ -66,10 +66,7 @@ public class ParallaxManager : MonoBehaviour
 
     public void ChangeParallax()
     {
-        if(!parallaxDic[MasterSpawner.Instance.activeRegion.tag].activeInHierarchy)
-            _previousParallax = currentActiveParallax;
-        else
-            _previousParallax = null;
+        _previousParallax = currentActiveParallax;
         _timer = 0;
         timerActive = true;
         //turn on new parallax

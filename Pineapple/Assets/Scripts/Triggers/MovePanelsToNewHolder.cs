@@ -18,6 +18,7 @@ public class MovePanelsToNewHolder : MonoBehaviour
             GameManager.Instance.cameraFollower.move = true;
             triggerAmount--;
             PanelSpawner.Instance.ChangePanelSpawnPoint();
+            ParallaxManager.instance.ChangeParallax();
             print(MasterSpawner.Instance.activeRegion.tag);
             if(MasterSpawner.Instance.activeRegion.tag == "Cloud" || MasterSpawner.Instance.activeRegion.tag == "Storm")
             {

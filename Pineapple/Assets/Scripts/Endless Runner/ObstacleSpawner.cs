@@ -31,7 +31,9 @@ public class ObstacleSpawner : Spawner
         int randomIndex = randomIndexGetter.GetRandomEntryIndex(_currentRegionLevel.poolList);
         //get previous spawned object
         Transform previousObj = _NextObstacleToSpawn != null ? _NextObstacleToSpawn.transform : null;
-    
+
+        //check to see if the poolList contains any pools if not return
+        if(_currentRegionLevel.poolList.Count <= 0) return;
         ObstaclePool poolToUse = _currentRegionLevel.poolList[randomIndex]; 
         _NextObstacleToSpawn = GetNextItem(poolToUse.spawnedObjectPool);
         _NextObstacleToSpawn.SetActive(true);

@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceDirection: {x: 0, y: -50}
+  flySpeedDisable: 1
 --- !u!1 &9110244744691374586
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,9 +199,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3c8d6ebd823434841a3f29cbd7e58be2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a2299c72c73dcbe469afb1e803250081, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.34
   m_Pitch: 1
   Loop: 1
   Mute: 0

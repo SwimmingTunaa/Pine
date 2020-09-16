@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Storm Obstacle Pool - Floor
   m_EditorClassIdentifier: 
   manual: 0
-  spawnChanceValue: 0.45
+  spawnChanceValue: 1
   objectType: 1
   duplicateAmount: 5
   objectPool:
-  - {fileID: 1796550258336305473, guid: 123a9b818adeca84ab7c23dc991f95b6, type: 3}
-  - {fileID: 1796550258336305473, guid: aa64626c6ddb7354c8b297b3e1edbcc1, type: 3}
+  - {fileID: 9110244745462282597, guid: e9694c1f25e6e8548b2dcdc9fb32af55, type: 3}
+  - {fileID: 9110244745462282597, guid: e9694c1f25e6e8548b2dcdc9fb32af55, type: 3}
   spawnedObjectPool:
   - {fileID: 0}
   - {fileID: 0}
@@ -30,4 +30,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  spawnPointChoice: 2
+  spawnPointChoice: 1

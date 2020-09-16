@@ -122,6 +122,9 @@ TextureImporter:
   - first:
       213: -643017860371576494
     second: Rain Drops
+  - first:
+      213: 7159764730027017748
+    second: rain drop single
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -916,7 +919,7 @@ TextureImporter:
         width: 236
         height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -924,6 +927,27 @@ TextureImporter:
       bones: []
       spriteID: 2ced841bd9d220f45b802dcf048477ed
       internalID: -643017860371576494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rain drop single
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 993
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e893f1e1022924387b3f1de3993621
+      internalID: 7159764730027017748
       vertices: []
       indices: 
       edges: []

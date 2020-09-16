@@ -10,12 +10,12 @@ public class Floater : MonoBehaviour {
  
     // Position Storage Variables
     Vector3 posOffset = new Vector3 ();
-    Vector3 tempPos = new Vector3 ();
+    float startY;
  
     // Use this for initialization
-    void Start () {
+    void OnEnable () {
         // Store the starting position & rotation of the object
-        posOffset = transform.position;
+        startY = transform.position.y;
     }
      
     // Update is called once per frame
@@ -24,9 +24,9 @@ public class Floater : MonoBehaviour {
         //transform.Rotate(new Vector3(0f, Time.deltaTime * degreesPerSecond, 0f), Space.World);
  
         // Float up/down with a Sin()
-        tempPos = posOffset;
-        tempPos.y += Mathf.Sin (Time.fixedTime * Mathf.PI * frequency) * amplitude;
+        posOffset = new Vector3(transform.position.x, startY);
+        posOffset.y += Mathf.Sin (Time.fixedTime * Mathf.PI * frequency) * amplitude;
  
-        transform.position = tempPos;
+        transform.position = posOffset;
     }
 }

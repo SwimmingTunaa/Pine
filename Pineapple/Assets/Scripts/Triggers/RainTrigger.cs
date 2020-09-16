@@ -5,6 +5,7 @@ using UnityEngine;
 public class RainTrigger : MonoBehaviour
 {
     public Vector2 forceDirection;
+    public bool flySpeedDisable;
     private CharacterController2D character;
     private PlayerController playerController;
     private float startFlySpeed;
@@ -25,7 +26,8 @@ public class RainTrigger : MonoBehaviour
         {
             print("get rained on");
             character.AddForce(forceDirection);
-            playerController.flySpeed = 0;
+            if(flySpeedDisable)
+                playerController.flySpeed = 0;
         }
     }
 

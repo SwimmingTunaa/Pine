@@ -113,8 +113,8 @@ public class PanelSpawner : Spawner
                 _nextBelowPanel.transform.parent = bottomPanelHolder.transform;
                 previousPanel = _nextBelowPanel;
                 _firstPanel = _nextBelowPanel;                
+                nextRegionPanelPool = RegionPoolManager.regionDic[_firstPanel.tag].panels;
                 _nextBelowPanel = GetNextItem(nextRegionPanelPool.spawnedObjectPool);
-
                 initialSpawn = false;
             } 
             else
@@ -134,6 +134,8 @@ public class PanelSpawner : Spawner
                     _nextBelowPanel.transform.parent = bottomPanelHolder.transform;
                     //set a the last spawned panel to be the new starting panel
                     startingPanel = _nextBelowPanel; 
+                    //set the new region to last panel spawned
+                    RegionPoolManager.nextRegion = RegionPoolManager.regionDic[startingPanel.gameObject.tag];
 
                     if(i + 1 <= 2) _nextBelowPanel = GetNextItem(nextRegionPanelPool.spawnedObjectPool);
                 }
@@ -167,24 +169,25 @@ public class PanelSpawner : Spawner
         
         int botChildCount = bottomPanelHolder.transform.childCount;
         int currentChildCount = currentPanelHolder.transform.childCount;
-        int topChildCount = topPanelHolder.transform.childCount;
+        //int topChildCount = topPanelHolder.transform.childCount;
 
-        //remove all panels from the top panel holder and turn other panels off
-        //TODO: Make Timer
+        /*//remove all panels from the top panel holder and turn other panels off
         for(int i = 0; i < topChildCount; i ++)
         {
-           //StartCoroutine(DelayDisable(topPanelHolder.transform.GetChild(i).gameObject));
            //topPanelHolder.transform.GetChild(i).gameObject.SetActive(false);
             topPanelHolder.transform.GetChild(0).gameObject.SetActive(false);
             topPanelHolder.transform.GetChild(0).SetParent(null);
-        }
+        }*/
 
         //move the current panels to the top panel holder
+        List<GameObject> nextTopPanels = new List<GameObject>();
         for(int i = 0; i < currentChildCount; i ++)
         {
             if(i < 3)
             {
+                nextTopPanels.Add(currentPanelHolder.transform.GetChild(0).gameObject);
                 currentPanelHolder.transform.GetChild(0).SetParent(topPanelHolder.transform);
+                StartCoroutine(DelayDisable(nextTopPanels[i]));
             }
             else
             {
@@ -192,8 +195,6 @@ public class PanelSpawner : Spawner
                 currentPanelHolder.transform.GetChild(0).SetParent(null);
             }            
         }
-
-      
 
         //parent bot panel holder panels into the current panel holder
         for(int i = 0; i < botChildCount; i ++)

@@ -87,13 +87,13 @@ public class PlayerHealth : HealthGeneric {
 	IEnumerator killPlayer()
 	{
 		playerController._anim.SetBool("Sad", true);
-		//player is dead
-		dead = true;
 		playerController.pausePlayer = true;
 		if(takeScreenShot)
 			yield return (StartCoroutine(takeScreenShot.ScreenShot()));
 		//Instantiate(playerController._haircut ? deathEffectHairCut : deathEffect, transform.position + Vector3.up * 2.5f, transform.rotation);
 		_deathEffect.SetActive(true);
+		//player is dead
+		dead = true;
 		_deathEffect.transform.parent = null;
 		foreach(Rigidbody2D r in _deathEffect.GetComponentsInChildren<Rigidbody2D>())
 		{
