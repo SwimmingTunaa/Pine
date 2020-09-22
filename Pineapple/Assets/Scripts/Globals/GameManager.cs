@@ -108,7 +108,6 @@ public class GameManager : MonoBehaviour
     {
         Statics.DistanceTraveled = Mathf.RoundToInt(Vector2.Distance(_playerCachedPos, _trackedPosition.transform.position));
         distanceText.text = Statics.DistanceTraveled .ToString()+"m";
-        distanceCounter.RuntimeValue = Statics.DistanceTraveled;
         stickersText.text = stats.stickerCollected.ToString();
         if(!Statics.paused)
         {

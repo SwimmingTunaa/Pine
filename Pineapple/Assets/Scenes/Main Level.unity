@@ -568,7 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerActive: 0
   delayTransitionTime: 2
-  currentActiveParallax: {fileID: 650589318}
+  currentActiveParallax: {fileID: 1569210413}
   mainParallax: {fileID: 1569210413}
   caveParallax: {fileID: 628154805}
   cloudParallax: {fileID: 650589318}
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   spawnInterval: 1
-  activeRegion: {fileID: 11400000, guid: 180ae0ba3f047fe4fb1439f326a7494e, type: 2}
+  activeRegion: {fileID: 11400000, guid: 0392b3852446e004781ab24e1453b25f, type: 2}
   minDistance: 20
   maxDistance: 25
   pSpawnChance: 0
@@ -5437,7 +5437,7 @@ PrefabInstance:
     - target: {fileID: 6013663334567188343, guid: 13eb345991c7afe4da00a13ec06ce2b3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6013663334567188340, guid: 13eb345991c7afe4da00a13ec06ce2b3,
         type: 3}
@@ -5716,7 +5716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &371606413
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12855,7 +12855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &865337263
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31052,8 +31052,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1374963032}
   m_HandleRect: {fileID: 1374963031}
   m_Direction: 2
-  m_Value: 0.9897176
-  m_Size: 0.28225985
+  m_Value: 0.98971736
+  m_Size: 0.28225982
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -36235,7 +36235,7 @@ PrefabInstance:
     - target: {fileID: 5546437920611447034, guid: 96eac06ccf10dcf47a9334035cd4d6e8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5546437920611447033, guid: 96eac06ccf10dcf47a9334035cd4d6e8,
         type: 3}
