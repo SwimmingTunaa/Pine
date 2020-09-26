@@ -47,7 +47,7 @@ public class Sticker : MonoBehaviour
         a.PlayOneShot(pickUpSound);
         deathEffect.SetActive(true);
         deathEffect.transform.parent = null;
-        StatsManager.Instance.stickerCollected += value;
+        StatsManager.Instance.stickerCollectedThisRound += value;
         move = false;
         gameObject.SetActive(false);
         //base.DoAction(player);

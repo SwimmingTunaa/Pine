@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5438953935722001474}
   - component: {fileID: 5252077278585836185}
   - component: {fileID: 6812384284872908897}
+  - component: {fileID: 7755095820269078412}
+  - component: {fileID: 449200343025399296}
   m_Layer: 0
   m_Name: ChangeRegionsTrigger
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4618494608797301468}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.36, y: -4.99, z: -0.14102009}
   m_LocalScale: {x: 1.559817, y: 1.10759, z: 0.7384}
   m_Children: []
@@ -68,5 +70,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 346f4a1b92687614aac7fd3357d920ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7755095820269078412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618494608797301468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4352aa268b536ed46bd33da2eb767a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerAmount: 1
+  statReference: Regions Visited
+--- !u!114 &449200343025399296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618494608797301468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defdcf21ff7503144a149e3646cd65ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

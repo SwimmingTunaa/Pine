@@ -7,6 +7,7 @@ public class CritterSpawner : Spawner
     public ObjectPools critterPool;
     [MinMaxSlider(1,5)] public Vector2 amountToSpawn;
     public LayerMask whatIsGround;
+    public bool changeSizeOnSpawn = true;
     private Vector3 groundPos;
     private RaycastHit2D hit;
     void Awake()
@@ -28,10 +29,13 @@ public class CritterSpawner : Spawner
             {
                 GameObject tempObj =  GetNextItem(critterPool.spawnedObjectPool);
                 tempObj.SetActive(true);
-                //reset the scale
-                tempObj.transform.localScale = Vector3.one;
-                //change the size of the critter
-                tempObj.transform.localScale *= Random.Range(1f, 1.4f);
+                if(changeSizeOnSpawn)
+                {
+                    //reset the scale
+                    tempObj.transform.localScale = Vector3.one;
+                    //change the size of the critter
+                    tempObj.transform.localScale *= Random.Range(1f, 1.4f);
+                }
                 //move the critter into spawn pos
                 tempObj.transform.position = newSpawnPos;
             }

@@ -23,6 +23,10 @@ public class MasterSpawner : MonoBehaviour
     [Header("Critter Spawner")]
     public CritterSpawner critterSpawner;
 
+    [Header("Seedling Spawner")]
+    public CritterSpawner seedlingSpawner;
+    public float seedlingSpawnChance;
+
     [Header("Progression")]
     public int minSpawnAmount, maxSpawnAmount;
     public int minRewardAmount, maxRewardAmount;
@@ -89,6 +93,10 @@ public class MasterSpawner : MonoBehaviour
     {
         if(Statics.DistanceTraveled >= spawnInterval)
         {
+            //spawn seeddling at random chance
+            var randomNum = Random.Range(0f,1f);
+            if(randomNum < seedlingSpawnChance) seedlingSpawner.DoSpawn();
+            //spawn Mouse
             critterSpawner.DoSpawn();
             spawnInterval = getSpawnInterval();
             if(_spawnAmount <=0 && _rewardAmount <=0)

@@ -134,7 +134,7 @@ public class EasyTween : MonoBehaviour
         currentAnimationGoing.LateAnimationFrame(rectTransform);
     }
 
-    private void TriggerOpenClose()
+    public void TriggerOpenClose()
     {
         if (!currentAnimationGoing.IsObjectOpened())
         {

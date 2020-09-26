@@ -8,9 +8,11 @@ public abstract class Variable<T> : BaseVariable
 {
     public T DefaultValue;
 	public T RuntimeValue { get; set; }
-    
+    public bool autoReset;
+
 	protected void OnEnable()
 	{
-		RuntimeValue = DefaultValue;
+		if(autoReset)
+			RuntimeValue = DefaultValue;
 	}
 }

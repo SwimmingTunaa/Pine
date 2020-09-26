@@ -7,41 +7,22 @@ public class StatsManager: MonoBehaviour
 {
     public static StatsManager Instance;
     public int currentScore;
-    public int stickerCollected;
+    public int stickerCollectedThisRound;
 
     [Header("UI")]
     public GameObject scoreAddText;
     public Transform scoreSpawnPos;
-    public TextMeshProUGUI furthestTravelled;
-    public TextMeshProUGUI mostStickersCollected;
-    public TextMeshProUGUI hairCuts;
-    public TextMeshProUGUI killByFans;
-    public TextMeshProUGUI CouchBounce;
-    public TextMeshProUGUI mouseStomped;
-    public TextMeshProUGUI spidersSquished;
     void Awake()
     {
         if (Instance != null) 
                 Destroy(gameObject);
             else
                 Instance = this;
-        Initialise();
-    }
-
-    public void Initialise()
-    {
-        furthestTravelled.text = PlayerPrefs.GetInt("LongestDistanceTravelled").ToString() + "m";
-        mostStickersCollected.text = PlayerPrefs.GetInt("StickersCollected").ToString();
-        hairCuts.text = PlayerPrefs.GetInt("HaircutsTaken").ToString();
-        killByFans.text = PlayerPrefs.GetInt("KilledByFans").ToString();
-        CouchBounce.text = PlayerPrefs.GetInt("CouchBounce").ToString();
-        mouseStomped.text = PlayerPrefs.GetInt("Mouse Killed").ToString();
-        spidersSquished.text = PlayerPrefs.GetInt("Spider Killed").ToString();
     }
 
     public void AddStickersToTotalOwnedAmount()
     {
-        int allStickers = PlayerPrefs.GetInt("TotalStickers") + stickerCollected;
+        int allStickers = PlayerPrefs.GetInt("TotalStickers") + stickerCollectedThisRound;
         PlayerPrefs.SetInt("TotalStickers", allStickers);
     }
 
@@ -56,10 +37,10 @@ public class StatsManager: MonoBehaviour
         int allStickers = PlayerPrefs.GetInt("TotalStickers") - amount;
         PlayerPrefs.SetInt("TotalStickers", allStickers);
     }
-    public void AddStickersToTotalEverCollected()
+    public void UpdateMostStickersEverCollected()
     {
-        if(stickerCollected > PlayerPrefs.GetInt("StickersCollected"))
-            PlayerPrefs.SetInt("StickersCollected", stickerCollected);
+        if(stickerCollectedThisRound > PlayerPrefs.GetInt("StickersCollected"))
+            PlayerPrefs.SetInt("StickersCollected", stickerCollectedThisRound);
     }
     
     public void UpdateFurthestDistanceTravelled()

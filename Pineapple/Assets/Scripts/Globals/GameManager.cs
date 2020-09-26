@@ -17,9 +17,8 @@ public class GameManager : MonoBehaviour
     public Animator screenFader;
 
     [Header("Game UI")]
-    public FloatVariable distanceCounter;
-    public TextMeshProUGUI distanceText;
-    public TextMeshProUGUI stickersText;
+    public FloatVariable distanceVariable;
+    public IntVariable stickersCollectedVar;
     public SpeechBubble speachBubble;
 
     [Header("Chaser")]
@@ -37,12 +36,7 @@ public class GameManager : MonoBehaviour
     public CinemachineVirtualCamera boostCamera;
 
     [Header("Gameover")]
-    public TextMeshProUGUI finalScore;
     public GameObject gameoverUIBody;
-    public TextMeshProUGUI totalStickers;
-    public TextMeshProUGUI gameoverStickerText;
-    public TextMeshProUGUI gameOverFinalScore;
-    public TextMeshProUGUI gameOverTotalScore;
 
     [Header("Retry")]
     public Button playButton;
@@ -104,11 +98,12 @@ public class GameManager : MonoBehaviour
         //chaseVirtualCamera.Follow = _player.cameraFollowTarget;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Statics.DistanceTraveled = Mathf.RoundToInt(Vector2.Distance(_playerCachedPos, _trackedPosition.transform.position));
-        distanceText.text = Statics.DistanceTraveled .ToString()+"m";
-        stickersText.text = stats.stickerCollected.ToString();
+        distanceVariable.RuntimeValue = Statics.DistanceTraveled;
+        //distanceText.text = Statics.DistanceTraveled .ToString()+"m";
+        stickersCollectedVar.RuntimeValue = stats.stickerCollectedThisRound;
         if(!Statics.paused)
         {
             if(!_playerHealth.dead) 
@@ -165,19 +160,12 @@ public class GameManager : MonoBehaviour
             {
                 _gameover = true;
                 PauseGame(true);
-                gameoverUIBody.SetActive(true);
-                finalScore.text = distanceText.text;
-                distanceText.gameObject.SetActive(false);
-                //set Stickers collected in this round
-                gameoverStickerText.text = stats.stickerCollected.ToString() + " x 10";
                 //the total amount of stickers the player has
                 stats.AddStickersToTotalOwnedAmount();
-                totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
-                gameOverFinalScore.text = stats.currentScore.ToString();
-                gameOverTotalScore.text = (stats.currentScore + (stats.stickerCollected * 10) + Statics.DistanceTraveled).ToString();
                 //update stats part
-                stats.AddStickersToTotalEverCollected();
+                stats.UpdateMostStickersEverCollected();
                 stats.UpdateFurthestDistanceTravelled();  
+                gameoverUIBody.SetActive(true);
             }
         }
     }

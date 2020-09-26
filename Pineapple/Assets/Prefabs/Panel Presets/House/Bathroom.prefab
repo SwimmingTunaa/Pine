@@ -771,33 +771,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &324533561602130201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6113836687402317582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b3ec7cbf1606e447b80900d6dabc06e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  action: 0
-  spawner: Critter Spawner
-  spawnChance: 0
---- !u!114 &449200343025399296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6113836687402317582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: defdcf21ff7503144a149e3646cd65ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6184319292336183453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,15 +1511,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 148051490961415133, guid: ba3c04eedcc0631478f366c4823dc425, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba3c04eedcc0631478f366c4823dc425, type: 3}
---- !u!1 &6113836687402317582 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4618494608797301468, guid: ba3c04eedcc0631478f366c4823dc425,
-    type: 3}
-  m_PrefabInstance: {fileID: 1495342906464456146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6898263087696771472 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,

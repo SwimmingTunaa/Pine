@@ -5,9 +5,6 @@ using UnityEngine;
 public class AddScore : MonoBehaviour
 {
     public int triggerAmount = 1;
-    public int scoreToAdd;
-    public string scoreMessage;
-    public bool isTrigger; 
     public string statReference;
     
     private int startTriggerAmount;
@@ -38,12 +35,9 @@ public class AddScore : MonoBehaviour
 
     void AddScoreAndStats(GameObject other)
     {
-        if(other.CompareTag("Player") || other.CompareTag("Hair") && triggerAmount > 0 && !isTrigger)
+        if(other.CompareTag("Player") || other.CompareTag("Hair") && triggerAmount > 0)
         {
-            triggerAmount--;
-            //StatsManager.Instance.AddToScore(scoreToAdd, scoreMessage);
-            if(statReference != null)
-                StatsManager.Instance.AddToAStat(1, statReference);
+            StatsManager.Instance?.AddToAStat(1, statReference);
         }
     }
 }

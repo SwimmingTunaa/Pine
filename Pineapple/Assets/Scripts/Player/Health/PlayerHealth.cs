@@ -86,9 +86,9 @@ public class PlayerHealth : HealthGeneric {
 
 	IEnumerator killPlayer()
 	{
-		playerController._anim.SetBool("Sad", true);
-		//player is dead
-		dead = true;
+		playerController._anim.SetTrigger("Sad");
+	
+		
 		playerController.pausePlayer = true;
 		if(takeScreenShot)
 			yield return (StartCoroutine(takeScreenShot.ScreenShot()));
@@ -99,6 +99,8 @@ public class PlayerHealth : HealthGeneric {
 		{
 			r.AddForce(new Vector2(impulseForce.x + Random.Range(-2,2), impulseForce.y + Random.Range(-2,2)), ForceMode2D.Impulse);
 		}
+		//player is dead
+		dead = true;
 		gameObject.SetActive(false);
 	}
 

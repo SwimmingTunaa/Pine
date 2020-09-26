@@ -14,7 +14,6 @@ public class PlayRandomAnimation : MonoBehaviour
 
     void Start()
     {
-        
         anim.Play(stateName, -1, Random.Range(0.0f,1.0f));
     }
 

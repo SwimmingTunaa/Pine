@@ -108,8 +108,8 @@ public class PanelSpawner : Spawner
                  Vector3 spawnPos = GetNextSpawnPosVertical(_firstPanel == null ? startingPanel.GetComponentInChildren<SpriteRenderer>() : 
                                                             _firstPanel.GetComponentInChildren<SpriteRenderer>(),
                                                             _nextBelowPanel.GetComponentInChildren<SpriteRenderer>());
-                _nextBelowPanel.SetActive(true);
                 _nextBelowPanel.transform.position = spawnPos;
+                _nextBelowPanel.SetActive(true);
                 _nextBelowPanel.transform.parent = bottomPanelHolder.transform;
                 previousPanel = _nextBelowPanel;
                 _firstPanel = _nextBelowPanel;                
