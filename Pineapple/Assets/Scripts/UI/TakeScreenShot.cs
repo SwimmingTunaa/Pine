@@ -19,6 +19,10 @@ public class TakeScreenShot : MonoBehaviour
         _screenshotTexture.Apply();
         Sprite tempsprite = Sprite.Create(_screenshotTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0,0));
 		screenshotUI.sprite = tempsprite;
+        screenshotUI.SetNativeSize();
+        screenshotUI.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        screenshotUI.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        screenshotUI.rectTransform.anchoredPosition = Vector2.zero;
         screenshotCamera.gameObject.SetActive(false);
 	}
 }

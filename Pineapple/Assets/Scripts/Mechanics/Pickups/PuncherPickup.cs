@@ -7,6 +7,7 @@ public class PuncherPickup : PickUpsBase
     [Header("Puncher")]
     public GameObject puncherObj;
     public GameObject visual;
+    public float speedIncrease;
 
     [Header("VFX")]
     private PlayerController pController;
@@ -62,6 +63,8 @@ public class PuncherPickup : PickUpsBase
         {
             StartCoroutine(ActivateEffect(_health.gameObject, false));
             _disableEffect = true;
+            _health.Invulnerable(1.5f);
+            MasterSpawner.Instance.ChangeMinMax(0,0, true);
         }
         triggerAmount = 1;
     }
@@ -99,7 +102,11 @@ public class PuncherPickup : PickUpsBase
                 //adds speed to player
                 if(pController == null)
                     pController =  player.GetComponent<PlayerController>();
-                pController.speed = enableEffect ? pController.speed += 10: pController.speed -=10;
+                if(enabled)
+                    pController.speed += speedIncrease;
+                else
+                    pController.speed -= speedIncrease;
+                //pController.speed = enableEffect ? pController.speed += speedIncrease: pController.speed -=speedIncrease;
                 GameManager.Instance.ToggleVFXCamera(false);
                 Time.timeScale = 1;
                 
@@ -117,6 +124,8 @@ public class PuncherPickup : PickUpsBase
                     _effectActive = false;
                     GetComponent<ObjectID>().Disable();
                 }
+                //make it so that it spawns obstacles for player to punch
+                MasterSpawner.Instance.ChangeMinMax(8f,10f, false);
                 _sfxActive = false;
             }
         }

@@ -14,7 +14,7 @@ public abstract class ShopItem : MonoBehaviour
     [HideInInspector] public PickUpObject itemInstance;
 
     [Header("Text")]
-    public Slider progressBar;
+    public SetBar progressBar;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI purchaseText;
     public TextMeshProUGUI priceText;
@@ -144,7 +144,7 @@ public abstract class ShopItem : MonoBehaviour
     {
         levelText.text = _currentLevel + "/" + itemInstance.itemMaxLevel;
         priceText.text = itemInstance.itemCost.ToString("N0");
-        progressBar.maxValue = itemInstance.itemMaxLevel;
-        progressBar.value = _currentLevel;
+        progressBar.MaxLevelPoints = itemInstance.itemMaxLevel;
+        progressBar.Level = _currentLevel;
     }
 }

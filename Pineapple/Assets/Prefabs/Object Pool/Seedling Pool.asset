@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Seedling Pool
   m_EditorClassIdentifier: 
   manual: 0
-  spawnChanceValue: 1
+  spawnChanceValue: 0.8
   objectType: 4
   duplicateAmount: 3
   objectPool:
   - {fileID: 3512942295862931525, guid: 9750f88c636cf2e449745232ba01b4b0, type: 3}
-  spawnedObjectPool: []
+  spawnedObjectPool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

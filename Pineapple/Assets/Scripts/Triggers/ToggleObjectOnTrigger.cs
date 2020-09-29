@@ -9,6 +9,8 @@ public class ToggleObjectOnTrigger : MonoBehaviour
     public bool toggle;
     public GameObject[] objects;
 
+    void OnEnable() => triggerAmount = 1;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(triggerAmount > 0 && GetComponent<Collider2D>().IsTouchingLayers(whoCanTriggerThis))

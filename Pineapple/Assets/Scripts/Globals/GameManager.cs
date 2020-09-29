@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Gameover")]
     public GameObject gameoverUIBody;
-
+    public AudioClip gameOverSound;
+    
     [Header("Retry")]
     public Button playButton;
     public MainMenu startMenu;
@@ -154,7 +155,8 @@ public class GameManager : MonoBehaviour
         followVirtualCamera.Follow.position = newCamPos;
         //change what the tracked object for distance is
         _trackedPosition = followVirtualCamera.Follow.gameObject;
-        if(_playerHealth.BodyPartsStopMoving())
+
+        if(_playerHealth.BodyPartsStopMoving() && !CharacterManager.activeCharacter.GetComponent<CharacterController2D>().isFlying)
         {
             if(!_gameover)
             {

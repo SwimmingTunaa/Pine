@@ -6,7 +6,8 @@ public class AddScore : MonoBehaviour
 {
     public int triggerAmount = 1;
     public string statReference;
-    
+    public IntVariable intToAddTo;
+
     private int startTriggerAmount;
     void Awake()
     {
@@ -15,12 +16,12 @@ public class AddScore : MonoBehaviour
 
     void Start()
     {
-        triggerAmount = startTriggerAmount;
+        triggerAmount = 1;
     }
 
     void OnEnable()
     {
-        triggerAmount = startTriggerAmount;
+        triggerAmount = 1;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -37,7 +38,9 @@ public class AddScore : MonoBehaviour
     {
         if(other.CompareTag("Player") || other.CompareTag("Hair") && triggerAmount > 0)
         {
+            triggerAmount--;
             StatsManager.Instance?.AddToAStat(1, statReference);
+            if(intToAddTo) intToAddTo.RuntimeValue += 1;
         }
     }
 }

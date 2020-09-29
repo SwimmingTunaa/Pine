@@ -40,6 +40,8 @@ public class MasterSpawner : MonoBehaviour
     private Dictionary<Spawner, float>  _rewardSpawnerList = new Dictionary<Spawner, float>();
     private float _randomInterval;
     private int pickUpSpawned; //the amount of pickup already spawned;
+    private float _startMin;
+    private float _startMax;
     
     void Awake()
     {
@@ -47,7 +49,8 @@ public class MasterSpawner : MonoBehaviour
                 Destroy(gameObject);
             else
                 Instance = this;
-                
+        _startMax = maxDistance;
+        _startMin = minDistance;
         //add these to the challenges
     }
     void Start()
@@ -69,7 +72,7 @@ public class MasterSpawner : MonoBehaviour
         _spawnAmount = Random.Range(minSpawnAmount,maxSpawnAmount);
         _randomInterval = Random.Range(minDistance, maxDistance);
         spawnInterval = Statics.DistanceTraveled + _randomInterval;
-        Debug.Log("Spawn Amount: " + _spawnAmount);
+        //Debug.Log("Spawn Amount: " + _spawnAmount);
         //if the player restarted then spawn rewards intially
         if(Statics.playerRestartedGame)
         {
@@ -124,8 +127,8 @@ public class MasterSpawner : MonoBehaviour
                 //change the spawn distance for rewards then revert it back to the original
                 float tempMin = minDistance;
                 float tempMax = maxDistance;
-                minDistance = 15f;
-                maxDistance = 18f;
+                minDistance = 8f;
+                maxDistance = 12f;
 
                 SpawnType(_rewardSpawnerList);
 
@@ -201,6 +204,20 @@ public class MasterSpawner : MonoBehaviour
     public void ChangeSpawnAmount(int newSpawnAmount)
     {
         _spawnAmount = newSpawnAmount;
+    }
+
+    public void ChangeMinMax(float newMin, float newMax, bool defualt)
+    {
+        if(!defualt)
+        {
+            minDistance = newMin;
+            maxDistance = newMax;
+        }
+        else
+            {
+                minDistance = _startMin;
+                maxDistance = _startMax;
+            }
     }
 
     float getSpawnInterval()

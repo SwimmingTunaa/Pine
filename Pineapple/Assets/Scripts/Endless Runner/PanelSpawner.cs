@@ -58,7 +58,7 @@ public class PanelSpawner : Spawner
         {
             //change the pool to match the region
                 _pool = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag].panels;
-                print("Panel Tag: " + _nextPanelToSpawn.tag);
+//                print("Panel Tag: " + _nextPanelToSpawn.tag);
             //change the region to match the next set of panels
                 //MasterSpawner.Instance.activeRegion = RegionPoolManager.regionDic[_nextPanelToSpawn.gameObject.tag];
         }

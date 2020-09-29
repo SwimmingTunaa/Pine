@@ -31,7 +31,7 @@ public class LevelProgressionSystem : MonoBehaviour
     {
         _masterSpawner = MasterSpawner.Instance;
         _currentCheckpoint = PlayerPrefs.GetInt("FirstTimeStart")<1 ? 40f: speedCheckpointDistance;
-        Debug.Log(_currentCheckpoint + " current checkpoint");
+//        Debug.Log(_currentCheckpoint + " current checkpoint");
         //Debug.Log(PlayerPrefs.GetInt("FirstTimeStart"));
     }
 

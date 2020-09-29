@@ -87,12 +87,11 @@ public class PlayerHealth : HealthGeneric {
 	IEnumerator killPlayer()
 	{
 		playerController._anim.SetTrigger("Sad");
-	
-		
 		playerController.pausePlayer = true;
 		if(takeScreenShot)
 			yield return (StartCoroutine(takeScreenShot.ScreenShot()));
 		//Instantiate(playerController._haircut ? deathEffectHairCut : deathEffect, transform.position + Vector3.up * 2.5f, transform.rotation);
+		//the sliced body
 		_deathEffect.SetActive(true);
 		_deathEffect.transform.parent = null;
 		foreach(Rigidbody2D r in _deathEffect.GetComponentsInChildren<Rigidbody2D>())
@@ -101,6 +100,7 @@ public class PlayerHealth : HealthGeneric {
 		}
 		//player is dead
 		dead = true;
+		MixLevels.Instance.FadeBGMtoGOM(true);
 		gameObject.SetActive(false);
 	}
 

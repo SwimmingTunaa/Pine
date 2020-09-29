@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Wander : MonoBehaviour
 {
+    public bool moveOneDirection;
+    public float xPosToMove;
     public float speed;
     public float maxDistance = 2;
     public float wanderTime = 2;
 
     private float _timer;
     private Vector3 targetPos;
+    private bool _move = true;
 
    void Awake()
     {
@@ -29,13 +32,23 @@ public class Wander : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (transform.position == targetPos)
-            targetPos = NewPosition(transform.position.x + Random.Range(-maxDistance + 2, maxDistance));
-            else if (Timer(wanderTime))
-                targetPos = NewPosition(transform.position.x + Random.Range(-maxDistance + 2, maxDistance));
         Move();
+        if (transform.position == targetPos)
+        {
+            if(!moveOneDirection)
+                targetPos = NewPosition(transform.position.x + Random.Range(-maxDistance + 2, maxDistance));
+            else
+                targetPos = NewPosition(transform.position.x + xPosToMove);
+        }
+            else if (Timer(wanderTime))
+            {
+                if(!moveOneDirection)
+                    targetPos = NewPosition(transform.position.x + Random.Range(-maxDistance + 2, maxDistance));
+                else   
+                    targetPos = NewPosition(transform.position.x + xPosToMove);
+            }
     }
 
     public void OnTriggerExit2D(Collider2D other)
@@ -63,7 +76,13 @@ public class Wander : MonoBehaviour
 
     void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed); 
+        if(_move)
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
+    }
+    
+    public void ToggleMove(bool toggle)
+    {
+        _move = toggle;
     }
 
     bool Timer(float wanderTime)
@@ -71,7 +90,7 @@ public class Wander : MonoBehaviour
        _timer += Time.deltaTime;
         if(_timer > wanderTime)
         {
-            _timer = 0f;
+            //_timer = 0f;
             return true;
         }
         return false;

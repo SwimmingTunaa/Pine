@@ -86,10 +86,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerAmount: 1
+  debuff: 0
   item: {fileID: 11400000, guid: 22ad625ae6542cb4ea01a53ce6e2b3a7, type: 2}
   _timerActive: 0
   puncherObj: {fileID: 1319775999022132397}
   visual: {fileID: 2552167452966878694}
+  speedIncrease: 10
   transformVFX: {fileID: 8109033797258351906}
   transformSFX: {fileID: 8300000, guid: e268b7b52cfc89b4fa217cac89748849, type: 3}
 --- !u!114 &1721756419

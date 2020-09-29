@@ -22,6 +22,10 @@ public class MainMenu : MonoBehaviour
         else
             if(PlayerPrefs.GetInt("Retry") == 1)
             {
+                  foreach (GameObject g in objectsToToggleOff)
+                {
+                    g.SetActive(false);
+                }
                 MainMenuDisable(1);
                 PlayerPrefs.SetInt("Retry", 0);
             }
@@ -63,7 +67,8 @@ public class MainMenu : MonoBehaviour
         Statics.paused = enable;
         gameUI.SetActive(!enable);
         GameManager.PauseGame(enable);
-        this.gameObject.SetActive(enable);       
+        this.gameObject.SetActive(enable);      
+        CharacterManager.activeVisual.GetComponent<Animator>().SetTrigger("Angry"); 
     }
 }
  
