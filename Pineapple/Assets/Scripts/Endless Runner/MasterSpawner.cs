@@ -96,9 +96,6 @@ public class MasterSpawner : MonoBehaviour
     {
         if(Statics.DistanceTraveled >= spawnInterval)
         {
-            //spawn seeddling at random chance
-            var randomNum = Random.Range(0f,1f);
-            if(randomNum < seedlingSpawnChance) seedlingSpawner.DoSpawn();
             //spawn Mouse
             critterSpawner.DoSpawn();
             spawnInterval = getSpawnInterval();
@@ -135,7 +132,14 @@ public class MasterSpawner : MonoBehaviour
                 minDistance = tempMin;
                 maxDistance = tempMax;
             }    
-        }
+        }else
+            if(Statics.DistanceTraveled >= spawnInterval + 10f)
+            {
+                //spawn seeddling at random chance
+                var randomNum = Random.Range(0f,1f);
+                if(randomNum < seedlingSpawnChance) seedlingSpawner.DoSpawn();
+            }
+            
     }
 
     public void AddToChallengeChanceList(Spawner spawner, float chance)
@@ -161,11 +165,11 @@ public class MasterSpawner : MonoBehaviour
                     //make sure the reward only spawn pick ups items once
                     if(s.Key == RewardSpawner.instance && pickUpSpawned == 0)
                     {
-                        if(RewardSpawner.instance.poolToSpawnInstances[RewardSpawner.instance.randomIndex].objectType == ObjType.Pickups)
+                        if(RewardSpawner.instance.poolToSpawn[RewardSpawner.instance.randomIndex].objectType == ObjType.Pickups)
                         {
                             pickUpSpawned++;
                             //check to see if its the special item spawner
-                            if(RewardSpawner.instance.poolToSpawnInstances[RewardSpawner.instance.randomIndex] == RewardSpawner.instance.poolToSpawnInstances[2])
+                            if(RewardSpawner.instance.poolToSpawn[RewardSpawner.instance.randomIndex] == RewardSpawner.instance.poolToSpawn[2])
                             {
                                 s.Key.DoSpawn();
                                 //make sure no more reward spawn after special item has been spawned

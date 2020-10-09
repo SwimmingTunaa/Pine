@@ -48,11 +48,14 @@ public class CameraShake : MonoBehaviour
         }
         else
         {
-            shakeDuration = 0f;
+            
             cmNoise.m_AmplitudeGain = 0;
+            cmNoise.m_FrequencyGain = 0;
             activeVirtualCamera.transform.position = cameraStartPos.position;
             activeVirtualCamera.transform.rotation = cameraStartPos.rotation;
+            shakeDuration = 0f;
             shakeActive = false;
+
         }
     }
 }

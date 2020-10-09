@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PanelDestroyer : MonoBehaviour
 {   
-    public PanelSpawner pSpawner;
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.GetComponent<ObjectID>())
@@ -13,12 +11,14 @@ public class PanelDestroyer : MonoBehaviour
             ObjectID id = other.GetComponent<ObjectID>();
             if(id.objectType == ObjType.Panel)
             {
-                pSpawner.SpawnSets();
+                PanelSpawner.Instance.SpawnSets();
                 other.transform.parent = null;
             }
             if (id.objectType == ObjType.Obstacle)
+            {
                 ObstacleSpawner.Instance.activeObstacles.Remove(other.gameObject);
-                
+            }
+
             if(!id.selfDestroy) id.Disable();
         }
     }

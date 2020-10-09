@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Pick Ups Pool
   m_EditorClassIdentifier: 
   manual: 0
+  shouldExpand: 1
   spawnChanceValue: 1
   objectType: 3
   duplicateAmount: 1
   objectPool:
   - {fileID: 3353038822971548096, guid: add93cfe78e8ee34faa7ed5f59b97a74, type: 3}
   - {fileID: 444876811940292258, guid: cedce541419339e4ca47d0d5aa6c3c48, type: 3}
-  spawnedObjectPool: []
+  spawnedObjectPool:
+  - {fileID: 0}
+  - {fileID: 0}

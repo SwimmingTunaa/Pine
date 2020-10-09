@@ -6,7 +6,7 @@ public class MovePanelsToNewHolder : MonoBehaviour
 {   
     private int triggerAmount = 1;
 
-    void OnEnable()
+    void OnDisable()
     {
         triggerAmount = 1;
     }
@@ -16,10 +16,9 @@ public class MovePanelsToNewHolder : MonoBehaviour
         if(triggerAmount > 0 && other.CompareTag("Player"))
         {
             GameManager.Instance.cameraFollower.move = true;
-            triggerAmount--;
-            PanelSpawner.Instance.ChangePanelSpawnPoint();
             ParallaxManager.instance.ChangeParallax();
-            print(MasterSpawner.Instance.activeRegion.tag);
+            PanelSpawner.Instance.ChangePanelSpawnPoint();
+            MoveBlackBars.SetBlackBarHeight(PanelSpawner._Instance._currentStartingPanel.GetComponentInChildren<SpriteRenderer>());
             if(MasterSpawner.Instance.activeRegion.tag == "Cloud" || MasterSpawner.Instance.activeRegion.tag == "Storm")
             {
                 StartCoroutine(CharacterManager.activeCharacter.GetComponent<PlayerController>().EquipHoverBoard());
@@ -29,6 +28,7 @@ public class MovePanelsToNewHolder : MonoBehaviour
                 other.GetComponent<CharacterController2D>().isFlying = false;
                 CharacterManager.activeCharacter.GetComponent<PlayerController>().UnequipHoverBoard();
             }
+            triggerAmount--;
         }
     }
 }

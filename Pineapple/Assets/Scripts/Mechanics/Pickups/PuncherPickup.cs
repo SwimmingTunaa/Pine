@@ -21,29 +21,55 @@ public class PuncherPickup : PickUpsBase
     private bool _effectActive = false;
     private bool _disableEffect;
 
+    void Start()
+    {
+        _health = CharacterManager.activeCharacter.GetComponent<PlayerHealth>();
+        outfit = CharacterManager.activeCharacter.GetComponentInChildren<Outfits>();
+
+    }
+
     void OnEnable()
     {
+        triggerAmount = 1;
         puncherObj.SetActive(false);
         visual.SetActive(true);
         _disableEffect = false;
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(triggerAmount >= 1 && (other.CompareTag("Player") || other.CompareTag("Hair")))
         {
             triggerAmount--;
-            _health =   CharacterManager.activeCharacter.GetComponent<PlayerHealth>();
             DoAction(_health.gameObject);
         }
     }
 
+    // void CheckPickUpStatus()
+    // {
+    //     while(_effectActive)
+    //     {
+    //         if((_timerActive && Timer(item.Instance.effectDuration) && item.Instance.effectDuration > 0) || (_health.health <= 1 && _health.health > 0))
+    //         {
+    //             print("disable effect");
+    //             //_effectActive = false;
+    //             //DisablePickUp();
+    //         }
+    //         else if(_health.dead)
+    //             print("disable effect dead");
+    //             //QuickDisablePickUp();   
+    //     }
+    // }
+
     public override void Update()
     {
-        print(item.Instance.effectDuration);
-        if(_effectActive && (_timerActive && item.Instance.effectDuration > 0 && Timer(item.Instance.effectDuration) ||_health != null && _health.health <= 1))
+//        print(item.Instance.effectDuration);
+        if(_effectActive && (_timerActive && item.Instance.effectDuration > 0 && Timer(item.Instance.effectDuration) ||(_health.health == 1 && _health.health > 0)))
         {
             DisablePickUp();
-        }        
+        }
+        else if(_health.dead && _effectActive)
+            QuickDisablePickUp();        
     }
 
     public override void DoAction(GameObject player)
@@ -66,7 +92,17 @@ public class PuncherPickup : PickUpsBase
             _health.Invulnerable(1.5f);
             MasterSpawner.Instance.ChangeMinMax(0,0, true);
         }
-        triggerAmount = 1;
+    }
+
+    public void QuickDisablePickUp()
+    {
+        _effectActive = false;
+        _disableEffect = true;
+        transformVFX.SetActive(true);
+        transformVFX.transform.position = _health.gameObject.transform.position;
+        transformVFX.transform.parent = null;
+        puncherObj.SetActive(false);
+        outfit.puncherOutFit.SetActive(false);
     }
 
     IEnumerator ActivateEffect(GameObject player, bool enableEffect)
@@ -81,7 +117,6 @@ public class PuncherPickup : PickUpsBase
             while(_sfxActive)
             {
                 _anim = CharacterManager.activeCharacter.GetComponentInChildren<Animator>();
-                outfit = CharacterManager.activeCharacter.GetComponentInChildren<Outfits>();
                 //shows face change
                 _anim.SetBool("Fierce", enableEffect);
                 yield return wait.NewTime(0.2f);
@@ -102,6 +137,7 @@ public class PuncherPickup : PickUpsBase
                 //adds speed to player
                 if(pController == null)
                     pController =  player.GetComponent<PlayerController>();
+                    
                 if(enabled)
                     pController.speed += speedIncrease;
                 else
@@ -120,10 +156,15 @@ public class PuncherPickup : PickUpsBase
                 if(!enableEffect)
                 {
                     if(_health.health > 1)
-                        _health.health = 1;
+                        _health.health--;
                     _effectActive = false;
                     GetComponent<ObjectID>().Disable();
                 }
+                // if(enableEffect)
+                // {
+                //     _timerActive = true;
+                //     Invoke("CheckPickUpStatus",0f);
+                // } 
                 //make it so that it spawns obstacles for player to punch
                 MasterSpawner.Instance.ChangeMinMax(8f,10f, false);
                 _sfxActive = false;

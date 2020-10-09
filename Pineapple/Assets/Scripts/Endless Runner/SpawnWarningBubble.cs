@@ -7,16 +7,11 @@ public class SpawnWarningBubble : MonoBehaviour
     public GameObject warningBubbleToSpawn;
     
     [HideInInspector] public GameObject warningBubbleClone;
-    private bool _firstSpawn;
     // Start is called before the first frame update
     void Awake()
     {
-        if(!_firstSpawn)
-        {
-            warningBubbleClone = Instantiate(warningBubbleToSpawn, transform.position, transform.rotation);
-            warningBubbleClone.transform.parent = Camera.main.transform;
-            warningBubbleClone.SetActive(false);
-            _firstSpawn = true;
-        }
+        warningBubbleClone = Instantiate(warningBubbleToSpawn, transform.position, transform.rotation);
+        warningBubbleClone.transform.parent = PoolManager.instance.transform;
+        warningBubbleClone.SetActive(false);
     }
 }

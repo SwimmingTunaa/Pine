@@ -10,17 +10,11 @@ public class RewardSpawner : Spawner
     public List<ObjectPools> poolToSpawn = new List<ObjectPools>();
     public GameObject[] spawnPoints;
     public int randomIndex;
-    public List<ObjectPools> poolToSpawnInstances = new List<ObjectPools>();
     public bool itemSpawned;
 
     void Awake()
     {
         instance = this;
-        for (int i = 0; i < poolToSpawn.Count;  i++)
-        {
-            poolToSpawnInstances.Add(Instantiate(poolToSpawn[i]));
-            poolToSpawnInstances[i].Initialise();
-        }
     }
 
     public override void DoSpawn()
@@ -31,14 +25,14 @@ public class RewardSpawner : Spawner
     void getPoolToSpawnFrom()
     {
         var randomIndexGetter = new cummulativeCalculator<ObjectPools>();
-        randomIndex = randomIndexGetter.GetRandomEntryIndex(poolToSpawnInstances);
-        ObjectPools poolToUse = poolToSpawnInstances[randomIndex];
+        randomIndex = randomIndexGetter.GetRandomEntryIndex(poolToSpawn);
+        ObjectPools poolToUse = poolToSpawn[randomIndex];
         //use sticker pool if an item is already spawned
-        if(itemCurrentlyActive || itemSpawned) poolToUse = poolToSpawnInstances[2];
+        if(itemCurrentlyActive || itemSpawned) poolToUse = poolToSpawn[2];
         else
             //checks to see if its item pools to make sure to only spawn one item at a time;
-            if(!itemSpawned && poolToUse != poolToSpawnInstances[2]) itemSpawned = true;
-        GameObject tempObj = GetNextItem(poolToUse.spawnedObjectPool);
+            if(!itemSpawned && poolToUse != poolToSpawn[2]) itemSpawned = true;
+        GameObject tempObj = poolToUse.GetNextItem();
         if(tempObj == null) return;
         tempObj.SetActive(true); 
         tempObj.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;        
@@ -46,8 +40,8 @@ public class RewardSpawner : Spawner
 
     public void ChangeRewardPoolSpawnChances(float stickerSpawnChance, float itemSpawnChance,float sItemSpawnChance)
     {
-        poolToSpawnInstances[0].spawnChanceValue = itemSpawnChance;
-        poolToSpawnInstances[1].spawnChanceValue = stickerSpawnChance;
-        poolToSpawnInstances[2].spawnChanceValue = sItemSpawnChance;
+        poolToSpawn[0].runTimeSpawnChanceValue = itemSpawnChance;
+        poolToSpawn[1].runTimeSpawnChanceValue = stickerSpawnChance;
+        poolToSpawn[2].runTimeSpawnChanceValue = sItemSpawnChance;
     }
 }

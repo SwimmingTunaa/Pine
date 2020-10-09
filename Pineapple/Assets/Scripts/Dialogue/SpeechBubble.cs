@@ -35,11 +35,11 @@ public class SpeechBubble : MonoBehaviour
 
     private void Update()
     {
-        //dialogue follow player hack
+       /* //dialogue follow player hack
         if (gameObject.activeInHierarchy && _attachedCharacter != null)
         {
             gameObject.transform.position = _attachedCharacter.transform.position + _currentConfig.bubbleOffset;
-        }
+        }*/
     }
 
     public void set(DialogueConfig dialogue)
@@ -56,8 +56,10 @@ public class SpeechBubble : MonoBehaviour
         _spriteRenderer.sprite = _currentConfig.sprite;
         // Set the bubble relative to the character talking
         if(_attachedCharacter != null)
+        {
             this.transform.position = _attachedCharacter.transform.position + _currentConfig.bubbleOffset;
-
+            this.transform.parent = _attachedCharacter.transform;
+        }
         // Set the text relative to bubble size.
         _textRect.localPosition = _currentConfig.textOffset;
     }

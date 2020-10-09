@@ -7,7 +7,8 @@ public enum ObjType{
    Obstacle,
    Sticker,
    Pickups,
-   Critter
+   Critter,
+   Other
 }
 
 public class ObjectID : MonoBehaviour
@@ -22,7 +23,6 @@ public class ObjectID : MonoBehaviour
 
    public void Disable()
    {
-      //remove this panel from the parent panel holder
       foreach(Transform t in transform)
       {
          //turns on all child object

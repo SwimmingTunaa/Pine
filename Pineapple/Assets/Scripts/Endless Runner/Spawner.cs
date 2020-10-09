@@ -40,30 +40,5 @@ public abstract class Spawner : MonoBehaviour
         return false;
     }*/
 
-    public abstract void DoSpawn();
-
-    public GameObject GetNextItem(List<GameObject> poolType)
-    {
-        GameObject objectToPool = null;
-        for (int i = 0; i < poolType.Count; i++)
-        {
-            GameObject tempObj = poolType[Random.Range(0,poolType.Count)];
-            objectToPool = tempObj;
-            if(!tempObj.activeInHierarchy)
-                return tempObj;
-        }
-        if (shouldExpand) 
-        {
-            GameObject obj = (GameObject)Instantiate(objectToPool);
-            if(GetComponent<ObjectID>() == null)
-                obj.GetComponent<ObjectID>().CreateID(ObjType.Obstacle);
-            obj.SetActive(false);
-            poolType.Add(obj);
-            return obj;
-        } 
-        else 
-            return null;
-    }
-
-   
+    public abstract void DoSpawn();  
 }

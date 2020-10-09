@@ -6,7 +6,6 @@ using TMPro;
 public class CharacterBuy : ShopItem
 {
     [Header("Character Info")]
-    public int itemCost;
     public CharacterManager characterManager;
     public GameObject characterPrefab;
     public bool equipped;
@@ -31,6 +30,8 @@ public class CharacterBuy : ShopItem
     public override void IncreaseItemLevel()
     {
         StatsManager.Instance.MinusStickers(item.itemCost);
+        if(item.seedlingCost > 0)
+            StatsManager.Instance.MinusSeedlings(item.seedlingCost);
         ShopManager.Instance.CloseConfirmation(item.name);
         characterPrefab.SetActive(true);
         PlayerPrefs.SetInt(itemAlreadyPurchased, 1);

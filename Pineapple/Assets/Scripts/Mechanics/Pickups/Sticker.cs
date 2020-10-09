@@ -10,6 +10,10 @@ public class Sticker : MonoBehaviour
     public int value;
     public AudioClip pickUpSound;
     public GameObject deathEffect;
+
+    [Header("Sticker Move To Player")]
+    public float moveSpeed = 30f;
+    public AnimationCurve animationCurve;
     [HideInInspector] public GameObject moveToTarget;
     [HideInInspector] public bool move;
   
@@ -35,7 +39,7 @@ public class Sticker : MonoBehaviour
     {
         if(move)
         {
-            moveStickerToTarget(CharacterManager.activeCharacter, 10f);
+            moveStickerToTarget(CharacterManager.activeVisual.gameObject, moveSpeed);
         }
     }
 
@@ -48,13 +52,14 @@ public class Sticker : MonoBehaviour
         deathEffect.SetActive(true);
         deathEffect.transform.parent = null;
         StatsManager.Instance.stickerCollectedThisRound += value;
-        move = false;
         gameObject.SetActive(false);
+        move = false;
         //base.DoAction(player);
     }
 
     public void moveStickerToTarget(GameObject target, float speed)
     {
-        transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.deltaTime * (speed + target.GetComponent<Rigidbody2D>().velocity.x));
+       transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * (speed * animationCurve.Evaluate(Time.time)));
+       //transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.deltaTime * (speed)); //+ target.GetComponent<Rigidbody2D>().velocity.x));
     }
 }

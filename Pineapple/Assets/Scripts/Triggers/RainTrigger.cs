@@ -24,7 +24,6 @@ public class RainTrigger : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            print("get rained on");
             character.AddForce(forceDirection);
             if(flySpeedDisable)
                 playerController.flySpeed = 0;

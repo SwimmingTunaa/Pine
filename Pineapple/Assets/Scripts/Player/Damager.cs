@@ -6,9 +6,9 @@ public class Damager : MonoBehaviour
 {
     public float DamageAmount = 1;
     public LayerMask layerMask;
-    private Collider2D myCollider;
+    protected Collider2D myCollider;
 
-    void Start()
+    public virtual void Awake()
     {
         myCollider = gameObject.GetComponent<Collider2D>();
     }

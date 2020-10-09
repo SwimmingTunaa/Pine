@@ -9449,7 +9449,7 @@ PrefabInstance:
     - target: {fileID: 121520208479176092, guid: 2f48740c090f75248921f49d8987550b,
         type: 3}
       propertyPath: m_Name
-      value: Sticker Big
+      value: Sticker Big Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4156494940163766650, guid: 2f48740c090f75248921f49d8987550b,
         type: 3}
@@ -9521,6 +9521,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2673152698942994986, guid: 2f48740c090f75248921f49d8987550b,
+        type: 3}
+      propertyPath: value
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2673152698942994986, guid: 2f48740c090f75248921f49d8987550b,
+        type: 3}
+      propertyPath: pickUpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 859fc284d8dff604f948f57eef23d5bf, type: 3}
+    - target: {fileID: 5495592722614067275, guid: 2f48740c090f75248921f49d8987550b,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.86
+      objectReference: {fileID: 0}
     - target: {fileID: 703678376333438626, guid: 2f48740c090f75248921f49d8987550b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -9535,26 +9550,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.3839
-      objectReference: {fileID: 0}
-    - target: {fileID: 2673152698942994986, guid: 2f48740c090f75248921f49d8987550b,
-        type: 3}
-      propertyPath: value
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2673152698942994986, guid: 2f48740c090f75248921f49d8987550b,
-        type: 3}
-      propertyPath: pickUpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 859fc284d8dff604f948f57eef23d5bf, type: 3}
-    - target: {fileID: 6265919984889424571, guid: 2f48740c090f75248921f49d8987550b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1078251201059574856, guid: 2f48740c090f75248921f49d8987550b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1013918734143964178, guid: 2f48740c090f75248921f49d8987550b,
         type: 3}
@@ -9642,10 +9637,15 @@ PrefabInstance:
       propertyPath: TrailModule.enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5495592722614067275, guid: 2f48740c090f75248921f49d8987550b,
+    - target: {fileID: 1078251201059574856, guid: 2f48740c090f75248921f49d8987550b,
         type: 3}
-      propertyPath: m_Radius
-      value: 0.86
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265919984889424571, guid: 2f48740c090f75248921f49d8987550b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f48740c090f75248921f49d8987550b, type: 3}

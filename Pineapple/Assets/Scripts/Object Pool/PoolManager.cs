@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static PoolManager instance;
+    public List<ObjectPools> listOfPools = new List<ObjectPools>();
+
+    void Awake()
     {
-        
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+            Invoke("InitialisePools", 0.01f);
+        }
+        else
+            Destroy(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    void InitialisePools()
     {
-        
+        foreach(ObjectPools o in listOfPools)
+        {
+            o.Initialise();
+        }
     }
 }

@@ -51,6 +51,31 @@ MonoBehaviour:
   value: 1
   pickUpSound: {fileID: 8300000, guid: 8f54db8b1abd7384a8e4a5f754b6e9af, type: 3}
   deathEffect: {fileID: 925110804261391364}
+  moveSpeed: 30
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 32.103153
+      outSlope: 32.103153
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.033333335
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -5.176292
+      outSlope: -5.176292
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12916666
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   moveToTarget: {fileID: 0}
   move: 0
 --- !u!82 &1025478750610966842
@@ -285,14 +310,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4156494940163766650}
     m_Modifications:
-    - target: {fileID: 1247311384876784, guid: 902d0bdf181c1a34dab70972f61d339b, type: 3}
-      propertyPath: m_Name
-      value: Sticker Pick Up Effect
-      objectReference: {fileID: 0}
-    - target: {fileID: 1247311384876784, guid: 902d0bdf181c1a34dab70972f61d339b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4782282035096714, guid: 902d0bdf181c1a34dab70972f61d339b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -335,6 +352,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4782282035096714, guid: 902d0bdf181c1a34dab70972f61d339b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247311384876784, guid: 902d0bdf181c1a34dab70972f61d339b, type: 3}
+      propertyPath: m_Name
+      value: Sticker Pick Up Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247311384876784, guid: 902d0bdf181c1a34dab70972f61d339b, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198405478074982118, guid: 902d0bdf181c1a34dab70972f61d339b,

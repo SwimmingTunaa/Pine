@@ -56,6 +56,7 @@ public class PickUpsBase : MonoBehaviour
         if(_timer > interval)
         {
             _timer = 0f;
+            _timerActive = false;
             return true;
         }
         return false;

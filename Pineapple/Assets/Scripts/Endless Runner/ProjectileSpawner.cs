@@ -18,6 +18,7 @@ public class ProjectileSpawner : Spawner
     public float moveSpeed;
     [MinMaxSlider(1,5)] public Vector2 spawnAmount = new Vector2(1, 3);
     public AudioClip warningSound;
+    public ObjectPools warningBubble;
     
     [HideInInspector]public float disableOSpawnerTimer = 3;
     [HideInInspector]public float warningTimer = 1.5f;
@@ -25,10 +26,9 @@ public class ProjectileSpawner : Spawner
     private float _halfWidth;
     private float _newY;
     private Camera _camera;
-    private ObjectPools projectilePool;
+    public ObjectPools projectilePool;
     void Awake()
     {
-        projectilePool = MasterSpawner.Instance.activeRegion.projectiles;
         _camera = Camera.main;
     }
 
@@ -101,7 +101,7 @@ public class ProjectileSpawner : Spawner
     {
         _halfHeight = _camera.orthographicSize;
         _halfWidth  = _camera.aspect * _halfHeight; 
-        GameObject nextSpawn = GetNextItem(projectilePool.spawnedObjectPool);
+        GameObject nextSpawn = projectilePool.GetNextItem();
         //wait for this Warning to finish then continue
         yield return StartCoroutine(Warning(nextSpawn,yPos));
         //reset trailrenderer
@@ -112,12 +112,13 @@ public class ProjectileSpawner : Spawner
 
     IEnumerator Warning(GameObject obj, float yPos)
     {
-        GameObject w = obj.GetComponent<SpawnWarningBubble>().warningBubbleClone;
+        GameObject w = warningBubble.GetNextItem();
         if(!w.activeInHierarchy)
         {
             w.SetActive(true);
             GetComponent<AudioSource>().PlayOneShot(warningSound);
             w.transform.position = new Vector3(Camera.main.transform.position.x + _halfWidth, yPos, transform.position.z);
+            w.transform.parent = _camera.transform;
             yield return new WaitForSeconds(warningTimer);
             w.SetActive(false);
         }

@@ -32,10 +32,23 @@ public class StatsManager: MonoBehaviour
         PlayerPrefs.SetInt("TotalStickers", allStickers);
     }
 
+    public void AddSeedlingsToTotalOwnedAmount(int amount)
+    {
+        int allStickers = PlayerPrefs.GetInt("Seedlings") + amount;
+        PlayerPrefs.SetInt("Seedlings", allStickers);
+    }
+
+
     public void MinusStickers(int amount)
     {
         int allStickers = PlayerPrefs.GetInt("TotalStickers") - amount;
         PlayerPrefs.SetInt("TotalStickers", allStickers);
+    }
+
+    public void MinusSeedlings(int amount)
+    {
+        int allSeedlings = PlayerPrefs.GetInt("Seedlings") - amount;
+        PlayerPrefs.SetInt("Seedlings", allSeedlings);
     }
     public void UpdateMostStickersEverCollected()
     {
@@ -53,7 +66,11 @@ public class StatsManager: MonoBehaviour
     {
         int totalAmount = PlayerPrefs.GetInt(statName) + amount;
         PlayerPrefs.SetInt(statName, totalAmount);
-        //Debug.Log("Added 1 to " + statName + ". Total now = " + PlayerPrefs.GetInt(statName));
+    }
+    public void AddOneToAStat(string statName)
+    {
+        int totalAmount = PlayerPrefs.GetInt(statName) + 1;
+        PlayerPrefs.SetInt(statName, totalAmount);
     }
 
     public void AddToScore(int amount, string scoreText)
@@ -65,13 +82,8 @@ public class StatsManager: MonoBehaviour
         Destroy(tempGo, 3f);
     }
 
-     public void ResetStats()
-   {
-       /*PlayerPrefs.DeleteKey("HighScore");
-       PlayerPrefs.DeleteKey("StickersCollected");
-       //PlayerPrefs.DeleteKey("FirstTimeStart");
-       foreach(string s in trackedItems)
-            PlayerPrefs.DeleteKey(s);*/
-        PlayerPrefs.DeleteAll();
-   }
+    public void ResetStats()
+    {
+            PlayerPrefs.DeleteAll();
+    }
 }

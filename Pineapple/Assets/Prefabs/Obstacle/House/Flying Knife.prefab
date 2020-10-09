@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8708506291051815769}
   - component: {fileID: 8708506291051815774}
   - component: {fileID: 3569129866951931065}
-  - component: {fileID: 584432755}
   - component: {fileID: 412490158526512518}
   m_Layer: 15
   m_Name: Flying Knife
@@ -114,27 +113,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerAmount: 1
   damageAmount: 1
-  destroyHair: 1
+  CanDestroyHair: 0
   damageShieldOnly: 0
   destroyAfterDamage: 1
   hitSoundEffect: {fileID: 8300000, guid: 5c68220d91d60594391fe9dab571155e, type: 3}
   hitEffect: {fileID: 6135443443023713998, guid: 18815c70baa94b84db28e121b0decf0d,
     type: 3}
---- !u!114 &584432755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8708506291051815775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91008b4433568824a8738516f97dc278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  warningBubbleToSpawn: {fileID: 4066346887300105594, guid: 2fb09fba057777a4ab0087881c661cce,
-    type: 3}
-  warningBubbleClone: {fileID: 0}
 --- !u!82 &412490158526512518
 AudioSource:
   m_ObjectHideFlags: 0

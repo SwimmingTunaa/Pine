@@ -14,7 +14,7 @@ public class Region : ScriptableObject
     public void Initialise()
     {
         panels.Initialise();
-        projectiles.Initialise();
+        //projectiles.Initialise();
         //creates the starting Obstacles
         obstaclePoolsLevelInstances = new List<ObstaclePoolConfig>();
 

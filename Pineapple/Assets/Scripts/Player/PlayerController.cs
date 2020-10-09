@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip hoverBoardSoundLoop;
     private AudioSource boardAudioSource;
 
-    [HideInInspector] public Animator _anim;
+    public Animator _anim;
     [HideInInspector] public float _horiMove;
     private CharacterController2D _characterController;
     private Rigidbody2D _rigidBody;
@@ -136,6 +136,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator EquipHoverBoard()
     {
+        _rigidBody.velocity = Vector2.zero;
         yield return new WaitForSeconds(.2f);
         _characterController.isFlying = true;
         Time.timeScale = 0;
@@ -153,6 +154,7 @@ public class PlayerController : MonoBehaviour
 
     public void UnequipHoverBoard()
     {
+        _rigidBody.velocity = Vector2.zero;
         _anim.SetBool("Fly", false);
         hoverBoard.SetActive(false);
     }

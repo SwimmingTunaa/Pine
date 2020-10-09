@@ -4,17 +4,32 @@ using UnityEngine;
 using System.Linq;
 
 public class RegionPoolManager : MonoBehaviour
-{ 
+{
+   public static RegionPoolManager _Instance; 
+   public static RegionPoolManager Instance{get{return _Instance;}} 
    public int duplicateAmount = 1; 
    public List<Region> primaryRegionsToPool;
    public List<Region> secondaryRegions;
    public Dictionary<string, Region> regionDic = new Dictionary<string, Region>();
-   public static Region nextRegion;
+   public Region nextRegion;
 
    void Awake()
    {
-      Initialize();
+      if(_Instance == null)
+      {
+         _Instance = this;
+         Initialize();
+         DontDestroyOnLoad(this);
+      }
+      else
+         Destroy(this.gameObject);
+         
+      foreach(Transform t in gameObject.transform)
+      {
+         t.gameObject.SetActive(false);
+      }
       nextRegion = null;
+      GetNextRegion();
    }
 
    public void GetNextRegion()
@@ -44,6 +59,5 @@ public class RegionPoolManager : MonoBehaviour
          r.Initialise();
          regionDic.Add(r.tag, r);
       }
-      
    }
 }

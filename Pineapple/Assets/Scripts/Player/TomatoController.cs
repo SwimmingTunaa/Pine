@@ -10,12 +10,11 @@ public class TomatoController : MonoBehaviour
     [HideInInspector] public float startSpeed;
     public float speed;
     public float jumpStrength;
+    public LayerMask whatCanTakeDamage;
     public LayerMask whatIsGround;
     public bool immobile = false;
     public GameObject SlashEffect;
     public Transform effectSpawnPoint;
-    public GameObject killEffect;
-
   
     private Rigidbody2D m_Rigidbody2D;
     private Vector3 m_Velocity = Vector3.zero;
@@ -54,8 +53,10 @@ public class TomatoController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") || (other.gameObject.GetComponent<ObjectID>() != null && other.gameObject.GetComponent<ObjectID>().objectType == ObjType.Obstacle))
+        if(GetComponent<Collider2D>().IsTouchingLayers(whatCanTakeDamage))
+        {
             _anim.SetTrigger("Attack");
+        }
     }
 
     void Move()
@@ -71,7 +72,7 @@ public class TomatoController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.up, transform.right, 1f, whatIsGround);
         if(hit)
         {
-            print("Move up collider");
+//            print("Move up collider");
             Vector3 newYPos = new Vector3 (0, (hit.collider.bounds.extents.y), 0); 
             transform.position = transform.position + newYPos;
         }

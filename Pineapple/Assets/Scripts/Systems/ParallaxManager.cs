@@ -51,7 +51,7 @@ public class ParallaxManager : MonoBehaviour
     public bool Timer(float interval)
     {
         _timer += Time.deltaTime;
-        if(_timer > interval)
+        if(_timer >= interval)
         {
             _timer = 0f;
             return true;
@@ -61,6 +61,9 @@ public class ParallaxManager : MonoBehaviour
     
     public void ToggleParallax(bool activeState, string parallaxName)
     {
+        _previousParallax = currentActiveParallax;
+        _timer = 0;
+        timerActive = true;
         parallaxDic[parallaxName].SetActive(activeState);
     }
 
@@ -74,9 +77,4 @@ public class ParallaxManager : MonoBehaviour
         currentActiveParallax.SetActive(true);
     }
 
-    IEnumerator DelayDisable(GameObject obj)
-    {
-        yield return new WaitForSeconds(3f);
-        obj.SetActive(false);
-    }
 }

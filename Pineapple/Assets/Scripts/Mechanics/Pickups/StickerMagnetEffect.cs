@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class StickerMagnetEffect : MonoBehaviour
 {
-  void OnTriggerStay2D(Collider2D other)
+  void OnTriggerEnter2D(Collider2D other)
   {
-      if(other.GetComponent<Sticker>() != null && !other.GetComponent<Sticker>().move)
+    if(other.GetComponent<Sticker>() != null && !other.GetComponent<Sticker>().move)
     {
+        other.gameObject.transform.parent = GameManager.Instance.cameraFollower.gameObject.transform;
         other.GetComponent<Sticker>().move = true;
     }
   }

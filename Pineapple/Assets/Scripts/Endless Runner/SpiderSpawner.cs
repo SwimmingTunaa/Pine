@@ -10,6 +10,7 @@ public class SpiderSpawner : Spawner
     [Header("Spawner Details")]
     public ObjectPools spiderPool;
     public GameObject spawnPoint;
+    public ObjectPools warningBubble;
     public AudioClip warningSound;
     public float warningTime = 1.5f;
     
@@ -26,11 +27,6 @@ public class SpiderSpawner : Spawner
         _camera = Camera.main;
     }
 
-    void Start()
-    {
-        spiderPool.Initialise();
-    }
-    
     public override void DoSpawn()
     {
         StartCoroutine(SpawnObject());
@@ -40,7 +36,7 @@ public class SpiderSpawner : Spawner
     {
         _halfHeight = _camera.orthographicSize;
         _halfWidth  = _camera.aspect * _halfHeight; 
-        GameObject nextSpawn = GetNextItem(spiderPool.spawnedObjectPool);
+        GameObject nextSpawn = spiderPool.GetNextItem();
         //wait for this Warning to finish then continue
         yield return StartCoroutine(Warning(nextSpawn));
         nextSpawn.SetActive(true);
@@ -50,7 +46,7 @@ public class SpiderSpawner : Spawner
 
     IEnumerator Warning(GameObject obj)
     {
-        GameObject wBubble = obj.GetComponent<SpawnWarningBubble>().warningBubbleClone;
+        GameObject wBubble = warningBubble.GetNextItem();
         if(!wBubble.activeInHierarchy)
         {
             wBubble.SetActive(true);
@@ -61,6 +57,7 @@ public class SpiderSpawner : Spawner
             newSpawnPos = new Vector3(_camera.transform.position.x - _halfWidth, _hit.point.y, transform.position.z);
             wBubble.transform.position = newSpawnPos;
             wBubble.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z);
+            wBubble.transform.parent = _camera.transform;
             yield return new WaitForSeconds(warningTime);
             wBubble.SetActive(false);
         }

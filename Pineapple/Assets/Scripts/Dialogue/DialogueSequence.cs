@@ -17,44 +17,50 @@ public class DialogueSequence : MonoBehaviour
     void Start()
     {
         dialogues[_currentDialogue].character = CharacterManager.activeCharacter;
+        speechBubble = GameManager.Instance.speachBubble;
+    }
+
+    void OnEnable()
+    {
+        if(GameManager.Instance)
+            speechBubble = GameManager.Instance.speachBubble;
     }
 
     private void Update()
     {
         if (_scriptRunning)
         {
-            _timer += Time.deltaTime;
-
-            _lastDialogueFlag = randomDia ? true : _currentDialogue == dialogues.Length-1;
-
-            // Are we showing the last dialogue
-            if (_lastDialogueFlag)
+            // Has the user indicated they've finished reading
+            if ((!stopPlayerMoving && TimeCheck()))
             {
-                // Has the user indicated they've finished reading
-                if ((!stopPlayerMoving && TimeCheck()))
-                {
-                    EndDialogue();
-                }
+                EndDialogue();
             }
             // Should we show next dailogue
-            else if ((TimeCheck())) // TODO: If stopPlayerMoveing is true, I think we should skip the touch here and let it play out over time.
+            /*else if ((TimeCheck())) // TODO: If stopPlayerMoveing is true, I think we should skip the touch here and let it play out over time.
             {
                 _timer = 0;
                 _currentDialogue++;
                 SetSpeechbubble(dialogues[_currentDialogue]);
-            }
+            }*/
         }
     }
 
     private bool TimeCheck()
     {
+        _timer += Time.deltaTime;
         return _timer >= dialogues[_currentDialogue].diallogueInterval;
     }
 
     public void StartDialogue(GameObject character)
     {
         _scriptRunning = true;
-        dialogues[_currentDialogue].character = character;
+        SetSpeechbubble(dialogues[_currentDialogue]);
+    }
+
+    public void StartDialogue(int index)
+    {
+        _scriptRunning = true;
+        _currentDialogue = index;
         SetSpeechbubble(dialogues[_currentDialogue]);
     }
 
@@ -63,7 +69,6 @@ public class DialogueSequence : MonoBehaviour
         _scriptRunning = true;
         int randomInt = Random.Range(0, dialogues.Length);
         _currentDialogue = randomInt;
-        dialogues[_currentDialogue].character = character;
         SetSpeechbubble(dialogues[_currentDialogue]);
     }
 
@@ -72,7 +77,6 @@ public class DialogueSequence : MonoBehaviour
         _scriptRunning = true;
         int randomInt = Random.Range(0, dialogues.Length);
         _currentDialogue = randomInt;
-        dialogues[_currentDialogue].character = CharacterManager.activeCharacter;
         SetSpeechbubble(dialogues[_currentDialogue]);
     }
 
@@ -80,6 +84,7 @@ public class DialogueSequence : MonoBehaviour
     {
         speechBubble.gameObject.SetActive(false);
         _scriptRunning = false;
+        _timer = 0;
         //gameObject.SetActive(false);
     }
 

@@ -14,6 +14,7 @@ public abstract class ShopItem : MonoBehaviour
     [HideInInspector] public PickUpObject itemInstance;
 
     [Header("Text")]
+    public bool showSeedlingPrice;
     public SetBar progressBar;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI purchaseText;
@@ -111,7 +112,6 @@ public abstract class ShopItem : MonoBehaviour
 
     void OnEnable()
     {
-        //Debug.Log(itemName + " enabled");
         Initialise();
     }
 
@@ -119,6 +119,8 @@ public abstract class ShopItem : MonoBehaviour
     {  
         //pay first before level is increased then increase the price
         StatsManager.Instance.MinusStickers(itemInstance.itemCost);
+        if(itemInstance.seedlingCost > 0)
+            StatsManager.Instance.MinusSeedlings(itemInstance.seedlingCost);
         itemInstance.itemCost = _startCost + (_currentLevel * itemInstance.costIncrement);
         //increase level
         _currentLevel += 1;
@@ -143,7 +145,10 @@ public abstract class ShopItem : MonoBehaviour
     void UpdateText()
     {
         levelText.text = _currentLevel + "/" + itemInstance.itemMaxLevel;
-        priceText.text = itemInstance.itemCost.ToString("N0");
+        if(!showSeedlingPrice)
+            priceText.text = itemInstance.itemCost.ToString("N0");
+        else if(showSeedlingPrice)
+            priceText.text = itemInstance.seedlingCost.ToString("N0");
         progressBar.MaxLevelPoints = itemInstance.itemMaxLevel;
         progressBar.Level = _currentLevel;
     }

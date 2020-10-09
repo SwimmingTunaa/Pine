@@ -26,6 +26,10 @@ public class MainMenu : MonoBehaviour
                 {
                     g.SetActive(false);
                 }
+                GameManager.Instance.loadScreen.gameObject.SetActive(false);
+                GameManager.Instance.loadScreen.updateMode = AnimatorUpdateMode.Normal;
+                GameManager.Instance.loadScreen.gameObject.SetActive(true);
+                GameManager.Instance.loadScreen.Play("ScreenFadeOut", 0);
                 MainMenuDisable(1);
                 PlayerPrefs.SetInt("Retry", 0);
             }

@@ -39,19 +39,19 @@ public class Wander : MonoBehaviour
         {
             if(!moveOneDirection)
                 targetPos = NewPosition(transform.position.x + Random.Range(-maxDistance + 2, maxDistance));
-            else
+            else if (moveOneDirection)
                 targetPos = NewPosition(transform.position.x + xPosToMove);
         }
             else if (Timer(wanderTime))
             {
                 if(!moveOneDirection)
                     targetPos = NewPosition(transform.position.x + Random.Range(-maxDistance + 2, maxDistance));
-                else   
+                else  if (moveOneDirection) 
                     targetPos = NewPosition(transform.position.x + xPosToMove);
             }
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public void ExitCheck(Collider2D other)
     {
         if(other.gameObject.layer == 12)//ground check
         {   
@@ -106,6 +106,6 @@ public class Wander : MonoBehaviour
      }
      void OnTriggerExit2D(Collider2D other)
      {
-         _listener.OnTriggerExit2D(other);
+         _listener.ExitCheck(other);
      }
  }

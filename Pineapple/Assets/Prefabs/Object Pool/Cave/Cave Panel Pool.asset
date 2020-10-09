@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cave Panel Pool
   m_EditorClassIdentifier: 
   manual: 0
+  shouldExpand: 0
   spawnChanceValue: 0
   objectType: 0
   duplicateAmount: 1
@@ -27,9 +28,9 @@ MonoBehaviour:
   - {fileID: 6510582271197192088, guid: f34d90d7e6556c144b2831b65a40de8a, type: 3}
   - {fileID: 4977551925535195093, guid: 8c6f1ef45a1fd4a4986dd3361138f3e0, type: 3}
   - {fileID: 7530549872483387514, guid: a449766ba1128d847b67982e537025a7, type: 3}
-  - {fileID: 3084853940176113891, guid: 0aca49566d002a245b4a60dd7584a886, type: 3}
   - {fileID: 3084853940176113891, guid: d2ca928565eb548418f74343be411f41, type: 3}
-  - {fileID: 3084853940176113891, guid: 0aca49566d002a245b4a60dd7584a886, type: 3}
+  - {fileID: 3084853940176113891, guid: d2ca928565eb548418f74343be411f41, type: 3}
+  - {fileID: 3084853940176113891, guid: d2ca928565eb548418f74343be411f41, type: 3}
   - {fileID: 7530549872483387514, guid: a449766ba1128d847b67982e537025a7, type: 3}
   - {fileID: 7535891381902597159, guid: 9c61440b39942ee429c7dcc4b1ced4d3, type: 3}
   - {fileID: 3928847735395617020, guid: 7458f2606d256a7459c803e9625dc6d3, type: 3}
@@ -38,6 +39,9 @@ MonoBehaviour:
   - {fileID: 3084853940176113891, guid: 6e9fa818743d982438b444c3a2bacfc3, type: 3}
   - {fileID: 3084853940176113891, guid: 6e9fa818743d982438b444c3a2bacfc3, type: 3}
   spawnedObjectPool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

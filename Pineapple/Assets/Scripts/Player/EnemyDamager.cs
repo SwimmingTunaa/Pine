@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class EnemyDamager : Damager
 {
+    public ObjectPools killEffect;
+    int layersToDestroy;
+    public override void Awake()
+    {
+        base.Awake();
+        //converts it to bit value
+        layersToDestroy = layerMask.value;
+    }
+
     public override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
-         if(other.GetComponent<ObjectID>() != null && other.GetComponent<ObjectID>().objectType == ObjType.Obstacle)
+        //check bit value agaisnt the target object
+        if(layersToDestroy == (layerMask | (1 << other.gameObject.layer)) && !other.GetComponent<HealthGeneric>())
         {
-            if(!other.GetComponent<ObjectID>().selfDestroy)
+            if(other.GetComponent<ObjectID>() && !other.GetComponent<ObjectID>().selfDestroy)
                  other.GetComponent<ObjectID>().Disable();
-                //Instantiate(killEffect, target.transform.position, killEffect.transform.rotation);
+            else if (!other.GetComponent<ObjectID>())
+                other.gameObject.SetActive(false);
+             GameObject effect = killEffect.GetNextItem();
+             effect.SetActive(true);
+             effect.transform.position = other.gameObject.transform.position;
         }
     }
 }

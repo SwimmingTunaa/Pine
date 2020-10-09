@@ -33,14 +33,13 @@ public class PlayerHealth : HealthGeneric {
 	{
 		if(!invincible)
 		{
+			base.TakeDamage(damage);
+			if(shieldActive)
+				DamageShield();
 			if(health == 1)
 			{
-				shieldActive = false;
 				Invulnerable(1.5f);
 			}
-			else if(shieldActive)
-					DamageShield();
-			base.TakeDamage(damage);
 		}
 		//check if player is dead after deducting health
 		if(health <= 0 && !dead) StartCoroutine(killPlayer());
@@ -62,6 +61,8 @@ public class PlayerHealth : HealthGeneric {
 				healthBars[i].SetActive(false); 
 				break;
 			}
+			if(i ==0)
+				shieldActive = false;
 		}
 	}
 
@@ -90,13 +91,15 @@ public class PlayerHealth : HealthGeneric {
 		playerController.pausePlayer = true;
 		if(takeScreenShot)
 			yield return (StartCoroutine(takeScreenShot.ScreenShot()));
-		//Instantiate(playerController._haircut ? deathEffectHairCut : deathEffect, transform.position + Vector3.up * 2.5f, transform.rotation);
 		//the sliced body
 		_deathEffect.SetActive(true);
 		_deathEffect.transform.parent = null;
-		foreach(Rigidbody2D r in _deathEffect.GetComponentsInChildren<Rigidbody2D>())
-		{
-			r.AddForce(new Vector2(impulseForce.x + Random.Range(-2,2), impulseForce.y + Random.Range(-2,2)), ForceMode2D.Impulse);
+		if(CharacterManager.activeCharacter.GetComponent<CharacterController2D>().isFlying == false)
+		{	
+			foreach(Rigidbody2D r in _deathEffect.GetComponentsInChildren<Rigidbody2D>())
+			{
+				r.AddForce(new Vector2(impulseForce.x + Random.Range(-2,2), impulseForce.y + Random.Range(-2,2)), ForceMode2D.Impulse);
+			}
 		}
 		//player is dead
 		dead = true;
@@ -106,15 +109,20 @@ public class PlayerHealth : HealthGeneric {
 
 	public Transform FindFurthestBodyPart()
 	{
-		Transform g = null;
-		foreach(Transform child in _deathEffect.transform)
+		if(_deathEffect)
 		{
-			if(g == null)
-				g = child;
-			if(child.position.x > g.transform.position.x)
-				g = child;
+			Transform g = null;
+			foreach(Transform child in _deathEffect.transform)
+			{
+				if(g == null)
+					g = child;
+				if(child.position.x > g.transform.position.x)
+					g = child;
+			}
+			return g;
 		}
-		return g;
+		else
+			return CharacterManager.activeCharacter.transform;
 	}
 
 	public bool BodyPartsStopMoving()
@@ -122,7 +130,6 @@ public class PlayerHealth : HealthGeneric {
 		List<bool> allStopped = new List<bool>();
 		foreach(Rigidbody2D r in _deathEffect.GetComponentsInChildren<Rigidbody2D>())
 			allStopped.Add(r.velocity == Vector2.zero);
-			
 		return !allStopped.Contains(false) ? true : false;
 	}
 }

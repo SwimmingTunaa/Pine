@@ -42,10 +42,12 @@ public class GameManager : MonoBehaviour
     [Header("Retry")]
     public Button playButton;
     public MainMenu startMenu;
+    public Animator loadScreen;
 
+    private Camera _camera;
     private float _halfHeight;
     private float _halfWidth;
-    private Camera _camera;
+
     private float _distanceFromChaser;
     public static PlayerController _player;
     private Rigidbody2D _playerRb;
@@ -111,7 +113,7 @@ public class GameManager : MonoBehaviour
             {
                 SpawnChaser();
             }
-            else Gameover();    
+            else StartCoroutine(Gameover());    
         }
     }
 
@@ -148,15 +150,17 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    void Gameover()
+    IEnumerator Gameover()
     {
-        //change the camera to follow the furtherst part
-        Vector3 newCamPos = new Vector3(_playerHealth.FindFurthestBodyPart().position.x, followVirtualCamera.Follow.transform.position.y, followVirtualCamera.Follow.transform.position.z);
+        //change the camera to follow the furtherst part if not flying
+        Vector3 newCamPos = new Vector3 (_playerHealth.FindFurthestBodyPart().position.x, 
+        followVirtualCamera.Follow.transform.position.y, followVirtualCamera.Follow.transform.position.z);
+
         followVirtualCamera.Follow.position = newCamPos;
         //change what the tracked object for distance is
         _trackedPosition = followVirtualCamera.Follow.gameObject;
 
-        if(_playerHealth.BodyPartsStopMoving() && !CharacterManager.activeCharacter.GetComponent<CharacterController2D>().isFlying)
+        if(_playerHealth.BodyPartsStopMoving() || Timer(5f))
         {
             if(!_gameover)
             {
@@ -168,6 +172,23 @@ public class GameManager : MonoBehaviour
                 stats.UpdateMostStickersEverCollected();
                 stats.UpdateFurthestDistanceTravelled();  
                 gameoverUIBody.SetActive(true);
+                AdManager.instance.ShowOptInAdButton();
+            }
+        }
+        else if(CharacterManager.activeCharacter.GetComponent<CharacterController2D>().isFlying)
+        {
+            if(!_gameover)
+            {
+                yield return new WaitForSeconds(1f);
+                _gameover = true;
+                PauseGame(true);
+                //the total amount of stickers the player has
+                stats.AddStickersToTotalOwnedAmount();
+                //update stats part
+                stats.UpdateMostStickersEverCollected();
+                stats.UpdateFurthestDistanceTravelled();  
+                gameoverUIBody.SetActive(true);
+                AdManager.instance.ShowOptInAdButton();
             }
         }
     }
@@ -234,9 +255,17 @@ public class GameManager : MonoBehaviour
         }       
     }
 
-    public void LoadLevel(int levelIndex)
-    {
-        SceneManager.LoadScene(levelIndex);
+    public IEnumerator LoadLevel(int levelIndex)
+    {   
+        loadScreen.gameObject.SetActive(true);
+        loadScreen.updateMode = AnimatorUpdateMode.UnscaledTime;
+        loadScreen.Play("ScreenFadeIn", 0);
+        LevelManager.MoveObjectsToNewScene();
+        yield return new WaitForSecondsRT(.5f);
+        ///////////////////Scene Load//////////////////
+        SceneManager.LoadScene(0);
+        //////////////////////////////////////////
+
         //check if the pressed play again
         Statics.playerRestartedGame = true;
     }
@@ -247,10 +276,10 @@ public class GameManager : MonoBehaviour
         PauseGame(Time.timeScale == 0 ? true : false);
     }
 
-    public void Retry()
+    public void Retry(int isRetry)
     {
-        PlayerPrefs.SetInt("Retry", 1);
+        PlayerPrefs.SetInt("Retry", isRetry);
         //System.GC.Collect();
-        LoadLevel(0);
+        StartCoroutine(LoadLevel(0));
     }
 }

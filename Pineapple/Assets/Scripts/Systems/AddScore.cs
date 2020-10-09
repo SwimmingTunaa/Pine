@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AddScore : MonoBehaviour
-{
-    public int triggerAmount = 1;
+{    public int triggerAmount = 1;
     public string statReference;
     public IntVariable intToAddTo;
 
@@ -19,7 +18,7 @@ public class AddScore : MonoBehaviour
         triggerAmount = 1;
     }
 
-    void OnEnable()
+    void OnDisable()
     {
         triggerAmount = 1;
     }

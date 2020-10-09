@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 0.27756, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 2558615991617829517}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2558615991407776973
 SpriteRenderer:
@@ -130,9 +130,9 @@ Transform:
   m_LocalPosition: {x: 3.86, y: -3.529, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 6369841880132476814}
   - {fileID: 2558615991407776972}
   - {fileID: 3143163724155997707}
-  - {fileID: 6369841880132476814}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de634d097187984f9b1b2dbed0a5924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveOneDirection: 0
+  xPosToMove: 0
   speed: 2
   maxDistance: 5
   wanderTime: 4
@@ -210,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerAmount: 1
   statReference: Mouse Killed
+  intToAddTo: {fileID: 0}
 --- !u!1 &8653801728475157453
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +242,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2558615991617829517}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1369316898894985219
 BoxCollider2D:
@@ -327,7 +330,7 @@ PrefabInstance:
     - target: {fileID: 888454004984220386, guid: 2659523135c7a81458b7a8d737107e32,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 888454004984220386, guid: 2659523135c7a81458b7a8d737107e32,
         type: 3}

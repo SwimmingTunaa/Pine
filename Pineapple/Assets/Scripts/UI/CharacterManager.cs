@@ -53,8 +53,8 @@ public class CharacterManager : MonoBehaviour
 
             //then equip the new character  
             activeVisual = charBuy.characterPrefab.GetComponent<Outfits>();
-            charBuy.equipButton.GetComponent<Button>().interactable = false;
             charBuy.equipped = true;    
+            charBuy.equipButton.GetComponent<Button>().interactable = false;
             charBuy.purchaseText.text = "Equipped"; 
             //turn on the visuals
             charBuy.characterPrefab.SetActive(true);

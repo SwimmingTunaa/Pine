@@ -15,18 +15,18 @@ public class FollowPlayer : MonoBehaviour
     private Vector3 newPos;
     private Vector3 posToMoveTo;
 
-    void Start()
+    void Awake()
     {
         playerHealth = CharacterManager.activeCharacter.GetComponent<PlayerHealth>();
         cam = Camera.main;
     }
-    void LateUpdate()
+    void Update()
     {
         if(move) moveToNewPos();
 
         if(dontFollowPanelY)
         {
-            newPos = new Vector3(!playerHealth.dead? CharacterManager.activeCharacter.transform.position.x : playerHealth.FindFurthestBodyPart().gameObject.transform.position.x
+            newPos = new Vector3(!playerHealth.dead ? CharacterManager.activeCharacter.transform.position.x : playerHealth.FindFurthestBodyPart().gameObject.transform.position.x
                                     , transform.position.y);
             this.transform.position = newPos;
         }

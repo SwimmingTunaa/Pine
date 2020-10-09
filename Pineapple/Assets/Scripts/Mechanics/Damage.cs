@@ -40,7 +40,7 @@ public class Damage : MonoBehaviour
             {
                 
                 HealthGeneric health = other.GetComponent<HealthGeneric>();
-                Debug.Log(health);
+//                Debug.Log(health);
                 if(damageShieldOnly && health.health > 1)
                     DealDamage(health);
                 else if(!damageShieldOnly)

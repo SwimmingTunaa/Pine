@@ -39,6 +39,7 @@ public class ReadStatObject : MonoBehaviour
             break;
             case VariableType.Intger:
                 text.text = varInt.ToString();
+                //Debug.Log(intVar.name + " " + varInt);
             break;
         }
         if(extraText != null)

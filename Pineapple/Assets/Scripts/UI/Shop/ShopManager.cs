@@ -27,7 +27,7 @@ public class ShopManager : MonoBehaviour
                 Instance = this;
         _confirmButtonText = confirmationBody.GetComponentInChildren<TextMeshProUGUI>();
     }
-    public void Start()
+    public void OnEnable()
     {
  
         _currentText = _confirmButtonText.text;
@@ -35,7 +35,8 @@ public class ShopManager : MonoBehaviour
 
     public void OpenConfirmation(ShopItem shopItem)
     {
-        if(PlayerPrefs.GetInt("TotalStickers") - shopItem.itemInstance.itemCost >= 0)
+        if(shopItem.itemInstance.itemCost > 0 && (PlayerPrefs.GetInt("TotalStickers") - shopItem.itemInstance.itemCost >= 0) ||
+            shopItem.itemInstance.seedlingCost > 0 && (PlayerPrefs.GetInt("Seedlings") - shopItem.itemInstance.seedlingCost >= 0))
         {
             confirmationBody.SetActive(true);
             //add the method to the onclick event
@@ -43,7 +44,10 @@ public class ShopManager : MonoBehaviour
             cancelButton.onClick.AddListener(()=> CloseConfirmation(shopItem.item.itemName));
             _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemName)",shopItem.item.itemName);
             //converts the item cost to string and then add commas to the thousandth
-            _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemCost)",shopItem.itemInstance.itemCost.ToString());
+            if(shopItem.itemInstance.itemCost > 0)
+                _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemCost)",shopItem.itemInstance.itemCost.ToString() + "<color=#B88CFD> Stickers?</color>");
+            else if (shopItem.itemInstance.seedlingCost > 0)
+                _confirmButtonText.text = _confirmButtonText.text.Replace("(ItemCost)",shopItem.itemInstance.seedlingCost.ToString() + "<color=#19df88> Seedlings?</color>");
         }
         else
             insufficientFundButton.SetActive(true);

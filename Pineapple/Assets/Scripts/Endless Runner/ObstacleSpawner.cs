@@ -35,7 +35,7 @@ public class ObstacleSpawner : Spawner
         //check to see if the poolList contains any pools if not return
         if(_currentRegionLevel.poolList.Count <= 0) return;
         ObstaclePool poolToUse = _currentRegionLevel.poolList[randomIndex]; 
-        _NextObstacleToSpawn = GetNextItem(poolToUse.spawnedObjectPool);
+        _NextObstacleToSpawn = poolToUse.GetNextItem();
         _NextObstacleToSpawn.SetActive(true);
 
         GetSpawnPoints();
@@ -60,10 +60,6 @@ public class ObstacleSpawner : Spawner
 
     void GetSpawnPoints()
     {
-        hit = Physics2D.Raycast(transform.position, -transform.up, 10f, 1 << LayerMask.NameToLayer("Ground"));
-        if(hit.collider != null)
-            newY = hit.point.y;
-                   
         if(_currentRegionLevel.top) spawnpointConfig.Add(_currentRegionLevel.top.spawnPointChoice, spawnPoints[0].transform.position);
         if(_currentRegionLevel.mid) spawnpointConfig.Add(_currentRegionLevel.mid.spawnPointChoice, spawnPoints[(int)Random.Range(1,spawnPoints.Length)].transform.position);
         if(_currentRegionLevel.bot != null) spawnpointConfig.Add(_currentRegionLevel.bot.spawnPointChoice, GetFloorSpawnPoint(_NextObstacleToSpawn.GetComponent<Collider2D>()));
@@ -95,16 +91,31 @@ public class ObstacleSpawner : Spawner
 
     public Vector3 GetFloorSpawnPoint(Collider2D objectCollider)
     {
-        float yPos = newY + objectCollider.bounds.extents.y + Mathf.Abs(objectCollider.offset.y);
+        hit = Physics2D.Raycast(transform.position, -transform.up, 10f, 1 << LayerMask.NameToLayer("Ground"));
+        if(hit.collider != null)
+            newY = hit.point.y;
+
+        float yPos = newY + (objectCollider != null ? objectCollider.bounds.extents.y + Mathf.Abs(objectCollider.offset.y) : spawnPoints[2].transform.position.y);
         Vector3 _floorSpawnPoint = new Vector3(spawnPoints[2].transform.position.x, yPos, spawnPoints[2].transform.position.z); 
+        return _floorSpawnPoint;                                         
+    }
+
+    public Vector3 GetFloorSpawnPoint(Collider2D objectCollider, float xPosOffset)
+    {
+        hit = Physics2D.Raycast(transform.position, -transform.up, 10f, 1 << LayerMask.NameToLayer("Ground"));
+        if(hit.collider != null)
+            newY = hit.point.y;
+            
+        float yPos = newY + (objectCollider != null ? objectCollider.bounds.extents.y + Mathf.Abs(objectCollider.offset.y) : spawnPoints[2].transform.position.y);
+        Vector3 _floorSpawnPoint = new Vector3(spawnPoints[2].transform.position.x + xPosOffset, yPos, spawnPoints[2].transform.position.z); 
         return _floorSpawnPoint;                                         
     }
 
     public void changePoolSpawnChance(float top, float mid, float bot)
     {
-        if(_currentRegionLevel.top) _currentRegionLevel.top.spawnChanceValue = top;
-        if(_currentRegionLevel.mid) _currentRegionLevel.mid.spawnChanceValue = mid;
-        if(_currentRegionLevel.bot) _currentRegionLevel.bot.spawnChanceValue = bot;
+        if(_currentRegionLevel.top) _currentRegionLevel.top.runTimeSpawnChanceValue = top;
+        if(_currentRegionLevel.mid) _currentRegionLevel.mid.runTimeSpawnChanceValue = mid;
+        if(_currentRegionLevel.bot) _currentRegionLevel.bot.runTimeSpawnChanceValue = bot;
     }
 
     public void UpdateLevelConfig(ObstaclePoolConfig newPoolConfig)

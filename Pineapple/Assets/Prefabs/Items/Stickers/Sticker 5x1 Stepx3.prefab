@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7116973085901086401}
+  - component: {fileID: 5622746836979767782}
   m_Layer: 0
   m_Name: Sticker 5x1 Stepx3
   m_TagString: Untagged
@@ -33,6 +34,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5622746836979767782
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7434099625484556532}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 7.43, y: 0.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.22}
+  m_EdgeRadius: 0
 --- !u!1001 &150963666228190514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44,6 +71,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sticker 5x1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723647612932426351, guid: 0f8ecf3cf4af9bc428da8e9425c888fe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4927623068082031706, guid: 0f8ecf3cf4af9bc428da8e9425c888fe,
         type: 3}
@@ -120,6 +152,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sticker 5x1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4723647612932426351, guid: 0f8ecf3cf4af9bc428da8e9425c888fe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 4927623068082031706, guid: 0f8ecf3cf4af9bc428da8e9425c888fe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -194,6 +231,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sticker 5x1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723647612932426351, guid: 0f8ecf3cf4af9bc428da8e9425c888fe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4927623068082031706, guid: 0f8ecf3cf4af9bc428da8e9425c888fe,
         type: 3}

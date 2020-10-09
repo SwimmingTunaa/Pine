@@ -5,8 +5,6 @@ using UnityEngine;
 public class StickerMagnet : PickUpsBase
 {   
     [Header("Sticker")]
-    public float effectRadius;
-    public float transitionSpeed;
     public GameObject activeEffect;
     public GameObject visual;
     

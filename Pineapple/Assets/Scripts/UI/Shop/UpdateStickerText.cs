@@ -13,12 +13,12 @@ public class UpdateStickerText : MonoBehaviour
 
     void OnEnable()
     {
-        totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
+        totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString("N0");
     }
 
     // Update is called once per frame
     void Update()
     {
-        totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString();
+        totalStickers.text = PlayerPrefs.GetInt("TotalStickers").ToString("N0");
     }
 }

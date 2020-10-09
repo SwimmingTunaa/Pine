@@ -10,10 +10,6 @@ public class CritterSpawner : Spawner
     public bool changeSizeOnSpawn = true;
     private Vector3 groundPos;
     private RaycastHit2D hit;
-    void Awake()
-    {
-        critterPool.Initialise();
-    }
 
     public override void DoSpawn()
     {
@@ -27,7 +23,7 @@ public class CritterSpawner : Spawner
             Vector3 newSpawnPos = new Vector3(groundPos.x + Random.Range(-3, 2), groundPos.y, groundPos.z);
             for (int i = 0; i < randomSpawnAmount; i++)
             {
-                GameObject tempObj =  GetNextItem(critterPool.spawnedObjectPool);
+                GameObject tempObj =  critterPool.GetNextItem();
                 tempObj.SetActive(true);
                 if(changeSizeOnSpawn)
                 {
