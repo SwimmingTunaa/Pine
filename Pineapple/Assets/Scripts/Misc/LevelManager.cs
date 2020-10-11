@@ -55,10 +55,6 @@ public class LevelManager : MonoBehaviour
             PanelSpawner._Instance.currentPanelHolder.transform.GetChild(0).gameObject.SetActive(false);
             PanelSpawner._Instance.currentPanelHolder.transform.GetChild(0).SetParent(RegionPoolManager.Instance.gameObject.transform);          
         }
-        
-        foreach(GameObject g in ObstacleSpawner.Instance.activeObstacles)
-        {
-            g.SetActive(false);
-        }
+        ObstacleSpawner.Instance.ClearActiveObstacles();
     }
 }

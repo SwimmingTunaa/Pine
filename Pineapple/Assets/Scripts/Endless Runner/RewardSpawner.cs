@@ -35,6 +35,7 @@ public class RewardSpawner : Spawner
         GameObject tempObj = poolToUse.GetNextItem();
         if(tempObj == null) return;
         tempObj.SetActive(true); 
+        activeObjects.Add(tempObj);
         tempObj.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;        
     }
 

@@ -12,11 +12,11 @@ public class PanelDestroyer : MonoBehaviour
             if(id.objectType == ObjType.Panel)
             {
                 PanelSpawner.Instance.SpawnSets();
-                other.transform.parent = null;
+                other.transform.parent = RegionPoolManager.Instance.transform;
             }
             if (id.objectType == ObjType.Obstacle)
             {
-                ObstacleSpawner.Instance.activeObstacles.Remove(other.gameObject);
+                ObstacleSpawner.Instance.activeObjects.Remove(other.gameObject);
             }
 
             if(!id.selfDestroy) id.Disable();

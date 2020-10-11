@@ -54,8 +54,8 @@ public class GameManager : MonoBehaviour
     private Vector2 _playerCachedPos;
     private GameObject _trackedPosition;
     private float _timer;
-    private bool _gameover;
     private PlayerHealth _playerHealth;
+    private bool _gameover{get{return _playerHealth.dead;}}
     private static Animator _playerAnim;
 
     void Awake()
@@ -109,19 +109,13 @@ public class GameManager : MonoBehaviour
         stickersCollectedVar.RuntimeValue = stats.stickerCollectedThisRound;
         if(!Statics.paused)
         {
+            print(_gameover);  
             if(!_playerHealth.dead) 
             {
                 SpawnChaser();
             }
-            else StartCoroutine(Gameover());    
+            else if(_gameover) StartCoroutine(Gameover());  
         }
-    }
-
-    public static void PauseGame(bool enable)
-    {
-        float tempCurrentSpeed = _player.speed;
-        DisablePlayerInput(enable);
-        Statics.paused = enable;
     }
 
     public static void DisablePlayerInput(bool enabled)
@@ -148,49 +142,6 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    IEnumerator Gameover()
-    {
-        //change the camera to follow the furtherst part if not flying
-        Vector3 newCamPos = new Vector3 (_playerHealth.FindFurthestBodyPart().position.x, 
-        followVirtualCamera.Follow.transform.position.y, followVirtualCamera.Follow.transform.position.z);
-
-        followVirtualCamera.Follow.position = newCamPos;
-        //change what the tracked object for distance is
-        _trackedPosition = followVirtualCamera.Follow.gameObject;
-
-        if(_playerHealth.BodyPartsStopMoving() || Timer(5f))
-        {
-            if(!_gameover)
-            {
-                _gameover = true;
-                PauseGame(true);
-                //the total amount of stickers the player has
-                stats.AddStickersToTotalOwnedAmount();
-                //update stats part
-                stats.UpdateMostStickersEverCollected();
-                stats.UpdateFurthestDistanceTravelled();  
-                gameoverUIBody.SetActive(true);
-                AdManager.instance.ShowOptInAdButton();
-            }
-        }
-        else if(CharacterManager.activeCharacter.GetComponent<CharacterController2D>().isFlying)
-        {
-            if(!_gameover)
-            {
-                yield return new WaitForSeconds(1f);
-                _gameover = true;
-                PauseGame(true);
-                //the total amount of stickers the player has
-                stats.AddStickersToTotalOwnedAmount();
-                //update stats part
-                stats.UpdateMostStickersEverCollected();
-                stats.UpdateFurthestDistanceTravelled();  
-                gameoverUIBody.SetActive(true);
-                AdManager.instance.ShowOptInAdButton();
-            }
-        }
     }
 
     void SpawnChaser()
@@ -255,6 +206,58 @@ public class GameManager : MonoBehaviour
         }       
     }
 
+    IEnumerator Gameover()
+    {
+        //change the camera to follow the furtherst part if not flying
+        Vector3 newCamPos = new Vector3 (_playerHealth.FindFurthestBodyPart().position.x, 
+        followVirtualCamera.Follow.transform.position.y, followVirtualCamera.Follow.transform.position.z);
+
+        followVirtualCamera.Follow.position = newCamPos;
+        //change what the tracked object for distance is
+        _trackedPosition = followVirtualCamera.Follow.gameObject;
+
+        if(_playerHealth.BodyPartsStopMoving() || Timer(5f))
+        {
+                PauseGame(true);
+                gameoverUIBody.SetActive(true);
+                AdManager.instance.ShowOptInAdButton();
+                Time.timeScale = 0;  
+        }
+        else if(CharacterManager.activeCharacter.GetComponent<CharacterController2D>().isFlying)
+        {
+                yield return new WaitForSeconds(1f);
+                PauseGame(true);
+                gameoverUIBody.SetActive(true);
+                AdManager.instance.ShowOptInAdButton();
+                Time.timeScale = 0;
+        }
+    }
+
+    public IEnumerator PlayerRevive()
+    {
+        //clear all obstacles and rewards
+        MasterSpawner.Instance.ClearAllActiveObjects();
+        //Play the UI close animation
+        gameoverUIBody.GetComponent<Animator>().Play("End",0);
+        //turn the chaser off
+        chaser.gameObject.SetActive(false);
+        //revive Player
+        yield return (StartCoroutine(_playerHealth.Revive(_playerCachedPos.x + Statics.DistanceTraveled)));
+        //unpause
+        PauseGame(false);
+        //change the camera follow target to the player again
+        _trackedPosition = _player.gameObject;
+        //Close UI
+        gameoverUIBody.SetActive(false);
+        //lower the difficulty level
+        LevelProgressionSystem.Instance.SetDifficulty(LevelProgressionSystem.Instance.difficultyLvl - 1 > 0 ? LevelProgressionSystem.Instance.difficultyLvl - 1 : 1);
+        Time.timeScale = 1;
+    }
+    public void StartPlayerRevive()
+    {
+        StartCoroutine(PlayerRevive());
+    }
+
     public IEnumerator LoadLevel(int levelIndex)
     {   
         loadScreen.gameObject.SetActive(true);
@@ -262,12 +265,16 @@ public class GameManager : MonoBehaviour
         loadScreen.Play("ScreenFadeIn", 0);
         LevelManager.MoveObjectsToNewScene();
         yield return new WaitForSecondsRT(.5f);
-        ///////////////////Scene Load//////////////////
         SceneManager.LoadScene(0);
-        //////////////////////////////////////////
-
         //check if the pressed play again
         Statics.playerRestartedGame = true;
+    }
+    
+    public static void PauseGame(bool enable)
+    {
+        float tempCurrentSpeed = _player.speed;
+        DisablePlayerInput(enable);
+        Statics.paused = enable;
     }
 
     public void PauseGame()
@@ -280,6 +287,13 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Retry", isRetry);
         //System.GC.Collect();
+
+        //the total amount of stickers the player has
+        stats.AddStickersToTotalOwnedAmount();
+        //update stats part
+        stats.UpdateMostStickersEverCollected();
+        stats.UpdateFurthestDistanceTravelled();  
+
         StartCoroutine(LoadLevel(0));
     }
 }

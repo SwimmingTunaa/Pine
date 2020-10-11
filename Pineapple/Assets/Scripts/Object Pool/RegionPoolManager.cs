@@ -19,7 +19,7 @@ public class RegionPoolManager : MonoBehaviour
       {
          _Instance = this;
          Initialize();
-         DontDestroyOnLoad(this);
+         //DontDestroyOnLoad(this);
       }
       else
          Destroy(this.gameObject);

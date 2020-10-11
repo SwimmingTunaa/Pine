@@ -7,8 +7,6 @@ public class ObstacleSpawner : Spawner
     public static ObstacleSpawner Instance;
     public GameObject[] spawnPoints;
 
-    public List<GameObject> activeObstacles;
-
     private ObstaclePoolConfig _currentRegionLevel;
     private GameObject _NextObstacleToSpawn;
    
@@ -47,7 +45,7 @@ public class ObstacleSpawner : Spawner
         Vector3 NewSpawnPoint = new Vector2 (newX, spawnpointConfig[poolToUse.spawnPointChoice].y);
         //spawn object from the pool
         Spawn(NewSpawnPoint);
-        activeObstacles.Add(_NextObstacleToSpawn);
+        activeObjects.Add(_NextObstacleToSpawn);
     }
 
     public void Initialize()
@@ -122,5 +120,13 @@ public class ObstacleSpawner : Spawner
     {
         _currentRegionLevel = newPoolConfig;
         Initialize();
+    }
+    public void ClearActiveObstacles()
+    {
+        foreach(GameObject g in activeObjects)
+        {
+            g.SetActive(false);
+            g.transform.parent = RegionPoolManager.Instance.transform;
+        }
     }
 } 

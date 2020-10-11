@@ -10,6 +10,7 @@ public class MixLevels : MonoBehaviour
     public float fadeSpeed = 2;
     public AudioSource GOMaudio;
     private bool _fadeBGM;
+    private bool _fadeOut;
 
     public void Awake()
     {
@@ -17,9 +18,10 @@ public class MixLevels : MonoBehaviour
         Instance = this;
     }
 
-    public void FadeBGMtoGOM(bool fade)
+    public void FadeBGMtoGOM(bool fade, bool fadeOut)
     {
         _fadeBGM = fade;
+        _fadeOut = fadeOut;
     }
 
     public void Update()
@@ -29,10 +31,21 @@ public class MixLevels : MonoBehaviour
             GOMaudio.gameObject.SetActive(true);
             bool result = (masterMixer.GetFloat("BGM Vol",out float value));
             bool result2 = (masterMixer.GetFloat("GOM Vol",out float value2));
-            masterMixer.SetFloat("BGM Vol", Mathf.Lerp(value , -80f, Time.deltaTime * fadeSpeed));
-            masterMixer.SetFloat("GOM Vol", Mathf.Lerp(value2, -7f, Time.deltaTime * fadeSpeed));
-            if(value == -80f)
-                _fadeBGM = false;
+            if(_fadeOut)
+            {
+                masterMixer.SetFloat("BGM Vol", Mathf.Lerp(value , -80f, Time.deltaTime * fadeSpeed));
+                masterMixer.SetFloat("GOM Vol", Mathf.Lerp(value2, -7f, Time.deltaTime * fadeSpeed));
+                if(value == -80f)
+                    _fadeBGM = false;
+            }
+            else
+            {
+                masterMixer.SetFloat("BGM Vol", Mathf.Lerp(value, 0, Time.deltaTime * fadeSpeed));
+                masterMixer.SetFloat("GOM Vol", Mathf.Lerp(value2,-80f, Time.deltaTime * fadeSpeed));
+                if(value == 0f)
+                    _fadeBGM = false;
+            }
+           
         }
     }
 }

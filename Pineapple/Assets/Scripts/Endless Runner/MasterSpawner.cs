@@ -229,4 +229,12 @@ public class MasterSpawner : MonoBehaviour
         _randomInterval = Random.Range(minDistance, maxDistance);
         return Statics.DistanceTraveled + _randomInterval;
     }
+
+    public void ClearAllActiveObjects()
+    {
+        foreach(KeyValuePair<string, Spawner> k in listOfSpawners)
+        {
+            k.Value.ClearActiveObjects();
+        }
+    }
 }

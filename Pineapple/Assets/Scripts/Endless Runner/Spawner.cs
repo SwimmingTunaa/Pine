@@ -6,6 +6,7 @@ public abstract class Spawner : MonoBehaviour
 {
     
     public bool shouldExpand;
+    public List<GameObject> activeObjects = new List<GameObject>();
     private float _timer;
     [HideInInspector] public  GameObject _previousSpawn;
 
@@ -39,6 +40,17 @@ public abstract class Spawner : MonoBehaviour
         }
         return false;
     }*/
-
+    public void ClearActiveObjects()
+    {
+        if(activeObjects.Count > 0)
+        {
+            for (int i = 0; i < activeObjects.Count; i++)
+            {
+                activeObjects[0].SetActive(false);
+                activeObjects[0].transform.parent = RegionPoolManager.Instance.transform;
+                activeObjects.Remove(activeObjects[0]);
+            }
+        }
+    }
     public abstract void DoSpawn();  
 }

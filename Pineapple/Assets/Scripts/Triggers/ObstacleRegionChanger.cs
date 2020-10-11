@@ -21,11 +21,8 @@ public class ObstacleRegionChanger : MonoBehaviour
             //clear all current active obstacles
             if(disableAllOtherObstacles)
             {
-                foreach(GameObject g in ObstacleSpawner.Instance.activeObstacles)
-                    g.GetComponent<ObjectID>().Disable();
+                ObstacleSpawner.Instance.ClearActiveObstacles();
             }
-           
-            ObstacleSpawner.Instance.activeObstacles.Clear();
             //set new region
             MasterSpawner.Instance.activeRegion = regionToChangeTo;
 
