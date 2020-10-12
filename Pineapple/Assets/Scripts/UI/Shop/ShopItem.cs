@@ -41,7 +41,7 @@ public abstract class ShopItem : MonoBehaviour
     public virtual void Initialise()
     {
          //set the level of the item to its tracked level
-         if(PlayerPrefs.GetInt(itemInstance.itemName) <= 0)
+         if(PlayerPrefs.GetInt(itemInstance.itemName) <= 0 && item.itemMaxLevel > 1)
          {
              PlayerPrefs.SetInt(itemInstance.itemName, 1);
          }
@@ -123,6 +123,7 @@ public abstract class ShopItem : MonoBehaviour
             StatsManager.Instance.MinusSeedlings(itemInstance.seedlingCost);
         itemInstance.itemCost = _startCost + (_currentLevel * itemInstance.costIncrement);
         //increase level
+        if(item.itemMaxLevel > 0)
         _currentLevel += 1;
         PlayerPrefs.SetInt(itemInstance.itemName, _currentLevel);
         Debug.Log(itemInstance.itemName + " current level: " + _currentLevel);

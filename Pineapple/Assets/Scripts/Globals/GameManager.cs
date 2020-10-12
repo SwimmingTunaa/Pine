@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Gameover")]
     public GameObject gameoverUIBody;
-    public AudioClip gameOverSound;
+
     
     [Header("Retry")]
     public Button playButton;
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     private GameObject _trackedPosition;
     private float _timer;
     private PlayerHealth _playerHealth;
-    private bool _gameover{get{return _playerHealth.dead;}}
+    private bool _gameover;
     private static Animator _playerAnim;
 
     void Awake()
@@ -109,12 +109,34 @@ public class GameManager : MonoBehaviour
         stickersCollectedVar.RuntimeValue = stats.stickerCollectedThisRound;
         if(!Statics.paused)
         {
-            print(_gameover);  
             if(!_playerHealth.dead) 
             {
                 SpawnChaser();
             }
-            else if(_gameover) StartCoroutine(Gameover());  
+            else if(_playerHealth.dead)
+            {
+                if(!_gameover)
+                {
+                    //change the camera to follow the furtherst part if not flying
+                    Vector3 newCamPos = new Vector3 (_playerHealth.FindFurthestBodyPart().position.x, 
+                    followVirtualCamera.Follow.transform.position.y, followVirtualCamera.Follow.transform.position.z);
+
+                    followVirtualCamera.Follow.position = newCamPos;
+                    //change what the tracked object for distance is
+                    _trackedPosition = followVirtualCamera.Follow.gameObject;
+                    //this gets called in the update loop
+                    if(_playerHealth.BodyPartsStopMoving() || Timer(5f))
+                    {
+                        ShowGameOverScreen();
+                    }else
+                    if(CharacterManager.activeCharacter.GetComponent<CharacterController2D>().isFlying)
+                    {
+                        //this gets called once
+                        _gameover = true;
+                        StartCoroutine(Gameover());  
+                    }
+                }
+            }
         }
     }
 
@@ -208,50 +230,47 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Gameover()
     {
-        //change the camera to follow the furtherst part if not flying
-        Vector3 newCamPos = new Vector3 (_playerHealth.FindFurthestBodyPart().position.x, 
-        followVirtualCamera.Follow.transform.position.y, followVirtualCamera.Follow.transform.position.z);
+        yield return new WaitForSeconds(1f);
+        ShowGameOverScreen();
+    }
 
-        followVirtualCamera.Follow.position = newCamPos;
-        //change what the tracked object for distance is
-        _trackedPosition = followVirtualCamera.Follow.gameObject;
-
-        if(_playerHealth.BodyPartsStopMoving() || Timer(5f))
+    void ShowGameOverScreen()
+    {
+        _gameover = true;
+        if(PlayerPrefs.GetInt("Preservatives") == 1)
+            StartPlayerRevive();
+        else
         {
-                PauseGame(true);
-                gameoverUIBody.SetActive(true);
-                AdManager.instance.ShowOptInAdButton();
-                Time.timeScale = 0;  
+            PauseGame(true);
+            gameoverUIBody.SetActive(true);
+            AdManager.instance.ShowOptInAdButton();
+            Time.timeScale = 0;  
         }
-        else if(CharacterManager.activeCharacter.GetComponent<CharacterController2D>().isFlying)
-        {
-                yield return new WaitForSeconds(1f);
-                PauseGame(true);
-                gameoverUIBody.SetActive(true);
-                AdManager.instance.ShowOptInAdButton();
-                Time.timeScale = 0;
-        }
+        _timer = 0;            
     }
 
     public IEnumerator PlayerRevive()
     {
         //clear all obstacles and rewards
+        PlayerPrefs.SetInt("Preservatives",0);
         MasterSpawner.Instance.ClearAllActiveObjects();
         //Play the UI close animation
-        gameoverUIBody.GetComponent<Animator>().Play("End",0);
+        if(gameoverUIBody.activeSelf)
+            gameoverUIBody.GetComponent<Animator>().Play("End",0);
         //turn the chaser off
         chaser.gameObject.SetActive(false);
         //revive Player
         yield return (StartCoroutine(_playerHealth.Revive(_playerCachedPos.x + Statics.DistanceTraveled)));
-        //unpause
-        PauseGame(false);
-        //change the camera follow target to the player again
-        _trackedPosition = _player.gameObject;
         //Close UI
         gameoverUIBody.SetActive(false);
+        //change the camera follow target to the player again
+        _trackedPosition = _player.gameObject;
         //lower the difficulty level
         LevelProgressionSystem.Instance.SetDifficulty(LevelProgressionSystem.Instance.difficultyLvl - 1 > 0 ? LevelProgressionSystem.Instance.difficultyLvl - 1 : 1);
         Time.timeScale = 1;
+        //unpause
+        _gameover = false;
+        PauseGame(false);
     }
     public void StartPlayerRevive()
     {

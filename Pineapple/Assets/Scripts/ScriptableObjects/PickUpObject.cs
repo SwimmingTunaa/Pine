@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New PickUp", menuName = "Item/Pick Up Item")]
-[SerializeField]
 public class PickUpObject : ScriptableObject
 {
     [Header("About This Item")]

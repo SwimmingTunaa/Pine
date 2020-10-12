@@ -115,6 +115,8 @@ public class PlayerHealth : HealthGeneric
 
 	public IEnumerator Revive(float reviveXPos)
 	{
+		health = 1;
+		dead = false;
 		//player the revive animation
         _deathEffectStartPos.ReturnToDefault(reviveXPos);
         //wait till sliced parts return to default pos and Gameover Menu animation
@@ -127,7 +129,6 @@ public class PlayerHealth : HealthGeneric
         //wait for effect to fade
         yield return new WaitForSecondsRT(1.5f);
 		//revive the player
-		dead = false;
 
 		_deathEffectStartPos.transform.parent = transform;
 		_deathEffectStartPos.transform.localPosition = _deathEffectStartPos.localStartPos;
@@ -138,7 +139,6 @@ public class PlayerHealth : HealthGeneric
 		MixLevels.Instance.FadeBGMtoGOM(true, false);
 		gameObject.SetActive(true);
 		transform.position = _deathEffectStartPos.transform.position;
-		health = 1;
 	}
 
 	public Transform FindFurthestBodyPart()
