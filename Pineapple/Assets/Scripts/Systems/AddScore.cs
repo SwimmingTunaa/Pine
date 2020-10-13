@@ -13,11 +13,6 @@ public class AddScore : MonoBehaviour
          startTriggerAmount = triggerAmount;
     }
 
-    void Start()
-    {
-        triggerAmount = 1;
-    }
-
     void OnDisable()
     {
         triggerAmount = 1;

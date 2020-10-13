@@ -145,11 +145,15 @@ public abstract class ShopItem : MonoBehaviour
 
     void UpdateText()
     {
-        levelText.text = _currentLevel + "/" + itemInstance.itemMaxLevel;
+        if(levelText)
+            levelText.text = _currentLevel + "/" + itemInstance.itemMaxLevel;
+        if(priceText)
+        {
         if(!showSeedlingPrice)
             priceText.text = itemInstance.itemCost.ToString("N0");
         else if(showSeedlingPrice)
             priceText.text = itemInstance.seedlingCost.ToString("N0");
+        }
         progressBar.MaxLevelPoints = itemInstance.itemMaxLevel;
         progressBar.Level = _currentLevel;
     }

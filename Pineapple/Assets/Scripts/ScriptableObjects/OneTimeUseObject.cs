@@ -7,4 +7,5 @@ public class OneTimeUseObject : PickUpObject
 {
     [Header("One Time Use")]
     public GameObject itemObject;
+
 }

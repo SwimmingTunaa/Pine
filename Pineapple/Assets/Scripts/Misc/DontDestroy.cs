@@ -19,9 +19,6 @@ public class DontDestroy : MonoBehaviour
 
     void Start()
     {
-        if ( Application.isPlaying)
-        {
-            PlayerPrefs.SetInt("Play Count", 0);            
-        }
+      
     }
 }

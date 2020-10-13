@@ -6,8 +6,11 @@ using TMPro;
 public class StatsManager: MonoBehaviour
 {
     public static StatsManager Instance;
-    public int currentScore;
+    public IntVariable currentScore;
+    public IntVariable regionVistedVar;
+    public IntVariable seedlingsCollectedVar;
     public int stickerCollectedThisRound;
+    public GameObject highscoreIcon;
 
     [Header("UI")]
     public GameObject scoreAddText;
@@ -18,6 +21,7 @@ public class StatsManager: MonoBehaviour
                 Destroy(gameObject);
             else
                 Instance = this;
+        highscoreIcon.SetActive(false);
     }
 
     public void AddStickersToTotalOwnedAmount()
@@ -75,11 +79,25 @@ public class StatsManager: MonoBehaviour
 
     public void AddToScore(int amount, string scoreText)
     {
-        currentScore += amount;
+        currentScore.RuntimeValue += amount;
         GameObject tempGo = Instantiate(scoreAddText, scoreSpawnPos.position, scoreAddText.transform.rotation);
         tempGo.GetComponentInChildren<TextMeshProUGUI>().text = "+" + amount + " - " + scoreText;
         tempGo.transform.SetParent(scoreSpawnPos.transform);
         Destroy(tempGo, 3f);
+    }
+
+    public void getTotalScore()
+    {
+        currentScore.RuntimeValue  = ((int)GameManager.Instance.distanceVariable.RuntimeValue + (GameManager.Instance.stickersCollectedVar.RuntimeValue * 10) +
+                                    (seedlingsCollectedVar.RuntimeValue * 100) + (regionVistedVar.RuntimeValue * 300));
+
+        if(currentScore.RuntimeValue > PlayerPrefs.GetInt("Highscore"))
+        {
+            PlayerPrefs.SetInt("Highscore", currentScore.RuntimeValue);
+            //show highscore icon
+            highscoreIcon.SetActive(true);
+            //set inactive in play button
+        }
     }
 
     public void ResetStats()

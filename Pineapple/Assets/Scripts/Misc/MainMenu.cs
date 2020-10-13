@@ -46,6 +46,9 @@ public class MainMenu : MonoBehaviour
         PlayButton.interactable = false;
         GameManager.Instance.chaser.SpawnChaser(-6f);
         StartCoroutine(MainMenuWait(false, waitTime));
+        //create the rewards item if there are any
+        ShopManager.Instance.ResetPlayerPrefsOnPlay();
+        StatsManager.Instance.AddOneToAStat("Play Count");
     }
 
     public IEnumerator MainMenuWait(bool enable, float waitTime)

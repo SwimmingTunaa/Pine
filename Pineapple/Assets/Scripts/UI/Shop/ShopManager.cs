@@ -12,6 +12,7 @@ public class ShopManager : MonoBehaviour
     public Button confirmButton;
     public Button cancelButton;
     public GameObject unableToPurchaseUI;
+
     private string _costText;
     private string _currentText;
     private TextMeshProUGUI _confirmButtonText;
@@ -19,7 +20,8 @@ public class ShopManager : MonoBehaviour
     [Header("Insufficient Funds Button")]
     public GameObject insufficientFundButton;
     [Header("One time use items")]
-    public List<GameObject> otItems = new List<GameObject>();
+    public GameObject shield;
+    public GameObject boost;
 
     public void Awake()
     {
@@ -85,9 +87,15 @@ public class ShopManager : MonoBehaviour
     {
         //done in play button click
         //turn on any One time items that have been spawned
-        foreach(GameObject g in otItems)
+        if(PlayerPrefs.GetInt("Canned Fruits") > 0)
         {
-            g.SetActive(true);
+            shield = Instantiate(shield);
+            shield.transform.position = CharacterManager.activeCharacter.transform.position;
+        }
+          if(PlayerPrefs.GetInt("Super Fruit") > 0)
+        {
+            boost = Instantiate(boost);
+            boost.transform.position = CharacterManager.activeCharacter.transform.position;
         }
         //reset the items to be avaible in shops again
         PlayerPrefs.SetInt("Canned Fruits", 0);     

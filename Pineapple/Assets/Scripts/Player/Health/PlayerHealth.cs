@@ -12,6 +12,8 @@ public class PlayerHealth : HealthGeneric
 	public TakeScreenShot takeScreenShot;
 	[Header("Revive")]
 	public GameObject reviveEffect;
+    public AudioClip reviveSoundEffect;
+
 	[Header("Shield")]
 	public GameObject hitEffect;
 	public AudioClip shieldHitSound;
@@ -119,6 +121,7 @@ public class PlayerHealth : HealthGeneric
 		dead = false;
 		//player the revive animation
         _deathEffectStartPos.ReturnToDefault(reviveXPos);
+		GameManager.Instance.GetComponent<AudioSource>().PlayOneShot(reviveSoundEffect);
         //wait till sliced parts return to default pos and Gameover Menu animation
         yield return new WaitForSecondsRT(1f);
         //play the revive effect

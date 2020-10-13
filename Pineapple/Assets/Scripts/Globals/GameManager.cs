@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Gameover")]
     public GameObject gameoverUIBody;
-
     
     [Header("Retry")]
     public Button playButton;
@@ -242,6 +241,7 @@ public class GameManager : MonoBehaviour
         else
         {
             PauseGame(true);
+            StatsManager.Instance.getTotalScore();
             gameoverUIBody.SetActive(true);
             AdManager.instance.ShowOptInAdButton();
             Time.timeScale = 0;  
@@ -306,7 +306,6 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Retry", isRetry);
         //System.GC.Collect();
-
         //the total amount of stickers the player has
         stats.AddStickersToTotalOwnedAmount();
         //update stats part

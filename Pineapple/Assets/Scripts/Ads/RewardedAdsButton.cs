@@ -5,8 +5,6 @@ using UnityEngine.Advertisements;
 [RequireComponent (typeof (Button))]
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener 
 {
-    public int stickerRewardAmount = 100;
-
     #if UNITY_IOS
     private string gameId = "3845530";
     #elif UNITY_ANDROID
@@ -52,12 +50,10 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
         // Define conditional logic for each ad completion status:
         if (showResult == ShowResult.Finished) 
         {
-            // Reward the user for watching the ad to completion.
-            PlayerPrefs.SetInt("TotalStickers", PlayerPrefs.GetInt("TotalStickers") + stickerRewardAmount);
+            // Show the rewards
+              AdManager.instance.rewardPanel.SetActive(true);
             if(parentContainer) parentContainer.SetActive(false);
-            AdManager.instance.ShowStickersReceived(stickerRewardAmount);
             AdManager.instance.gameOverAdButton.SetActive(false);
-            Debug.Log(PlayerPrefs.GetInt("TotalStickers") + " + " + stickerRewardAmount + " = " + (PlayerPrefs.GetInt("TotalStickers") + stickerRewardAmount));
         } else if (showResult == ShowResult.Skipped) 
         {
             // Do not reward the user for skipping the ad.
