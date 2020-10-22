@@ -22,6 +22,7 @@ public class StatsManager: MonoBehaviour
             else
                 Instance = this;
         highscoreIcon.SetActive(false);
+        regionVistedVar.RuntimeValue = 0;
     }
 
     public void AddStickersToTotalOwnedAmount()

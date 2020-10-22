@@ -10,8 +10,8 @@ public class CharacterController2D : MonoBehaviour
 	public bool canDoubleJump;
 	public bool m_Grounded;		// Whether or not the player is grounded.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
-	[SerializeField] private float m_fallMulitplier = 2.5f;
-	[SerializeField] private float m_lowJumpMulitplier = 2.5f;
+	[SerializeField] public float m_fallMulitplier = 2.5f;
+	[SerializeField] public float m_lowJumpMulitplier = 2.5f;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;
 	

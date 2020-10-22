@@ -15,10 +15,11 @@ public class MovePanelsToNewHolder : MonoBehaviour
     {
         if(triggerAmount > 0 && other.CompareTag("Player"))
         {
+            triggerAmount--;
             GameManager.Instance.cameraFollower.move = true;
             ParallaxManager.instance.ChangeParallax();
             PanelSpawner.Instance.ChangePanelSpawnPoint();
-            MoveBlackBars.SetBlackBarHeight(PanelSpawner._Instance._currentStartingPanel.GetComponentInChildren<SpriteRenderer>());
+            MoveBlackBars.Instance.SetBlackBarHeight(PanelSpawner._Instance._currentStartingPanel.GetComponentInChildren<SpriteRenderer>());
 
             if(MasterSpawner.Instance.activeRegion.tag == "Cloud" || MasterSpawner.Instance.activeRegion.tag == "Storm")
             {
@@ -27,14 +28,16 @@ public class MovePanelsToNewHolder : MonoBehaviour
                 MasterSpawner.Instance.RemoveFromChallengeList(MasterSpawner.Instance.listOfSpawners[MasterSpawner.Instance.critterSpawner.name]);
                 //remove spider spawner
                 MasterSpawner.Instance.RemoveFromChallengeList(MasterSpawner.Instance.listOfSpawners[SpiderSpawner.instance.name]);
+                //change the fall gravity
+                CharacterManager.activeCharacter.GetComponent<CharacterController2D>().m_lowJumpMulitplier = 1.5f;
             }
-            else if (other.GetComponent<CharacterController2D>().isFlying == true && (MasterSpawner.Instance.activeRegion.tag != "Cloud" || MasterSpawner.Instance.activeRegion.tag == "Storm"))
+            if (other.GetComponent<CharacterController2D>().isFlying == true)
             {
                 other.GetComponent<CharacterController2D>().isFlying = false;
                 CharacterManager.activeCharacter.GetComponent<PlayerController>().UnequipHoverBoard();
+                //revert the fall gravity
+                CharacterManager.activeCharacter.GetComponent<CharacterController2D>().m_lowJumpMulitplier = 3f;
             }
-            
-            triggerAmount--;
         }
     }
 }

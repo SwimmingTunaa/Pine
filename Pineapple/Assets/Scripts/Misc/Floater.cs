@@ -13,9 +13,9 @@ public class Floater : MonoBehaviour {
     float startY;
  
     // Use this for initialization
-    void OnEnable () {
+    void Start () {
         // Store the starting position & rotation of the object
-        startY = transform.position.y;
+        startY = transform.localPosition.y;
     }
      
     // Update is called once per frame
@@ -24,9 +24,9 @@ public class Floater : MonoBehaviour {
         //transform.Rotate(new Vector3(0f, Time.deltaTime * degreesPerSecond, 0f), Space.World);
  
         // Float up/down with a Sin()
-        posOffset = new Vector3(transform.position.x, startY);
+        posOffset = new Vector3(transform.localPosition.x, startY);
         posOffset.y += Mathf.Sin (Time.fixedTime * Mathf.PI * frequency) * amplitude;
  
-        transform.position = posOffset;
+        transform.localPosition = posOffset;
     }
 }

@@ -10,15 +10,13 @@ public class SetBar : MonoBehaviour
     private float maxLevel = 5;
     public float currentLevel ;
     
-    private RectTransform imageRectTransform ;
-
     public float Level
     {
         get { return currentLevel; }
         set
         {
             currentLevel = Mathf.Clamp(value, 0, MaxLevelPoints);
-            image.material.SetFloat("_Percent",  currentLevel/MaxLevelPoints);
+            image.materialForRendering.SetFloat("_Percent",  currentLevel/MaxLevelPoints);
         }
     }
     public float MaxLevelPoints
@@ -33,7 +31,6 @@ public class SetBar : MonoBehaviour
 
     protected void Awake()
     {
-        imageRectTransform = image.GetComponent<RectTransform>();
         image.material = Instantiate(image.material); // Clone material
         MaxLevelPoints = MaxLevelPoints; // Force the call to the setter in order to update the material
     }
@@ -43,11 +40,12 @@ public class SetBar : MonoBehaviour
         // Dummy test, you can remove this
         if( Input.GetKeyDown(KeyCode.Space) )
         {
-            LevelUp( 1 );
+            LevelUp();
+            print(Time.timeScale);
         }
     }
     
-    public void LevelUp( float damagesPoints )
+    public void LevelUp()
     {
         Level += 1;
     }

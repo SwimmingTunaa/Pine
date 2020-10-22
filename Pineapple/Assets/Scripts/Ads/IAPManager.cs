@@ -11,25 +11,25 @@ public class IAPManager : MonoBehaviour, IStoreListener
     private static IExtensionProvider m_StoreExtensionProvider;
 
     //Step 1 create your products
-    private string stickers400 = "TSD_stickers_400";
-    private string stickers1000 = "TSD_stickers_1000";
+    public string stickers1000 = "tsd_stickers_400";
+    public string stickers2500 = "tsd_stickers_1000";
 
 
     //************************** Adjust these methods **************************************
     public void InitializePurchasing()
     {
         if (IsInitialized()) { return; }
-        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+/*        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
         //Step 2 choose if your product is a consumable or non consumable
-        builder.AddProduct(stickers400, ProductType.NonConsumable);
         builder.AddProduct(stickers1000, ProductType.NonConsumable);
+        builder.AddProduct(stickers2500, ProductType.NonConsumable);
 
-        UnityPurchasing.Initialize(this, builder);
+        UnityPurchasing.Initialize(this, builder);*/
     }
 
 
-    private bool IsInitialized()
+    public bool IsInitialized()
     {
         return m_StoreController != null && m_StoreExtensionProvider != null;
     }
@@ -37,30 +37,38 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     //Step 3 Create methods
 
-    public void BuyStickers400()
-    {
-        BuyProductID(stickers400);
-    }
-
     public void BuyStickers1000()
     {
         BuyProductID(stickers1000);
+    }
+
+    public void BuyStickers2500()
+    {
+        BuyProductID(stickers2500);
+    }
+
+    public string GetProductPriceFromStore(string id)
+    {
+        if(m_StoreController != null && m_StoreController.products != null)
+            return  m_StoreController.products.WithID(id).metadata.localizedPrice.ToString();
+        else 
+            return "";
     }
 
 
     //Step 4 modify purchasing
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
     {
-        if (String.Equals(args.purchasedProduct.definition.id, stickers400, StringComparison.Ordinal))
-        {
-            StatsManager.Instance.AddStickersToTotalOwnedAmount(400);
-            Debug.Log("400 stickers bought sucessfully");
-        }
-        else
         if (String.Equals(args.purchasedProduct.definition.id, stickers1000, StringComparison.Ordinal))
         {
             StatsManager.Instance.AddStickersToTotalOwnedAmount(1000);
             Debug.Log("1000 stickers bought sucessfully");
+        }
+        else
+        if (String.Equals(args.purchasedProduct.definition.id, stickers2500, StringComparison.Ordinal))
+        {
+            StatsManager.Instance.AddStickersToTotalOwnedAmount(2500);
+            Debug.Log("2500 stickers bought sucessfully");
         }
         else
         {
@@ -94,7 +102,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
     {
         if (instance != null) { Destroy(gameObject); return; }
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     void BuyProductID(string productId)
@@ -131,10 +139,10 @@ public class IAPManager : MonoBehaviour, IStoreListener
         {
             Debug.Log("RestorePurchases started ...");
 
-            var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
+            /*var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
             apple.RestoreTransactions((result) => {
                 Debug.Log("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
-            });
+            });*/
         }
         else
         {

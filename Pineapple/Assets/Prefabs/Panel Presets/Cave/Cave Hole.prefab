@@ -549,7 +549,6 @@ Transform:
   - {fileID: 3742090957680375489}
   - {fileID: 7673203715122680503}
   - {fileID: 7585972305498649883}
-  - {fileID: 8600410884478345043}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1780,21 +1779,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!114 &108370203925842380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8951457898831761869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b3ec7cbf1606e447b80900d6dabc06e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  action: 0
-  spawner: Critter Spawner
-  spawnChance: 0
 --- !u!1 &8983260396697471909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,85 +1859,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!1001 &4332964116891183889
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7673356480734940737}
-    m_Modifications:
-    - target: {fileID: 4618494608797301468, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_Name
-      value: ChangeRegionsTrigger
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -5.776
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.14102009
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 148051490961415133, guid: ba3c04eedcc0631478f366c4823dc425, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: ba3c04eedcc0631478f366c4823dc425, type: 3}
---- !u!1 &8951457898831761869 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4618494608797301468, guid: ba3c04eedcc0631478f366c4823dc425,
-    type: 3}
-  m_PrefabInstance: {fileID: 4332964116891183889}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8600410884478345043 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5438953935722001474, guid: ba3c04eedcc0631478f366c4823dc425,
-    type: 3}
-  m_PrefabInstance: {fileID: 4332964116891183889}
-  m_PrefabAsset: {fileID: 0}

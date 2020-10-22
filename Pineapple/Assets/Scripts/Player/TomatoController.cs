@@ -73,7 +73,7 @@ public class TomatoController : MonoBehaviour
         if(hit)
         {
 //            print("Move up collider");
-            Vector3 newYPos = new Vector3 (0, (hit.collider.bounds.extents.y), 0); 
+            Vector3 newYPos = new Vector3 (0, (hit.collider.bounds.extents.y + 1f), 0); 
             transform.position = transform.position + newYPos;
         }
     }

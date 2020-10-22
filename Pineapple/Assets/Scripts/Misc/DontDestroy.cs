@@ -16,9 +16,4 @@ public class DontDestroy : MonoBehaviour
         else
             Destroy(this.gameObject);
     }
-
-    void Start()
-    {
-      
-    }
 }

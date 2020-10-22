@@ -6,7 +6,8 @@ using Cinemachine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using UnityEngine.Analytics;
+using UnityEngine.UDP;
 
 public class GameManager : MonoBehaviour
 {
@@ -66,6 +67,10 @@ public class GameManager : MonoBehaviour
         //reset statics
         ResetStatics();
         _camera = Camera.main;
+        
+    // Instantiate the listener
+    IInitListener listener = new InitListener();
+    StoreService.Initialize(listener);
     }
 
     IEnumerator ScreenFade()
@@ -245,6 +250,14 @@ public class GameManager : MonoBehaviour
             gameoverUIBody.SetActive(true);
             AdManager.instance.ShowOptInAdButton();
             Time.timeScale = 0;  
+            //Track Analytics
+            //track Total Stickers collcected
+            Analytics.CustomEvent("Stickers Collected", new Dictionary<string, object>{
+                                                        {"Stickers Collect", PlayerPrefs.GetInt("StickersCollected")},
+                                                        {"Play Time", Time.timeSinceLevelLoad},
+                                                                                        } );
+            //Track playTime session
+            //track session play count
         }
         _timer = 0;            
     }

@@ -137,24 +137,37 @@ public class PlayerController : MonoBehaviour
     public IEnumerator EquipHoverBoard()
     {
         _rigidBody.velocity = Vector2.zero;
-        yield return new WaitForSeconds(.2f);
+        Vector2 currentPos = transform.position;
+        //wait until the player reach the middle of the panel
+        while(transform.position.y > currentPos.y - 6f)
+            yield return null;
+
+        _rigidBody.velocity = Vector2.zero;
         _characterController.isFlying = true;
         Time.timeScale = 0;
         _anim.SetBool("Fierce", true);
         GameManager.Instance.vfxVirtualCamera.gameObject.SetActive(true);
         hoverBoard.SetActive(true);
+        //wait for the hoverboard animation to finish playing
         yield return new WaitForSecondsRT(0.7f);
         _anim.SetBool("Fly", true);
         _anim.SetBool("Fierce", false);
         GameManager.Instance.vfxVirtualCamera.gameObject.SetActive(false);
+        //wait for the camera to move back to original
         yield return new WaitForSecondsRT(.8f);
+        //play tutrial if its first time hoverboard
+        if(PlayerPrefs.GetInt("First Hoverboard") <= 0)
+        {
+            yield return StartCoroutine(LevelProgressionSystem.Instance.PlayDialogue("Tap and hold to fly!", Enums.BubbleSize.md, 3f));
+            PlayerPrefs.SetInt("First Hoverboard", 1);
+        }
         Time.timeScale = 1;
-        _characterController.AddForce(Vector2.up * 1000f);
+        //give the player a small boost up so they don't immediatly fall
+        _characterController.AddForce(Vector2.up * 600f);
     }
 
     public void UnequipHoverBoard()
     {
-        _rigidBody.velocity = Vector2.zero;
         _anim.SetBool("Fly", false);
         hoverBoard.SetActive(false);
     }

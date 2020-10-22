@@ -22,7 +22,7 @@ public class AddOrRemoveSpawner : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") && _triggerAmount > 0)
+        if(other.CompareTag("Player") && _triggerAmount > 0 && spawner != "")
         {
             switch(action)
             {

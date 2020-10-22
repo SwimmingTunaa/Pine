@@ -20,8 +20,8 @@ public class ShopManager : MonoBehaviour
     [Header("Insufficient Funds Button")]
     public GameObject insufficientFundButton;
     [Header("One time use items")]
-    public GameObject shield;
-    public GameObject boost;
+    public ObjectPools shieldPool;
+    public ObjectPools boostPool;
 
     public void Awake()
     {
@@ -89,12 +89,16 @@ public class ShopManager : MonoBehaviour
         //turn on any One time items that have been spawned
         if(PlayerPrefs.GetInt("Canned Fruits") > 0)
         {
-            shield = Instantiate(shield);
+            GameObject shield = shieldPool.spawnedObjectPool.Find(x=> x.GetComponent<ShieldPickUp>());
+            shield.SetActive(false);
+            shield.SetActive(true);
             shield.transform.position = CharacterManager.activeCharacter.transform.position;
         }
           if(PlayerPrefs.GetInt("Super Fruit") > 0)
         {
-            boost = Instantiate(boost);
+            GameObject boost = boostPool.spawnedObjectPool.Find(x=> x.GetComponent<SpeedBoost>());
+            boost.SetActive(false);
+            boost.SetActive(true);
             boost.transform.position = CharacterManager.activeCharacter.transform.position;
         }
         //reset the items to be avaible in shops again

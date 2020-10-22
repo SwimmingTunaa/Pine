@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 171790405
   m_SortingLayer: 7
-  m_SortingOrder: 21
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300018, guid: c25cc3dd3dc905540922d22aebfb240d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerAmount: 1
   damageAmount: 1
-  destroyHair: 1
+  CanDestroyHair: 0
   damageShieldOnly: 0
   destroyAfterDamage: 0
   hitSoundEffect: {fileID: 0}
@@ -309,10 +309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerAmount: 1
-  scoreToAdd: 100
-  scoreMessage: Haircut!
-  isTrigger: 1
   statReference: KilledByFans
+  intToAddTo: {fileID: 0}
 --- !u!1 &3091860780506468094
 GameObject:
   m_ObjectHideFlags: 0

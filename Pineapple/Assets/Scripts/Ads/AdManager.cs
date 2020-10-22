@@ -31,6 +31,10 @@ public class AdManager : MonoBehaviour
         else
             Destroy(this.gameObject);
         startText = receiveRewardButton.GetComponentInChildren<TextMeshProUGUI>().text;
+    }
+
+    void Start()
+    {
         _currentText = descriptionText.text;
     }
 
@@ -55,6 +59,7 @@ public class AdManager : MonoBehaviour
 
     public void OpenConfirmation(PurchaseIPAStickers IAPItem)
     {
+       descriptionText.text = _currentText;
         parentContainer.gameObject.SetActive(true);
         //add the method to the onclick event
         confirmationButton.onClick.AddListener(() => IAPItem.BuyItem());
@@ -71,7 +76,6 @@ public class AdManager : MonoBehaviour
         confirmationButton.onClick.RemoveAllListeners();
         descriptionText.text = descriptionText.text.Replace(itemName, ("(ItemName)"));
        // _confirmButtonText.text = _confirmButtonText.text.Replace(itemCost.ToString("N0"), ("(ItemCost)"));
-       descriptionText.text = _currentText;
         parentContainer.gameObject.SetActive(false);
     }
 }

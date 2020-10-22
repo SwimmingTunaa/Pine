@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Shield
   m_EditorClassIdentifier: 
   itemName: Shield Strength
-  itemCost: 2000
-  costIncrement: 1000
+  itemCost: 900
+  seedlingCost: 0
+  costIncrement: 400
   effectDuration: 0
   itemMaxLevel: 3
   pickUpSound: {fileID: 8300000, guid: 56d176135168e4788b212b0059fee63b, type: 3}
   deathFX: {fileID: 0}
+  Instance: {fileID: 0}
   shieldStrength: 1

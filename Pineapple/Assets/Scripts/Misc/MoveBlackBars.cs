@@ -4,11 +4,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MoveBlackBars : MonoBehaviour
 {
+    public static MoveBlackBars instance;
+    public static MoveBlackBars Instance {get{return instance;}}
     public SpriteRenderer blackBarTop, blackBarBot;
     public float barTransitionSpeed = 45f;
+    public MovePanelsToNewHolder movePanelsToNewHolder;
 
-    static bool _changeBlackBarHeight;
-    static float panelHalfSize;
+    private bool _changeBlackBarHeight;
+    private float panelHalfSize;
+
+    void Awake()
+    {
+        if(instance == null)
+            instance = this;
+        else 
+            Destroy(this.gameObject);
+    }
 
  
     // Update is called once per frame
@@ -25,18 +36,25 @@ public class MoveBlackBars : MonoBehaviour
         blackBarTop.transform.position = Vector3.MoveTowards(blackBarTop.transform.position, topNewYPos, Time.deltaTime* barTransitionSpeed);
         blackBarBot.transform.position = Vector3.MoveTowards(blackBarBot.transform.position, botNewYPos, Time.deltaTime* barTransitionSpeed);
           
-        if(blackBarTop.transform.position == topNewYPos && blackBarBot.transform.position == botNewYPos) _changeBlackBarHeight = false;                                           
+        if(blackBarTop.transform.position == topNewYPos && blackBarBot.transform.position == botNewYPos && _changeBlackBarHeight == true)
+        {
+            _changeBlackBarHeight = false;
+            CharacterManager.activeCharacter.GetComponent<PlayerController>().jumpable = true;
+        }                                            
     }
 
-    public static void SetBlackBarHeight(SpriteRenderer renderer)
+    public void SetBlackBarHeight(SpriteRenderer renderer)
     {
+        movePanelsToNewHolder.gameObject.SetActive(false);
+        movePanelsToNewHolder.gameObject.SetActive(true);
         panelHalfSize = renderer.size.y/2;
-        _changeBlackBarHeight = true;
-       
+        _changeBlackBarHeight = true;  
     }
-    public static void SetBlackBarHeight()
+    public void SetBlackBarHeight()
     {
         panelHalfSize = DontDestroy._instance.startingPanel.GetComponentInChildren<SpriteRenderer>().size.y/2;
         _changeBlackBarHeight = true;
+        //don't let player jump
+        CharacterManager.activeCharacter.GetComponent<PlayerController>().jumpable = false;
     }
 }

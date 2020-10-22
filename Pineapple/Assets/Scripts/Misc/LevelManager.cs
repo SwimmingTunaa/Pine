@@ -17,8 +17,8 @@ public class LevelManager : MonoBehaviour
     void OnLevelFinishedLoading (Scene previousScene, LoadSceneMode mode) 
     {
         //PanelSpawner.Instance.ClearPanelHolders();  
+        MoveBlackBars.Instance.SetBlackBarHeight(DontDestroy._instance.startingPanel.GetComponentInChildren<SpriteRenderer>());
         PanelSpawner.Instance.InitialSpawn();
-        MoveBlackBars.SetBlackBarHeight(DontDestroy._instance.startingPanel.GetComponentInChildren<SpriteRenderer>());
     }
 
     public static void MoveObjectsToNewScene()

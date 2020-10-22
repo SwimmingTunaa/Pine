@@ -1,13 +1,15 @@
 ﻿    using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEngine.UI;
 public class LevelProgressionSystem : MonoBehaviour
 {
     // Start is called before the first frame update
     public static LevelProgressionSystem Instance;
     [Header("First Time Starting Game")]
     public ObstaclePool startingPool;
+    public Button jumpButton;
+    public Button resetTimeButton;
     public DialogueSequence dialogueSequence;
 
     [Header("Normal Game Mode")]
@@ -53,15 +55,16 @@ public class LevelProgressionSystem : MonoBehaviour
             {
                 if(Timer(_interval) && _interval > 0)
                 {
-                    Time.timeScale = 1;
-                    _interval= 0;
-                    if(startCounter >= 5)
-                    {
-                        MasterSpawner.Instance.enabled = true;
-                        PlayerPrefs.SetInt("FirstTimeStart", 1);
-                    }
+                    jumpButton.onClick.RemoveListener(ResetTime);
+                    ResetTime();
+                }else
+                if(startCounter >= 5)
+                {
+                    MasterSpawner.Instance.enabled = true;
+                    PlayerPrefs.SetInt("FirstTimeStart", 1);
+                    ResetTime();
                 }
-                FirstStart();
+               StartCoroutine(FirstStart());
             } 
     }
 
@@ -93,7 +96,7 @@ public class LevelProgressionSystem : MonoBehaviour
                             GameObject tempGO = Instantiate(holePanelToAdd);
                             tempGO.SetActive(false);
                             tempGO.transform.parent = PoolManager.instance.transform;
-                            MasterSpawner.Instance.activeRegion.panels.spawnedObjectPool.Add(tempGO);
+                            RegionPoolManager.Instance.primaryRegionsToPool.Find(x => x.name == "House Region")?.panels.spawnedObjectPool.Add(tempGO);
                         }
                     }
                 }
@@ -171,7 +174,7 @@ public class LevelProgressionSystem : MonoBehaviour
 
     }
 
-    void FirstStart()
+    IEnumerator FirstStart()
     {
         _masterSpawner.enabled = false;
         switch(startCounter)
@@ -180,32 +183,41 @@ public class LevelProgressionSystem : MonoBehaviour
             case 0:
                 if(Statics.DistanceTraveled  >= 50f)
                 {
+                    //spawn obstacle
+                    SpawnSpecificObjectAtFloor(startCounter);
                     //_currentCheckpoint = Statics.DistanceTraveled + 20f;
-                    PlayDialogue("Tap to jump", Enums.BubbleSize.md, 3f);
+                   StartCoroutine(PlayDialogue("Tap to jump", Enums.BubbleSize.md, 3f));
+                  
                 }
             break;
             case 1://jump over tall book shelf
-                if(Statics.DistanceTraveled  >= 150f)
+                if(Statics.DistanceTraveled  >= 100f)
                 {
-                    PlayDialogue("Hold and press to jump higher", Enums.BubbleSize.md, 3f);
+                    SpawnSpecificObjectAtFloor(startCounter);
+                    StartCoroutine(PlayDialogue("Tap and hold to jump higher", Enums.BubbleSize.md, 3f));
                 }
             break;
             case 2: // jump over long bookshelf
-                if(Statics.DistanceTraveled  >= 250f)
+                if(Statics.DistanceTraveled  >= 200f)
                 {
-                    PlayDialogue("Tap again after jumping to double jump", Enums.BubbleSize.lg, 3f);
+                    SpawnSpecificObjectAtFloor(startCounter);
+                    yield return StartCoroutine(PlayDialogue("Tap again after jumping to do a flip", Enums.BubbleSize.lg, 1.5f));
+                    startCounter = 2;
+                    StartCoroutine(PlayDialogue("Flip at the right moment to get an upwards boost", Enums.BubbleSize.lg, 1.5f));
                 }
             break;
             case 3://stickers
-                if(Statics.DistanceTraveled  >= 320f)
+                if(Statics.DistanceTraveled  >= 280f)
                 {
-                    PlayDialogue("Collect Stickers to spend in the Market Place and earn points", Enums.BubbleSize.lg, 3f);
+                    SpawnSpecificObjectAtFloor(startCounter);
+                    StartCoroutine(PlayDialogue("Collect Stickers to spend in the Market Place and gain points", Enums.BubbleSize.lg, 3f));
                 }
             break;
             case 4://seedlings
-                if(Statics.DistanceTraveled  >= 400f)
+                if(Statics.DistanceTraveled  >= 350f)
                 {
-                    PlayDialogue("Collect Seedlings to gain points", Enums.BubbleSize.md, 3f);
+                    SpawnSpecificObjectAtFloor(startCounter);
+                    StartCoroutine(PlayDialogue("Collect Seedlings to gain points", Enums.BubbleSize.md, 3f));
                 }
             break;
             default:
@@ -228,8 +240,19 @@ public class LevelProgressionSystem : MonoBehaviour
         return false;
     }
 
-    void PlayDialogue(string text, Enums.BubbleSize bubbleSize, float interval)
+
+    public IEnumerator PlayDialogue(string text, Enums.BubbleSize bubbleSize, float interval)
     {
+        //set a timer for when the player doesn't tap next
+        _interval = 0.75f;
+        if(PlayerPrefs.GetInt("FirstTimeStart") == 0)
+        {
+             //move coutner up so it doesn't keep in the update loop
+            startCounter++;
+            //wait for player to reach obstacle
+            yield return new WaitForSecondsRealtime(0.6f);
+        }
+        //show dialogue
         dialogueSequence.EndDialogue();
         DialogueConfig dialogue = new DialogueConfig();
         dialogue.character = CharacterManager.activeCharacter;
@@ -239,10 +262,22 @@ public class LevelProgressionSystem : MonoBehaviour
         
         dialogueSequence.dialogues[0] = dialogue;
         dialogueSequence.StartDialogue(0);
-        Time.timeScale = .5f;
-        _interval = 1f;
-        SpawnSpecificObjectAtFloor(startCounter);
-        startCounter++;
+
+        //add function to cancel on player press to button
+        resetTimeButton.onClick.AddListener(ResetTime);
+        resetTimeButton.gameObject.SetActive(true);
+        jumpButton.gameObject.SetActive(false);
+        Time.timeScale = 0;
+        while(Time.timeScale == 0)
+            yield return null;
+    }
+
+    public void ResetTime()
+    {
+        Time.timeScale = 1f;
+        _interval = 0f;
+        resetTimeButton.gameObject.SetActive(false);
+        jumpButton.gameObject.SetActive(true);
     }
 
     void SpawnSpecificObjectAtFloor(int objectIndex = 0)
@@ -251,7 +286,7 @@ public class LevelProgressionSystem : MonoBehaviour
             startingPool.spawnedObjectPool[objectIndex].SetActive(true);
             tempConfig.bot = startingPool;
             startingPool.spawnedObjectPool[objectIndex].transform.position = ObstacleSpawner.Instance
-                .GetFloorSpawnPoint(startingPool.spawnedObjectPool[objectIndex].GetComponent<Collider2D>(), -8f);      
+                .GetFloorSpawnPoint(startingPool.spawnedObjectPool[objectIndex].GetComponent<Collider2D>(), -12f);      
     }
 
 [System.Serializable]
