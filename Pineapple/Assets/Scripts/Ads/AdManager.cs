@@ -61,19 +61,21 @@ public class AdManager : MonoBehaviour
     {
        descriptionText.text = _currentText;
         parentContainer.gameObject.SetActive(true);
+        confirmationButton.onClick.RemoveAllListeners();
         //add the method to the onclick event
-        confirmationButton.onClick.AddListener(() => IAPItem.BuyItem());
-        cancelButton.onClick.AddListener(()=> CloseConfirmation(IAPItem.itemName));
+        confirmationButton.onClick.AddListener(IAPItem.BuyItem);
+        cancelButton.onClick.AddListener(()=> CloseConfirmation(IAPItem.itemName, IAPItem));
         descriptionText.text = descriptionText.text.Replace("(ItemName)",IAPItem.itemName);
         //converts the item cost to string and then add commas to the thousandth
         descriptionText.text = descriptionText.text.Replace("(ItemCost)","$" +IAPItem.itemPrice.ToString());
     }
 
-    public void CloseConfirmation(string itemName)
+    public void CloseConfirmation(string itemName, PurchaseIPAStickers IAPItem)
     {
         //reset the button to defualt
         //this will remove the sound effect too TODO: Fix this
         confirmationButton.onClick.RemoveAllListeners();
+        confirmationButton.onClick.RemoveListener(IAPItem.BuyItem);
         descriptionText.text = descriptionText.text.Replace(itemName, ("(ItemName)"));
        // _confirmButtonText.text = _confirmButtonText.text.Replace(itemCost.ToString("N0"), ("(ItemCost)"));
         parentContainer.gameObject.SetActive(false);

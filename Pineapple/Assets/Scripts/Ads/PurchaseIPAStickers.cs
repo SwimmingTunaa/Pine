@@ -8,6 +8,11 @@ public class PurchaseIPAStickers : MonoBehaviour
     public string itemName;
     public float itemPrice;
     public TextMeshProUGUI priceText;
+
+    void Start()
+    {
+        //StartCoroutine(SetPriceText());
+    }
  
     public void BuyItem()
     {
@@ -15,20 +20,20 @@ public class PurchaseIPAStickers : MonoBehaviour
         {
             IAPManager.instance.BuyStickers1000();
         }
-        else   
+        else if(!buy1000Stickers)   
         {
             IAPManager.instance.BuyStickers2500();
         }
     }
 
-    IEnumerator SetPriceText()
+    /*IEnumerator SetPriceText()
     {
         while(!IAPManager.instance.IsInitialized())
             yield return null;
         print("text changed");
-        if(buy1000Stickers)
+        if(!buy1000Stickers)
             priceText.text = IAPManager.instance.GetProductPriceFromStore(IAPManager.instance.stickers2500);
         else
             priceText.text = IAPManager.instance.GetProductPriceFromStore(IAPManager.instance.stickers1000);
-    }
+    }*/
 }

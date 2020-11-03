@@ -34,6 +34,7 @@ public class StatsManager: MonoBehaviour
     public void AddStickersToTotalOwnedAmount(int amount)
     {
         int allStickers = PlayerPrefs.GetInt("TotalStickers") + amount;
+        Debug.Log(allStickers + " total stickers");
         PlayerPrefs.SetInt("TotalStickers", allStickers);
     }
 

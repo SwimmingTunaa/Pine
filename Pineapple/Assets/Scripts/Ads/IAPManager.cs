@@ -6,26 +6,27 @@ using UnityEngine.Purchasing;
 public class IAPManager : MonoBehaviour, IStoreListener
 {
     public static IAPManager instance;
-
+    public GameObject confirmedPurchaseButton1000;
+    public GameObject confirmedPurchaseButton2500;
     private static IStoreController m_StoreController;
     private static IExtensionProvider m_StoreExtensionProvider;
 
     //Step 1 create your products
-    public string stickers1000 = "tsd_stickers_400";
-    public string stickers2500 = "tsd_stickers_1000";
+    private string stickers1000 = "tsd_stickers_1000";
+    private string stickers2500 = "tsd_stickers_2500";
 
 
     //************************** Adjust these methods **************************************
     public void InitializePurchasing()
     {
         if (IsInitialized()) { return; }
-/*        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
         //Step 2 choose if your product is a consumable or non consumable
         builder.AddProduct(stickers1000, ProductType.NonConsumable);
         builder.AddProduct(stickers2500, ProductType.NonConsumable);
 
-        UnityPurchasing.Initialize(this, builder);*/
+        UnityPurchasing.Initialize(this, builder);
     }
 
 
@@ -44,7 +45,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     public void BuyStickers2500()
     {
-        BuyProductID(stickers2500);
+        BuyProductID("tsd_stickers_2500");
     }
 
     public string GetProductPriceFromStore(string id)
@@ -59,15 +60,18 @@ public class IAPManager : MonoBehaviour, IStoreListener
     //Step 4 modify purchasing
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
     {
-        if (String.Equals(args.purchasedProduct.definition.id, stickers1000, StringComparison.Ordinal))
+        Debug.Log(args.purchasedProduct.definition.id);
+        if (args.purchasedProduct.definition.id == stickers1000)
         {
             StatsManager.Instance.AddStickersToTotalOwnedAmount(1000);
+            confirmedPurchaseButton1000.SetActive(true);
             Debug.Log("1000 stickers bought sucessfully");
         }
         else
-        if (String.Equals(args.purchasedProduct.definition.id, stickers2500, StringComparison.Ordinal))
+        if (args.purchasedProduct.definition.id == stickers2500)
         {
             StatsManager.Instance.AddStickersToTotalOwnedAmount(2500);
+            confirmedPurchaseButton2500.SetActive(true);
             Debug.Log("2500 stickers bought sucessfully");
         }
         else
@@ -114,6 +118,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
             {
                 Debug.Log(string.Format("Purchasing product asychronously: '{0}'", product.definition.id));
                 m_StoreController.InitiatePurchase(product);
+               
             }
             else
             {
@@ -139,10 +144,10 @@ public class IAPManager : MonoBehaviour, IStoreListener
         {
             Debug.Log("RestorePurchases started ...");
 
-            /*var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
+            var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
             apple.RestoreTransactions((result) => {
                 Debug.Log("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
-            });*/
+            });
         }
         else
         {
