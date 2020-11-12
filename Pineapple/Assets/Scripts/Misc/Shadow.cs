@@ -10,6 +10,7 @@ public class Shadow : MonoBehaviour
 
 
     private Vector3 startScale;
+    private Vector2 startPos;
     private Color startColor;
     private SpriteRenderer spriteRenderer;
     private float distanceFromGround;
@@ -19,6 +20,7 @@ public class Shadow : MonoBehaviour
     void Start()
     {
         startScale = transform.localScale;
+        startPos = transform.localPosition;
         spriteRenderer = GetComponent<SpriteRenderer>();
         shadowMaxSize = startScale * sizeIncreaseMultiplier;
         startColor = spriteRenderer.color;
@@ -29,6 +31,11 @@ public class Shadow : MonoBehaviour
     {
         if(body.activeSelf && !body.GetComponent<CharacterController2D>().m_Grounded)
             ShadowScale();
+        else
+            {
+                gameObject.transform.localPosition = startPos;
+                gameObject.transform.localScale = startScale;
+            }
     }
 
     void ShadowScale()

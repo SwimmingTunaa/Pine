@@ -42,10 +42,17 @@ public class AdManager : MonoBehaviour
     public void ShowOptInAdButton()
     {
         gameOverAdButton.SetActive(true);
+        //how many plays before showing prompt to watch ad
         if(PlayerPrefs.GetInt("Play Count") >= playAmountToTrigger)
         {
             watchAdButton.SetActive(true);
             PlayerPrefs.SetInt("Play Count",0);
+        }
+
+        if(PlayerPrefs.GetInt("Play Count Interstitial Ad") >= 8)
+        {
+            InterstitialAds.instance.ShowInterstitialAd();
+            PlayerPrefs.SetInt("Play Count Interstitial Ad",0);
         }
     }
 

@@ -19,7 +19,7 @@ public class CharacterController2D : MonoBehaviour
     public bool isFlying;							// A position marking where to check if the player is grounded.
 
 	private Vector2 _GroundedBoxSize = new Vector2(0.7f, 0.15f); // size of the overlap box to determine if grounded
-	private Rigidbody2D m_Rigidbody2D;
+	public Rigidbody2D m_Rigidbody2D;
 	private Vector3 m_Velocity = Vector3.zero;
 	private Vector3 m_FlyVelocity = Vector3.zero;
 	private AudioSource _audioSource;

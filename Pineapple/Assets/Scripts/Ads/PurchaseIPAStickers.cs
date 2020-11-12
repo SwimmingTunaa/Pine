@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Purchasing;
 using TMPro;
 public class PurchaseIPAStickers : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PurchaseIPAStickers : MonoBehaviour
 
     void Start()
     {
-        //StartCoroutine(SetPriceText());
+        StartCoroutine(SetPriceText());
     }
  
     public void BuyItem()
@@ -26,14 +27,20 @@ public class PurchaseIPAStickers : MonoBehaviour
         }
     }
 
-    /*IEnumerator SetPriceText()
+    IEnumerator SetPriceText()
     {
         while(!IAPManager.instance.IsInitialized())
             yield return null;
-        print("text changed");
-        if(!buy1000Stickers)
-            priceText.text = IAPManager.instance.GetProductPriceFromStore(IAPManager.instance.stickers2500);
+        
+        if(buy1000Stickers)
+        {
+            Product product = IAPManager.m_StoreController.products.WithID("tsd_stickers_1000");
+            priceText.text = product.metadata.localizedPriceString + " " + product.metadata.isoCurrencyCode.ToString();
+        }
         else
-            priceText.text = IAPManager.instance.GetProductPriceFromStore(IAPManager.instance.stickers1000);
-    }*/
+        {
+            Product product = IAPManager.m_StoreController.products.WithID("tsd_stickers_2500");
+            priceText.text = product.metadata.localizedPriceString + " " + product.metadata.isoCurrencyCode.ToString();
+        }
+    }
 }

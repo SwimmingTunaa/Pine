@@ -16,6 +16,8 @@ public class MixLevels : MonoBehaviour
     {
         if(Instance == null)
         Instance = this;
+        masterMixer.SetFloat("BGM Vol", 0);
+        masterMixer.SetFloat("GOM Vol", -80f);
     }
 
     public void FadeBGMtoGOM(bool fade, bool fadeOut)

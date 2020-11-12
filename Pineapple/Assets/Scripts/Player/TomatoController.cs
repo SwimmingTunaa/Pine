@@ -43,12 +43,14 @@ public class TomatoController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!chasePlayer)
-            Move();
-        else if(chasePlayer)
-            ChasePlayer();
-            //Jump();
-            MoveUpCollider();
+      
+            if(!chasePlayer)
+                Move();
+            else if(chasePlayer)
+                ChasePlayer();
+                //Jump();
+                MoveUpCollider();
+
     }
 
     void OnTriggerEnter2D(Collider2D other)

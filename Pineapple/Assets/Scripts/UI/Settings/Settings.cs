@@ -14,10 +14,20 @@ public class Settings : MonoBehaviour
 
     void Start()
     {
-        musicSource.volume = PlayerPrefs.GetFloat("Music Volume");
-        musicChecker.SetActive(PlayerPrefs.GetFloat("Music Volume") == 1 ? false : true);
-        AudioListener.volume = PlayerPrefs.GetFloat("Audio Volume");
-        audioChecker.SetActive(PlayerPrefs.GetFloat("Audio Volume") == 1 ? false : true);
+        if(PlayerPrefs.GetInt("FirstTimeStart") == 1)
+        {
+            musicSource.volume = PlayerPrefs.GetFloat("Music Volume") == 0 ? 0 : musicMaxVolume;
+            musicChecker.SetActive(PlayerPrefs.GetFloat("Music Volume") == 1 ? false : true);
+            AudioListener.volume = PlayerPrefs.GetFloat("Audio Volume");
+            audioChecker.SetActive(PlayerPrefs.GetFloat("Audio Volume") == 1 ? false : true);
+        }
+        else
+        {
+            musicSource.volume = musicMaxVolume;
+            musicChecker.SetActive(PlayerPrefs.GetFloat("Music Volume") == 1 ? false : true);
+            AudioListener.volume = 1;
+            audioChecker.SetActive(AudioListener.volume == 1 ? false : true);
+        }
     }
 
     public void ToggleMusic()
@@ -38,24 +48,24 @@ public class Settings : MonoBehaviour
     {
         AudioListener.volume = AudioListener.volume == 1 ? 0: 1;
         PlayerPrefs.SetFloat("Audio Volume", AudioListener.volume);
-        audioChecker.SetActive(PlayerPrefs.GetFloat("Audio Volume") == 1 ? false : true);
+        audioChecker.SetActive(AudioListener.volume == 1 ? false : true);
     }
 
     public void ToggleAudio(GameObject marker)
     {
         AudioListener.volume = AudioListener.volume == 1 ? 0: 1;
         PlayerPrefs.SetFloat("Audio Volume", AudioListener.volume);
-        marker.SetActive(PlayerPrefs.GetFloat("Audio Volume") == 1 ? false : true);
+        marker.SetActive(AudioListener.volume == 1 ? false : true);
     }
 
     public void InitialiseAudioMarker(GameObject marker)
     {
-        marker.SetActive(PlayerPrefs.GetFloat("Audio Volume") == 1 ? false : true);
+        marker.SetActive(AudioListener.volume == 1 ? false : true);
     }
 
       public void InitialiseMusicMarker(GameObject marker)
     {
-        marker.SetActive(PlayerPrefs.GetFloat("Music Volume") == 1 ? false : true);
+        marker.SetActive(musicSource.volume == 1 ? false : true);
     }
 
     

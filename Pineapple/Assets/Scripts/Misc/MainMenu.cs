@@ -47,9 +47,11 @@ public class MainMenu : MonoBehaviour
         GameManager.Instance.chaser.SpawnChaser(-6f);
         StartCoroutine(MainMenuWait(false, waitTime));
         //create the rewards item if there are any
-        ShopManager.Instance.ResetPlayerPrefsOnPlay();
         StatsManager.Instance.AddOneToAStat("Play Count");
+        StatsManager.Instance.AddOneToAStat("Play Count Interstitial Ad");
+        StatsManager.Instance.AddOneToAStat("Play Count This Session");
     }
+
 
     public IEnumerator MainMenuWait(bool enable, float waitTime)
     {
@@ -64,6 +66,7 @@ public class MainMenu : MonoBehaviour
         }
         debuffCamera.SetActive(!enable);
         yield return new WaitForSeconds(waitTime);
+        ShopManager.Instance.ResetPlayerPrefsOnPlay();
         MainMenuDefualt(enable);
         followCamera.SetActive(!enable);
         debuffCamera.SetActive(enable);

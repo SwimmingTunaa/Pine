@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
         stickersCollectedVar.RuntimeValue = stats.stickerCollectedThisRound;
         if(!Statics.paused)
         {
-            if(!_playerHealth.dead) 
+            if(!_playerHealth.dead)
             {
                 SpawnChaser();
             }
@@ -272,6 +272,7 @@ public class GameManager : MonoBehaviour
             gameoverUIBody.GetComponent<Animator>().Play("End",0);
         //turn the chaser off
         chaser.gameObject.SetActive(false);
+        TomatoController.chasePlayer = false;
         //revive Player
         yield return (StartCoroutine(_playerHealth.Revive(_playerCachedPos.x + Statics.DistanceTraveled)));
         //Close UI
@@ -284,6 +285,7 @@ public class GameManager : MonoBehaviour
         //unpause
         _gameover = false;
         PauseGame(false);
+        TomatoController.chasePlayer = true;
     }
     public void StartPlayerRevive()
     {
@@ -326,5 +328,11 @@ public class GameManager : MonoBehaviour
         stats.UpdateFurthestDistanceTravelled();  
 
         StartCoroutine(LoadLevel(0));
+    }
+    
+    public void ExitApp()
+    {
+        Debug.Log("Closeing App");
+        Application.Quit();
     }
 }

@@ -8,12 +8,12 @@ public class IAPManager : MonoBehaviour, IStoreListener
     public static IAPManager instance;
     public GameObject confirmedPurchaseButton1000;
     public GameObject confirmedPurchaseButton2500;
-    private static IStoreController m_StoreController;
+    public static IStoreController m_StoreController;
     private static IExtensionProvider m_StoreExtensionProvider;
 
     //Step 1 create your products
-    private string stickers1000 = "tsd_stickers_1000";
-    private string stickers2500 = "tsd_stickers_2500";
+    const string stickers1000 = "tsd_stickers_1000";
+    const string stickers2500 = "tsd_stickers_2500";
 
 
     //************************** Adjust these methods **************************************

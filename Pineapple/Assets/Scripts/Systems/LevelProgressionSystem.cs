@@ -53,6 +53,7 @@ public class LevelProgressionSystem : MonoBehaviour
         else
             if(PlayerPrefs.GetInt("FirstTimeStart") == 0)
             {
+                //PlayerPrefs.SetInt("Preservatives", 1);
                 if(Timer(_interval) && _interval > 0)
                 {
                     jumpButton.onClick.RemoveListener(ResetTime);
@@ -62,6 +63,7 @@ public class LevelProgressionSystem : MonoBehaviour
                 {
                     MasterSpawner.Instance.enabled = true;
                     PlayerPrefs.SetInt("FirstTimeStart", 1);
+                    //PlayerPrefs.SetInt("Preservatives", 0);
                     ResetTime();
                 }
                StartCoroutine(FirstStart());
@@ -96,7 +98,7 @@ public class LevelProgressionSystem : MonoBehaviour
                             GameObject tempGO = Instantiate(holePanelToAdd);
                             tempGO.SetActive(false);
                             tempGO.transform.parent = PoolManager.instance.transform;
-                            RegionPoolManager.Instance.primaryRegionsToPool.Find(x => x.name == "House Region")?.panels.spawnedObjectPool.Add(tempGO);
+                            RegionPoolManager.Instance.primaryRegionsToPool.Find(x => x.name == "House Region").panels.spawnedObjectPool.Add(tempGO);
                         }
                     }
                 }
