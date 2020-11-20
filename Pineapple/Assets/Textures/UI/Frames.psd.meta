@@ -11,6 +11,18 @@ TextureImporter:
   - first:
       213: -6407714468422981231
     second: Frame Square
+  - first:
+      213: -7042072870795275396
+    second: Frame filled Medeium
+  - first:
+      213: 6742796526994786494
+    second: Frame filled Thick
+  - first:
+      213: 2402405277600673025
+    second: Frame Hollow Medium
+  - first:
+      213: 3204644728429591212
+    second: Frame Hollow Thick
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 1
     aniso: -1
     mipBias: -100
     wrapU: 0
@@ -166,6 +178,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Frame filled Medeium
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 808
+        width: 591
+        height: 591
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f89bbe81afb07469a7bb2b90735636
+      internalID: -7042072870795275396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame filled Thick
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 808
+        width: 591
+        height: 591
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 30, y: 30, z: 30, w: 30}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29bd1227484f0eb4c978909bee1494bc
+      internalID: 6742796526994786494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame Hollow Medium
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 193
+        width: 591
+        height: 591
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79908c245c4ff314cb834c9e45990b41
+      internalID: 2402405277600673025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame Hollow Thick
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 193
+        width: 591
+        height: 591
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 30, y: 30, z: 30, w: 30}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aedf313857eca14baa3a4701abdd129
+      internalID: 3204644728429591212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -177,7 +273,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
   spritePackingTag: 
-  pSDRemoveMatte: 0
+  pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 

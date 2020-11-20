@@ -20,13 +20,13 @@ public class IAPManager : MonoBehaviour, IStoreListener
     public void InitializePurchasing()
     {
         if (IsInitialized()) { return; }
-        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+        /*var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
         //Step 2 choose if your product is a consumable or non consumable
         builder.AddProduct(stickers1000, ProductType.NonConsumable);
         builder.AddProduct(stickers2500, ProductType.NonConsumable);
 
-        UnityPurchasing.Initialize(this, builder);
+        UnityPurchasing.Initialize(this, builder);*/
     }
 
 
@@ -144,10 +144,10 @@ public class IAPManager : MonoBehaviour, IStoreListener
         {
             Debug.Log("RestorePurchases started ...");
 
-            var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
+            /*var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
             apple.RestoreTransactions((result) => {
                 Debug.Log("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
-            });
+            });*/
         }
         else
         {
