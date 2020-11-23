@@ -6,10 +6,14 @@
     using UnityEngine;
     using UnityEngine.Events;
     using UnityEngine.UI;
+    using UnityEngine.SceneManagement;
 
     public class CalendarManager : MonoBehaviour
     {
         public GameObject dailyRewardAvailbleEffect;
+        public Transform effectSpawnPoint;
+        public Button button;
+
         private UnityAction<int, int, Sprite> ClickListener;
         private List<CalendarDayProperties> allDays;
         private GameObject canvas;
@@ -25,17 +29,38 @@
         const string dailyRewardCurrentDay = "DailyRewardCurrentDay";
 
         private static GameObject go;
- 
+        private GameObject rewardEffect = null;
         public static CalendarManager Instance;
 
         void Awake()
         {
             if(Instance == null)
+            {
+                DontDestroyOnLoad(this.gameObject);
                 Instance = this;
+            }
                 else
                     Destroy(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            
         }
-    
+
+        void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            button = GameObject.FindGameObjectWithTag("DailyReward").transform.parent.GetComponentInChildren<Button>();
+            button.onClick.AddListener(ShowCalendar);
+            Debug.Log("Scene Loaded");
+        }
 
         public void Start()
         {
@@ -43,6 +68,7 @@
             LoadCalendar();            
         }
 
+      
 
         /// <summary>
         /// Loads the saved values
@@ -78,6 +104,19 @@
                     
                 }
             }
+        }
+
+        public void ShowEffect(bool show)
+        {
+            
+            if(rewardEffect == null && show)
+            {
+                effectSpawnPoint = GameObject.FindGameObjectWithTag("DailyReward").transform;
+                rewardEffect = Instantiate(dailyRewardAvailbleEffect, effectSpawnPoint.position, dailyRewardAvailbleEffect.transform.rotation);
+                rewardEffect.transform.SetParent(effectSpawnPoint);
+            }
+                else if(rewardEffect !=null && !show)
+                    Destroy(rewardEffect);
         }
 
 
@@ -233,7 +272,9 @@
             GameObject calendar = Instantiate(popup);
             calendar.transform.SetParent(popupInstance.transform, false);
             calendar.GetComponent<CalendarPopup>().Initialize(allDays, savedDay, TimeExpired());
+            //popupInstance.transform.parent = this.transform;
             popupInstance.SetActive(false);
+            DontDestroyOnLoad(popupInstance);
         }
     }
 }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class StatsManager: MonoBehaviour
 {
     public static StatsManager Instance;
@@ -11,6 +12,9 @@ public class StatsManager: MonoBehaviour
     public IntVariable seedlingsCollectedVar;
     public int stickerCollectedThisRound;
     public GameObject highscoreIcon;
+    public Button SubmitScoreButton;
+    public GameObject SubmitScoreDoneButton;
+    public Button highscoreButton;
 
     [Header("UI")]
     public GameObject scoreAddText;
@@ -23,6 +27,22 @@ public class StatsManager: MonoBehaviour
                 Instance = this;
         highscoreIcon.SetActive(false);
         regionVistedVar.RuntimeValue = 0;
+    }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        highscoreButton = GameObject.Find("Leaderboard Button").GetComponentInChildren<Button>();
+        highscoreButton.onClick.AddListener(SumbitScore);
+        Debug.Log("Scene Loaded");
     }
 
     public void AddStickersToTotalOwnedAmount()
@@ -86,6 +106,41 @@ public class StatsManager: MonoBehaviour
         tempGo.GetComponentInChildren<TextMeshProUGUI>().text = "+" + amount + " - " + scoreText;
         tempGo.transform.SetParent(scoreSpawnPos.transform);
         Destroy(tempGo, 3f);
+    }
+
+    public void SumbitScore()
+    {
+        print("pressed");
+        if(GameServices.Instance.IsLoggedIn())
+            GameServices.Instance.SubmitScore(StatsManager.Instance.currentScore.RuntimeValue,LeaderboardNames.Highscore, SubmitComplete);
+        else
+            GameServices.Instance.LogIn(LoginComplete);
+    }
+
+    private void SubmitComplete(bool success, GameServicesError message)
+    {
+        if(success)
+        {
+            SubmitScoreDoneButton.SetActive(true);
+            SubmitScoreButton.interactable = false;
+        }
+        else
+        {
+            //an error occurred
+            Debug.LogError("Score failed to submit: " + message);
+        }
+    }
+
+    private void LoginComplete (bool success)
+    {
+        if(success==true)
+        {
+           GameServices.Instance.SubmitScore(StatsManager.Instance.currentScore.RuntimeValue,LeaderboardNames.Highscore, SubmitComplete);
+        }
+        else
+        {
+            //Login failed
+        }
     }
 
     public void getTotalScore()

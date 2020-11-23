@@ -83,13 +83,13 @@
             {
                 subtitleText.text = "Your reward is ready in:";
                 remainingTime.text = CalendarManager.Instance.GetRemainingTime();
-                CalendarManager.Instance.dailyRewardAvailbleEffect.SetActive(false);
+                CalendarManager.Instance.ShowEffect(false);
             }
             else
             {
                 subtitleText.text = "Your reward is ready";
                 remainingTime.text = "Open Now";
-                CalendarManager.Instance.dailyRewardAvailbleEffect.SetActive(true);
+                CalendarManager.Instance.ShowEffect(true);
                 Refresh(currentDay, true);
             }
         }

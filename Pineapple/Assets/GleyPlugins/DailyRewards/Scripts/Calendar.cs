@@ -11,7 +11,7 @@
         public static void Show()
         {
             //CalendarManager.Instance.Initialize();
-            CalendarManager.Instance.ShowCalendar();
+           // CalendarManager.Instance.ShowCalendar();
         }
 
         /// <summary>

@@ -169,7 +169,7 @@ PlayerSettings:
     Android: com.Swimming.TheShortestRun
     Standalone: com.Company.ProductName
   buildNumber: {}
-  AndroidBundleVersionCode: 11
+  AndroidBundleVersionCode: 22
   AndroidMinSdkVersion: 17
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -633,8 +633,8 @@ PlayerSettings:
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
     1: CROSS_PLATFORM_INPUT
-    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT;UseGameCenterPlugin
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT;UseGooglePlayGamesPlugin
     14: MOBILE_INPUT
   platformArchitecture: {}
   scriptingBackend:
@@ -728,10 +728,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 9c983f0b-7222-4b82-a4bc-3744d4f49277
+  cloudProjectId: d61a474f-b71a-4767-aa7e-5c51adbb57aa
   framebufferDepthMemorylessMode: 0
   projectName: The Shortest Run
-  organizationId: tuna-698689
+  organizationId: tunaavu
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

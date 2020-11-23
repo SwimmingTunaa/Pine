@@ -330,6 +330,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadLevel(0));
     }
     
+    public void LoadScene(int scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
+
     public void ExitApp()
     {
         Debug.Log("Closeing App");
